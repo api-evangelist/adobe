@@ -1,0 +1,79 @@
+{
+    "name": "Adobe",
+    "description": "Adobe is changing the world through digital experiences. We help our customers create, deliver and optimize content and applications.",
+    "image": "http:\/\/kinlane-productions.s3.amazonaws.com\/screen-capture-api\/151-adobe.jpg",
+    "tags": [
+        "api provider",
+        "have api",
+        "have swagger",
+        "locations",
+        "programming"
+    ],
+    "created": "2019-12-18",
+    "modified": "2019-12-18",
+    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/adobe\/master\/apis.json",
+    "specificationVersion": "0.14",
+    "apis": [
+        {
+            "name": "Adobe",
+            "description": null,
+            "image": "http:\/\/kinlane-productions.s3.amazonaws.com\/screen-capture-api\/151-adobe.jpg",
+            "humanURL": "https:\/\/adobe.com",
+            "baseURL": "",
+            "tags": [],
+            "properties": [
+                {
+                    "type": "x-openapi",
+                    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/1forge\/master\/adobe-openapi.json"
+                }
+            ]
+        }
+    ],
+    "include": [],
+    "x-common": [
+        {
+            "type": "Website",
+            "url": "https:\/\/adobe.com"
+        },
+        {
+            "type": "Blog",
+            "url": "http:\/\/blogs.adobe.com\/"
+        },
+        {
+            "type": "Blog RSS",
+            "url": "http:\/\/blogs.adobe.com\/index.xml"
+        },
+        {
+            "type": "Crunchbase",
+            "url": "https:\/\/crunchbase.com\/organization\/adobe-systems"
+        },
+        {
+            "type": "Crunchbase",
+            "url": "http:\/\/www.crunchbase.com\/company\/adobe-systems"
+        },
+        {
+            "type": "Developers",
+            "url": "https:\/\/marketing.adobe.com\/developer\/"
+        },
+        {
+            "type": "Email",
+            "url": "einquiri@adobe.com"
+        },
+        {
+            "type": "Email",
+            "url": "adobepr@adobe.com"
+        },
+        {
+            "type": "Email",
+            "url": "DPO@adobe.com"
+        },
+        {
+            "type": "Github",
+            "url": "https:\/\/github.com\/adobe"
+        },
+        {
+            "type": "Twitter",
+            "url": "https:\/\/twitter.com\/Adobe"
+        }
+    ]
+}
