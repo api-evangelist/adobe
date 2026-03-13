@@ -1,0 +1,275 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "adobe": "https://ns.adobe.com/pdf-services/",
+    "dcterms": "http://purl.org/dc/terms/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "schema": "https://schema.org/",
+
+    "id": "@id",
+    "type": "@type",
+
+    "PDFJob": "adobe:PDFJob",
+    "Asset": "adobe:Asset",
+    "InputAsset": "adobe:InputAsset",
+    "OutputAsset": "adobe:OutputAsset",
+    "PageRange": "adobe:PageRange",
+    "PDFProperties": "adobe:PDFProperties",
+    "PageProperties": "adobe:PageProperties",
+    "PasswordProtection": "adobe:PasswordProtection",
+    "Permissions": "adobe:Permissions",
+    "ExtractOptions": "adobe:ExtractOptions",
+    "JobError": "adobe:JobError",
+
+    "CreatePDFOperation": "adobe:CreatePDFOperation",
+    "ExportPDFOperation": "adobe:ExportPDFOperation",
+    "CombinePDFOperation": "adobe:CombinePDFOperation",
+    "SplitPDFOperation": "adobe:SplitPDFOperation",
+    "OCROperation": "adobe:OCROperation",
+    "CompressPDFOperation": "adobe:CompressPDFOperation",
+    "ProtectPDFOperation": "adobe:ProtectPDFOperation",
+    "RemoveProtectionOperation": "adobe:RemoveProtectionOperation",
+    "LinearizePDFOperation": "adobe:LinearizePDFOperation",
+    "ExtractPDFOperation": "adobe:ExtractPDFOperation",
+    "AutoTagOperation": "adobe:AutoTagOperation",
+    "DocumentGenerationOperation": "adobe:DocumentGenerationOperation",
+
+    "assetID": {
+      "@id": "adobe:assetID",
+      "@type": "xsd:string"
+    },
+    "uploadUri": {
+      "@id": "adobe:uploadUri",
+      "@type": "@id"
+    },
+    "downloadUri": {
+      "@id": "adobe:downloadUri",
+      "@type": "@id"
+    },
+
+    "status": "adobe:status",
+    "asset": {
+      "@id": "adobe:asset",
+      "@type": "@id"
+    },
+    "error": "adobe:error",
+
+    "mediaType": {
+      "@id": "adobe:mediaType",
+      "@type": "xsd:string"
+    },
+    "size": {
+      "@id": "adobe:size",
+      "@type": "xsd:integer"
+    },
+    "metadata": "adobe:metadata",
+
+    "start": {
+      "@id": "adobe:start",
+      "@type": "xsd:integer"
+    },
+    "end": {
+      "@id": "adobe:end",
+      "@type": "xsd:integer"
+    },
+    "pageRanges": {
+      "@id": "adobe:pageRanges",
+      "@container": "@list"
+    },
+    "pagesOrder": {
+      "@id": "adobe:pagesOrder",
+      "@container": "@list"
+    },
+    "pageActions": {
+      "@id": "adobe:pageActions",
+      "@container": "@list"
+    },
+    "rotation": {
+      "@id": "adobe:rotation",
+      "@type": "xsd:integer"
+    },
+
+    "assets": {
+      "@id": "adobe:assets",
+      "@container": "@list"
+    },
+    "assetsToInsert": {
+      "@id": "adobe:assetsToInsert",
+      "@container": "@list"
+    },
+    "assetsToReplace": {
+      "@id": "adobe:assetsToReplace",
+      "@container": "@list"
+    },
+    "baseAssetID": {
+      "@id": "adobe:baseAssetID",
+      "@type": "xsd:string"
+    },
+    "insertAt": {
+      "@id": "adobe:insertAt",
+      "@type": "xsd:integer"
+    },
+
+    "targetFormat": {
+      "@id": "adobe:targetFormat",
+      "@type": "xsd:string"
+    },
+    "documentLanguage": {
+      "@id": "adobe:documentLanguage",
+      "@type": "xsd:string"
+    },
+    "ocrLanguage": {
+      "@id": "adobe:ocrLanguage",
+      "@type": "xsd:string"
+    },
+    "ocrType": {
+      "@id": "adobe:ocrType",
+      "@type": "xsd:string"
+    },
+    "compressionLevel": {
+      "@id": "adobe:compressionLevel",
+      "@type": "xsd:string"
+    },
+    "outputFormat": {
+      "@id": "adobe:outputFormat",
+      "@type": "xsd:string"
+    },
+
+    "userPassword": "adobe:userPassword",
+    "ownerPassword": "adobe:ownerPassword",
+    "encryptionAlgorithm": {
+      "@id": "adobe:encryptionAlgorithm",
+      "@type": "xsd:string"
+    },
+    "password": "adobe:password",
+    "permissions": "adobe:permissions",
+    "printQuality": {
+      "@id": "adobe:printQuality",
+      "@type": "xsd:string"
+    },
+    "editContent": {
+      "@id": "adobe:editContent",
+      "@type": "xsd:boolean"
+    },
+    "copyContent": {
+      "@id": "adobe:copyContent",
+      "@type": "xsd:boolean"
+    },
+    "editAnnotations": {
+      "@id": "adobe:editAnnotations",
+      "@type": "xsd:boolean"
+    },
+    "fillForms": {
+      "@id": "adobe:fillForms",
+      "@type": "xsd:boolean"
+    },
+    "assembleDocument": {
+      "@id": "adobe:assembleDocument",
+      "@type": "xsd:boolean"
+    },
+
+    "elementsToExtract": {
+      "@id": "adobe:elementsToExtract",
+      "@container": "@list"
+    },
+    "elementsToExtractRenditions": {
+      "@id": "adobe:elementsToExtractRenditions",
+      "@container": "@list"
+    },
+    "tableOutputFormat": {
+      "@id": "adobe:tableOutputFormat",
+      "@type": "xsd:string"
+    },
+    "getStylingInfo": {
+      "@id": "adobe:getStylingInfo",
+      "@type": "xsd:boolean"
+    },
+    "addCharInfo": {
+      "@id": "adobe:addCharInfo",
+      "@type": "xsd:boolean"
+    },
+
+    "generateReport": {
+      "@id": "adobe:generateReport",
+      "@type": "xsd:boolean"
+    },
+    "shiftHeadings": {
+      "@id": "adobe:shiftHeadings",
+      "@type": "xsd:boolean"
+    },
+
+    "jsonDataForMerge": "adobe:jsonDataForMerge",
+    "fragments": "adobe:fragments",
+
+    "includePageLevelProperties": {
+      "@id": "adobe:includePageLevelProperties",
+      "@type": "xsd:boolean"
+    },
+    "pageCount": {
+      "@id": "adobe:pageCount",
+      "@type": "xsd:integer"
+    },
+    "pdfVersion": {
+      "@id": "adobe:pdfVersion",
+      "@type": "xsd:string"
+    },
+    "isEncrypted": {
+      "@id": "adobe:isEncrypted",
+      "@type": "xsd:boolean"
+    },
+    "isLinearized": {
+      "@id": "adobe:isLinearized",
+      "@type": "xsd:boolean"
+    },
+    "hasFormFields": {
+      "@id": "adobe:hasFormFields",
+      "@type": "xsd:boolean"
+    },
+    "isTagged": {
+      "@id": "adobe:isTagged",
+      "@type": "xsd:boolean"
+    },
+    "pageNumber": {
+      "@id": "adobe:pageNumber",
+      "@type": "xsd:integer"
+    },
+    "width": {
+      "@id": "adobe:width",
+      "@type": "xsd:decimal"
+    },
+    "height": {
+      "@id": "adobe:height",
+      "@type": "xsd:decimal"
+    },
+    "pages": {
+      "@id": "adobe:pages",
+      "@container": "@list"
+    },
+
+    "title": "dcterms:title",
+    "description": "dcterms:description",
+    "author": "dcterms:creator",
+    "creator": "adobe:creator",
+    "producer": "adobe:producer",
+    "createdDate": {
+      "@id": "dcterms:created",
+      "@type": "xsd:dateTime"
+    },
+    "modifiedDate": {
+      "@id": "dcterms:modified",
+      "@type": "xsd:dateTime"
+    },
+
+    "code": "adobe:errorCode",
+    "message": "adobe:errorMessage",
+
+    "passwordProtection": "adobe:passwordProtection",
+    "splitOptions": "adobe:splitOptions",
+    "fileCount": {
+      "@id": "adobe:fileCount",
+      "@type": "xsd:integer"
+    },
+    "basePagesRange": "adobe:basePagesRange",
+    "assetPagesRange": "adobe:assetPagesRange"
+  }
+}

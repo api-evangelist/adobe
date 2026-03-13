@@ -1,0 +1,1583 @@
+openapi: 3.1.0
+info:
+  title: Adobe PDF Services API
+  description: >-
+    The Adobe PDF Services API enables developers to create, convert, manipulate,
+    and extract content from PDF documents programmatically. The API uses an
+    asynchronous job-based model where you submit a job, poll for its status, and
+    retrieve the result. Operations include creating PDFs from various formats,
+    exporting PDFs to other formats, combining and splitting PDFs, compressing,
+    OCR processing, protecting with passwords, extracting structured content,
+    auto-tagging for accessibility, and generating documents from templates.
+    Authentication uses OAuth 2.0 with client credentials (server-to-server).
+  version: 4.0.0
+  contact:
+    name: Adobe Developer Support
+    url: https://developer.adobe.com/document-services/
+    email: pdfsvcops@adobe.com
+  license:
+    name: Adobe Terms of Service
+    url: https://www.adobe.com/legal/terms.html
+  termsOfService: https://www.adobe.com/legal/terms.html
+
+servers:
+  - url: https://pdf-services-ue1.adobe.io
+    description: Adobe PDF Services API - US East Production
+  - url: https://pdf-services.adobe.io
+    description: Adobe PDF Services API - Default Production
+
+security:
+  - bearerAuth: []
+
+tags:
+  - name: Assets
+    description: Upload and manage assets (source files) for PDF operations.
+  - name: Create PDF
+    description: Create PDF documents from supported file formats including Microsoft Office, images, and HTML.
+  - name: Export PDF
+    description: Export (convert) PDF documents to other formats such as DOCX, PPTX, XLSX, images, and RTF.
+  - name: Combine PDF
+    description: Combine multiple PDF documents into a single PDF.
+  - name: Split PDF
+    description: Split a PDF document into multiple smaller PDFs.
+  - name: OCR
+    description: Apply optical character recognition to scanned PDFs to make text searchable and selectable.
+  - name: Compress PDF
+    description: Reduce the file size of PDF documents while maintaining quality.
+  - name: Protect PDF
+    description: Add password protection and encryption to PDF documents.
+  - name: Remove Protection
+    description: Remove password protection from PDF documents.
+  - name: Linearize PDF
+    description: Optimize PDFs for fast web viewing (linearization).
+  - name: Extract PDF
+    description: Extract text, tables, and figures from PDF documents into structured JSON output.
+  - name: Accessibility Auto-Tag
+    description: Automatically add accessibility tags to PDF documents using AI.
+  - name: Document Generation
+    description: Generate PDF and Word documents from templates with dynamic JSON data.
+  - name: PDF Properties
+    description: Retrieve metadata and properties from PDF documents.
+  - name: Reorder Pages
+    description: Reorder pages within a PDF document.
+  - name: Delete Pages
+    description: Delete specific pages from a PDF document.
+  - name: Rotate Pages
+    description: Rotate pages within a PDF document.
+  - name: Insert Pages
+    description: Insert pages from one PDF into another.
+  - name: Replace Pages
+    description: Replace pages in a PDF with pages from another PDF.
+  - name: Jobs
+    description: Poll for the status and results of asynchronous PDF operations.
+
+paths:
+  /assets:
+    post:
+      operationId: uploadAsset
+      summary: Upload an asset
+      description: >-
+        Upload a document to the PDF Services platform for processing. Returns
+        a pre-signed upload URI and an asset ID. You must first call this
+        endpoint to get the upload URI, then PUT the file content to that URI,
+        and finally use the asset ID in subsequent operation requests.
+      tags:
+        - Assets
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AssetUploadRequest'
+      responses:
+        '200':
+          description: Asset upload URI and metadata returned successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AssetUploadResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+
+  /assets/{assetID}:
+    get:
+      operationId: getAsset
+      summary: Get asset download URI
+      description: >-
+        Retrieve a pre-signed download URI for a previously created asset or
+        job output. The download URI is valid for a limited time.
+      tags:
+        - Assets
+      parameters:
+        - $ref: '#/components/parameters/assetID'
+      responses:
+        '200':
+          description: Asset download URI returned successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AssetDownloadResponse'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteAsset
+      summary: Delete an asset
+      description: Delete a previously uploaded asset from the platform.
+      tags:
+        - Assets
+      parameters:
+        - $ref: '#/components/parameters/assetID'
+      responses:
+        '204':
+          description: Asset deleted successfully.
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+  /operation/createpdf:
+    post:
+      operationId: createPDF
+      summary: Create a PDF
+      description: >-
+        Create a PDF document from a supported source file format. Supported
+        input formats include Microsoft Word (DOC, DOCX), Excel (XLS, XLSX),
+        PowerPoint (PPT, PPTX), images (BMP, GIF, JPEG, PNG, TIFF), HTML,
+        and RTF. The operation runs asynchronously; poll the returned location
+        header for job status.
+      tags:
+        - Create PDF
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreatePDFRequest'
+      responses:
+        '201':
+          description: Job created successfully. Poll the Location header URL for status.
+          headers:
+            Location:
+              description: URL to poll for job status.
+              schema:
+                type: string
+                format: uri
+            x-request-id:
+              $ref: '#/components/headers/x-request-id'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobStatusResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+
+  /operation/exportpdf:
+    post:
+      operationId: exportPDF
+      summary: Export a PDF
+      description: >-
+        Convert a PDF document to a supported output format. Supported output
+        formats include DOCX, DOC, PPTX, XLSX, RTF, and image formats (JPEG,
+        PNG). For image output, each page is converted to a separate image file.
+      tags:
+        - Export PDF
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExportPDFRequest'
+      responses:
+        '201':
+          description: Job created successfully.
+          headers:
+            Location:
+              description: URL to poll for job status.
+              schema:
+                type: string
+                format: uri
+            x-request-id:
+              $ref: '#/components/headers/x-request-id'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobStatusResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+
+  /operation/combinepdf:
+    post:
+      operationId: combinePDF
+      summary: Combine PDF files
+      description: >-
+        Combine multiple PDF documents into a single PDF. You can specify
+        page ranges from each source document to include. Supports combining
+        up to 20 files or 100 pages total.
+      tags:
+        - Combine PDF
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CombinePDFRequest'
+      responses:
+        '201':
+          description: Job created successfully.
+          headers:
+            Location:
+              description: URL to poll for job status.
+              schema:
+                type: string
+                format: uri
+            x-request-id:
+              $ref: '#/components/headers/x-request-id'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobStatusResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+
+  /operation/splitpdf:
+    post:
+      operationId: splitPDF
+      summary: Split a PDF
+      description: >-
+        Split a PDF document into multiple smaller PDF files. You can split
+        by page count, page ranges, or number of output files.
+      tags:
+        - Split PDF
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SplitPDFRequest'
+      responses:
+        '201':
+          description: Job created successfully.
+          headers:
+            Location:
+              description: URL to poll for job status.
+              schema:
+                type: string
+                format: uri
+            x-request-id:
+              $ref: '#/components/headers/x-request-id'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobStatusResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+
+  /operation/ocr:
+    post:
+      operationId: ocrPDF
+      summary: OCR a PDF
+      description: >-
+        Apply optical character recognition to a scanned PDF, converting
+        image-based text into searchable and selectable text. Supports
+        multiple OCR languages and output types (searchable image or
+        searchable image exact).
+      tags:
+        - OCR
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OCRRequest'
+      responses:
+        '201':
+          description: Job created successfully.
+          headers:
+            Location:
+              description: URL to poll for job status.
+              schema:
+                type: string
+                format: uri
+            x-request-id:
+              $ref: '#/components/headers/x-request-id'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobStatusResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+
+  /operation/compresspdf:
+    post:
+      operationId: compressPDF
+      summary: Compress a PDF
+      description: >-
+        Reduce the file size of a PDF document. Supports multiple compression
+        levels to balance file size reduction against quality.
+      tags:
+        - Compress PDF
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CompressPDFRequest'
+      responses:
+        '201':
+          description: Job created successfully.
+          headers:
+            Location:
+              description: URL to poll for job status.
+              schema:
+                type: string
+                format: uri
+            x-request-id:
+              $ref: '#/components/headers/x-request-id'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobStatusResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+
+  /operation/protectpdf:
+    post:
+      operationId: protectPDF
+      summary: Protect a PDF
+      description: >-
+        Add password protection and set permissions on a PDF document. Supports
+        setting user passwords (to open), owner passwords (to edit/print), and
+        encryption algorithms (AES-128 or AES-256).
+      tags:
+        - Protect PDF
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProtectPDFRequest'
+      responses:
+        '201':
+          description: Job created successfully.
+          headers:
+            Location:
+              description: URL to poll for job status.
+              schema:
+                type: string
+                format: uri
+            x-request-id:
+              $ref: '#/components/headers/x-request-id'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobStatusResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+
+  /operation/removeprotection:
+    post:
+      operationId: removeProtection
+      summary: Remove protection from a PDF
+      description: >-
+        Remove password protection from a PDF document. Requires the
+        current password to unlock the document.
+      tags:
+        - Remove Protection
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RemoveProtectionRequest'
+      responses:
+        '201':
+          description: Job created successfully.
+          headers:
+            Location:
+              description: URL to poll for job status.
+              schema:
+                type: string
+                format: uri
+            x-request-id:
+              $ref: '#/components/headers/x-request-id'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobStatusResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+
+  /operation/linearizepdf:
+    post:
+      operationId: linearizePDF
+      summary: Linearize a PDF
+      description: >-
+        Optimize a PDF for fast web viewing. Linearized PDFs allow the first
+        page to be displayed in a web browser before the entire file has
+        been downloaded.
+      tags:
+        - Linearize PDF
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LinearizePDFRequest'
+      responses:
+        '201':
+          description: Job created successfully.
+          headers:
+            Location:
+              description: URL to poll for job status.
+              schema:
+                type: string
+                format: uri
+            x-request-id:
+              $ref: '#/components/headers/x-request-id'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobStatusResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+
+  /operation/extractpdf:
+    post:
+      operationId: extractPDF
+      summary: Extract content from a PDF
+      description: >-
+        Extract text, tables, and figures from a PDF document into structured
+        JSON output. Uses Adobe Sensei AI technology to identify and extract
+        document structure elements. Returns a ZIP file containing the
+        structured JSON and optionally extracted tables as CSV and figures
+        as images.
+      tags:
+        - Extract PDF
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExtractPDFRequest'
+      responses:
+        '201':
+          description: Job created successfully.
+          headers:
+            Location:
+              description: URL to poll for job status.
+              schema:
+                type: string
+                format: uri
+            x-request-id:
+              $ref: '#/components/headers/x-request-id'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobStatusResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+
+  /operation/accessibilitychecker:
+    post:
+      operationId: autoTagPDF
+      summary: Auto-tag a PDF for accessibility
+      description: >-
+        Automatically add accessibility tags to a PDF document using Adobe
+        Sensei AI technology. Generates a tagged PDF that meets WCAG 2.0
+        and PDF/UA standards. Optionally generates a report detailing the
+        tagging results.
+      tags:
+        - Accessibility Auto-Tag
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AutoTagRequest'
+      responses:
+        '201':
+          description: Job created successfully.
+          headers:
+            Location:
+              description: URL to poll for job status.
+              schema:
+                type: string
+                format: uri
+            x-request-id:
+              $ref: '#/components/headers/x-request-id'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobStatusResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+
+  /operation/documentgeneration:
+    post:
+      operationId: generateDocument
+      summary: Generate a document from a template
+      description: >-
+        Generate a PDF or Word document by merging a Word template (DOCX)
+        with JSON data. Supports dynamic text insertion, conditional sections,
+        tables, lists, images, and computed expressions.
+      tags:
+        - Document Generation
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DocumentGenerationRequest'
+      responses:
+        '201':
+          description: Job created successfully.
+          headers:
+            Location:
+              description: URL to poll for job status.
+              schema:
+                type: string
+                format: uri
+            x-request-id:
+              $ref: '#/components/headers/x-request-id'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobStatusResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+
+  /operation/pdfproperties:
+    post:
+      operationId: getPDFProperties
+      summary: Get PDF properties
+      description: >-
+        Retrieve metadata and properties from a PDF document, including page
+        count, page size, whether the document is encrypted, font information,
+        and PDF/A compliance status.
+      tags:
+        - PDF Properties
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PDFPropertiesRequest'
+      responses:
+        '201':
+          description: Job created successfully.
+          headers:
+            Location:
+              description: URL to poll for job status.
+              schema:
+                type: string
+                format: uri
+            x-request-id:
+              $ref: '#/components/headers/x-request-id'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobStatusResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+
+  /operation/reorderpages:
+    post:
+      operationId: reorderPages
+      summary: Reorder pages in a PDF
+      description: >-
+        Rearrange the order of pages within a PDF document by specifying
+        the desired page sequence.
+      tags:
+        - Reorder Pages
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReorderPagesRequest'
+      responses:
+        '201':
+          description: Job created successfully.
+          headers:
+            Location:
+              description: URL to poll for job status.
+              schema:
+                type: string
+                format: uri
+            x-request-id:
+              $ref: '#/components/headers/x-request-id'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobStatusResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+
+  /operation/deletepages:
+    post:
+      operationId: deletePages
+      summary: Delete pages from a PDF
+      description: >-
+        Remove specific pages from a PDF document by specifying page ranges
+        to delete.
+      tags:
+        - Delete Pages
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeletePagesRequest'
+      responses:
+        '201':
+          description: Job created successfully.
+          headers:
+            Location:
+              description: URL to poll for job status.
+              schema:
+                type: string
+                format: uri
+            x-request-id:
+              $ref: '#/components/headers/x-request-id'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobStatusResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+
+  /operation/rotatepages:
+    post:
+      operationId: rotatePages
+      summary: Rotate pages in a PDF
+      description: >-
+        Rotate specific pages within a PDF document by 90, 180, or 270
+        degrees.
+      tags:
+        - Rotate Pages
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RotatePagesRequest'
+      responses:
+        '201':
+          description: Job created successfully.
+          headers:
+            Location:
+              description: URL to poll for job status.
+              schema:
+                type: string
+                format: uri
+            x-request-id:
+              $ref: '#/components/headers/x-request-id'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobStatusResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+
+  /operation/insertpages:
+    post:
+      operationId: insertPages
+      summary: Insert pages into a PDF
+      description: >-
+        Insert pages from one or more source PDFs into a base PDF at
+        specified positions.
+      tags:
+        - Insert Pages
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InsertPagesRequest'
+      responses:
+        '201':
+          description: Job created successfully.
+          headers:
+            Location:
+              description: URL to poll for job status.
+              schema:
+                type: string
+                format: uri
+            x-request-id:
+              $ref: '#/components/headers/x-request-id'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobStatusResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+
+  /operation/replacepages:
+    post:
+      operationId: replacePages
+      summary: Replace pages in a PDF
+      description: >-
+        Replace specific pages in a base PDF with pages from another PDF
+        document.
+      tags:
+        - Replace Pages
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReplacePagesRequest'
+      responses:
+        '201':
+          description: Job created successfully.
+          headers:
+            Location:
+              description: URL to poll for job status.
+              schema:
+                type: string
+                format: uri
+            x-request-id:
+              $ref: '#/components/headers/x-request-id'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobStatusResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+
+  /operation/{operationType}/status/{jobID}:
+    get:
+      operationId: getJobStatus
+      summary: Get job status
+      description: >-
+        Poll for the status of an asynchronous PDF operation job. Returns
+        the current status (in progress, done, or failed) and, when complete,
+        the output asset information.
+      tags:
+        - Jobs
+      parameters:
+        - name: operationType
+          in: path
+          required: true
+          description: The type of operation that was submitted.
+          schema:
+            type: string
+            enum:
+              - createpdf
+              - exportpdf
+              - combinepdf
+              - splitpdf
+              - ocr
+              - compresspdf
+              - protectpdf
+              - removeprotection
+              - linearizepdf
+              - extractpdf
+              - accessibilitychecker
+              - documentgeneration
+              - pdfproperties
+              - reorderpages
+              - deletepages
+              - rotatepages
+              - insertpages
+              - replacepages
+        - name: jobID
+          in: path
+          required: true
+          description: The unique identifier of the job returned when the operation was submitted.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Job status returned successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobStatusResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: >-
+        OAuth 2.0 access token obtained via client credentials grant from
+        Adobe Identity Management Service (IMS). Generate credentials in
+        the Adobe Developer Console and exchange them for an access token
+        at https://ims-na1.adobelogin.com/ims/token/v3.
+
+  parameters:
+    assetID:
+      name: assetID
+      in: path
+      required: true
+      description: The unique identifier of the asset.
+      schema:
+        type: string
+
+  headers:
+    x-request-id:
+      description: A unique identifier for the request, useful for debugging and support.
+      schema:
+        type: string
+
+  responses:
+    BadRequest:
+      description: >-
+        The request was malformed or contained invalid parameters. Check
+        the error message for details.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: >-
+        Authentication failed. The access token is missing, expired, or
+        invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    TooManyRequests:
+      description: >-
+        Rate limit exceeded. Wait before retrying. Check Retry-After header
+        for guidance.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+
+  schemas:
+    AssetReference:
+      type: object
+      description: A reference to an uploaded asset.
+      required:
+        - assetID
+      properties:
+        assetID:
+          type: string
+          description: The unique identifier of the uploaded asset.
+          examples:
+            - urn:aaid:AS:UE1:23456789-abcd-1234-efgh-567890abcdef
+
+    PageRange:
+      type: object
+      description: Specifies a range of pages in a PDF document.
+      properties:
+        start:
+          type: integer
+          description: The starting page number (1-based).
+          minimum: 1
+          examples:
+            - 1
+        end:
+          type: integer
+          description: The ending page number (1-based, inclusive).
+          minimum: 1
+          examples:
+            - 5
+
+    AssetUploadRequest:
+      type: object
+      required:
+        - mediaType
+      properties:
+        mediaType:
+          type: string
+          description: The MIME type of the file being uploaded.
+          examples:
+            - application/pdf
+            - application/vnd.openxmlformats-officedocument.wordprocessingml.document
+            - image/jpeg
+
+    AssetUploadResponse:
+      type: object
+      properties:
+        assetID:
+          type: string
+          description: The unique identifier for the uploaded asset.
+          examples:
+            - urn:aaid:AS:UE1:23456789-abcd-1234-efgh-567890abcdef
+        uploadUri:
+          type: string
+          format: uri
+          description: >-
+            The pre-signed URI to upload the file content via HTTP PUT.
+            Valid for a limited time.
+
+    AssetDownloadResponse:
+      type: object
+      properties:
+        assetID:
+          type: string
+          description: The unique identifier of the asset.
+        downloadUri:
+          type: string
+          format: uri
+          description: >-
+            The pre-signed URI to download the asset. Valid for a limited time.
+
+    CreatePDFRequest:
+      type: object
+      required:
+        - assetID
+      properties:
+        assetID:
+          type: string
+          description: The asset ID of the source file to convert to PDF.
+        documentLanguage:
+          type: string
+          description: The language of the source document for OCR processing.
+          enum:
+            - en-US
+            - de-DE
+            - fr-FR
+            - ja-JP
+            - da-DK
+            - fi-FI
+            - it-IT
+            - ko-KR
+            - nb-NO
+            - nl-NL
+            - pt-BR
+            - es-ES
+            - sv-SE
+            - zh-CN
+            - zh-TW
+          default: en-US
+        createPDFFromDOCXOptions:
+          type: object
+          description: Options specific to DOCX to PDF conversion.
+          properties: {}
+        createPDFFromPPTXOptions:
+          type: object
+          description: Options specific to PPTX to PDF conversion.
+          properties: {}
+        createPDFFromXLSXOptions:
+          type: object
+          description: Options specific to XLSX to PDF conversion.
+          properties: {}
+        createPDFFromHTMLOptions:
+          type: object
+          description: Options specific to HTML to PDF conversion.
+          properties:
+            includeHeaderFooter:
+              type: boolean
+              description: Whether to include header and footer in the output.
+              default: true
+            pageLayout:
+              type: object
+              properties:
+                pageWidth:
+                  type: number
+                  description: Page width in inches.
+                  default: 8.5
+                pageHeight:
+                  type: number
+                  description: Page height in inches.
+                  default: 11
+
+    ExportPDFRequest:
+      type: object
+      required:
+        - assetID
+        - targetFormat
+      properties:
+        assetID:
+          type: string
+          description: The asset ID of the PDF to export.
+        targetFormat:
+          type: string
+          description: The desired output format.
+          enum:
+            - docx
+            - doc
+            - pptx
+            - xlsx
+            - rtf
+            - jpeg
+            - png
+        ocrLanguage:
+          type: string
+          description: The language for OCR processing during export.
+          enum:
+            - en-US
+            - de-DE
+            - fr-FR
+            - ja-JP
+            - da-DK
+            - fi-FI
+            - it-IT
+            - ko-KR
+            - nb-NO
+            - nl-NL
+            - pt-BR
+            - es-ES
+            - sv-SE
+            - zh-CN
+            - zh-TW
+          default: en-US
+
+    CombinePDFRequest:
+      type: object
+      required:
+        - assets
+      properties:
+        assets:
+          type: array
+          description: The list of PDF assets to combine, in order.
+          items:
+            type: object
+            required:
+              - assetID
+            properties:
+              assetID:
+                type: string
+                description: The asset ID of a source PDF.
+              pageRanges:
+                type: array
+                description: Optional page ranges to include from this asset.
+                items:
+                  $ref: '#/components/schemas/PageRange'
+
+    SplitPDFRequest:
+      type: object
+      required:
+        - assetID
+      properties:
+        assetID:
+          type: string
+          description: The asset ID of the PDF to split.
+        splitOptions:
+          type: object
+          description: Options controlling how the PDF is split.
+          properties:
+            pageCount:
+              type: integer
+              description: Split into files with this many pages each.
+              minimum: 1
+            pageRanges:
+              type: array
+              description: Split by specific page ranges.
+              items:
+                $ref: '#/components/schemas/PageRange'
+            fileCount:
+              type: integer
+              description: Split into this many equal files.
+              minimum: 2
+
+    OCRRequest:
+      type: object
+      required:
+        - assetID
+      properties:
+        assetID:
+          type: string
+          description: The asset ID of the PDF to OCR.
+        ocrLanguage:
+          type: string
+          description: The language for OCR processing.
+          enum:
+            - en-US
+            - de-DE
+            - fr-FR
+            - ja-JP
+            - da-DK
+            - fi-FI
+            - it-IT
+            - ko-KR
+            - nb-NO
+            - nl-NL
+            - pt-BR
+            - es-ES
+            - sv-SE
+            - zh-CN
+            - zh-TW
+          default: en-US
+        ocrType:
+          type: string
+          description: >-
+            The type of OCR output. SEARCHABLE_IMAGE produces a searchable
+            PDF maintaining visual fidelity. SEARCHABLE_IMAGE_EXACT preserves
+            the original image appearance precisely.
+          enum:
+            - SEARCHABLE_IMAGE
+            - SEARCHABLE_IMAGE_EXACT
+          default: SEARCHABLE_IMAGE
+
+    CompressPDFRequest:
+      type: object
+      required:
+        - assetID
+      properties:
+        assetID:
+          type: string
+          description: The asset ID of the PDF to compress.
+        compressionLevel:
+          type: string
+          description: >-
+            The desired compression level. Higher compression results in
+            smaller files but may reduce image quality.
+          enum:
+            - LOW
+            - MEDIUM
+            - HIGH
+          default: MEDIUM
+
+    ProtectPDFRequest:
+      type: object
+      required:
+        - assetID
+        - passwordProtection
+      properties:
+        assetID:
+          type: string
+          description: The asset ID of the PDF to protect.
+        passwordProtection:
+          type: object
+          required:
+            - userPassword
+          properties:
+            userPassword:
+              type: string
+              description: Password required to open the PDF.
+            ownerPassword:
+              type: string
+              description: Password required to change permissions or remove protection.
+        encryptionAlgorithm:
+          type: string
+          description: The encryption algorithm to use.
+          enum:
+            - AES_128
+            - AES_256
+          default: AES_256
+        permissions:
+          type: object
+          description: Permissions to set on the protected document.
+          properties:
+            printQuality:
+              type: string
+              description: Print permission level.
+              enum:
+                - NONE
+                - LOW_QUALITY
+                - HIGH_QUALITY
+              default: NONE
+            editContent:
+              type: boolean
+              description: Whether editing content is allowed.
+              default: false
+            copyContent:
+              type: boolean
+              description: Whether copying content is allowed.
+              default: false
+            editAnnotations:
+              type: boolean
+              description: Whether editing annotations is allowed.
+              default: false
+            fillForms:
+              type: boolean
+              description: Whether filling forms is allowed.
+              default: false
+            assembleDocument:
+              type: boolean
+              description: Whether assembling the document (inserting, rotating, deleting pages) is allowed.
+              default: false
+
+    RemoveProtectionRequest:
+      type: object
+      required:
+        - assetID
+        - password
+      properties:
+        assetID:
+          type: string
+          description: The asset ID of the protected PDF.
+        password:
+          type: string
+          description: The password to unlock the PDF.
+
+    LinearizePDFRequest:
+      type: object
+      required:
+        - assetID
+      properties:
+        assetID:
+          type: string
+          description: The asset ID of the PDF to linearize.
+
+    ExtractPDFRequest:
+      type: object
+      required:
+        - assetID
+      properties:
+        assetID:
+          type: string
+          description: The asset ID of the PDF to extract from.
+        elementsToExtract:
+          type: array
+          description: The types of elements to extract from the PDF.
+          items:
+            type: string
+            enum:
+              - text
+              - tables
+          default:
+            - text
+            - tables
+        elementsToExtractRenditions:
+          type: array
+          description: Rendition types to generate for extracted elements.
+          items:
+            type: string
+            enum:
+              - tables
+              - figures
+        tableOutputFormat:
+          type: string
+          description: The output format for extracted tables.
+          enum:
+            - csv
+            - xlsx
+          default: csv
+        getStylingInfo:
+          type: boolean
+          description: Whether to include styling information (font, color, etc.) in the extraction output.
+          default: false
+        addCharInfo:
+          type: boolean
+          description: Whether to include character-level bounding box information.
+          default: false
+
+    AutoTagRequest:
+      type: object
+      required:
+        - assetID
+      properties:
+        assetID:
+          type: string
+          description: The asset ID of the PDF to auto-tag.
+        generateReport:
+          type: boolean
+          description: Whether to generate an accessibility tagging report.
+          default: false
+        shiftHeadings:
+          type: boolean
+          description: Whether to shift heading levels to start at H1.
+          default: false
+
+    DocumentGenerationRequest:
+      type: object
+      required:
+        - assetID
+        - jsonDataForMerge
+        - outputFormat
+      properties:
+        assetID:
+          type: string
+          description: The asset ID of the Word template (DOCX).
+        jsonDataForMerge:
+          type: object
+          description: The JSON data to merge with the template.
+          additionalProperties: true
+        outputFormat:
+          type: string
+          description: The desired output format.
+          enum:
+            - pdf
+            - docx
+          default: pdf
+        fragments:
+          type: object
+          description: Reusable document fragments for template composition.
+          additionalProperties:
+            type: string
+
+    PDFPropertiesRequest:
+      type: object
+      required:
+        - assetID
+      properties:
+        assetID:
+          type: string
+          description: The asset ID of the PDF to inspect.
+        includePageLevelProperties:
+          type: boolean
+          description: Whether to include page-level property details.
+          default: false
+
+    ReorderPagesRequest:
+      type: object
+      required:
+        - assetID
+        - pagesOrder
+      properties:
+        assetID:
+          type: string
+          description: The asset ID of the PDF to reorder.
+        pagesOrder:
+          type: array
+          description: The desired page order as an array of 1-based page numbers.
+          items:
+            type: integer
+            minimum: 1
+
+    DeletePagesRequest:
+      type: object
+      required:
+        - assetID
+        - pageRanges
+      properties:
+        assetID:
+          type: string
+          description: The asset ID of the PDF from which to delete pages.
+        pageRanges:
+          type: array
+          description: Page ranges to delete.
+          items:
+            $ref: '#/components/schemas/PageRange'
+
+    RotatePagesRequest:
+      type: object
+      required:
+        - assetID
+        - pageActions
+      properties:
+        assetID:
+          type: string
+          description: The asset ID of the PDF containing pages to rotate.
+        pageActions:
+          type: array
+          description: Rotation actions to apply to page ranges.
+          items:
+            type: object
+            required:
+              - pageRanges
+              - rotation
+            properties:
+              pageRanges:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PageRange'
+              rotation:
+                type: integer
+                description: The rotation angle in degrees (clockwise).
+                enum:
+                  - 90
+                  - 180
+                  - 270
+
+    InsertPagesRequest:
+      type: object
+      required:
+        - baseAssetID
+        - assetsToInsert
+      properties:
+        baseAssetID:
+          type: string
+          description: The asset ID of the base PDF.
+        assetsToInsert:
+          type: array
+          description: Assets and positions for insertion.
+          items:
+            type: object
+            required:
+              - assetID
+              - insertAt
+            properties:
+              assetID:
+                type: string
+                description: The asset ID of the PDF to insert.
+              insertAt:
+                type: integer
+                description: The page number in the base PDF after which to insert (1-based).
+                minimum: 1
+              pageRanges:
+                type: array
+                description: Optional page ranges to include from the insert asset.
+                items:
+                  $ref: '#/components/schemas/PageRange'
+
+    ReplacePagesRequest:
+      type: object
+      required:
+        - baseAssetID
+        - assetsToReplace
+      properties:
+        baseAssetID:
+          type: string
+          description: The asset ID of the base PDF.
+        assetsToReplace:
+          type: array
+          description: Assets and page specifications for replacement.
+          items:
+            type: object
+            required:
+              - assetID
+              - basePagesRange
+            properties:
+              assetID:
+                type: string
+                description: The asset ID of the replacement PDF.
+              basePagesRange:
+                $ref: '#/components/schemas/PageRange'
+              assetPagesRange:
+                $ref: '#/components/schemas/PageRange'
+
+    JobStatusResponse:
+      type: object
+      description: The status and result of an asynchronous PDF operation job.
+      properties:
+        status:
+          type: string
+          description: The current status of the job.
+          enum:
+            - in progress
+            - done
+            - failed
+        asset:
+          type: object
+          description: The output asset information, available when status is done.
+          properties:
+            assetID:
+              type: string
+              description: The asset ID of the output file.
+            downloadUri:
+              type: string
+              format: uri
+              description: The pre-signed download URI for the output file.
+            metadata:
+              type: object
+              description: Metadata about the output asset.
+              properties:
+                type:
+                  type: string
+                  description: The MIME type of the output file.
+                size:
+                  type: integer
+                  description: The size of the output file in bytes.
+        error:
+          type: object
+          description: Error information, available when status is failed.
+          properties:
+            code:
+              type: string
+              description: A machine-readable error code.
+            message:
+              type: string
+              description: A human-readable error message.
+            status:
+              type: integer
+              description: The HTTP status code associated with the error.
+
+    ErrorResponse:
+      type: object
+      description: Error response returned when a request fails.
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+              description: A machine-readable error code.
+              examples:
+                - INVALID_ASSET_ID
+                - BAD_REQUEST
+                - UNAUTHORIZED
+                - RATE_LIMIT_EXCEEDED
+            message:
+              type: string
+              description: A human-readable error message.
+            status:
+              type: integer
+              description: The HTTP status code.
+              examples:
+                - 400
+                - 401
+                - 404
+                - 429

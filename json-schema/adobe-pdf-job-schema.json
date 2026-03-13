@@ -1,0 +1,413 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/api-evangelist/adobe/json-schema/adobe-pdf-job-schema.json",
+  "title": "Adobe PDF Services Job",
+  "description": "Represents an asynchronous PDF processing job in the Adobe PDF Services API. A job is created when an operation is submitted (such as creating, converting, extracting, or manipulating a PDF). The job is processed asynchronously and its status can be polled until completion. Upon completion, the job provides an output asset with a download URI.",
+  "type": "object",
+  "required": [
+    "status"
+  ],
+  "properties": {
+    "status": {
+      "type": "string",
+      "enum": [
+        "in progress",
+        "done",
+        "failed"
+      ],
+      "description": "The current processing status of the job. A job starts as 'in progress' when submitted and transitions to 'done' upon successful completion or 'failed' if an error occurs."
+    },
+    "asset": {
+      "$ref": "#/$defs/OutputAsset",
+      "description": "The output asset produced by the job. Available when status is 'done'."
+    },
+    "error": {
+      "$ref": "#/$defs/JobError",
+      "description": "Error details when the job has failed. Available when status is 'failed'."
+    }
+  },
+  "if": {
+    "properties": {
+      "status": {
+        "const": "done"
+      }
+    }
+  },
+  "then": {
+    "required": [
+      "asset"
+    ]
+  },
+  "$defs": {
+    "OutputAsset": {
+      "type": "object",
+      "description": "An output asset produced by a completed PDF Services job. Contains the asset identifier, a time-limited download URI, and metadata about the output file.",
+      "required": [
+        "assetID"
+      ],
+      "properties": {
+        "assetID": {
+          "type": "string",
+          "description": "The unique identifier for the output asset, in Adobe Asset ID (AAID) URN format.",
+          "pattern": "^urn:aaid:AS:[A-Z0-9]+:[a-f0-9-]+$",
+          "examples": [
+            "urn:aaid:AS:UE1:23456789-abcd-1234-efgh-567890abcdef"
+          ]
+        },
+        "downloadUri": {
+          "type": "string",
+          "format": "uri",
+          "description": "A pre-signed URI for downloading the output file. This URI is valid for a limited time (typically 24 hours) and should be used promptly."
+        },
+        "metadata": {
+          "$ref": "#/$defs/AssetMetadata"
+        }
+      }
+    },
+    "AssetMetadata": {
+      "type": "object",
+      "description": "Metadata describing an output asset's file properties.",
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "The MIME type of the output file.",
+          "examples": [
+            "application/pdf",
+            "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+            "image/jpeg",
+            "application/zip"
+          ]
+        },
+        "size": {
+          "type": "integer",
+          "description": "The size of the output file in bytes.",
+          "minimum": 0,
+          "examples": [
+            1048576
+          ]
+        }
+      }
+    },
+    "InputAsset": {
+      "type": "object",
+      "description": "A reference to an uploaded input asset used in a PDF Services operation. Assets must be uploaded to the platform before they can be referenced in an operation request.",
+      "required": [
+        "assetID"
+      ],
+      "properties": {
+        "assetID": {
+          "type": "string",
+          "description": "The unique identifier of the uploaded input asset.",
+          "pattern": "^urn:aaid:AS:[A-Z0-9]+:[a-f0-9-]+$",
+          "examples": [
+            "urn:aaid:AS:UE1:23456789-abcd-1234-efgh-567890abcdef"
+          ]
+        }
+      }
+    },
+    "AssetUpload": {
+      "type": "object",
+      "description": "Represents an asset upload session. When requesting an upload, the API returns a pre-signed upload URI and an asset ID. The client must PUT the file content to the upload URI.",
+      "required": [
+        "assetID",
+        "uploadUri"
+      ],
+      "properties": {
+        "assetID": {
+          "type": "string",
+          "description": "The unique identifier assigned to the asset upon upload registration.",
+          "examples": [
+            "urn:aaid:AS:UE1:23456789-abcd-1234-efgh-567890abcdef"
+          ]
+        },
+        "uploadUri": {
+          "type": "string",
+          "format": "uri",
+          "description": "The pre-signed URI to which the file content should be uploaded via HTTP PUT."
+        }
+      }
+    },
+    "PageRange": {
+      "type": "object",
+      "description": "Defines a contiguous range of pages within a PDF document. Page numbers are 1-based and inclusive.",
+      "properties": {
+        "start": {
+          "type": "integer",
+          "description": "The first page in the range (1-based).",
+          "minimum": 1,
+          "examples": [
+            1
+          ]
+        },
+        "end": {
+          "type": "integer",
+          "description": "The last page in the range (1-based, inclusive).",
+          "minimum": 1,
+          "examples": [
+            10
+          ]
+        }
+      }
+    },
+    "PasswordProtection": {
+      "type": "object",
+      "description": "Password protection settings for securing a PDF document. A user password restricts opening the document. An owner password restricts editing permissions.",
+      "required": [
+        "userPassword"
+      ],
+      "properties": {
+        "userPassword": {
+          "type": "string",
+          "description": "The password required to open the PDF document.",
+          "minLength": 1
+        },
+        "ownerPassword": {
+          "type": "string",
+          "description": "The password required to change permissions or remove protection from the PDF."
+        }
+      }
+    },
+    "Permissions": {
+      "type": "object",
+      "description": "Document permissions that can be set when protecting a PDF. Controls what actions users can perform on the document.",
+      "properties": {
+        "printQuality": {
+          "type": "string",
+          "description": "The allowed print quality level.",
+          "enum": [
+            "NONE",
+            "LOW_QUALITY",
+            "HIGH_QUALITY"
+          ],
+          "default": "NONE"
+        },
+        "editContent": {
+          "type": "boolean",
+          "description": "Whether editing the document content is permitted.",
+          "default": false
+        },
+        "copyContent": {
+          "type": "boolean",
+          "description": "Whether copying text and images from the document is permitted.",
+          "default": false
+        },
+        "editAnnotations": {
+          "type": "boolean",
+          "description": "Whether adding or modifying annotations is permitted.",
+          "default": false
+        },
+        "fillForms": {
+          "type": "boolean",
+          "description": "Whether filling in form fields is permitted.",
+          "default": false
+        },
+        "assembleDocument": {
+          "type": "boolean",
+          "description": "Whether assembling the document (inserting, rotating, deleting pages) is permitted.",
+          "default": false
+        }
+      }
+    },
+    "ExtractOptions": {
+      "type": "object",
+      "description": "Configuration options for the PDF Extract operation. Controls which elements are extracted and in what format.",
+      "properties": {
+        "elementsToExtract": {
+          "type": "array",
+          "description": "The types of elements to extract from the PDF.",
+          "items": {
+            "type": "string",
+            "enum": [
+              "text",
+              "tables"
+            ]
+          },
+          "default": [
+            "text",
+            "tables"
+          ]
+        },
+        "elementsToExtractRenditions": {
+          "type": "array",
+          "description": "Rendition types to generate for extracted elements. Generates images of tables and/or figures.",
+          "items": {
+            "type": "string",
+            "enum": [
+              "tables",
+              "figures"
+            ]
+          }
+        },
+        "tableOutputFormat": {
+          "type": "string",
+          "description": "The output format for extracted tables.",
+          "enum": [
+            "csv",
+            "xlsx"
+          ],
+          "default": "csv"
+        },
+        "getStylingInfo": {
+          "type": "boolean",
+          "description": "Whether to include styling information such as font name, size, color, bold, and italic in the structured output.",
+          "default": false
+        },
+        "addCharInfo": {
+          "type": "boolean",
+          "description": "Whether to include character-level bounding box coordinates in the structured output.",
+          "default": false
+        }
+      }
+    },
+    "PDFProperties": {
+      "type": "object",
+      "description": "Properties and metadata retrieved from a PDF document.",
+      "properties": {
+        "pageCount": {
+          "type": "integer",
+          "description": "The total number of pages in the PDF.",
+          "minimum": 0
+        },
+        "pdfVersion": {
+          "type": "string",
+          "description": "The PDF specification version.",
+          "examples": [
+            "1.7",
+            "2.0"
+          ]
+        },
+        "isEncrypted": {
+          "type": "boolean",
+          "description": "Whether the PDF is password-protected or encrypted."
+        },
+        "isLinearized": {
+          "type": "boolean",
+          "description": "Whether the PDF is optimized for fast web viewing."
+        },
+        "hasFormFields": {
+          "type": "boolean",
+          "description": "Whether the PDF contains interactive form fields."
+        },
+        "isTagged": {
+          "type": "boolean",
+          "description": "Whether the PDF contains accessibility tags."
+        },
+        "title": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "The document title from PDF metadata."
+        },
+        "author": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "The document author from PDF metadata."
+        },
+        "creator": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "The application that created the original document."
+        },
+        "producer": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "The application that produced the PDF."
+        },
+        "createdDate": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time",
+          "description": "When the PDF was created."
+        },
+        "modifiedDate": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time",
+          "description": "When the PDF was last modified."
+        },
+        "pages": {
+          "type": "array",
+          "description": "Page-level properties, included when includePageLevelProperties is true.",
+          "items": {
+            "$ref": "#/$defs/PageProperties"
+          }
+        }
+      }
+    },
+    "PageProperties": {
+      "type": "object",
+      "description": "Properties for a single page within a PDF document.",
+      "properties": {
+        "pageNumber": {
+          "type": "integer",
+          "description": "The 1-based page number.",
+          "minimum": 1
+        },
+        "width": {
+          "type": "number",
+          "description": "The page width in points (1 point = 1/72 inch)."
+        },
+        "height": {
+          "type": "number",
+          "description": "The page height in points (1 point = 1/72 inch)."
+        },
+        "rotation": {
+          "type": "integer",
+          "description": "The page rotation in degrees.",
+          "enum": [
+            0,
+            90,
+            180,
+            270
+          ]
+        }
+      }
+    },
+    "JobError": {
+      "type": "object",
+      "description": "Error information returned when a PDF Services job fails.",
+      "required": [
+        "code",
+        "message"
+      ],
+      "properties": {
+        "code": {
+          "type": "string",
+          "description": "A machine-readable error code identifying the type of failure.",
+          "examples": [
+            "INVALID_ASSET_ID",
+            "BAD_REQUEST",
+            "CORRUPT_DOCUMENT",
+            "PASSWORD_PROTECTED",
+            "UNSUPPORTED_MEDIA_TYPE",
+            "INTERNAL_ERROR",
+            "TIMEOUT"
+          ]
+        },
+        "message": {
+          "type": "string",
+          "description": "A human-readable description of the error."
+        },
+        "status": {
+          "type": "integer",
+          "description": "The HTTP status code associated with the error.",
+          "examples": [
+            400,
+            500
+          ]
+        }
+      }
+    }
+  }
+}
