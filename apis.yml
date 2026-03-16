@@ -1,732 +1,287 @@
+aid: adobe
+url: >-
+  https://raw.githubusercontent.com/api-evangelist/adobe/refs/heads/main/apis.yml
 name: Adobe
-description: APIs and developer resources for Adobe's creative, document, and experience cloud platforms
-image: https://www.adobe.com/favicon.ico
-url: https://developer.adobe.com
-created: '2024'
-modified: '2026-03-03'
-specificationVersion: '0.18'
+type: Index
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
-- Creative Cloud
-- PDF
-- Document Services
-- Experience Cloud
-- Marketing
-- Analytics
-- Generative AI
-- E-Commerce
-- E-Signatures
-- Digital Asset Management
-- Work Management
-apis:
-- name: Adobe PDF Services API
-  description: Create, manipulate, and export PDF documents programmatically
-  image: https://www.adobe.com/favicon.ico
-  humanURL: https://developer.adobe.com/document-services/apis/pdf-services/
-  baseURL: https://pdf-services.adobe.io
-  tags:
-  - PDF
-  - Documents
-  - Conversion
-  properties:
-  - type: Documentation
-    url: https://developer.adobe.com/document-services/docs/overview/pdf-services-api/
-  - type: OpenAPI
-    url: https://developer.adobe.com/document-services/docs/apis/
-  - type: Authentication
-    url: https://developer.adobe.com/document-services/docs/overview/pdf-services-api/gettingstarted/
-  - type: Getting Started
-    url: https://developer.adobe.com/document-services/docs/overview/pdf-services-api/gettingstarted/
-  - type: Pricing
-    url: https://developer.adobe.com/document-services/pricing/
-  - type: How-To Guide
-    url: https://developer.adobe.com/document-services/docs/overview/pdf-services-api/howtos/
-  - type: Change Log
-    url: https://developer.adobe.com/document-services/docs/overview/releasenotes/
-  - type: OpenAPI
-    url: openapi/adobe-pdf-services-api-openapi.yml
-  - type: JSONSchema
-    url: json-schema/adobe-pdf-job-schema.json
-  - type: JSONLD
-    url: json-ld/adobe-context.jsonld
-- name: Adobe PDF Extract API
-  description: Extract text, images, tables, and more from native and scanned PDFs into structured JSON using AI technology
-  image: https://www.adobe.com/favicon.ico
-  humanURL: https://developer.adobe.com/document-services/docs/overview/pdf-extract-api/
-  baseURL: https://pdf-services.adobe.io
-  tags:
-  - PDF
-  - Extraction
-  - AI
-  - Documents
-  properties:
-  - type: Documentation
-    url: https://developer.adobe.com/document-services/docs/overview/pdf-extract-api/
-  - type: OpenAPI
-    url: https://developer.adobe.com/document-services/docs/apis/
-  - type: Getting Started
-    url: https://developer.adobe.com/document-services/docs/overview/pdf-extract-api/gettingstarted/
-  - type: How-To Guide
-    url: https://developer.adobe.com/document-services/docs/overview/pdf-extract-api/howtos/extract-api/
-  - type: Pricing
-    url: https://developer.adobe.com/document-services/pricing/
-  - type: OpenAPI
-    url: openapi/adobe-pdf-services-api-openapi.yml
-  - type: JSONSchema
-    url: json-schema/adobe-pdf-job-schema.json
-  - type: JSONLD
-    url: json-ld/adobe-context.jsonld
-- name: Adobe PDF Embed API
-  description: Embed a PDF viewer in web applications with analytics and annotation support
-  image: https://www.adobe.com/favicon.ico
-  humanURL: https://developer.adobe.com/document-services/apis/pdf-embed/
-  baseURL: https://pdf-services.adobe.io
-  tags:
-  - PDF
-  - Embed
-  - Viewer
-  - Documents
-  properties:
-  - type: Documentation
-    url: https://developer.adobe.com/document-services/docs/overview/pdf-embed-api/
-  - type: Getting Started
-    url: https://developer.adobe.com/document-services/docs/overview/pdf-embed-api/
-  - type: Pricing
-    url: https://developer.adobe.com/document-services/pricing/
-- name: Adobe Document Generation API
-  description: Generate PDF and Word documents from templates with dynamic data inputs
-  image: https://www.adobe.com/favicon.ico
-  humanURL: https://developer.adobe.com/document-services/apis/doc-generation/
-  baseURL: https://pdf-services.adobe.io
-  tags:
-  - PDF
-  - Documents
-  - Templates
-  - Generation
-  properties:
-  - type: Documentation
-    url: https://developer.adobe.com/document-services/docs/overview/document-generation-api/
-  - type: OpenAPI
-    url: https://developer.adobe.com/document-services/docs/apis/
-  - type: Getting Started
-    url: https://developer.adobe.com/document-services/docs/overview/document-generation-api/gettingstarted/
-  - type: Pricing
-    url: https://developer.adobe.com/document-services/pricing/
-  - type: OpenAPI
-    url: openapi/adobe-pdf-services-api-openapi.yml
-  - type: JSONSchema
-    url: json-schema/adobe-pdf-job-schema.json
-  - type: JSONLD
-    url: json-ld/adobe-context.jsonld
-- name: Adobe PDF Accessibility Auto-Tag API
-  description: Automatically tag PDF content for accessibility using AI-powered technology
-  image: https://www.adobe.com/favicon.ico
-  humanURL: https://developer.adobe.com/document-services/apis/pdf-accessibility-auto-tag/
-  baseURL: https://pdf-services.adobe.io
-  tags:
-  - PDF
-  - Accessibility
-  - AI
-  - Documents
-  properties:
-  - type: Documentation
-    url: https://developer.adobe.com/document-services/docs/overview/pdf-accessibility-auto-tag-api/
-  - type: Getting Started
-    url: https://developer.adobe.com/document-services/docs/overview/pdf-accessibility-auto-tag-api/gettingstarted/
-  - type: How-To Guide
-    url: https://developer.adobe.com/document-services/docs/overview/pdf-services-api/howtos/pdf-accessibility-auto-tag-pdf/
-  - type: Pricing
-    url: https://developer.adobe.com/document-services/pricing/
-  - type: OpenAPI
-    url: openapi/adobe-pdf-services-api-openapi.yml
-  - type: JSONSchema
-    url: json-schema/adobe-pdf-job-schema.json
-  - type: JSONLD
-    url: json-ld/adobe-context.jsonld
-- name: Adobe Acrobat Sign API
-  description: Embed e-signature workflows and manage signing agreements programmatically
-  image: https://www.adobe.com/favicon.ico
-  humanURL: https://developer.adobe.com/document-services/apis/sign-api/
-  baseURL: https://api.adobesign.com
-  tags:
-  - E-Signatures
-  - Documents
-  - Agreements
-  - Workflows
-  properties:
-  - type: Documentation
-    url: https://opensource.adobe.com/acrobat-sign/developer_guide/index.html
-  - type: API Reference
-    url: https://opensource.adobe.com/acrobat-sign/developer_guide/apiusage.html
-  - type: Getting Started
-    url: https://opensource.adobe.com/acrobat-sign/developer_guide/gstarted.html
-  - type: Code Samples
-    url: https://opensource.adobe.com/acrobat-sign/developer_guide/samples.html
-  - type: SDKs
-    url: https://developer.adobe.com/acrobat-sign/docs/overview/sdks/rest
-  - type: OpenAPI
-    url: https://opensource.adobe.com/acrobat-sign/sdks/openapi.html
-  - type: Change Log
-    url: https://opensource.adobe.com/acrobat-sign/releasenotes/acrobatsignreleasenotes.html
-- name: Adobe Analytics API
-  description: Access and analyze digital marketing data and metrics
-  image: https://www.adobe.com/favicon.ico
-  humanURL: https://developer.adobe.com/analytics-apis/docs/2.0/
-  baseURL: https://analytics.adobe.io
-  tags:
-  - Analytics
-  - Metrics
-  - Reporting
-  properties:
-  - type: Documentation
-    url: https://developer.adobe.com/analytics-apis/docs/2.0/
-  - type: OpenAPI
-    url: https://developer.adobe.com/analytics-apis/docs/2.0/api-reference/
-  - type: Authentication
-    url: https://developer.adobe.com/analytics-apis/docs/2.0/guides/authentication/
-  - type: Getting Started
-    url: https://developer.adobe.com/analytics-apis/docs/2.0/guides/
-  - type: API Console
-    url: https://developer.adobe.com/console/
-  - type: Support
-    url: https://developer.adobe.com/analytics-apis/docs/2.0/support/
-- name: Adobe Creative Cloud API
-  description: Integrate Creative Cloud services and assets into applications
-  image: https://www.adobe.com/favicon.ico
-  humanURL: https://developer.adobe.com/creative-cloud/
-  baseURL: https://api.adobe.io/creative-cloud
-  tags:
   - Creative Cloud
-  - Assets
-  - Libraries
-  properties:
-  - type: Documentation
-    url: https://developer.adobe.com/creative-cloud/docs/
-  - type: API Reference
-    url: https://developer.adobe.com/creative-cloud/docs/api-reference/
-  - type: SDKs
-    url: https://developer.adobe.com/creative-cloud/docs/sdks/
-  - type: Authentication
-    url: https://developer.adobe.com/developer-console/docs/guides/authentication/
-- name: Adobe Photoshop API
-  description: Automate Photoshop workflows and image editing
-  image: https://www.adobe.com/favicon.ico
-  humanURL: https://developer.adobe.com/photoshop/
-  baseURL: https://image.adobe.io
-  tags:
-  - Photoshop
-  - Image Editing
-  - Automation
-  properties:
-  - type: Documentation
-    url: https://developer.adobe.com/photoshop/api/docs/
-  - type: API Reference
-    url: https://developer.adobe.com/photoshop/api/docs/api/
-  - type: Code Samples
-    url: https://github.com/AdobeDocs/cis-photoshop-api-docs
-  - type: Authentication
-    url: https://developer.adobe.com/developer-console/docs/guides/authentication/
-  - type: Getting Started
-    url: https://developer.adobe.com/photoshop/photoshop-api-docs/getting-started
-- name: Adobe Lightroom API
-  description: Access and manage Lightroom catalogs and photos
-  image: https://www.adobe.com/favicon.ico
-  humanURL: https://developer.adobe.com/lightroom/
-  baseURL: https://lr.adobe.io
-  tags:
-  - Lightroom
-  - Photography
-  - Catalogs
-  properties:
-  - type: Documentation
-    url: https://developer.adobe.com/lightroom/api/docs/
-  - type: API Reference
-    url: https://developer.adobe.com/lightroom/api/docs/api/
-  - type: Authentication
-    url: https://developer.adobe.com/developer-console/docs/guides/authentication/
-  - type: Getting Started
-    url: https://developer.adobe.com/lightroom/lightroom-api-docs/getting-started/
-  - type: GitHub Repository
-    url: https://github.com/AdobeDocs/lightroom-public-apis
-- name: Adobe Experience Platform API
-  description: Build and manage customer experience applications
-  image: https://www.adobe.com/favicon.ico
-  humanURL: https://developer.adobe.com/experience-platform-apis/
-  baseURL: https://platform.adobe.io
-  tags:
-  - Experience Platform
-  - Customer Data
-  - CDP
-  properties:
-  - type: Documentation
-    url: https://experienceleague.adobe.com/docs/experience-platform/landing/platform-apis/api-guide.html
-  - type: API Reference
-    url: https://developer.adobe.com/experience-platform-apis/references/
-  - type: Postman Collections
-    url: https://github.com/adobe/experience-platform-postman-samples
-  - type: Getting Started
-    url: https://experienceleague.adobe.com/en/docs/experience-platform/landing/platform-apis/api-guide
-  - type: Authentication
-    url: https://developer.adobe.com/developer-console/docs/guides/authentication/
-- name: Adobe Firefly API
-  description: Generate and edit images using generative AI models through a RESTful API
-  image: https://www.adobe.com/favicon.ico
-  humanURL: https://developer.adobe.com/firefly-services/docs/firefly-api/
-  baseURL: https://firefly-api.adobe.io
-  tags:
-  - Generative AI
-  - Image Generation
-  - Creative Cloud
-  properties:
-  - type: Documentation
-    url: https://developer.adobe.com/firefly-services/docs/firefly-api/
-  - type: Getting Started
-    url: https://developer.adobe.com/firefly-services/docs/firefly-api/guides/
-  - type: Authentication
-    url: https://developer.adobe.com/firefly-services/docs/guides/get-started/
-  - type: SDKs
-    url: https://developer.adobe.com/firefly-services/docs/guides/sdks/
-  - type: Changelog
-    url: https://developer.adobe.com/firefly-services/docs/firefly-api/guides/changelog/
-  - type: API Reference
-    url: https://developer.adobe.com/firefly-services/docs/firefly-api/api/
-  - type: GitHub Repository
-    url: https://github.com/AdobeDocs/firefly-api
-- name: Adobe Substance 3D API
-  description: Create photorealistic 3D assets and renders at scale using cloud-based rendering and generative AI
-  image: https://www.adobe.com/favicon.ico
-  humanURL: https://developer.adobe.com/substance3d/
-  baseURL: https://s3d.adobe.io
-  tags:
-  - 3D
-  - Rendering
-  - Generative AI
-  - Creative Cloud
-  properties:
-  - type: Documentation
-    url: https://developer.adobe.com/firefly-services/docs/s3dapi/
-  - type: API Reference
-    url: https://developer.adobe.com/firefly-services/docs/s3dapi/api/
-  - type: SDKs
-    url: https://developer.adobe.com/substance3d-sdk/
-- name: Adobe Stock API
-  description: Search, license, and manage Adobe Stock assets including photos, vectors, videos, and templates
-  image: https://www.adobe.com/favicon.ico
-  humanURL: https://developer.adobe.com/stock/
-  baseURL: https://stock.adobe.io
-  tags:
-  - Stock
-  - Assets
-  - Licensing
-  - Images
-  properties:
-  - type: Documentation
-    url: https://developer.adobe.com/stock/docs/getting-started/
-  - type: API Reference
-    url: https://developer.adobe.com/stock/docs/api/
-  - type: Code Samples
-    url: https://github.com/adobe/stock-api-samples
-  - type: SDKs
-    url: https://github.com/adobe/stock-api-sdk
-  - type: Getting Started
-    url: https://developer.adobe.com/stock/docs/getting-started/
-  - type: FAQ
-    url: https://developer.adobe.com/stock/docs/faq/
-- name: Adobe Commerce API
-  description: Build and integrate e-commerce applications with REST, GraphQL, and SOAP web APIs
-  image: https://www.adobe.com/favicon.ico
-  humanURL: https://developer.adobe.com/commerce/webapi/
-  baseURL: https://developer.adobe.com/commerce/webapi/
-  tags:
-  - E-Commerce
-  - REST
-  - GraphQL
-  properties:
-  - type: Documentation
-    url: https://developer.adobe.com/commerce/docs/
-  - type: API Reference
-    url: https://developer.adobe.com/commerce/webapi/rest/reference/
-  - type: GraphQL Reference
-    url: https://developer.adobe.com/commerce/webapi/graphql/reference/
-  - type: Getting Started
-    url: https://developer.adobe.com/commerce/webapi/get-started/
-  - type: GitHub Repository
-    url: https://github.com/AdobeDocs/commerce-webapi
-  - type: Authentication
-    url: https://developer.adobe.com/commerce/webapi/get-started/authentication/
-  - type: Change Log
-    url: https://experienceleague.adobe.com/en/docs/commerce/data-connection/release-notes
-- name: Adobe Target API
-  description: Manage and deliver personalized experiences with A/B testing and automated personalization APIs
-  image: https://www.adobe.com/favicon.ico
-  humanURL: https://experienceleague.adobe.com/en/docs/target-dev/developer/api/target-api-overview
-  baseURL: https://platform.adobe.io
-  tags:
-  - Personalization
-  - A/B Testing
+  - PDF
+  - Document Services
   - Experience Cloud
-  properties:
-  - type: Documentation
-    url: https://experienceleague.adobe.com/en/docs/target-dev/developer/api/target-api-overview
-  - type: API Reference
-    url: https://developer.adobe.com/target/administer/admin-api/
-  - type: Getting Started
-    url: https://experienceleague.adobe.com/en/docs/target-dev/developer/api/delivery-api/getting-started
-  - type: OpenAPI
-    url: https://github.com/adobe/target-openapi
-  - type: Authentication
-    url: https://developer.adobe.com/developer-console/docs/guides/authentication/
-- name: Adobe Campaign API
-  description: Create integrations and manage marketing campaigns, profiles, and workflows via REST APIs
-  image: https://www.adobe.com/favicon.ico
-  humanURL: https://experienceleague.adobe.com/en/docs/campaign/campaign-v8/developer/api
-  baseURL: https://platform.adobe.io
-  tags:
   - Marketing
-  - Campaigns
-  - Experience Cloud
-  properties:
-  - type: Documentation
-    url: https://experienceleague.adobe.com/en/docs/campaign/campaign-v8/developer/apis/get-started-apis
-  - type: API Reference
-    url: https://experienceleague.adobe.com/developer/campaign-api/api/index.html
-  - type: Getting Started
-    url: https://experienceleague.adobe.com/en/docs/experience-cloud/campaign/apis/get-started-apis
-  - type: Authentication
-    url: https://developer.adobe.com/developer-console/docs/guides/authentication/
-- name: Adobe Journey Optimizer API
-  description: Deliver personalized and timely customer experiences across channels with journey orchestration APIs
-  image: https://www.adobe.com/favicon.ico
-  humanURL: https://developer.adobe.com/journey-optimizer-apis/
-  baseURL: https://platform.adobe.io
-  tags:
-  - Customer Journey
-  - Personalization
-  - Experience Cloud
-  properties:
-  - type: Documentation
-    url: https://experienceleague.adobe.com/en/docs/journey-optimizer/using/connect-systems/ajo-apis
-  - type: API Reference
-    url: https://developer.adobe.com/journey-optimizer-apis/
-  - type: Authentication
-    url: https://developer.adobe.com/journey-optimizer-apis/references/authentication
-  - type: Getting Started
-    url: https://experienceleague.adobe.com/en/docs/journey-optimizer/using/connect-systems/ajo-apis
-- name: Adobe Marketo Engage API
-  description: Automate marketing processes and manage leads, campaigns, and assets via REST APIs
-  image: https://www.adobe.com/favicon.ico
-  humanURL: https://developer.adobe.com/marketo-apis/
-  baseURL: https://developer.adobe.com/marketo-apis/
-  tags:
-  - Marketing Automation
-  - Leads
-  - Experience Cloud
-  properties:
-  - type: Documentation
-    url: https://experienceleague.adobe.com/en/docs/marketo-developer/marketo/rest/rest-api
-  - type: API Reference
-    url: https://experienceleague.adobe.com/en/docs/marketo-developer/marketo/rest/endpoint-reference
-  - type: Authentication
-    url: https://experienceleague.adobe.com/en/docs/marketo-developer/marketo/rest/authentication
-  - type: Getting Started
-    url: https://experienceleague.adobe.com/en/docs/marketo-developer/marketo/rest/rest-api
-- name: Adobe Workfront API
-  description: Manage work, projects, tasks, and resources programmatically with a REST API
-  image: https://www.adobe.com/favicon.ico
-  humanURL: https://developer.adobe.com/workfront-apis/
-  baseURL: https://developer.adobe.com/workfront-apis/
-  tags:
-  - Work Management
-  - Projects
-  - Tasks
-  properties:
-  - type: Documentation
-    url: https://experienceleague.adobe.com/en/docs/workfront/using/adobe-workfront-api/workfront-api
-  - type: API Reference
-    url: https://developer.adobe.com/workfront/api-explorer/
-  - type: Getting Started
-    url: https://experienceleague.adobe.com/en/docs/workfront/using/adobe-workfront-api/api-general-information/api-basics
-  - type: Authentication
-    url: https://developer.adobe.com/developer-console/docs/guides/authentication/
-- name: Adobe User Management API
-  description: Programmatically manage users, groups, and product entitlements for Adobe enterprise organizations
-  image: https://www.adobe.com/favicon.ico
-  humanURL: https://developer.adobe.com/umapi/
-  baseURL: https://usermanagement.adobe.io
-  tags:
-  - User Management
-  - Identity
-  - Administration
-  properties:
-  - type: Documentation
-    url: https://adobe-apiplatform.github.io/umapi-documentation/
-  - type: API Reference
-    url: https://adobe-apiplatform.github.io/umapi-documentation/en/RefOverview.html
-  - type: Getting Started
-    url: https://adobe-apiplatform.github.io/umapi-documentation/en/getstarted.html
-  - type: GitHub Repository
-    url: https://github.com/adobe-apiplatform/umapi-documentation
-  - type: Authentication
-    url: https://developer.adobe.com/developer-console/docs/guides/authentication/
-- name: Adobe I/O Events API
-  description: Subscribe to and receive near real-time events from Adobe services for event-driven integrations
-  image: https://www.adobe.com/favicon.ico
-  humanURL: https://developer.adobe.com/events/
-  baseURL: https://platform.adobe.io
-  tags:
-  - Events
-  - Webhooks
-  - Integration
-  properties:
-  - type: Documentation
-    url: https://developer.adobe.com/events/docs/
-  - type: API Reference
-    url: https://developer.adobe.com/events/docs/guides/api/
-  - type: Provider API
-    url: https://developer.adobe.com/events/docs/guides/api/provider_api/
-  - type: Journaling API
-    url: https://developer.adobe.com/events/docs/guides/api/journaling-api
-  - type: GitHub Repository
-    url: https://github.com/AdobeDocs/adobeio-events
-  - type: Getting Started
-    url: https://developer.adobe.com/events/docs/
-- name: Adobe Express Embed SDK
-  description: Embed Adobe Express editing capabilities including image editing, design, and generative AI into web applications
-  image: https://www.adobe.com/favicon.ico
-  humanURL: https://developer.adobe.com/express/
-  baseURL: https://developer.adobe.com/express/embed-sdk/
-  tags:
-  - Creative Cloud
-  - Design
-  - Embed
-  properties:
-  - type: Documentation
-    url: https://developer.adobe.com/express/embed-sdk/docs/guides/
-  - type: API Reference
-    url: https://developer.adobe.com/express/embed-sdk/docs/v4/
-  - type: Getting Started
-    url: https://developer.adobe.com/express/embed-sdk/docs/guides/quickstart/
-  - type: Changelog
-    url: https://developer.adobe.com/express/embed-sdk/docs/guides/changelog/
-  - type: GitHub Repository
-    url: https://github.com/AdobeDocs/cc-everywhere
-- name: Adobe Express Add-ons API
-  description: Build add-ons for Adobe Express with document model APIs and UI SDK for extending design capabilities
-  image: https://www.adobe.com/favicon.ico
-  humanURL: https://developer.adobe.com/express/add-ons/docs/guides/
-  baseURL: https://developer.adobe.com/express/add-ons/
-  tags:
-  - Creative Cloud
-  - Add-ons
-  - Design
-  - Extensibility
-  properties:
-  - type: Documentation
-    url: https://developer.adobe.com/express/add-ons/docs/guides/
-  - type: API Reference
-    url: https://developer.adobe.com/express/add-ons/docs/references/addonsdk/
-  - type: Getting Started
-    url: https://developer.adobe.com/express/add-ons/docs/guides/tutorials/
-  - type: GitHub Repository
-    url: https://github.com/AdobeDocs/express-add-ons-docs
-- name: Adobe InDesign API
-  description: Automate design tasks including data merge, custom scripts, and rendition generation through scalable cloud services
-  image: https://www.adobe.com/favicon.ico
-  humanURL: https://developer.adobe.com/indesign/
-  baseURL: https://indesign.adobe.io
-  tags:
-  - InDesign
-  - Design
-  - Creative Cloud
-  - Automation
-  properties:
-  - type: Documentation
-    url: https://developer.adobe.com/firefly-services/docs/indesign-apis/
-  - type: API Reference
-    url: https://developer.adobe.com/firefly-services/docs/indesign-apis/api/
-  - type: Getting Started
-    url: https://developer.adobe.com/firefly-services/docs/indesign-apis/guides/
-  - type: GitHub Repository
-    url: https://github.com/AdobeDocs/indesign-api-docs
-- name: Adobe Fonts API
-  description: Access and manage fonts in the Adobe Fonts library, create and publish kits, and fetch font metadata
-  image: https://www.adobe.com/favicon.ico
-  humanURL: https://fonts.adobe.com/docs/api
-  baseURL: https://fonts.adobe.com/api
-  tags:
-  - Fonts
-  - Typography
-  - Creative Cloud
-  properties:
-  - type: Documentation
-    url: https://fonts.adobe.com/docs/api
-  - type: Authentication
-    url: https://fonts.adobe.com/docs/api/auth
-  - type: GitHub Repository
-    url: https://github.com/typekit/fonts-api-docs
-- name: Adobe Experience Manager API
-  description: Create, read, update, and delete content, assets, and forms in Adobe Experience Manager as a Cloud Service
-  image: https://www.adobe.com/favicon.ico
-  humanURL: https://developer.adobe.com/experience-cloud/experience-manager-apis
-  baseURL: https://platform.adobe.io
-  tags:
-  - Content Management
-  - Experience Cloud
-  - Digital Asset Management
-  properties:
-  - type: Documentation
-    url: https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service
-  - type: API Reference
-    url: https://developer.adobe.com/experience-cloud/experience-manager-apis
-  - type: Getting Started
-    url: https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/implementing/developing/reference-materials
-  - type: Authentication
-    url: https://developer.adobe.com/developer-console/docs/guides/authentication/
-- name: Adobe Customer Journey Analytics API
-  description: Access and manage connections, data views, and reports for cross-channel customer journey analysis
-  image: https://www.adobe.com/favicon.ico
-  humanURL: https://developer.adobe.com/cja-apis/docs/
-  baseURL: https://cja.adobe.io
-  tags:
   - Analytics
-  - Customer Journey
-  - Experience Cloud
-  properties:
-  - type: Documentation
-    url: https://developer.adobe.com/cja-apis/docs/
-  - type: API Reference
-    url: https://developer.adobe.com/cja-apis/docs/api/
-  - type: Getting Started
-    url: https://developer.adobe.com/cja-apis/docs/getting-started/
-  - type: Authentication
-    url: https://developer.adobe.com/developer-console/docs/guides/authentication/
-  - type: GitHub Repository
-    url: https://github.com/AdobeDocs/cja-apis
-- name: Adobe Audience Manager API
-  description: Manage audiences, segments, traits, and data sources for audience segmentation and targeting
-  image: https://www.adobe.com/favicon.ico
-  humanURL: https://developer.adobe.com/audience-manager/
-  baseURL: https://api.demdex.com
-  tags:
-  - Audience Management
-  - Data Management
-  - Experience Cloud
-  properties:
-  - type: Documentation
-    url: https://experienceleague.adobe.com/en/docs/audience-manager/user-guide/api-and-sdk-code/api
-  - type: API Reference
-    url: https://bank.demdex.com/portal/swagger/index.html
-  - type: Getting Started
-    url: https://experienceleague.adobe.com/en/docs/audience-manager/user-guide/api-and-sdk-code/rest-apis/aam-api-getting-started
-  - type: Authentication
-    url: https://developer.adobe.com/developer-console/docs/guides/authentication/
-- name: Adobe App Builder
-  description: Build and deploy custom web applications that extend Adobe Experience Cloud solutions on Adobe infrastructure
-  image: https://www.adobe.com/favicon.ico
-  humanURL: https://developer.adobe.com/app-builder/docs/intro_and_overview/
-  baseURL: https://api.adobe.io
-  tags:
-  - Serverless
-  - Extensibility
-  - Experience Cloud
-  properties:
-  - type: Documentation
-    url: https://developer.adobe.com/app-builder/docs/intro_and_overview/
-  - type: API Reference
-    url: https://developer.adobe.com/app-builder/docs/guides/runtime_guides/reference_docs/api-ref
-  - type: Getting Started
-    url: https://developer.adobe.com/app-builder/docs/get_started/runtime_getting_started/how-runtime-works
-- name: Adobe I/O Runtime API
-  description: Execute serverless code in response to events or HTTP requests on Adobe cloud infrastructure
-  image: https://www.adobe.com/favicon.ico
-  humanURL: https://developer.adobe.com/runtime/
-  baseURL: https://api.adobe.io
-  tags:
-  - Serverless
-  - Runtime
-  - Functions
-  properties:
-  - type: Documentation
-    url: https://developer.adobe.com/app-builder/docs/guides/runtime_guides/reference_docs/
-  - type: API Reference
-    url: https://developer.adobe.com/app-builder/docs/guides/runtime_guides/reference_docs/api-ref
-  - type: Getting Started
-    url: https://developer.adobe.com/app-builder/docs/guides/runtime_guides/using-runtime
-- name: Adobe Experience Platform Data Collection API
-  description: Collect and route data to Adobe Experience Platform and other Adobe solutions through edge network services
-  image: https://www.adobe.com/favicon.ico
-  humanURL: https://developer.adobe.com/data-collection-apis/docs/
-  baseURL: https://platform.adobe.io
-  tags:
-  - Data Collection
-  - Experience Platform
-  - Edge Network
-  properties:
-  - type: Documentation
-    url: https://developer.adobe.com/data-collection-apis/docs/
-  - type: Getting Started
-    url: https://developer.adobe.com/data-collection-apis/docs/
-  - type: Authentication
-    url: https://developer.adobe.com/developer-console/docs/guides/authentication/
-- name: Adobe Substance 3D Automation API
-  description: Manage and run 3D asset processing pipelines for automated material and texture generation
-  image: https://www.adobe.com/favicon.ico
-  humanURL: https://developer.adobe.com/substance-3d-automation/docs/
-  baseURL: https://s3d.adobe.io
-  tags:
-  - 3D
-  - Automation
-  - Creative Cloud
-  properties:
-  - type: Documentation
-    url: https://developer.adobe.com/substance-3d-automation/docs/
+  - Generative AI
+  - E-Commerce
+  - E-Signatures
+  - Digital Asset Management
+  - Work Management
+description: >-
+  Adobe provides APIs and developer resources for its creative, document, and
+  experience cloud platforms. Developers can integrate with PDF services,
+  Creative Cloud, generative AI (Firefly), analytics, e-commerce, e-signatures,
+  and many other Adobe products and services.
+created: '2024-01-01'
+modified: '2026-03-16'
+specificationVersion: '0.19'
+apis:
+  - aid: adobe:adobe-pdf-services-api
+    name: Adobe PDF Services API
+    tags:
+      - PDF
+      - Documents
+      - Conversion
+    humanURL: https://developer.adobe.com/document-services/apis/pdf-services/
+    baseURL: https://pdf-services.adobe.io
+    properties:
+      - type: Documentation
+        url: https://developer.adobe.com/document-services/docs/overview/pdf-services-api/
+      - type: Getting Started
+        url: https://developer.adobe.com/document-services/docs/overview/pdf-services-api/gettingstarted/
+      - type: Change Log
+        url: https://developer.adobe.com/document-services/docs/overview/releasenotes/
+    description: >-
+      Create, manipulate, and export PDF documents programmatically.
+  - aid: adobe:adobe-pdf-extract-api
+    name: Adobe PDF Extract API
+    tags:
+      - PDF
+      - Extraction
+      - AI
+    humanURL: https://developer.adobe.com/document-services/docs/overview/pdf-extract-api/
+    baseURL: https://pdf-services.adobe.io
+    properties:
+      - type: Documentation
+        url: https://developer.adobe.com/document-services/docs/overview/pdf-extract-api/
+      - type: Getting Started
+        url: https://developer.adobe.com/document-services/docs/overview/pdf-extract-api/gettingstarted/
+    description: >-
+      Extract text, images, tables, and more from native and scanned PDFs into
+      structured JSON using AI technology.
+  - aid: adobe:adobe-acrobat-sign-api
+    name: Adobe Acrobat Sign API
+    tags:
+      - E-Signatures
+      - Documents
+    humanURL: https://developer.adobe.com/document-services/apis/sign-api/
+    baseURL: https://api.adobesign.com
+    properties:
+      - type: Documentation
+        url: https://opensource.adobe.com/acrobat-sign/developer_guide/index.html
+      - type: Reference
+        url: https://opensource.adobe.com/acrobat-sign/developer_guide/apiusage.html
+      - type: Getting Started
+        url: https://opensource.adobe.com/acrobat-sign/developer_guide/gstarted.html
+      - type: SDKs
+        url: https://developer.adobe.com/acrobat-sign/docs/overview/sdks/rest
+      - type: Change Log
+        url: https://opensource.adobe.com/acrobat-sign/releasenotes/acrobatsignreleasenotes.html
+    description: >-
+      Embed e-signature workflows and manage signing agreements programmatically.
+  - aid: adobe:adobe-analytics-api
+    name: Adobe Analytics API
+    tags:
+      - Analytics
+      - Metrics
+    humanURL: https://developer.adobe.com/analytics-apis/docs/2.0/
+    baseURL: https://analytics.adobe.io
+    properties:
+      - type: Documentation
+        url: https://developer.adobe.com/analytics-apis/docs/2.0/
+      - type: Authentication
+        url: https://developer.adobe.com/analytics-apis/docs/2.0/guides/authentication/
+      - type: Getting Started
+        url: https://developer.adobe.com/analytics-apis/docs/2.0/guides/
+    description: >-
+      Access and analyze digital marketing data and metrics.
+  - aid: adobe:adobe-firefly-api
+    name: Adobe Firefly API
+    tags:
+      - Generative AI
+      - Image Generation
+    humanURL: https://developer.adobe.com/firefly-services/docs/firefly-api/
+    baseURL: https://firefly-api.adobe.io
+    properties:
+      - type: Documentation
+        url: https://developer.adobe.com/firefly-services/docs/firefly-api/
+      - type: Reference
+        url: https://developer.adobe.com/firefly-services/docs/firefly-api/api/
+      - type: Getting Started
+        url: https://developer.adobe.com/firefly-services/docs/firefly-api/guides/
+      - type: SDKs
+        url: https://developer.adobe.com/firefly-services/docs/guides/sdks/
+      - type: Change Log
+        url: https://developer.adobe.com/firefly-services/docs/firefly-api/guides/changelog/
+    description: >-
+      Generate and edit images using generative AI models through a RESTful API.
+  - aid: adobe:adobe-experience-platform-api
+    name: Adobe Experience Platform API
+    tags:
+      - Experience Platform
+      - Customer Data
+    humanURL: https://developer.adobe.com/experience-platform-apis/
+    baseURL: https://platform.adobe.io
+    properties:
+      - type: Documentation
+        url: https://experienceleague.adobe.com/docs/experience-platform/landing/platform-apis/api-guide.html
+      - type: Reference
+        url: https://developer.adobe.com/experience-platform-apis/references/
+      - type: Getting Started
+        url: https://experienceleague.adobe.com/en/docs/experience-platform/landing/platform-apis/api-guide
+    description: >-
+      Build and manage customer experience applications on Adobe Experience Platform.
+  - aid: adobe:adobe-stock-api
+    name: Adobe Stock API
+    tags:
+      - Stock
+      - Assets
+    humanURL: https://developer.adobe.com/stock/
+    baseURL: https://stock.adobe.io
+    properties:
+      - type: Documentation
+        url: https://developer.adobe.com/stock/docs/getting-started/
+      - type: Reference
+        url: https://developer.adobe.com/stock/docs/api/
+      - type: Getting Started
+        url: https://developer.adobe.com/stock/docs/getting-started/
+      - type: SDKs
+        url: https://github.com/adobe/stock-api-sdk
+    description: >-
+      Search, license, and manage Adobe Stock assets including photos, vectors,
+      videos, and templates.
+  - aid: adobe:adobe-commerce-api
+    name: Adobe Commerce API
+    tags:
+      - E-Commerce
+      - REST
+    humanURL: https://developer.adobe.com/commerce/webapi/
+    properties:
+      - type: Documentation
+        url: https://developer.adobe.com/commerce/docs/
+      - type: Reference
+        url: https://developer.adobe.com/commerce/webapi/rest/reference/
+      - type: Getting Started
+        url: https://developer.adobe.com/commerce/webapi/get-started/
+      - type: Authentication
+        url: https://developer.adobe.com/commerce/webapi/get-started/authentication/
+    description: >-
+      Build and integrate e-commerce applications with REST, GraphQL, and SOAP
+      web APIs.
+  - aid: adobe:adobe-marketo-engage-api
+    name: Adobe Marketo Engage API
+    tags:
+      - Marketing Automation
+      - Leads
+    humanURL: https://developer.adobe.com/marketo-apis/
+    properties:
+      - type: Documentation
+        url: https://experienceleague.adobe.com/en/docs/marketo-developer/marketo/rest/rest-api
+      - type: Reference
+        url: https://experienceleague.adobe.com/en/docs/marketo-developer/marketo/rest/endpoint-reference
+      - type: Authentication
+        url: https://experienceleague.adobe.com/en/docs/marketo-developer/marketo/rest/authentication
+      - type: Getting Started
+        url: https://experienceleague.adobe.com/en/docs/marketo-developer/marketo/rest/rest-api
+    description: >-
+      Automate marketing processes and manage leads, campaigns, and assets via
+      REST APIs.
+  - aid: adobe:adobe-workfront-api
+    name: Adobe Workfront API
+    tags:
+      - Work Management
+      - Projects
+    humanURL: https://developer.adobe.com/workfront-apis/
+    properties:
+      - type: Documentation
+        url: https://experienceleague.adobe.com/en/docs/workfront/using/adobe-workfront-api/workfront-api
+      - type: Reference
+        url: https://developer.adobe.com/workfront/api-explorer/
+      - type: Getting Started
+        url: https://experienceleague.adobe.com/en/docs/workfront/using/adobe-workfront-api/api-general-information/api-basics
+    description: >-
+      Manage work, projects, tasks, and resources programmatically with a REST API.
+  - aid: adobe:adobe-user-management-api
+    name: Adobe User Management API
+    tags:
+      - User Management
+      - Identity
+    humanURL: https://developer.adobe.com/umapi/
+    baseURL: https://usermanagement.adobe.io
+    properties:
+      - type: Documentation
+        url: https://adobe-apiplatform.github.io/umapi-documentation/
+      - type: Reference
+        url: https://adobe-apiplatform.github.io/umapi-documentation/en/RefOverview.html
+      - type: Getting Started
+        url: https://adobe-apiplatform.github.io/umapi-documentation/en/getstarted.html
+    description: >-
+      Programmatically manage users, groups, and product entitlements for Adobe
+      enterprise organizations.
+  - aid: adobe:adobe-io-events-api
+    name: Adobe I/O Events API
+    tags:
+      - Events
+      - Webhooks
+    humanURL: https://developer.adobe.com/events/
+    baseURL: https://platform.adobe.io
+    properties:
+      - type: Documentation
+        url: https://developer.adobe.com/events/docs/
+      - type: Reference
+        url: https://developer.adobe.com/events/docs/guides/api/
+      - type: Getting Started
+        url: https://developer.adobe.com/events/docs/
+    description: >-
+      Subscribe to and receive near real-time events from Adobe services for
+      event-driven integrations.
+  - aid: adobe:adobe-experience-manager-api
+    name: Adobe Experience Manager API
+    tags:
+      - Content Management
+      - Digital Asset Management
+    humanURL: https://developer.adobe.com/experience-cloud/experience-manager-apis
+    baseURL: https://platform.adobe.io
+    properties:
+      - type: Documentation
+        url: https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service
+      - type: Reference
+        url: https://developer.adobe.com/experience-cloud/experience-manager-apis
+      - type: Getting Started
+        url: https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/implementing/developing/reference-materials
+    description: >-
+      Create, read, update, and delete content, assets, and forms in Adobe
+      Experience Manager as a Cloud Service.
 common:
-- type: Developer Portal
-  url: https://developer.adobe.com/
-- type: Console
-  url: https://developer.adobe.com/console/
-- type: Authentication
-  url: https://developer.adobe.com/developer-console/docs/guides/authentication/
-- type: Support
-  url: https://developer.adobe.com/developer-support/
-- type: Status
-  url: https://status.adobe.com/
-- type: Blog
-  url: https://blog.developer.adobe.com/
-- type: Terms of Service
-  url: https://www.adobe.com/legal/terms.html
-- type: Privacy Policy
-  url: https://www.adobe.com/privacy/policy.html
-- type: Getting Started
-  url: https://developer.adobe.com/developer-console/docs/guides/getting-started
-- type: GitHub Organization
-  url: https://github.com/AdobeDocs/
-- type: Community
-  url: https://experienceleaguecommunities.adobe.com/t5/adobe-developer/ct-p/adobe-io
-- type: SDKs
-  url: https://developer.adobe.com/apis
-- type: Experience League
-  url: https://experienceleague.adobe.com/
-- type: Website
-  url: https://www.adobe.com/
-- type: Sign Up
-  url: https://developer.adobe.com/console/
-- type: Login
-  url: https://developer.adobe.com/console/
-- type: Open Source
-  url: https://opensource.adobe.com/
-- type: GitHub
-  url: https://github.com/adobe
-- type: Contact
-  url: https://www.adobe.com/about-adobe/contact.html
-- type: YouTube
-  url: https://www.youtube.com/@Adobe
-- type: X
-  url: https://twitter.com/adobe
-- type: LinkedIn
-  url: https://www.linkedin.com/company/adobe
+  - type: Portal
+    url: https://developer.adobe.com/
+  - type: Console
+    url: https://developer.adobe.com/console/
+  - type: Authentication
+    url: https://developer.adobe.com/developer-console/docs/guides/authentication/
+  - type: Support
+    url: https://developer.adobe.com/developer-support/
+  - type: Status
+    url: https://status.adobe.com/
+  - type: Blog
+    url: https://blog.developer.adobe.com/
+  - type: Terms of Service
+    url: https://www.adobe.com/legal/terms.html
+  - type: Privacy Policy
+    url: https://www.adobe.com/privacy/policy.html
+  - type: Getting Started
+    url: https://developer.adobe.com/developer-console/docs/guides/getting-started
+  - type: GitHub Organization
+    url: https://github.com/AdobeDocs/
+  - type: Community
+    url: https://experienceleaguecommunities.adobe.com/t5/adobe-developer/ct-p/adobe-io
+  - type: SDKs
+    url: https://developer.adobe.com/apis
+  - type: Website
+    url: https://www.adobe.com/
+  - type: Sign Up
+    url: https://developer.adobe.com/console/
+  - type: Login
+    url: https://developer.adobe.com/console/
 maintainers:
-- name: Kin Lane
-  email: kin@apievangelist.com
-- name: Adobe
-  email: developer-support@adobe.com
-  url: https://developer.adobe.com/
+  - FN: Kin Lane
+    email: kin@apievangelist.com
