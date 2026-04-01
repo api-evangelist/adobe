@@ -22,7 +22,7 @@ description: >-
   Creative Cloud, generative AI (Firefly), analytics, e-commerce, e-signatures,
   and many other Adobe products and services.
 created: '2024-01-01'
-modified: '2026-03-16'
+modified: '2026-04-01'
 specificationVersion: '0.19'
 apis:
   - aid: adobe:adobe-pdf-services-api
@@ -40,6 +40,8 @@ apis:
         url: https://developer.adobe.com/document-services/docs/overview/pdf-services-api/gettingstarted/
       - type: Change Log
         url: https://developer.adobe.com/document-services/docs/overview/releasenotes/
+      - type: OpenAPI
+        url: openapi/adobe-pdf-services-api-openapi.yml
     description: >-
       Create, manipulate, and export PDF documents programmatically.
   - aid: adobe:adobe-pdf-extract-api
