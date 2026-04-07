@@ -75,7 +75,7 @@ paths:
   /assets:
     post:
       operationId: uploadAsset
-      summary: Upload an asset
+      summary: Adobe Upload an asset
       description: >-
         Upload a document to the PDF Services platform for processing. Returns
         a pre-signed upload URI and an asset ID. You must first call this
@@ -106,7 +106,7 @@ paths:
   /assets/{assetID}:
     get:
       operationId: getAsset
-      summary: Get asset download URI
+      summary: Adobe Get asset download URI
       description: >-
         Retrieve a pre-signed download URI for a previously created asset or
         job output. The download URI is valid for a limited time.
@@ -125,7 +125,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     delete:
       operationId: deleteAsset
-      summary: Delete an asset
+      summary: Adobe Delete an asset
       description: Delete a previously uploaded asset from the platform.
       tags:
         - Assets
@@ -140,7 +140,7 @@ paths:
   /operation/createpdf:
     post:
       operationId: createPDF
-      summary: Create a PDF
+      summary: Adobe Create a PDF
       description: >-
         Create a PDF document from a supported source file format. Supported
         input formats include Microsoft Word (DOC, DOCX), Excel (XLS, XLSX),
@@ -180,7 +180,7 @@ paths:
   /operation/exportpdf:
     post:
       operationId: exportPDF
-      summary: Export a PDF
+      summary: Adobe Export a PDF
       description: >-
         Convert a PDF document to a supported output format. Supported output
         formats include DOCX, DOC, PPTX, XLSX, RTF, and image formats (JPEG,
@@ -218,7 +218,7 @@ paths:
   /operation/combinepdf:
     post:
       operationId: combinePDF
-      summary: Combine PDF files
+      summary: Adobe Combine PDF files
       description: >-
         Combine multiple PDF documents into a single PDF. You can specify
         page ranges from each source document to include. Supports combining
@@ -256,7 +256,7 @@ paths:
   /operation/splitpdf:
     post:
       operationId: splitPDF
-      summary: Split a PDF
+      summary: Adobe Split a PDF
       description: >-
         Split a PDF document into multiple smaller PDF files. You can split
         by page count, page ranges, or number of output files.
@@ -293,7 +293,7 @@ paths:
   /operation/ocr:
     post:
       operationId: ocrPDF
-      summary: OCR a PDF
+      summary: Adobe OCR a PDF
       description: >-
         Apply optical character recognition to a scanned PDF, converting
         image-based text into searchable and selectable text. Supports
@@ -332,7 +332,7 @@ paths:
   /operation/compresspdf:
     post:
       operationId: compressPDF
-      summary: Compress a PDF
+      summary: Adobe Compress a PDF
       description: >-
         Reduce the file size of a PDF document. Supports multiple compression
         levels to balance file size reduction against quality.
@@ -369,7 +369,7 @@ paths:
   /operation/protectpdf:
     post:
       operationId: protectPDF
-      summary: Protect a PDF
+      summary: Adobe Protect a PDF
       description: >-
         Add password protection and set permissions on a PDF document. Supports
         setting user passwords (to open), owner passwords (to edit/print), and
@@ -407,7 +407,7 @@ paths:
   /operation/removeprotection:
     post:
       operationId: removeProtection
-      summary: Remove protection from a PDF
+      summary: Adobe Remove protection from a PDF
       description: >-
         Remove password protection from a PDF document. Requires the
         current password to unlock the document.
@@ -444,7 +444,7 @@ paths:
   /operation/linearizepdf:
     post:
       operationId: linearizePDF
-      summary: Linearize a PDF
+      summary: Adobe Linearize a PDF
       description: >-
         Optimize a PDF for fast web viewing. Linearized PDFs allow the first
         page to be displayed in a web browser before the entire file has
@@ -482,7 +482,7 @@ paths:
   /operation/extractpdf:
     post:
       operationId: extractPDF
-      summary: Extract content from a PDF
+      summary: Adobe Extract content from a PDF
       description: >-
         Extract text, tables, and figures from a PDF document into structured
         JSON output. Uses Adobe Sensei AI technology to identify and extract
@@ -522,7 +522,7 @@ paths:
   /operation/accessibilitychecker:
     post:
       operationId: autoTagPDF
-      summary: Auto-tag a PDF for accessibility
+      summary: Adobe Auto-tag a PDF for accessibility
       description: >-
         Automatically add accessibility tags to a PDF document using Adobe
         Sensei AI technology. Generates a tagged PDF that meets WCAG 2.0
@@ -561,7 +561,7 @@ paths:
   /operation/documentgeneration:
     post:
       operationId: generateDocument
-      summary: Generate a document from a template
+      summary: Adobe Generate a document from a template
       description: >-
         Generate a PDF or Word document by merging a Word template (DOCX)
         with JSON data. Supports dynamic text insertion, conditional sections,
@@ -599,7 +599,7 @@ paths:
   /operation/pdfproperties:
     post:
       operationId: getPDFProperties
-      summary: Get PDF properties
+      summary: Adobe Get PDF properties
       description: >-
         Retrieve metadata and properties from a PDF document, including page
         count, page size, whether the document is encrypted, font information,
@@ -637,7 +637,7 @@ paths:
   /operation/reorderpages:
     post:
       operationId: reorderPages
-      summary: Reorder pages in a PDF
+      summary: Adobe Reorder pages in a PDF
       description: >-
         Rearrange the order of pages within a PDF document by specifying
         the desired page sequence.
@@ -674,7 +674,7 @@ paths:
   /operation/deletepages:
     post:
       operationId: deletePages
-      summary: Delete pages from a PDF
+      summary: Adobe Delete pages from a PDF
       description: >-
         Remove specific pages from a PDF document by specifying page ranges
         to delete.
@@ -711,7 +711,7 @@ paths:
   /operation/rotatepages:
     post:
       operationId: rotatePages
-      summary: Rotate pages in a PDF
+      summary: Adobe Rotate pages in a PDF
       description: >-
         Rotate specific pages within a PDF document by 90, 180, or 270
         degrees.
@@ -748,7 +748,7 @@ paths:
   /operation/insertpages:
     post:
       operationId: insertPages
-      summary: Insert pages into a PDF
+      summary: Adobe Insert pages into a PDF
       description: >-
         Insert pages from one or more source PDFs into a base PDF at
         specified positions.
@@ -785,7 +785,7 @@ paths:
   /operation/replacepages:
     post:
       operationId: replacePages
-      summary: Replace pages in a PDF
+      summary: Adobe Replace pages in a PDF
       description: >-
         Replace specific pages in a base PDF with pages from another PDF
         document.
@@ -822,7 +822,7 @@ paths:
   /operation/{operationType}/status/{jobID}:
     get:
       operationId: getJobStatus
-      summary: Get job status
+      summary: Adobe Get job status
       description: >-
         Poll for the status of an asynchronous PDF operation job. Returns
         the current status (in progress, done, or failed) and, when complete,
