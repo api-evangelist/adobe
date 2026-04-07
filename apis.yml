@@ -5,16 +5,16 @@ name: Adobe
 type: Index
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
-  - Creative Cloud
-  - PDF
-  - Document Services
-  - Experience Cloud
-  - Marketing
   - Analytics
-  - Generative AI
+  - Creative Cloud
+  - Digital Asset Management
+  - Document Services
   - E-Commerce
   - E-Signatures
-  - Digital Asset Management
+  - Experience Cloud
+  - Generative AI
+  - Marketing
+  - PDF
   - Work Management
 description: >-
   Adobe provides APIs and developer resources for its creative, document, and
@@ -28,9 +28,9 @@ apis:
   - aid: adobe:adobe-pdf-services-api
     name: Adobe PDF Services API
     tags:
-      - PDF
-      - Documents
       - Conversion
+      - Documents
+      - PDF
     humanURL: https://developer.adobe.com/document-services/apis/pdf-services/
     baseURL: https://pdf-services.adobe.io
     properties:
@@ -47,9 +47,9 @@ apis:
   - aid: adobe:adobe-pdf-extract-api
     name: Adobe PDF Extract API
     tags:
-      - PDF
-      - Extraction
       - AI
+      - Extraction
+      - PDF
     humanURL: https://developer.adobe.com/document-services/docs/overview/pdf-extract-api/
     baseURL: https://pdf-services.adobe.io
     properties:
@@ -63,8 +63,8 @@ apis:
   - aid: adobe:adobe-acrobat-sign-api
     name: Adobe Acrobat Sign API
     tags:
-      - E-Signatures
       - Documents
+      - E-Signatures
     humanURL: https://developer.adobe.com/document-services/apis/sign-api/
     baseURL: https://api.adobesign.com
     properties:
@@ -119,8 +119,8 @@ apis:
   - aid: adobe:adobe-experience-platform-api
     name: Adobe Experience Platform API
     tags:
-      - Experience Platform
       - Customer Data
+      - Experience Platform
     humanURL: https://developer.adobe.com/experience-platform-apis/
     baseURL: https://platform.adobe.io
     properties:
@@ -135,8 +135,8 @@ apis:
   - aid: adobe:adobe-stock-api
     name: Adobe Stock API
     tags:
-      - Stock
       - Assets
+      - Stock
     humanURL: https://developer.adobe.com/stock/
     baseURL: https://stock.adobe.io
     properties:
@@ -172,8 +172,8 @@ apis:
   - aid: adobe:adobe-marketo-engage-api
     name: Adobe Marketo Engage API
     tags:
-      - Marketing Automation
       - Leads
+      - Marketing Automation
     humanURL: https://developer.adobe.com/marketo-apis/
     properties:
       - type: Documentation
@@ -190,8 +190,8 @@ apis:
   - aid: adobe:adobe-workfront-api
     name: Adobe Workfront API
     tags:
-      - Work Management
       - Projects
+      - Work Management
     humanURL: https://developer.adobe.com/workfront-apis/
     properties:
       - type: Documentation
@@ -205,8 +205,8 @@ apis:
   - aid: adobe:adobe-user-management-api
     name: Adobe User Management API
     tags:
-      - User Management
       - Identity
+      - User Management
     humanURL: https://developer.adobe.com/umapi/
     baseURL: https://usermanagement.adobe.io
     properties:

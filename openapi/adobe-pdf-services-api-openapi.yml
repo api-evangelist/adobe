@@ -30,47 +30,47 @@ security:
   - bearerAuth: []
 
 tags:
+  - name: Accessibility Auto-Tag
+    description: Automatically add accessibility tags to PDF documents using AI.
   - name: Assets
     description: Upload and manage assets (source files) for PDF operations.
-  - name: Create PDF
-    description: Create PDF documents from supported file formats including Microsoft Office, images, and HTML.
-  - name: Export PDF
-    description: Export (convert) PDF documents to other formats such as DOCX, PPTX, XLSX, images, and RTF.
   - name: Combine PDF
     description: Combine multiple PDF documents into a single PDF.
-  - name: Split PDF
-    description: Split a PDF document into multiple smaller PDFs.
-  - name: OCR
-    description: Apply optical character recognition to scanned PDFs to make text searchable and selectable.
   - name: Compress PDF
     description: Reduce the file size of PDF documents while maintaining quality.
+  - name: Create PDF
+    description: Create PDF documents from supported file formats including Microsoft Office, images, and HTML.
+  - name: Delete Pages
+    description: Delete specific pages from a PDF document.
+  - name: Document Generation
+    description: Generate PDF and Word documents from templates with dynamic JSON data.
+  - name: Export PDF
+    description: Export (convert) PDF documents to other formats such as DOCX, PPTX, XLSX, images, and RTF.
+  - name: Extract PDF
+    description: Extract text, tables, and figures from PDF documents into structured JSON output.
+  - name: Insert Pages
+    description: Insert pages from one PDF into another.
+  - name: Jobs
+    description: Poll for the status and results of asynchronous PDF operations.
+
+  - name: Linearize PDF
+    description: Optimize PDFs for fast web viewing (linearization).
+  - name: OCR
+    description: Apply optical character recognition to scanned PDFs to make text searchable and selectable.
+  - name: PDF Properties
+    description: Retrieve metadata and properties from PDF documents.
   - name: Protect PDF
     description: Add password protection and encryption to PDF documents.
   - name: Remove Protection
     description: Remove password protection from PDF documents.
-  - name: Linearize PDF
-    description: Optimize PDFs for fast web viewing (linearization).
-  - name: Extract PDF
-    description: Extract text, tables, and figures from PDF documents into structured JSON output.
-  - name: Accessibility Auto-Tag
-    description: Automatically add accessibility tags to PDF documents using AI.
-  - name: Document Generation
-    description: Generate PDF and Word documents from templates with dynamic JSON data.
-  - name: PDF Properties
-    description: Retrieve metadata and properties from PDF documents.
   - name: Reorder Pages
     description: Reorder pages within a PDF document.
-  - name: Delete Pages
-    description: Delete specific pages from a PDF document.
-  - name: Rotate Pages
-    description: Rotate pages within a PDF document.
-  - name: Insert Pages
-    description: Insert pages from one PDF into another.
   - name: Replace Pages
     description: Replace pages in a PDF with pages from another PDF.
-  - name: Jobs
-    description: Poll for the status and results of asynchronous PDF operations.
-
+  - name: Rotate Pages
+    description: Rotate pages within a PDF document.
+  - name: Split PDF
+    description: Split a PDF document into multiple smaller PDFs.
 paths:
   /assets:
     post:
