@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "ExtractPDFRequest",
+  "type": "object",
+  "properties": {
+    "assetID": {
+      "type": "string"
+    },
+    "elementsToExtract": {
+      "type": "array"
+    },
+    "elementsToExtractRenditions": {
+      "type": "array"
+    },
+    "tableOutputFormat": {
+      "type": "string"
+    },
+    "getStylingInfo": {
+      "type": "boolean"
+    },
+    "addCharInfo": {
+      "type": "boolean"
+    }
+  }
+}

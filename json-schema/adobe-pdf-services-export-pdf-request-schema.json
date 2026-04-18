@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ExportPDFRequest",
+  "type": "object",
+  "properties": {
+    "assetID": {
+      "type": "string",
+      "description": "The asset ID of the PDF to export."
+    },
+    "targetFormat": {
+      "type": "string",
+      "description": "The desired output format."
+    },
+    "ocrLanguage": {
+      "type": "string",
+      "description": "The language for OCR processing during export."
+    }
+  }
+}

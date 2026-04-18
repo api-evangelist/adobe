@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "DocumentGenerationRequest",
+  "type": "object",
+  "properties": {
+    "assetID": {
+      "type": "string",
+      "description": "The asset ID of the Word template (DOCX)."
+    },
+    "jsonDataForMerge": {
+      "type": "object",
+      "description": "The JSON data to merge with the template."
+    },
+    "outputFormat": {
+      "type": "string",
+      "description": "The desired output format."
+    },
+    "fragments": {
+      "type": "object",
+      "description": "Reusable document fragments for template composition."
+    }
+  }
+}

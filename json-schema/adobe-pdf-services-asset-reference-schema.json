@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AssetReference",
+  "type": "object",
+  "description": "A reference to an uploaded asset.",
+  "properties": {
+    "assetID": {
+      "type": "string",
+      "description": "The unique identifier of the uploaded asset."
+    }
+  }
+}

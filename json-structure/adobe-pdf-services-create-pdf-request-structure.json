@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "CreatePDFRequest",
+  "type": "object",
+  "properties": {
+    "assetID": {
+      "type": "string"
+    },
+    "documentLanguage": {
+      "type": "string"
+    },
+    "createPDFFromDOCXOptions": {
+      "type": "object"
+    },
+    "createPDFFromPPTXOptions": {
+      "type": "object"
+    },
+    "createPDFFromXLSXOptions": {
+      "type": "object"
+    },
+    "createPDFFromHTMLOptions": {
+      "type": "object"
+    }
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AssetUploadResponse",
+  "type": "object",
+  "properties": {
+    "assetID": {
+      "type": "string",
+      "description": "The unique identifier for the uploaded asset."
+    },
+    "uploadUri": {
+      "type": "string",
+      "description": "The pre-signed URI to upload the file content via HTTP PUT. Valid for a limited time."
+    }
+  }
+}

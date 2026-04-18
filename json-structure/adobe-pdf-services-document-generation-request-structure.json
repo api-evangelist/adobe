@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "DocumentGenerationRequest",
+  "type": "object",
+  "properties": {
+    "assetID": {
+      "type": "string"
+    },
+    "jsonDataForMerge": {
+      "type": "object"
+    },
+    "outputFormat": {
+      "type": "string"
+    },
+    "fragments": {
+      "type": "object"
+    }
+  }
+}

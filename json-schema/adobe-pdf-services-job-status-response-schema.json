@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "JobStatusResponse",
+  "type": "object",
+  "description": "The status and result of an asynchronous PDF operation job.",
+  "properties": {
+    "status": {
+      "type": "string",
+      "description": "The current status of the job."
+    },
+    "asset": {
+      "type": "object",
+      "description": "The output asset information, available when status is done."
+    },
+    "error": {
+      "type": "object",
+      "description": "Error information, available when status is failed."
+    }
+  }
+}

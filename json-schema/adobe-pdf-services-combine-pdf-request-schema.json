@@ -1,0 +1,11 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "CombinePDFRequest",
+  "type": "object",
+  "properties": {
+    "assets": {
+      "type": "array",
+      "description": "The list of PDF assets to combine, in order."
+    }
+  }
+}

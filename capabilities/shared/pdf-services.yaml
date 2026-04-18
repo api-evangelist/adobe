@@ -1,0 +1,250 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Adobe PDF Services"
+  description: "Adobe PDF Services API for creating, converting, manipulating, and extracting content from PDF documents."
+  tags:
+    - Adobe
+    - Documents
+    - PDF
+  created: "2026-04-18"
+  modified: "2026-04-18"
+
+binds:
+  - namespace: env
+    keys:
+      ADOBE_CLIENT_ID: ADOBE_CLIENT_ID
+      ADOBE_CLIENT_SECRET: ADOBE_CLIENT_SECRET
+
+capability:
+  consumes:
+    - type: http
+      namespace: pdf-services
+      baseUri: https://pdf-services.adobe.io
+      description: "Adobe PDF Services API"
+      authentication:
+        type: bearer
+        token: "{{ADOBE_CLIENT_SECRET}}"
+      resources:
+        - name: assets
+          path: /assets
+          description: "Manage document assets"
+          operations:
+            - name: upload-asset
+              method: POST
+              description: "Upload a document for processing"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+              body:
+                type: json
+                data:
+                  mediaType: "{{tools.mediaType}}"
+            - name: get-asset
+              method: GET
+              description: "Get asset download URI"
+              inputParameters:
+                - name: assetId
+                  in: path
+                  type: string
+                  required: true
+                  description: "The asset ID"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: delete-asset
+              method: DELETE
+              description: "Delete an asset"
+              inputParameters:
+                - name: assetId
+                  in: path
+                  type: string
+                  required: true
+                  description: "The asset ID"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+        - name: pdf-operations
+          path: /operation
+          description: "PDF document operations"
+          operations:
+            - name: create-pdf
+              method: POST
+              description: "Create a PDF from supported formats"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: export-pdf
+              method: POST
+              description: "Export PDF to other formats"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: combine-pdf
+              method: POST
+              description: "Combine multiple PDFs into one"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: split-pdf
+              method: POST
+              description: "Split a PDF into multiple documents"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: ocr-pdf
+              method: POST
+              description: "Apply OCR to make scanned PDFs searchable"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: compress-pdf
+              method: POST
+              description: "Compress a PDF to reduce file size"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: protect-pdf
+              method: POST
+              description: "Add password protection to a PDF"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: remove-protection
+              method: POST
+              description: "Remove password protection from a PDF"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: linearize-pdf
+              method: POST
+              description: "Optimize PDF for fast web viewing"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: extract-pdf
+              method: POST
+              description: "Extract text, tables, and figures from a PDF"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: auto-tag-pdf
+              method: POST
+              description: "Auto-tag PDF for accessibility"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: generate-document
+              method: POST
+              description: "Generate documents from templates with data"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: get-pdf-properties
+              method: POST
+              description: "Get PDF metadata and properties"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: reorder-pages
+              method: POST
+              description: "Reorder pages in a PDF"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: delete-pages
+              method: POST
+              description: "Delete pages from a PDF"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: rotate-pages
+              method: POST
+              description: "Rotate pages in a PDF"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: insert-pages
+              method: POST
+              description: "Insert pages from one PDF into another"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: replace-pages
+              method: POST
+              description: "Replace pages in a PDF"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+        - name: jobs
+          path: /operation
+          description: "Job status polling"
+          operations:
+            - name: get-job-status
+              method: GET
+              description: "Get the status of an asynchronous job"
+              inputParameters:
+                - name: jobId
+                  in: path
+                  type: string
+                  required: true
+                  description: "The job ID"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+  exposes:
+    - type: rest
+      port: 8100
+      namespace: pdf-services-api
+      resources: []
+
+    - type: mcp
+      port: 9100
+      namespace: pdf-services-mcp
+      transport: http
+      tools: []

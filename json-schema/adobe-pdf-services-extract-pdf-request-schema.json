@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ExtractPDFRequest",
+  "type": "object",
+  "properties": {
+    "assetID": {
+      "type": "string",
+      "description": "The asset ID of the PDF to extract from."
+    },
+    "elementsToExtract": {
+      "type": "array",
+      "description": "The types of elements to extract from the PDF."
+    },
+    "elementsToExtractRenditions": {
+      "type": "array",
+      "description": "Rendition types to generate for extracted elements."
+    },
+    "tableOutputFormat": {
+      "type": "string",
+      "description": "The output format for extracted tables."
+    },
+    "getStylingInfo": {
+      "type": "boolean",
+      "description": "Whether to include styling information (font, color, etc.) in the extraction output."
+    },
+    "addCharInfo": {
+      "type": "boolean",
+      "description": "Whether to include character-level bounding box information."
+    }
+  }
+}

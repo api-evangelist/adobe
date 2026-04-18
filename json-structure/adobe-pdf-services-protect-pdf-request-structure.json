@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "ProtectPDFRequest",
+  "type": "object",
+  "properties": {
+    "assetID": {
+      "type": "string"
+    },
+    "passwordProtection": {
+      "type": "object"
+    },
+    "encryptionAlgorithm": {
+      "type": "string"
+    },
+    "permissions": {
+      "type": "object"
+    }
+  }
+}

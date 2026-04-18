@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ReplacePagesRequest",
+  "type": "object",
+  "properties": {
+    "baseAssetID": {
+      "type": "string",
+      "description": "The asset ID of the base PDF."
+    },
+    "assetsToReplace": {
+      "type": "array",
+      "description": "Assets and page specifications for replacement."
+    }
+  }
+}

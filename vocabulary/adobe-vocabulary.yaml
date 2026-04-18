@@ -1,0 +1,27 @@
+name: adobe API Vocabulary
+provider: adobe
+created: '2026-04-18'
+modified: '2026-04-18'
+operations: 22
+schemas: 25
+tags:
+- Accessibility Auto-Tag
+- Assets
+- Combine PDF
+- Compress PDF
+- Create PDF
+- Delete Pages
+- Document Generation
+- Export PDF
+- Extract PDF
+- Insert Pages
+- Jobs
+- Linearize PDF
+- OCR
+- PDF Properties
+- Protect PDF
+- Remove Protection
+- Reorder Pages
+- Replace Pages
+- Rotate Pages
+- Split PDF

@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "OCRRequest",
+  "type": "object",
+  "properties": {
+    "assetID": {
+      "type": "string",
+      "description": "The asset ID of the PDF to OCR."
+    },
+    "ocrLanguage": {
+      "type": "string",
+      "description": "The language for OCR processing."
+    },
+    "ocrType": {
+      "type": "string",
+      "description": "The type of OCR output. SEARCHABLE_IMAGE produces a searchable PDF maintaining visual fidelity. SEARCHABLE_IMAGE_EXACT preserves the original image appearance precisely."
+    }
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "CreatePDFRequest",
+  "type": "object",
+  "properties": {
+    "assetID": {
+      "type": "string",
+      "description": "The asset ID of the source file to convert to PDF."
+    },
+    "documentLanguage": {
+      "type": "string",
+      "description": "The language of the source document for OCR processing."
+    },
+    "createPDFFromDOCXOptions": {
+      "type": "object",
+      "description": "Options specific to DOCX to PDF conversion."
+    },
+    "createPDFFromPPTXOptions": {
+      "type": "object",
+      "description": "Options specific to PPTX to PDF conversion."
+    },
+    "createPDFFromXLSXOptions": {
+      "type": "object",
+      "description": "Options specific to XLSX to PDF conversion."
+    },
+    "createPDFFromHTMLOptions": {
+      "type": "object",
+      "description": "Options specific to HTML to PDF conversion."
+    }
+  }
+}

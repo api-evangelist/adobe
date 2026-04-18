@@ -1,0 +1,8 @@
+{
+  "assetID": "500123",
+  "documentLanguage": "example_value",
+  "createPDFFromDOCXOptions": "example_value",
+  "createPDFFromPPTXOptions": "example_value",
+  "createPDFFromXLSXOptions": "example_value",
+  "createPDFFromHTMLOptions": "example_value"
+}

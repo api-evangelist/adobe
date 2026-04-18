@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ProtectPDFRequest",
+  "type": "object",
+  "properties": {
+    "assetID": {
+      "type": "string",
+      "description": "The asset ID of the PDF to protect."
+    },
+    "passwordProtection": {
+      "type": "object"
+    },
+    "encryptionAlgorithm": {
+      "type": "string",
+      "description": "The encryption algorithm to use."
+    },
+    "permissions": {
+      "type": "object",
+      "description": "Permissions to set on the protected document."
+    }
+  }
+}

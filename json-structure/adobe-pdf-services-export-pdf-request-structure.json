@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "ExportPDFRequest",
+  "type": "object",
+  "properties": {
+    "assetID": {
+      "type": "string"
+    },
+    "targetFormat": {
+      "type": "string"
+    },
+    "ocrLanguage": {
+      "type": "string"
+    }
+  }
+}
