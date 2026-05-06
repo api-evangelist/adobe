@@ -4,7 +4,8 @@ schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main
 provider: Adobe
 providerId: adobe
 created: '2026-05-04'
-modified: '2026-05-04'
+modified: '2026-05-05'
+reconciled: false
 tags:
   - Analytics
   - Creative Cloud
@@ -16,212 +17,120 @@ tags:
   - Generative AI
   - Marketing
   - PDF
-  - Work Management
-description: Machine-readable plans and pricing scaffold for this API provider. Conforms to the API Commons
-  Plans schema. Tier limits and prices are scaffold defaults; replace with provider-published values.
+notes: >-
+  Adobe is a multi-product platform with no single unified pricing page. Each surface
+  (Creative Cloud, Document Services API, Firefly Services, Experience Cloud,
+  Acrobat Sign, Marketo, Workfront, Commerce) prices independently. Public list
+  pricing exists for Creative Cloud and Acrobat consumer SKUs; Experience Cloud
+  products (Analytics, Campaign, Experience Manager, Real-Time CDP, Target,
+  Marketo, Workfront) are contact-sales. WebFetch against adobe.com pricing
+  pages timed out repeatedly during reconciliation; per-product prices were
+  not retrieved and are deferred to per-product repos.
+description: >-
+  Adobe is a multi-product company spanning Creative Cloud (subscription SaaS),
+  Document Cloud (consumer + per-transaction PDF/Sign APIs), Firefly Services
+  (generative-credit-metered APIs), and Experience Cloud (enterprise contact-sales
+  SaaS). Pricing varies per product line; this artifact summarises the
+  archetypes only and points to per-product repos for exact prices.
+sources:
+  - https://www.adobe.com/plans
+  - https://developer.adobe.com/document-services/pricing/
+  - https://developer.adobe.com/firefly-services/
+  - https://business.adobe.com/products/
 plans:
-  - id: adobe-free
-    name: Free
-    type: freemium
-    description: Free entry tier for the Adobe API surface. Intended for evaluation, prototyping, and
-      low-volume integrations. Real limits and pricing must be reconciled with the provider's published
-      plan documentation.
+  - id: adobe-creative-cloud-subscription
+    name: Creative Cloud Subscription
+    type: subscription
+    description: >-
+      Per-seat monthly/annual subscription to Creative Cloud apps. Tiers include
+      Photography, single-app, All Apps, Teams and Enterprise. See per-product
+      repos and adobe.com/plans for current list pricing.
     entries:
-      - label: API Requests
-        description: Monthly API request quota across all included endpoints
-        name: api_requests
-        type: quota
-        metric: requests
-        limit: 1000
+      - label: Creative Cloud subscription seat
+        name: cc_seat
+        type: subscription
+        metric: seat
+        limit: -1
         timeFrame: month
         geo: global
-        domains:
-          - https://pdf-services.adobe.io
-          - https://api.adobesign.com
-          - https://analytics.adobe.io
-          - https://firefly-api.adobe.io
-          - https://platform.adobe.io
-          - https://stock.adobe.io
-          - https://usermanagement.adobe.io
         unit: 1
-        price: '0.00'
-        userMultiplied: false
-      - label: Rate Limit
-        description: Maximum requests per minute on the free tier
-        name: rate_limit
-        type: rate
-        metric: requests_per_minute
-        limit: 10
-        timeFrame: minute
-        geo: global
-        domains:
-          - https://pdf-services.adobe.io
-          - https://api.adobesign.com
-          - https://analytics.adobe.io
-          - https://firefly-api.adobe.io
-          - https://platform.adobe.io
-          - https://stock.adobe.io
-          - https://usermanagement.adobe.io
-        unit: 1
-        price: '0.00'
-        userMultiplied: false
+        price: see https://www.adobe.com/plans
+        userMultiplied: true
     elements:
-      - name: Public Documentation
-      - name: Community Support
-      - name: Sandbox Access
-      - name: Adobe PDF Services API
-      - name: Adobe PDF Extract API
-      - name: Adobe Acrobat Sign API
-      - name: Adobe Analytics API
-      - name: Adobe Firefly API
-      - name: Adobe Experience Platform API
-      - name: Adobe Stock API
-      - name: Adobe Commerce API
-  - id: adobe-pro
-    name: Professional
-    type: paid
-    description: Production tier for Adobe. Provides higher quotas, priority support, and access to the
-      broader API portfolio. Pricing placeholder; align with the provider's pricing page.
+      - name: Creative Cloud applications (varies by plan)
+      - name: Cloud storage (varies by plan)
+      - name: Adobe Fonts
+      - name: Generative credits (varies by plan)
+  - id: adobe-document-services-api
+    name: Document Services API (PDF Services / Acrobat Sign)
+    type: usage-based
+    description: >-
+      Per-document-transaction pricing for Adobe PDF Services API and Acrobat
+      Sign API. Includes a free tier; paid usage is metered per transaction.
     entries:
-      - label: API Requests
-        description: Monthly API request quota
-        name: api_requests
-        type: quota
-        metric: requests
-        limit: 100000
-        timeFrame: month
-        geo: global
-        domains:
-          - https://pdf-services.adobe.io
-          - https://api.adobesign.com
-          - https://analytics.adobe.io
-          - https://firefly-api.adobe.io
-          - https://platform.adobe.io
-          - https://stock.adobe.io
-          - https://usermanagement.adobe.io
-        unit: 1
-        price: TBD
-        userMultiplied: false
-      - label: Rate Limit
-        description: Maximum requests per minute on the professional tier
-        name: rate_limit
-        type: rate
-        metric: requests_per_minute
-        limit: 100
-        timeFrame: minute
-        geo: global
-        domains:
-          - https://pdf-services.adobe.io
-          - https://api.adobesign.com
-          - https://analytics.adobe.io
-          - https://firefly-api.adobe.io
-          - https://platform.adobe.io
-          - https://stock.adobe.io
-          - https://usermanagement.adobe.io
-        unit: 1
-        price: '0.00'
-        userMultiplied: false
-      - label: Overage
-        description: Per-request price after monthly quota is exceeded
-        name: overage
+      - label: Document transaction
+        name: document_transaction
         type: metered
-        metric: requests
+        metric: transaction
+        limit: -1
+        timeFrame: usage
+        geo: global
+        unit: 1
+        price: see https://developer.adobe.com/document-services/pricing/
+        userMultiplied: false
+    elements:
+      - name: PDF Services API
+      - name: PDF Extract API
+      - name: Acrobat Sign API
+  - id: adobe-firefly-services
+    name: Firefly Services
+    type: usage-based
+    description: >-
+      Generative-credit-metered access to Adobe Firefly image, vector, and
+      design APIs. Credits are bundled with Creative Cloud plans and sold
+      separately for API consumers.
+    entries:
+      - label: Generative credit
+        name: generative_credit
+        type: metered
+        metric: credit
+        limit: -1
+        timeFrame: usage
+        geo: global
+        unit: 1
+        price: see https://www.adobe.com/products/firefly.html
+        userMultiplied: false
+    elements:
+      - name: Firefly text-to-image
+      - name: Firefly generative fill
+      - name: Firefly text-to-vector
+  - id: adobe-experience-cloud-enterprise
+    name: Experience Cloud (Enterprise)
+    type: enterprise
+    description: >-
+      Adobe Experience Cloud products (Analytics, Campaign, Experience Manager,
+      Real-Time CDP, Target, Marketo Engage, Workfront, Commerce) are sold via
+      contract with custom pricing tied to volume, modules, and SKU bundles.
+    entries:
+      - label: Negotiated subscription
+        name: enterprise_subscription
+        type: subscription
+        metric: month
         limit: -1
         timeFrame: month
         geo: global
-        domains:
-          - https://pdf-services.adobe.io
-          - https://api.adobesign.com
-          - https://analytics.adobe.io
-          - https://firefly-api.adobe.io
-          - https://platform.adobe.io
-          - https://stock.adobe.io
-          - https://usermanagement.adobe.io
-        unit: 1000
-        price: TBD
+        unit: 1
+        price: contact sales
         userMultiplied: false
     elements:
-      - name: All Production Endpoints
-      - name: Email Support
-      - name: SLA Targets
-      - name: Webhook Subscriptions
-      - name: Adobe PDF Services API
-      - name: Adobe PDF Extract API
-      - name: Adobe Acrobat Sign API
-      - name: Adobe Analytics API
-      - name: Adobe Firefly API
-      - name: Adobe Experience Platform API
-      - name: Adobe Stock API
-      - name: Adobe Commerce API
-      - name: Adobe Marketo Engage API
-      - name: Adobe Workfront API
-      - name: Adobe User Management API
-      - name: Adobe I/O Events API
-      - name: Adobe Experience Manager API
-  - id: adobe-enterprise
-    name: Enterprise
-    type: enterprise
-    description: Custom-negotiated tier for Adobe. Includes dedicated capacity, contractual SLAs, security
-      review, data residency options, and named technical account management.
-    entries:
-      - label: API Requests
-        description: Negotiated request volume; -1 indicates uncapped subject to fair use
-        name: api_requests
-        type: quota
-        metric: requests
-        limit: -1
-        timeFrame: month
-        geo: configurable
-        domains:
-          - https://pdf-services.adobe.io
-          - https://api.adobesign.com
-          - https://analytics.adobe.io
-          - https://firefly-api.adobe.io
-          - https://platform.adobe.io
-          - https://stock.adobe.io
-          - https://usermanagement.adobe.io
-        unit: 1
-        price: custom
-        userMultiplied: false
-      - label: Rate Limit
-        description: Negotiated burst and steady-state rate
-        name: rate_limit
-        type: rate
-        metric: requests_per_minute
-        limit: 1000
-        timeFrame: minute
-        geo: configurable
-        domains:
-          - https://pdf-services.adobe.io
-          - https://api.adobesign.com
-          - https://analytics.adobe.io
-          - https://firefly-api.adobe.io
-          - https://platform.adobe.io
-          - https://stock.adobe.io
-          - https://usermanagement.adobe.io
-        unit: 1
-        price: custom
-        userMultiplied: false
-    elements:
-      - name: Unlimited / Negotiated Volume
-      - name: 24/7 Dedicated Support
-      - name: Contractual SLA
-      - name: Security & Compliance Review
-      - name: Dedicated Account Manager
-      - name: Custom Data Residency
-      - name: Adobe PDF Services API
-      - name: Adobe PDF Extract API
-      - name: Adobe Acrobat Sign API
-      - name: Adobe Analytics API
-      - name: Adobe Firefly API
-      - name: Adobe Experience Platform API
-      - name: Adobe Stock API
-      - name: Adobe Commerce API
-      - name: Adobe Marketo Engage API
-      - name: Adobe Workfront API
-      - name: Adobe User Management API
-      - name: Adobe I/O Events API
-      - name: Adobe Experience Manager API
+      - name: Adobe Analytics
+      - name: Adobe Campaign
+      - name: Adobe Experience Manager
+      - name: Adobe Real-Time CDP
+      - name: Adobe Target
+      - name: Adobe Marketo Engage
+      - name: Adobe Workfront
+      - name: Adobe Commerce
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
