@@ -22,7 +22,7 @@ description: >-
   Creative Cloud, generative AI (Firefly), analytics, e-commerce, e-signatures,
   and many other Adobe products and services.
 created: '2024-01-01'
-modified: '2026-04-18'
+modified: '2026-05-19'
 specificationVersion: '0.19'
 apis:
   - aid: adobe:adobe-pdf-services-api
@@ -258,6 +258,8 @@ apis:
       Create, read, update, and delete content, assets, and forms in Adobe
       Experience Manager as a Cloud Service.
 common:
+  - type: LinkedIn
+    url: https://www.linkedin.com/company/adobe
   - type: Portal
     url: https://developer.adobe.com/
   - type: Console
@@ -330,6 +332,9 @@ common:
       - Shopify and Magento marketplaces
       - Google Analytics and Tag Manager
       - Slack and Microsoft Teams notifications
+  - name: MCP Server
+    url: https://blog.developer.adobe.com/en/publish/2025/09/introducing-the-adobe-express-add-on-dev-mcp-server-beta
+    type: MCPServer
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
