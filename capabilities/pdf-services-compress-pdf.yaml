@@ -1,0 +1,80 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Adobe PDF Services API — Compress PDF
+  description: 'Adobe PDF Services API — Compress PDF. 1 operations. Lead operation: Adobe Compress a Pdf. Self-contained
+    Naftiko capability covering one Adobe business surface.'
+  tags:
+  - Adobe
+  - Compress PDF
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    ADOBE_API_KEY: ADOBE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: pdf-services-compress-pdf
+    baseUri: https://pdf-services-ue1.adobe.io
+    description: Adobe PDF Services API — Compress PDF business capability. Self-contained, no shared references.
+    resources:
+    - name: operation-compresspdf
+      path: /operation/compresspdf
+      operations:
+      - name: compresspdf
+        method: POST
+        description: Adobe Compress a Pdf
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.ADOBE_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: pdf-services-compress-pdf-rest
+    port: 8080
+    description: REST adapter for Adobe PDF Services API — Compress PDF. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/operation/compresspdf
+      name: operation-compresspdf
+      description: REST surface for operation-compresspdf.
+      operations:
+      - method: POST
+        name: compresspdf
+        description: Adobe Compress a Pdf
+        call: pdf-services-compress-pdf.compresspdf
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: pdf-services-compress-pdf-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Adobe PDF Services API — Compress PDF. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: adobe-compress-pdf
+      description: Adobe Compress a Pdf
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: pdf-services-compress-pdf.compresspdf
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

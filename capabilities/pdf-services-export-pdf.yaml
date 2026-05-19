@@ -1,0 +1,80 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Adobe PDF Services API — Export PDF
+  description: 'Adobe PDF Services API — Export PDF. 1 operations. Lead operation: Adobe Export a Pdf. Self-contained Naftiko
+    capability covering one Adobe business surface.'
+  tags:
+  - Adobe
+  - Export PDF
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    ADOBE_API_KEY: ADOBE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: pdf-services-export-pdf
+    baseUri: https://pdf-services-ue1.adobe.io
+    description: Adobe PDF Services API — Export PDF business capability. Self-contained, no shared references.
+    resources:
+    - name: operation-exportpdf
+      path: /operation/exportpdf
+      operations:
+      - name: exportpdf
+        method: POST
+        description: Adobe Export a Pdf
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.ADOBE_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: pdf-services-export-pdf-rest
+    port: 8080
+    description: REST adapter for Adobe PDF Services API — Export PDF. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/operation/exportpdf
+      name: operation-exportpdf
+      description: REST surface for operation-exportpdf.
+      operations:
+      - method: POST
+        name: exportpdf
+        description: Adobe Export a Pdf
+        call: pdf-services-export-pdf.exportpdf
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: pdf-services-export-pdf-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Adobe PDF Services API — Export PDF. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: adobe-export-pdf
+      description: Adobe Export a Pdf
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: pdf-services-export-pdf.exportpdf
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

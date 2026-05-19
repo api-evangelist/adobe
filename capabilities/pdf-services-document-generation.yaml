@@ -1,0 +1,80 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Adobe PDF Services API — Document Generation
+  description: 'Adobe PDF Services API — Document Generation. 1 operations. Lead operation: Adobe Generate a Document From
+    a Template. Self-contained Naftiko capability covering one Adobe business surface.'
+  tags:
+  - Adobe
+  - Document Generation
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    ADOBE_API_KEY: ADOBE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: pdf-services-document-generation
+    baseUri: https://pdf-services-ue1.adobe.io
+    description: Adobe PDF Services API — Document Generation business capability. Self-contained, no shared references.
+    resources:
+    - name: operation-documentgeneration
+      path: /operation/documentgeneration
+      operations:
+      - name: generatedocument
+        method: POST
+        description: Adobe Generate a Document From a Template
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.ADOBE_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: pdf-services-document-generation-rest
+    port: 8080
+    description: REST adapter for Adobe PDF Services API — Document Generation. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/operation/documentgeneration
+      name: operation-documentgeneration
+      description: REST surface for operation-documentgeneration.
+      operations:
+      - method: POST
+        name: generatedocument
+        description: Adobe Generate a Document From a Template
+        call: pdf-services-document-generation.generatedocument
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: pdf-services-document-generation-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Adobe PDF Services API — Document Generation. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: adobe-generate-document-template
+      description: Adobe Generate a Document From a Template
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: pdf-services-document-generation.generatedocument
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,80 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Adobe PDF Services API — PDF Properties
+  description: 'Adobe PDF Services API — PDF Properties. 1 operations. Lead operation: Adobe Get Pdf Properties. Self-contained
+    Naftiko capability covering one Adobe business surface.'
+  tags:
+  - Adobe
+  - PDF Properties
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    ADOBE_API_KEY: ADOBE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: pdf-services-pdf-properties
+    baseUri: https://pdf-services-ue1.adobe.io
+    description: Adobe PDF Services API — PDF Properties business capability. Self-contained, no shared references.
+    resources:
+    - name: operation-pdfproperties
+      path: /operation/pdfproperties
+      operations:
+      - name: getpdfproperties
+        method: POST
+        description: Adobe Get Pdf Properties
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.ADOBE_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: pdf-services-pdf-properties-rest
+    port: 8080
+    description: REST adapter for Adobe PDF Services API — PDF Properties. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/operation/pdfproperties
+      name: operation-pdfproperties
+      description: REST surface for operation-pdfproperties.
+      operations:
+      - method: POST
+        name: getpdfproperties
+        description: Adobe Get Pdf Properties
+        call: pdf-services-pdf-properties.getpdfproperties
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: pdf-services-pdf-properties-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Adobe PDF Services API — PDF Properties. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: adobe-get-pdf-properties
+      description: Adobe Get Pdf Properties
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: pdf-services-pdf-properties.getpdfproperties
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

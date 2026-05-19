@@ -1,0 +1,80 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Adobe PDF Services API — Accessibility Auto-Tag
+  description: 'Adobe PDF Services API — Accessibility Auto-Tag. 1 operations. Lead operation: Adobe Auto-tag a Pdf for Accessibility.
+    Self-contained Naftiko capability covering one Adobe business surface.'
+  tags:
+  - Adobe
+  - Accessibility Auto-Tag
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    ADOBE_API_KEY: ADOBE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: pdf-services-accessibility-auto-tag
+    baseUri: https://pdf-services-ue1.adobe.io
+    description: Adobe PDF Services API — Accessibility Auto-Tag business capability. Self-contained, no shared references.
+    resources:
+    - name: operation-accessibilitychecker
+      path: /operation/accessibilitychecker
+      operations:
+      - name: autotagpdf
+        method: POST
+        description: Adobe Auto-tag a Pdf for Accessibility
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.ADOBE_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: pdf-services-accessibility-auto-tag-rest
+    port: 8080
+    description: REST adapter for Adobe PDF Services API — Accessibility Auto-Tag. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/operation/accessibilitychecker
+      name: operation-accessibilitychecker
+      description: REST surface for operation-accessibilitychecker.
+      operations:
+      - method: POST
+        name: autotagpdf
+        description: Adobe Auto-tag a Pdf for Accessibility
+        call: pdf-services-accessibility-auto-tag.autotagpdf
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: pdf-services-accessibility-auto-tag-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Adobe PDF Services API — Accessibility Auto-Tag. One tool per consumed operation, routed
+      inline through this capability's consumes block.
+    tools:
+    - name: adobe-auto-tag-pdf-accessibility
+      description: Adobe Auto-tag a Pdf for Accessibility
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: pdf-services-accessibility-auto-tag.autotagpdf
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

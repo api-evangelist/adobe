@@ -1,0 +1,80 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Adobe PDF Services API — Insert Pages
+  description: 'Adobe PDF Services API — Insert Pages. 1 operations. Lead operation: Adobe Insert Pages Into a Pdf. Self-contained
+    Naftiko capability covering one Adobe business surface.'
+  tags:
+  - Adobe
+  - Insert Pages
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    ADOBE_API_KEY: ADOBE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: pdf-services-insert-pages
+    baseUri: https://pdf-services-ue1.adobe.io
+    description: Adobe PDF Services API — Insert Pages business capability. Self-contained, no shared references.
+    resources:
+    - name: operation-insertpages
+      path: /operation/insertpages
+      operations:
+      - name: insertpages
+        method: POST
+        description: Adobe Insert Pages Into a Pdf
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.ADOBE_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: pdf-services-insert-pages-rest
+    port: 8080
+    description: REST adapter for Adobe PDF Services API — Insert Pages. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/operation/insertpages
+      name: operation-insertpages
+      description: REST surface for operation-insertpages.
+      operations:
+      - method: POST
+        name: insertpages
+        description: Adobe Insert Pages Into a Pdf
+        call: pdf-services-insert-pages.insertpages
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: pdf-services-insert-pages-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Adobe PDF Services API — Insert Pages. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: adobe-insert-pages-pdf
+      description: Adobe Insert Pages Into a Pdf
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: pdf-services-insert-pages.insertpages
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

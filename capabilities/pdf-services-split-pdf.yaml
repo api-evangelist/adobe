@@ -1,0 +1,80 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Adobe PDF Services API — Split PDF
+  description: 'Adobe PDF Services API — Split PDF. 1 operations. Lead operation: Adobe Split a Pdf. Self-contained Naftiko
+    capability covering one Adobe business surface.'
+  tags:
+  - Adobe
+  - Split PDF
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    ADOBE_API_KEY: ADOBE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: pdf-services-split-pdf
+    baseUri: https://pdf-services-ue1.adobe.io
+    description: Adobe PDF Services API — Split PDF business capability. Self-contained, no shared references.
+    resources:
+    - name: operation-splitpdf
+      path: /operation/splitpdf
+      operations:
+      - name: splitpdf
+        method: POST
+        description: Adobe Split a Pdf
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.ADOBE_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: pdf-services-split-pdf-rest
+    port: 8080
+    description: REST adapter for Adobe PDF Services API — Split PDF. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/operation/splitpdf
+      name: operation-splitpdf
+      description: REST surface for operation-splitpdf.
+      operations:
+      - method: POST
+        name: splitpdf
+        description: Adobe Split a Pdf
+        call: pdf-services-split-pdf.splitpdf
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: pdf-services-split-pdf-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Adobe PDF Services API — Split PDF. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: adobe-split-pdf
+      description: Adobe Split a Pdf
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: pdf-services-split-pdf.splitpdf
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
