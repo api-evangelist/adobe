@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PageRange",
+  "title": "PageRange",
+  "type": "object",
+  "description": "Specifies a range of pages in a PDF document.",
+  "properties": {
+    "start": {
+      "type": "integer",
+      "description": "The starting page number (1-based).",
+      "minimum": 1,
+      "examples": [
+        1
+      ]
+    },
+    "end": {
+      "type": "integer",
+      "description": "The ending page number (1-based, inclusive).",
+      "minimum": 1,
+      "examples": [
+        5
+      ]
+    }
+  }
+}

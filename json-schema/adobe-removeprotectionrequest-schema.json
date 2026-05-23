@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/RemoveProtectionRequest",
+  "title": "RemoveProtectionRequest",
+  "type": "object",
+  "required": [
+    "assetID",
+    "password"
+  ],
+  "properties": {
+    "assetID": {
+      "type": "string",
+      "description": "The asset ID of the protected PDF.",
+      "example": "500123"
+    },
+    "password": {
+      "type": "string",
+      "description": "The password to unlock the PDF.",
+      "example": "example_value"
+    }
+  }
+}

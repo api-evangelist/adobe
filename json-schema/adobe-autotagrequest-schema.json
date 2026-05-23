@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AutoTagRequest",
+  "title": "AutoTagRequest",
+  "type": "object",
+  "required": [
+    "assetID"
+  ],
+  "properties": {
+    "assetID": {
+      "type": "string",
+      "description": "The asset ID of the PDF to auto-tag.",
+      "example": "500123"
+    },
+    "generateReport": {
+      "type": "boolean",
+      "description": "Whether to generate an accessibility tagging report.",
+      "default": false,
+      "example": true
+    },
+    "shiftHeadings": {
+      "type": "boolean",
+      "description": "Whether to shift heading levels to start at H1.",
+      "default": false,
+      "example": true
+    }
+  }
+}

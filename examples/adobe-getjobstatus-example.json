@@ -1,0 +1,30 @@
+{
+  "operationId": "getJobStatus",
+  "method": "GET",
+  "path": "/operation/{operationType}/status/{jobID}",
+  "summary": "Adobe Get Job Status",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "Getjobstatus200Example",
+      "example": {
+        "status": "in progress",
+        "asset": {
+          "assetID": "500123",
+          "downloadUri": "https://www.example.com",
+          "metadata": {
+            "type": "example_value",
+            "size": 10
+          }
+        },
+        "error": {
+          "code": "example_value",
+          "message": "example_value",
+          "status": 10
+        }
+      }
+    }
+  ]
+}

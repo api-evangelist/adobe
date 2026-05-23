@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SplitPDFRequest",
+  "title": "SplitPDFRequest",
+  "type": "object",
+  "required": [
+    "assetID"
+  ],
+  "properties": {
+    "assetID": {
+      "type": "string",
+      "description": "The asset ID of the PDF to split.",
+      "example": "500123"
+    },
+    "splitOptions": {
+      "type": "object",
+      "description": "Options controlling how the PDF is split.",
+      "properties": {
+        "pageCount": {
+          "type": "integer",
+          "description": "Split into files with this many pages each.",
+          "minimum": 1
+        },
+        "pageRanges": {
+          "type": "array",
+          "description": "Split by specific page ranges.",
+          "items": {
+            "$ref": "#/components/schemas/PageRange"
+          }
+        },
+        "fileCount": {
+          "type": "integer",
+          "description": "Split into this many equal files.",
+          "minimum": 2
+        }
+      },
+      "example": "example_value"
+    }
+  }
+}

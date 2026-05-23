@@ -1,0 +1,39 @@
+{
+  "operationId": "getPDFProperties",
+  "method": "POST",
+  "path": "/operation/pdfproperties",
+  "summary": "Adobe Get Pdf Properties",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "name": "GetpdfpropertiesRequestExample",
+      "example": {
+        "assetID": "500123",
+        "includePageLevelProperties": true
+      }
+    }
+  ],
+  "responseExamples": [
+    {
+      "status": "201",
+      "contentType": "application/json",
+      "name": "Getpdfproperties201Example",
+      "example": {
+        "status": "in progress",
+        "asset": {
+          "assetID": "500123",
+          "downloadUri": "https://www.example.com",
+          "metadata": {
+            "type": "example_value",
+            "size": 10
+          }
+        },
+        "error": {
+          "code": "example_value",
+          "message": "example_value",
+          "status": 10
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,68 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/JobStatusResponse",
+  "title": "JobStatusResponse",
+  "type": "object",
+  "description": "The status and result of an asynchronous PDF operation job.",
+  "properties": {
+    "status": {
+      "type": "string",
+      "description": "The current status of the job.",
+      "enum": [
+        "in progress",
+        "done",
+        "failed"
+      ],
+      "example": "in progress"
+    },
+    "asset": {
+      "type": "object",
+      "description": "The output asset information, available when status is done.",
+      "properties": {
+        "assetID": {
+          "type": "string",
+          "description": "The asset ID of the output file."
+        },
+        "downloadUri": {
+          "type": "string",
+          "format": "uri",
+          "description": "The pre-signed download URI for the output file."
+        },
+        "metadata": {
+          "type": "object",
+          "description": "Metadata about the output asset.",
+          "properties": {
+            "type": {
+              "type": "string",
+              "description": "The MIME type of the output file."
+            },
+            "size": {
+              "type": "integer",
+              "description": "The size of the output file in bytes."
+            }
+          }
+        }
+      },
+      "example": "example_value"
+    },
+    "error": {
+      "type": "object",
+      "description": "Error information, available when status is failed.",
+      "properties": {
+        "code": {
+          "type": "string",
+          "description": "A machine-readable error code."
+        },
+        "message": {
+          "type": "string",
+          "description": "A human-readable error message."
+        },
+        "status": {
+          "type": "integer",
+          "description": "The HTTP status code associated with the error."
+        }
+      },
+      "example": "example_value"
+    }
+  }
+}

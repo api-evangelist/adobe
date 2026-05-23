@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CombinePDFRequest",
+  "title": "CombinePDFRequest",
+  "type": "object",
+  "required": [
+    "assets"
+  ],
+  "properties": {
+    "assets": {
+      "type": "array",
+      "description": "The list of PDF assets to combine, in order.",
+      "items": {
+        "type": "object",
+        "required": [
+          "assetID"
+        ],
+        "properties": {
+          "assetID": {
+            "type": "string",
+            "description": "The asset ID of a source PDF."
+          },
+          "pageRanges": {
+            "type": "array",
+            "description": "Optional page ranges to include from this asset.",
+            "items": {
+              "$ref": "#/components/schemas/PageRange"
+            }
+          }
+        }
+      },
+      "example": []
+    }
+  }
+}

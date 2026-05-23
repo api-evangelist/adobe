@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/OCRRequest",
+  "title": "OCRRequest",
+  "type": "object",
+  "required": [
+    "assetID"
+  ],
+  "properties": {
+    "assetID": {
+      "type": "string",
+      "description": "The asset ID of the PDF to OCR.",
+      "example": "500123"
+    },
+    "ocrLanguage": {
+      "type": "string",
+      "description": "The language for OCR processing.",
+      "enum": [
+        "en-US",
+        "de-DE",
+        "fr-FR",
+        "ja-JP",
+        "da-DK",
+        "fi-FI",
+        "it-IT",
+        "ko-KR",
+        "nb-NO",
+        "nl-NL",
+        "pt-BR",
+        "es-ES",
+        "sv-SE",
+        "zh-CN",
+        "zh-TW"
+      ],
+      "default": "en-US",
+      "example": "en-US"
+    },
+    "ocrType": {
+      "type": "string",
+      "description": "The type of OCR output. SEARCHABLE_IMAGE produces a searchable PDF maintaining visual fidelity. SEARCHABLE_IMAGE_EXACT preserves the original image appearance precisely.",
+      "enum": [
+        "SEARCHABLE_IMAGE",
+        "SEARCHABLE_IMAGE_EXACT"
+      ],
+      "default": "SEARCHABLE_IMAGE",
+      "example": "SEARCHABLE_IMAGE"
+    }
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/DeletePagesRequest",
+  "title": "DeletePagesRequest",
+  "type": "object",
+  "required": [
+    "assetID",
+    "pageRanges"
+  ],
+  "properties": {
+    "assetID": {
+      "type": "string",
+      "description": "The asset ID of the PDF from which to delete pages.",
+      "example": "500123"
+    },
+    "pageRanges": {
+      "type": "array",
+      "description": "Page ranges to delete.",
+      "items": {
+        "$ref": "#/components/schemas/PageRange"
+      },
+      "example": []
+    }
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "operationId": "autoTagPDF",
+  "method": "POST",
+  "path": "/operation/accessibilitychecker",
+  "summary": "Adobe Auto-tag a Pdf for Accessibility",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "name": "AutotagpdfRequestExample",
+      "example": {
+        "assetID": "500123",
+        "generateReport": true,
+        "shiftHeadings": true
+      }
+    }
+  ],
+  "responseExamples": [
+    {
+      "status": "201",
+      "contentType": "application/json",
+      "name": "Autotagpdf201Example",
+      "example": {
+        "status": "in progress",
+        "asset": {
+          "assetID": "500123",
+          "downloadUri": "https://www.example.com",
+          "metadata": {
+            "type": "example_value",
+            "size": 10
+          }
+        },
+        "error": {
+          "code": "example_value",
+          "message": "example_value",
+          "status": 10
+        }
+      }
+    }
+  ]
+}

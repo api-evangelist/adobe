@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ReorderPagesRequest",
+  "title": "ReorderPagesRequest",
+  "type": "object",
+  "required": [
+    "assetID",
+    "pagesOrder"
+  ],
+  "properties": {
+    "assetID": {
+      "type": "string",
+      "description": "The asset ID of the PDF to reorder.",
+      "example": "500123"
+    },
+    "pagesOrder": {
+      "type": "array",
+      "description": "The desired page order as an array of 1-based page numbers.",
+      "items": {
+        "type": "integer",
+        "minimum": 1
+      },
+      "example": []
+    }
+  }
+}

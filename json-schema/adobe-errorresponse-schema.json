@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ErrorResponse",
+  "title": "ErrorResponse",
+  "type": "object",
+  "description": "Error response returned when a request fails.",
+  "properties": {
+    "error": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string",
+          "description": "A machine-readable error code.",
+          "examples": [
+            "INVALID_ASSET_ID",
+            "BAD_REQUEST",
+            "UNAUTHORIZED",
+            "RATE_LIMIT_EXCEEDED"
+          ]
+        },
+        "message": {
+          "type": "string",
+          "description": "A human-readable error message."
+        },
+        "status": {
+          "type": "integer",
+          "description": "The HTTP status code.",
+          "examples": [
+            400,
+            401,
+            404,
+            429
+          ]
+        }
+      },
+      "example": "example_value"
+    }
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "operationId": "combinePDF",
+  "method": "POST",
+  "path": "/operation/combinepdf",
+  "summary": "Adobe Combine Pdf Files",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "name": "CombinepdfRequestExample",
+      "example": {
+        "assets": [
+          {
+            "assetID": "500123",
+            "pageRanges": [
+              {}
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "responseExamples": [
+    {
+      "status": "201",
+      "contentType": "application/json",
+      "name": "Combinepdf201Example",
+      "example": {
+        "status": "in progress",
+        "asset": {
+          "assetID": "500123",
+          "downloadUri": "https://www.example.com",
+          "metadata": {
+            "type": "example_value",
+            "size": 10
+          }
+        },
+        "error": {
+          "code": "example_value",
+          "message": "example_value",
+          "status": 10
+        }
+      }
+    }
+  ]
+}

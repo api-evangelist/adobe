@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ExportPDFRequest",
+  "title": "ExportPDFRequest",
+  "type": "object",
+  "required": [
+    "assetID",
+    "targetFormat"
+  ],
+  "properties": {
+    "assetID": {
+      "type": "string",
+      "description": "The asset ID of the PDF to export.",
+      "example": "500123"
+    },
+    "targetFormat": {
+      "type": "string",
+      "description": "The desired output format.",
+      "enum": [
+        "docx",
+        "doc",
+        "pptx",
+        "xlsx",
+        "rtf",
+        "jpeg",
+        "png"
+      ],
+      "example": "docx"
+    },
+    "ocrLanguage": {
+      "type": "string",
+      "description": "The language for OCR processing during export.",
+      "enum": [
+        "en-US",
+        "de-DE",
+        "fr-FR",
+        "ja-JP",
+        "da-DK",
+        "fi-FI",
+        "it-IT",
+        "ko-KR",
+        "nb-NO",
+        "nl-NL",
+        "pt-BR",
+        "es-ES",
+        "sv-SE",
+        "zh-CN",
+        "zh-TW"
+      ],
+      "default": "en-US",
+      "example": "en-US"
+    }
+  }
+}

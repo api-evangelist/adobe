@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/InsertPagesRequest",
+  "title": "InsertPagesRequest",
+  "type": "object",
+  "required": [
+    "baseAssetID",
+    "assetsToInsert"
+  ],
+  "properties": {
+    "baseAssetID": {
+      "type": "string",
+      "description": "The asset ID of the base PDF.",
+      "example": "500123"
+    },
+    "assetsToInsert": {
+      "type": "array",
+      "description": "Assets and positions for insertion.",
+      "items": {
+        "type": "object",
+        "required": [
+          "assetID",
+          "insertAt"
+        ],
+        "properties": {
+          "assetID": {
+            "type": "string",
+            "description": "The asset ID of the PDF to insert."
+          },
+          "insertAt": {
+            "type": "integer",
+            "description": "The page number in the base PDF after which to insert (1-based).",
+            "minimum": 1
+          },
+          "pageRanges": {
+            "type": "array",
+            "description": "Optional page ranges to include from the insert asset.",
+            "items": {
+              "$ref": "#/components/schemas/PageRange"
+            }
+          }
+        }
+      },
+      "example": []
+    }
+  }
+}

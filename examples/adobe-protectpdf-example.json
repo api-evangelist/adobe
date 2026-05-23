@@ -1,0 +1,51 @@
+{
+  "operationId": "protectPDF",
+  "method": "POST",
+  "path": "/operation/protectpdf",
+  "summary": "Adobe Protect a Pdf",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "name": "ProtectpdfRequestExample",
+      "example": {
+        "assetID": "500123",
+        "passwordProtection": {
+          "userPassword": "example_value",
+          "ownerPassword": "example_value"
+        },
+        "encryptionAlgorithm": "AES_128",
+        "permissions": {
+          "printQuality": "NONE",
+          "editContent": true,
+          "copyContent": true,
+          "editAnnotations": true,
+          "fillForms": true,
+          "assembleDocument": true
+        }
+      }
+    }
+  ],
+  "responseExamples": [
+    {
+      "status": "201",
+      "contentType": "application/json",
+      "name": "Protectpdf201Example",
+      "example": {
+        "status": "in progress",
+        "asset": {
+          "assetID": "500123",
+          "downloadUri": "https://www.example.com",
+          "metadata": {
+            "type": "example_value",
+            "size": 10
+          }
+        },
+        "error": {
+          "code": "example_value",
+          "message": "example_value",
+          "status": 10
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+name: Adobe Domain Vocabulary
+provider: Adobe
+providerId: adobe
+description: Tag-derived vocabulary for the Adobe API surface; sourced from openapi/ tags.
+terms:
+- term: Accessibility Auto-Tag
+  description: Automatically add accessibility tags to PDF documents using AI.
+- term: Assets
+  description: Upload and manage assets (source files) for PDF operations.
+- term: Combine PDF
+  description: Combine multiple PDF documents into a single PDF.
+- term: Compress PDF
+  description: Reduce the file size of PDF documents while maintaining quality.
+- term: Create PDF
+  description: Create PDF documents from supported file formats including Microsoft Office, images, and HTML.
+- term: Delete Pages
+  description: Delete specific pages from a PDF document.
+- term: Document Generation
+  description: Generate PDF and Word documents from templates with dynamic JSON data.
+- term: Export PDF
+  description: Export (convert) PDF documents to other formats such as DOCX, PPTX, XLSX, images, and RTF.
+- term: Extract PDF
+  description: Extract text, tables, and figures from PDF documents into structured JSON output.
+- term: Insert Pages
+  description: Insert pages from one PDF into another.
+- term: Jobs
+  description: Poll for the status and results of asynchronous PDF operations.
+- term: Linearize PDF
+  description: Optimize PDFs for fast web viewing (linearization).
+- term: OCR
+  description: Apply optical character recognition to scanned PDFs to make text searchable and selectable.
+- term: PDF Properties
+  description: Retrieve metadata and properties from PDF documents.
+- term: Protect PDF
+  description: Add password protection and encryption to PDF documents.
+- term: Remove Protection
+  description: Remove password protection from PDF documents.
+- term: Reorder Pages
+  description: Reorder pages within a PDF document.
+- term: Replace Pages
+  description: Replace pages in a PDF with pages from another PDF.
+- term: Rotate Pages
+  description: Rotate pages within a PDF document.
+- term: Split PDF
+  description: Split a PDF document into multiple smaller PDFs.

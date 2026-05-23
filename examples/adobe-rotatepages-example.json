@@ -1,0 +1,46 @@
+{
+  "operationId": "rotatePages",
+  "method": "POST",
+  "path": "/operation/rotatepages",
+  "summary": "Adobe Rotate Pages in a Pdf",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "name": "RotatepagesRequestExample",
+      "example": {
+        "assetID": "500123",
+        "pageActions": [
+          {
+            "pageRanges": [
+              {}
+            ],
+            "rotation": 90
+          }
+        ]
+      }
+    }
+  ],
+  "responseExamples": [
+    {
+      "status": "201",
+      "contentType": "application/json",
+      "name": "Rotatepages201Example",
+      "example": {
+        "status": "in progress",
+        "asset": {
+          "assetID": "500123",
+          "downloadUri": "https://www.example.com",
+          "metadata": {
+            "type": "example_value",
+            "size": 10
+          }
+        },
+        "error": {
+          "code": "example_value",
+          "message": "example_value",
+          "status": 10
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,410 @@
+{
+  "provider": "Adobe",
+  "providerId": "adobe",
+  "kind": "json-structure",
+  "description": "Structural overview of the Adobe API surface; extracted from openapi/.",
+  "schemaCount": 25,
+  "operationCount": 22,
+  "schemas": [
+    {
+      "name": "AssetReference",
+      "type": "object",
+      "propertyCount": 1,
+      "required": [
+        "assetID"
+      ]
+    },
+    {
+      "name": "PageRange",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "AssetUploadRequest",
+      "type": "object",
+      "propertyCount": 1,
+      "required": [
+        "mediaType"
+      ]
+    },
+    {
+      "name": "AssetUploadResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "AssetDownloadResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "CreatePDFRequest",
+      "type": "object",
+      "propertyCount": 6,
+      "required": [
+        "assetID"
+      ]
+    },
+    {
+      "name": "ExportPDFRequest",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "assetID",
+        "targetFormat"
+      ]
+    },
+    {
+      "name": "CombinePDFRequest",
+      "type": "object",
+      "propertyCount": 1,
+      "required": [
+        "assets"
+      ]
+    },
+    {
+      "name": "SplitPDFRequest",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "assetID"
+      ]
+    },
+    {
+      "name": "OCRRequest",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "assetID"
+      ]
+    },
+    {
+      "name": "CompressPDFRequest",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "assetID"
+      ]
+    },
+    {
+      "name": "ProtectPDFRequest",
+      "type": "object",
+      "propertyCount": 4,
+      "required": [
+        "assetID",
+        "passwordProtection"
+      ]
+    },
+    {
+      "name": "RemoveProtectionRequest",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "assetID",
+        "password"
+      ]
+    },
+    {
+      "name": "LinearizePDFRequest",
+      "type": "object",
+      "propertyCount": 1,
+      "required": [
+        "assetID"
+      ]
+    },
+    {
+      "name": "ExtractPDFRequest",
+      "type": "object",
+      "propertyCount": 6,
+      "required": [
+        "assetID"
+      ]
+    },
+    {
+      "name": "AutoTagRequest",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "assetID"
+      ]
+    },
+    {
+      "name": "DocumentGenerationRequest",
+      "type": "object",
+      "propertyCount": 4,
+      "required": [
+        "assetID",
+        "jsonDataForMerge",
+        "outputFormat"
+      ]
+    },
+    {
+      "name": "PDFPropertiesRequest",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "assetID"
+      ]
+    },
+    {
+      "name": "ReorderPagesRequest",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "assetID",
+        "pagesOrder"
+      ]
+    },
+    {
+      "name": "DeletePagesRequest",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "assetID",
+        "pageRanges"
+      ]
+    },
+    {
+      "name": "RotatePagesRequest",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "assetID",
+        "pageActions"
+      ]
+    },
+    {
+      "name": "InsertPagesRequest",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "baseAssetID",
+        "assetsToInsert"
+      ]
+    },
+    {
+      "name": "ReplacePagesRequest",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "baseAssetID",
+        "assetsToReplace"
+      ]
+    },
+    {
+      "name": "JobStatusResponse",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "ErrorResponse",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    }
+  ],
+  "operations": [
+    {
+      "method": "POST",
+      "path": "/assets",
+      "operationId": "uploadAsset",
+      "summary": "Adobe Upload an Asset",
+      "tags": [
+        "Assets"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/assets/{assetID}",
+      "operationId": "getAsset",
+      "summary": "Adobe Get Asset Download Uri",
+      "tags": [
+        "Assets"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/assets/{assetID}",
+      "operationId": "deleteAsset",
+      "summary": "Adobe Delete an Asset",
+      "tags": [
+        "Assets"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/operation/createpdf",
+      "operationId": "createPDF",
+      "summary": "Adobe Create a Pdf",
+      "tags": [
+        "Create PDF"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/operation/exportpdf",
+      "operationId": "exportPDF",
+      "summary": "Adobe Export a Pdf",
+      "tags": [
+        "Export PDF"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/operation/combinepdf",
+      "operationId": "combinePDF",
+      "summary": "Adobe Combine Pdf Files",
+      "tags": [
+        "Combine PDF"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/operation/splitpdf",
+      "operationId": "splitPDF",
+      "summary": "Adobe Split a Pdf",
+      "tags": [
+        "Split PDF"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/operation/ocr",
+      "operationId": "ocrPDF",
+      "summary": "Adobe Ocr a Pdf",
+      "tags": [
+        "OCR"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/operation/compresspdf",
+      "operationId": "compressPDF",
+      "summary": "Adobe Compress a Pdf",
+      "tags": [
+        "Compress PDF"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/operation/protectpdf",
+      "operationId": "protectPDF",
+      "summary": "Adobe Protect a Pdf",
+      "tags": [
+        "Protect PDF"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/operation/removeprotection",
+      "operationId": "removeProtection",
+      "summary": "Adobe Remove Protection From a Pdf",
+      "tags": [
+        "Remove Protection"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/operation/linearizepdf",
+      "operationId": "linearizePDF",
+      "summary": "Adobe Linearize a Pdf",
+      "tags": [
+        "Linearize PDF"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/operation/extractpdf",
+      "operationId": "extractPDF",
+      "summary": "Adobe Extract Content From a Pdf",
+      "tags": [
+        "Extract PDF"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/operation/accessibilitychecker",
+      "operationId": "autoTagPDF",
+      "summary": "Adobe Auto-tag a Pdf for Accessibility",
+      "tags": [
+        "Accessibility Auto-Tag"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/operation/documentgeneration",
+      "operationId": "generateDocument",
+      "summary": "Adobe Generate a Document From a Template",
+      "tags": [
+        "Document Generation"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/operation/pdfproperties",
+      "operationId": "getPDFProperties",
+      "summary": "Adobe Get Pdf Properties",
+      "tags": [
+        "PDF Properties"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/operation/reorderpages",
+      "operationId": "reorderPages",
+      "summary": "Adobe Reorder Pages in a Pdf",
+      "tags": [
+        "Reorder Pages"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/operation/deletepages",
+      "operationId": "deletePages",
+      "summary": "Adobe Delete Pages From a Pdf",
+      "tags": [
+        "Delete Pages"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/operation/rotatepages",
+      "operationId": "rotatePages",
+      "summary": "Adobe Rotate Pages in a Pdf",
+      "tags": [
+        "Rotate Pages"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/operation/insertpages",
+      "operationId": "insertPages",
+      "summary": "Adobe Insert Pages Into a Pdf",
+      "tags": [
+        "Insert Pages"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/operation/replacepages",
+      "operationId": "replacePages",
+      "summary": "Adobe Replace Pages in a Pdf",
+      "tags": [
+        "Replace Pages"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/operation/{operationType}/status/{jobID}",
+      "operationId": "getJobStatus",
+      "summary": "Adobe Get Job Status",
+      "tags": [
+        "Jobs"
+      ]
+    }
+  ]
+}

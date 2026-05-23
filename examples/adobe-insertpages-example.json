@@ -1,0 +1,47 @@
+{
+  "operationId": "insertPages",
+  "method": "POST",
+  "path": "/operation/insertpages",
+  "summary": "Adobe Insert Pages Into a Pdf",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "name": "InsertpagesRequestExample",
+      "example": {
+        "baseAssetID": "500123",
+        "assetsToInsert": [
+          {
+            "assetID": "500123",
+            "insertAt": 10,
+            "pageRanges": [
+              {}
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "responseExamples": [
+    {
+      "status": "201",
+      "contentType": "application/json",
+      "name": "Insertpages201Example",
+      "example": {
+        "status": "in progress",
+        "asset": {
+          "assetID": "500123",
+          "downloadUri": "https://www.example.com",
+          "metadata": {
+            "type": "example_value",
+            "size": 10
+          }
+        },
+        "error": {
+          "code": "example_value",
+          "message": "example_value",
+          "status": 10
+        }
+      }
+    }
+  ]
+}

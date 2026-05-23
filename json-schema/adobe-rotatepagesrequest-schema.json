@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/RotatePagesRequest",
+  "title": "RotatePagesRequest",
+  "type": "object",
+  "required": [
+    "assetID",
+    "pageActions"
+  ],
+  "properties": {
+    "assetID": {
+      "type": "string",
+      "description": "The asset ID of the PDF containing pages to rotate.",
+      "example": "500123"
+    },
+    "pageActions": {
+      "type": "array",
+      "description": "Rotation actions to apply to page ranges.",
+      "items": {
+        "type": "object",
+        "required": [
+          "pageRanges",
+          "rotation"
+        ],
+        "properties": {
+          "pageRanges": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PageRange"
+            }
+          },
+          "rotation": {
+            "type": "integer",
+            "description": "The rotation angle in degrees (clockwise).",
+            "enum": [
+              90,
+              180,
+              270
+            ]
+          }
+        }
+      },
+      "example": []
+    }
+  }
+}

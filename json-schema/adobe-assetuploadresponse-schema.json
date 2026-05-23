@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AssetUploadResponse",
+  "title": "AssetUploadResponse",
+  "type": "object",
+  "properties": {
+    "assetID": {
+      "type": "string",
+      "description": "The unique identifier for the uploaded asset.",
+      "examples": [
+        "urn:aaid:AS:UE1:23456789-abcd-1234-efgh-567890abcdef"
+      ]
+    },
+    "uploadUri": {
+      "type": "string",
+      "format": "uri",
+      "description": "The pre-signed URI to upload the file content via HTTP PUT. Valid for a limited time.",
+      "example": "https://www.example.com"
+    }
+  }
+}

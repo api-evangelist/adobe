@@ -1,0 +1,18 @@
+{
+  "operationId": "getAsset",
+  "method": "GET",
+  "path": "/assets/{assetID}",
+  "summary": "Adobe Get Asset Download Uri",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "Getasset200Example",
+      "example": {
+        "assetID": "500123",
+        "downloadUri": "https://www.example.com"
+      }
+    }
+  ]
+}

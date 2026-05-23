@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ReplacePagesRequest",
+  "title": "ReplacePagesRequest",
+  "type": "object",
+  "required": [
+    "baseAssetID",
+    "assetsToReplace"
+  ],
+  "properties": {
+    "baseAssetID": {
+      "type": "string",
+      "description": "The asset ID of the base PDF.",
+      "example": "500123"
+    },
+    "assetsToReplace": {
+      "type": "array",
+      "description": "Assets and page specifications for replacement.",
+      "items": {
+        "type": "object",
+        "required": [
+          "assetID",
+          "basePagesRange"
+        ],
+        "properties": {
+          "assetID": {
+            "type": "string",
+            "description": "The asset ID of the replacement PDF."
+          },
+          "basePagesRange": {
+            "$ref": "#/components/schemas/PageRange"
+          },
+          "assetPagesRange": {
+            "$ref": "#/components/schemas/PageRange"
+          }
+        }
+      },
+      "example": []
+    }
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "operationId": "createPDF",
+  "method": "POST",
+  "path": "/operation/createpdf",
+  "summary": "Adobe Create a Pdf",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "name": "CreatepdfRequestExample",
+      "example": {
+        "assetID": "500123",
+        "documentLanguage": "en-US",
+        "createPDFFromDOCXOptions": {},
+        "createPDFFromPPTXOptions": {},
+        "createPDFFromXLSXOptions": {},
+        "createPDFFromHTMLOptions": {
+          "includeHeaderFooter": true,
+          "pageLayout": {
+            "pageWidth": 42.5,
+            "pageHeight": 42.5
+          }
+        }
+      }
+    }
+  ],
+  "responseExamples": [
+    {
+      "status": "201",
+      "contentType": "application/json",
+      "name": "Createpdf201Example",
+      "example": {
+        "status": "in progress",
+        "asset": {
+          "assetID": "500123",
+          "downloadUri": "https://www.example.com",
+          "metadata": {
+            "type": "example_value",
+            "size": 10
+          }
+        },
+        "error": {
+          "code": "example_value",
+          "message": "example_value",
+          "status": 10
+        }
+      }
+    }
+  ]
+}

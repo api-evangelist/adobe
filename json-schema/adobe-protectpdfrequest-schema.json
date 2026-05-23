@@ -1,0 +1,86 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ProtectPDFRequest",
+  "title": "ProtectPDFRequest",
+  "type": "object",
+  "required": [
+    "assetID",
+    "passwordProtection"
+  ],
+  "properties": {
+    "assetID": {
+      "type": "string",
+      "description": "The asset ID of the PDF to protect.",
+      "example": "500123"
+    },
+    "passwordProtection": {
+      "type": "object",
+      "required": [
+        "userPassword"
+      ],
+      "properties": {
+        "userPassword": {
+          "type": "string",
+          "description": "Password required to open the PDF."
+        },
+        "ownerPassword": {
+          "type": "string",
+          "description": "Password required to change permissions or remove protection."
+        }
+      },
+      "example": "example_value"
+    },
+    "encryptionAlgorithm": {
+      "type": "string",
+      "description": "The encryption algorithm to use.",
+      "enum": [
+        "AES_128",
+        "AES_256"
+      ],
+      "default": "AES_256",
+      "example": "AES_128"
+    },
+    "permissions": {
+      "type": "object",
+      "description": "Permissions to set on the protected document.",
+      "properties": {
+        "printQuality": {
+          "type": "string",
+          "description": "Print permission level.",
+          "enum": [
+            "NONE",
+            "LOW_QUALITY",
+            "HIGH_QUALITY"
+          ],
+          "default": "NONE"
+        },
+        "editContent": {
+          "type": "boolean",
+          "description": "Whether editing content is allowed.",
+          "default": false
+        },
+        "copyContent": {
+          "type": "boolean",
+          "description": "Whether copying content is allowed.",
+          "default": false
+        },
+        "editAnnotations": {
+          "type": "boolean",
+          "description": "Whether editing annotations is allowed.",
+          "default": false
+        },
+        "fillForms": {
+          "type": "boolean",
+          "description": "Whether filling forms is allowed.",
+          "default": false
+        },
+        "assembleDocument": {
+          "type": "boolean",
+          "description": "Whether assembling the document (inserting, rotating, deleting pages) is allowed.",
+          "default": false
+        }
+      },
+      "example": "example_value"
+    }
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "operationId": "compressPDF",
+  "method": "POST",
+  "path": "/operation/compresspdf",
+  "summary": "Adobe Compress a Pdf",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "name": "CompresspdfRequestExample",
+      "example": {
+        "assetID": "500123",
+        "compressionLevel": "LOW"
+      }
+    }
+  ],
+  "responseExamples": [
+    {
+      "status": "201",
+      "contentType": "application/json",
+      "name": "Compresspdf201Example",
+      "example": {
+        "status": "in progress",
+        "asset": {
+          "assetID": "500123",
+          "downloadUri": "https://www.example.com",
+          "metadata": {
+            "type": "example_value",
+            "size": 10
+          }
+        },
+        "error": {
+          "code": "example_value",
+          "message": "example_value",
+          "status": 10
+        }
+      }
+    }
+  ]
+}

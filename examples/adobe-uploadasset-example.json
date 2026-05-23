@@ -1,0 +1,26 @@
+{
+  "operationId": "uploadAsset",
+  "method": "POST",
+  "path": "/assets",
+  "summary": "Adobe Upload an Asset",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "name": "UploadassetRequestExample",
+      "example": {
+        "mediaType": "example_value"
+      }
+    }
+  ],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "Uploadasset200Example",
+      "example": {
+        "assetID": "500123",
+        "uploadUri": "https://www.example.com"
+      }
+    }
+  ]
+}

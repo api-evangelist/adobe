@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CompressPDFRequest",
+  "title": "CompressPDFRequest",
+  "type": "object",
+  "required": [
+    "assetID"
+  ],
+  "properties": {
+    "assetID": {
+      "type": "string",
+      "description": "The asset ID of the PDF to compress.",
+      "example": "500123"
+    },
+    "compressionLevel": {
+      "type": "string",
+      "description": "The desired compression level. Higher compression results in smaller files but may reduce image quality.",
+      "enum": [
+        "LOW",
+        "MEDIUM",
+        "HIGH"
+      ],
+      "default": "MEDIUM",
+      "example": "LOW"
+    }
+  }
+}
