@@ -1,0 +1,143 @@
+arazzo: 1.0.1
+info:
+  title: Adobe Protect a PDF With a Password
+  summary: Upload a PDF, apply password protection and encryption, poll the job, and fetch the result.
+  description: >-
+    Drives the Adobe PDF Services asynchronous protect pipeline that adds
+    password protection, encryption, and permissions to a PDF. The workflow
+    registers the source PDF by requesting a pre-signed upload URI and asset
+    ID, submits a protectPDF job with the supplied passwords and encryption
+    algorithm, polls the job until it reports done, and resolves a download URI
+    for the protected output. Each step spells out its request inline. The
+    polling job identifier is supplied as a workflow input because the submit
+    response exposes only an opaque Location header.
+  version: 1.0.0
+sourceDescriptions:
+- name: pdfServicesApi
+  url: ../openapi/adobe-pdf-services-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: protect-pdf
+  summary: Add password protection and encryption to an uploaded PDF.
+  description: >-
+    Requests an upload slot for the source PDF, submits a protectPDF job that
+    applies the supplied user password and encryption algorithm, polls job
+    status until protection finishes, and retrieves the download URI for the
+    protected PDF.
+  inputs:
+    type: object
+    required:
+    - accessToken
+    - userPassword
+    - jobID
+    properties:
+      accessToken:
+        type: string
+        description: OAuth 2.0 bearer access token from Adobe IMS.
+      userPassword:
+        type: string
+        description: Password required to open the protected PDF.
+      ownerPassword:
+        type: string
+        description: Password required to change permissions or remove protection.
+      encryptionAlgorithm:
+        type: string
+        description: Encryption algorithm to apply (AES_128 or AES_256).
+        default: AES_256
+      jobID:
+        type: string
+        description: The job identifier taken from the protectPDF response Location header, used to poll status.
+  steps:
+  - stepId: requestUpload
+    description: >-
+      Request a pre-signed upload URI and asset ID for the source PDF, which is
+      then PUT to the returned uploadUri out of band.
+    operationId: uploadAsset
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.accessToken"
+    requestBody:
+      contentType: application/json
+      payload:
+        mediaType: application/pdf
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      assetID: $response.body#/assetID
+      uploadUri: $response.body#/uploadUri
+  - stepId: submitProtect
+    description: >-
+      Submit an asynchronous protectPDF job that password-protects the uploaded
+      PDF. Returns 201 with an in-progress job status.
+    operationId: protectPDF
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.accessToken"
+    requestBody:
+      contentType: application/json
+      payload:
+        assetID: $steps.requestUpload.outputs.assetID
+        passwordProtection:
+          userPassword: $inputs.userPassword
+          ownerPassword: $inputs.ownerPassword
+        encryptionAlgorithm: $inputs.encryptionAlgorithm
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      status: $response.body#/status
+  - stepId: pollStatus
+    description: >-
+      Poll the protectPDF job until it is no longer in progress, looping back
+      while the status remains "in progress".
+    operationId: getJobStatus
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.accessToken"
+    - name: operationType
+      in: path
+      value: protectpdf
+    - name: jobID
+      in: path
+      value: $inputs.jobID
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      status: $response.body#/status
+      outputAssetID: $response.body#/asset/assetID
+    onSuccess:
+    - name: stillRunning
+      type: goto
+      stepId: pollStatus
+      criteria:
+      - context: $response.body
+        condition: $.status == "in progress"
+        type: jsonpath
+    - name: finished
+      type: goto
+      stepId: getOutput
+      criteria:
+      - context: $response.body
+        condition: $.status == "done"
+        type: jsonpath
+  - stepId: getOutput
+    description: >-
+      Resolve a pre-signed download URI for the protected output PDF.
+    operationId: getAsset
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.accessToken"
+    - name: assetID
+      in: path
+      value: $steps.pollStatus.outputs.outputAssetID
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      downloadUri: $response.body#/downloadUri
+  outputs:
+    sourceAssetID: $steps.requestUpload.outputs.assetID
+    outputAssetID: $steps.pollStatus.outputs.outputAssetID
+    downloadUri: $steps.getOutput.outputs.downloadUri

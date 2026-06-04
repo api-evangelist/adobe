@@ -1,0 +1,148 @@
+arazzo: 1.0.1
+info:
+  title: Adobe Combine Two PDFs Into One
+  summary: Upload two PDFs, combine them into a single document, poll the job, and fetch the merged result.
+  description: >-
+    Drives the Adobe PDF Services asynchronous combine pipeline that merges
+    multiple PDFs into one. The workflow registers two source PDFs by
+    requesting a pre-signed upload URI and asset ID for each, submits a
+    combinePDF job referencing both assets in order, polls the job until it
+    reports done, and resolves a download URI for the merged output. Each step
+    spells out its request inline. The polling job identifier is supplied as a
+    workflow input because the submit response exposes only an opaque Location
+    header.
+  version: 1.0.0
+sourceDescriptions:
+- name: pdfServicesApi
+  url: ../openapi/adobe-pdf-services-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: combine-pdfs
+  summary: Merge two uploaded PDFs into a single PDF, in order.
+  description: >-
+    Requests an upload slot for each of two source PDFs, submits a combinePDF
+    job that merges them in order, polls job status until combination finishes,
+    and retrieves the download URI for the merged PDF.
+  inputs:
+    type: object
+    required:
+    - accessToken
+    - jobID
+    properties:
+      accessToken:
+        type: string
+        description: OAuth 2.0 bearer access token from Adobe IMS.
+      jobID:
+        type: string
+        description: The job identifier taken from the combinePDF response Location header, used to poll status.
+  steps:
+  - stepId: uploadFirst
+    description: >-
+      Request a pre-signed upload URI and asset ID for the first source PDF,
+      which is then PUT to the returned uploadUri out of band.
+    operationId: uploadAsset
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.accessToken"
+    requestBody:
+      contentType: application/json
+      payload:
+        mediaType: application/pdf
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      assetID: $response.body#/assetID
+      uploadUri: $response.body#/uploadUri
+  - stepId: uploadSecond
+    description: >-
+      Request a pre-signed upload URI and asset ID for the second source PDF,
+      which is then PUT to the returned uploadUri out of band.
+    operationId: uploadAsset
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.accessToken"
+    requestBody:
+      contentType: application/json
+      payload:
+        mediaType: application/pdf
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      assetID: $response.body#/assetID
+      uploadUri: $response.body#/uploadUri
+  - stepId: submitCombine
+    description: >-
+      Submit an asynchronous combinePDF job that merges the two uploaded PDFs
+      in order. Returns 201 with an in-progress job status.
+    operationId: combinePDF
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.accessToken"
+    requestBody:
+      contentType: application/json
+      payload:
+        assets:
+        - assetID: $steps.uploadFirst.outputs.assetID
+        - assetID: $steps.uploadSecond.outputs.assetID
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      status: $response.body#/status
+  - stepId: pollStatus
+    description: >-
+      Poll the combinePDF job until it is no longer in progress, looping back
+      while the status remains "in progress".
+    operationId: getJobStatus
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.accessToken"
+    - name: operationType
+      in: path
+      value: combinepdf
+    - name: jobID
+      in: path
+      value: $inputs.jobID
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      status: $response.body#/status
+      outputAssetID: $response.body#/asset/assetID
+    onSuccess:
+    - name: stillRunning
+      type: goto
+      stepId: pollStatus
+      criteria:
+      - context: $response.body
+        condition: $.status == "in progress"
+        type: jsonpath
+    - name: finished
+      type: goto
+      stepId: getOutput
+      criteria:
+      - context: $response.body
+        condition: $.status == "done"
+        type: jsonpath
+  - stepId: getOutput
+    description: >-
+      Resolve a pre-signed download URI for the merged output PDF.
+    operationId: getAsset
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.accessToken"
+    - name: assetID
+      in: path
+      value: $steps.pollStatus.outputs.outputAssetID
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      downloadUri: $response.body#/downloadUri
+  outputs:
+    firstAssetID: $steps.uploadFirst.outputs.assetID
+    secondAssetID: $steps.uploadSecond.outputs.assetID
+    outputAssetID: $steps.pollStatus.outputs.outputAssetID
+    downloadUri: $steps.getOutput.outputs.downloadUri

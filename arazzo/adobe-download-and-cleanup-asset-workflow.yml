@@ -1,0 +1,69 @@
+arazzo: 1.0.1
+info:
+  title: Adobe Download Then Clean Up an Asset
+  summary: Resolve a download URI for a finished output asset, then delete it from the platform.
+  description: >-
+    A housekeeping flow for the Adobe PDF Services platform. Given the asset ID
+    of a completed job output, the workflow first resolves a pre-signed
+    download URI so the file can be retrieved, then deletes the asset from the
+    platform to reclaim storage once it has been pulled. Each step spells out
+    its request inline so the flow can be read and executed without opening the
+    underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: pdfServicesApi
+  url: ../openapi/adobe-pdf-services-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: download-and-cleanup-asset
+  summary: Get a download URI for an asset, then delete it from the platform.
+  description: >-
+    Resolves a pre-signed download URI for an existing asset and then issues a
+    delete so the asset no longer occupies platform storage.
+  inputs:
+    type: object
+    required:
+    - accessToken
+    - assetID
+    properties:
+      accessToken:
+        type: string
+        description: OAuth 2.0 bearer access token from Adobe IMS.
+      assetID:
+        type: string
+        description: The unique identifier of the asset to download and then delete.
+  steps:
+  - stepId: getDownloadUri
+    description: >-
+      Resolve a pre-signed download URI for the asset so its content can be
+      retrieved before deletion.
+    operationId: getAsset
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.accessToken"
+    - name: assetID
+      in: path
+      value: $inputs.assetID
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      downloadUri: $response.body#/downloadUri
+      resolvedAssetID: $response.body#/assetID
+  - stepId: deleteAsset
+    description: >-
+      Delete the asset from the platform now that its download URI has been
+      resolved. A 204 confirms the asset was removed.
+    operationId: deleteAsset
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.accessToken"
+    - name: assetID
+      in: path
+      value: $inputs.assetID
+    successCriteria:
+    - condition: $statusCode == 204
+  outputs:
+    downloadUri: $steps.getDownloadUri.outputs.downloadUri
+    deletedAssetID: $steps.getDownloadUri.outputs.resolvedAssetID

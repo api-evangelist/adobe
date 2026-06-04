@@ -1,0 +1,137 @@
+arazzo: 1.0.1
+info:
+  title: Adobe Generate a Document From a Template
+  summary: Upload a Word template, merge JSON data into it, poll the job, and fetch the generated document.
+  description: >-
+    Drives the Adobe PDF Services asynchronous document-generation pipeline
+    that merges a Word (DOCX) template with JSON data to produce a PDF or DOCX.
+    The workflow registers the template by requesting a pre-signed upload URI
+    and asset ID, submits a generateDocument job with the merge data and output
+    format, polls the job until it reports done, and resolves a download URI
+    for the generated document. Each step spells out its request inline. The
+    polling job identifier is supplied as a workflow input because the submit
+    response exposes only an opaque Location header.
+  version: 1.0.0
+sourceDescriptions:
+- name: pdfServicesApi
+  url: ../openapi/adobe-pdf-services-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: generate-document
+  summary: Merge JSON data into a Word template to produce a PDF or DOCX.
+  description: >-
+    Requests an upload slot for the DOCX template, submits a generateDocument
+    job that merges the supplied JSON data, polls job status until generation
+    finishes, and retrieves the download URI for the generated document.
+  inputs:
+    type: object
+    required:
+    - accessToken
+    - jsonDataForMerge
+    - jobID
+    properties:
+      accessToken:
+        type: string
+        description: OAuth 2.0 bearer access token from Adobe IMS.
+      jsonDataForMerge:
+        type: object
+        description: The JSON data to merge into the template.
+      outputFormat:
+        type: string
+        description: Desired output format (pdf or docx).
+        default: pdf
+      jobID:
+        type: string
+        description: The job identifier taken from the generateDocument response Location header, used to poll status.
+  steps:
+  - stepId: requestUpload
+    description: >-
+      Request a pre-signed upload URI and asset ID for the DOCX template, which
+      is then PUT to the returned uploadUri out of band.
+    operationId: uploadAsset
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.accessToken"
+    requestBody:
+      contentType: application/json
+      payload:
+        mediaType: application/vnd.openxmlformats-officedocument.wordprocessingml.document
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      assetID: $response.body#/assetID
+      uploadUri: $response.body#/uploadUri
+  - stepId: submitGenerate
+    description: >-
+      Submit an asynchronous generateDocument job that merges the JSON data
+      into the uploaded template. Returns 201 with an in-progress job status.
+    operationId: generateDocument
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.accessToken"
+    requestBody:
+      contentType: application/json
+      payload:
+        assetID: $steps.requestUpload.outputs.assetID
+        jsonDataForMerge: $inputs.jsonDataForMerge
+        outputFormat: $inputs.outputFormat
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      status: $response.body#/status
+  - stepId: pollStatus
+    description: >-
+      Poll the generateDocument job until it is no longer in progress, looping
+      back while the status remains "in progress".
+    operationId: getJobStatus
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.accessToken"
+    - name: operationType
+      in: path
+      value: documentgeneration
+    - name: jobID
+      in: path
+      value: $inputs.jobID
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      status: $response.body#/status
+      outputAssetID: $response.body#/asset/assetID
+    onSuccess:
+    - name: stillRunning
+      type: goto
+      stepId: pollStatus
+      criteria:
+      - context: $response.body
+        condition: $.status == "in progress"
+        type: jsonpath
+    - name: finished
+      type: goto
+      stepId: getOutput
+      criteria:
+      - context: $response.body
+        condition: $.status == "done"
+        type: jsonpath
+  - stepId: getOutput
+    description: >-
+      Resolve a pre-signed download URI for the generated output document.
+    operationId: getAsset
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.accessToken"
+    - name: assetID
+      in: path
+      value: $steps.pollStatus.outputs.outputAssetID
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      downloadUri: $response.body#/downloadUri
+  outputs:
+    templateAssetID: $steps.requestUpload.outputs.assetID
+    outputAssetID: $steps.pollStatus.outputs.outputAssetID
+    downloadUri: $steps.getOutput.outputs.downloadUri
