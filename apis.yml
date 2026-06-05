@@ -4,6 +4,7 @@ name: Adobe
 type: Index
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
+  - Fortune 1000
 - Analytics
 - Creative Cloud
 - Digital Asset Management
@@ -15,8 +16,9 @@ tags:
 - Marketing
 - PDF
 - Work Management
-description: Adobe provides APIs and developer resources for its creative, document, and experience cloud platforms. Developers
-  can integrate with PDF services, Creative Cloud, generative AI (Firefly), analytics, e-commerce, e-signatures, and many
+description: >-
+  Adobe provides APIs and developer resources for its creative, document, and experience cloud platforms. Developers can
+  integrate with PDF services, Creative Cloud, generative AI (Firefly), analytics, e-commerce, e-signatures, and many
   other Adobe products and services.
 created: '2024-01-01'
 modified: '2026-05-19'
@@ -43,46 +45,8 @@ apis:
     url: json-schema/adobe-pdf-services-asset-upload-request-schema.json
   - type: JSONLD
     url: json-ld/adobe-pdf-services-context.jsonld
-  - type: NaftikoCapability
-    url: capabilities/pdf-services-accessibility-auto-tag.yaml
-  - type: NaftikoCapability
-    url: capabilities/pdf-services-assets.yaml
-  - type: NaftikoCapability
-    url: capabilities/pdf-services-combine-pdf.yaml
-  - type: NaftikoCapability
-    url: capabilities/pdf-services-compress-pdf.yaml
-  - type: NaftikoCapability
-    url: capabilities/pdf-services-create-pdf.yaml
-  - type: NaftikoCapability
-    url: capabilities/pdf-services-delete-pages.yaml
-  - type: NaftikoCapability
-    url: capabilities/pdf-services-document-generation.yaml
-  - type: NaftikoCapability
-    url: capabilities/pdf-services-export-pdf.yaml
-  - type: NaftikoCapability
-    url: capabilities/pdf-services-extract-pdf.yaml
-  - type: NaftikoCapability
-    url: capabilities/pdf-services-insert-pages.yaml
-  - type: NaftikoCapability
-    url: capabilities/pdf-services-jobs.yaml
-  - type: NaftikoCapability
-    url: capabilities/pdf-services-linearize-pdf.yaml
-  - type: NaftikoCapability
-    url: capabilities/pdf-services-ocr.yaml
-  - type: NaftikoCapability
-    url: capabilities/pdf-services-pdf-properties.yaml
-  - type: NaftikoCapability
-    url: capabilities/pdf-services-protect-pdf.yaml
-  - type: NaftikoCapability
-    url: capabilities/pdf-services-remove-protection.yaml
-  - type: NaftikoCapability
-    url: capabilities/pdf-services-reorder-pages.yaml
-  - type: NaftikoCapability
-    url: capabilities/pdf-services-replace-pages.yaml
-  - type: NaftikoCapability
-    url: capabilities/pdf-services-rotate-pages.yaml
-  - type: NaftikoCapability
-    url: capabilities/pdf-services-split-pdf.yaml
+  - url: graphql/adobe-graphql.md
+    type: GraphQL
   description: Create, manipulate, and export PDF documents programmatically.
 - aid: adobe:adobe-pdf-extract-api
   name: Adobe PDF Extract API
@@ -227,7 +191,8 @@ apis:
   - type: APIReference
     url: https://developer.adobe.com/workfront/api-explorer/
   - type: GettingStarted
-    url: https://experienceleague.adobe.com/en/docs/workfront/using/adobe-workfront-api/api-general-information/api-basics
+    url: >-
+      https://experienceleague.adobe.com/en/docs/workfront/using/adobe-workfront-api/api-general-information/api-basics
   description: Manage work, projects, tasks, and resources programmatically with a REST API.
 - aid: adobe:adobe-user-management-api
   name: Adobe User Management API
@@ -272,9 +237,12 @@ apis:
   - type: APIReference
     url: https://developer.adobe.com/experience-cloud/experience-manager-apis
   - type: GettingStarted
-    url: https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/implementing/developing/reference-materials
+    url: >-
+      https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/implementing/developing/reference-materials
   description: Create, read, update, and delete content, assets, and forms in Adobe Experience Manager as a Cloud Service.
 common:
+- type: PostmanWorkspace
+  url: https://www.postman.com/kinlaneapi/adobe/overview
 - type: ArazzoWorkflows
   url: arazzo/
   workflows:
