@@ -1,324 +1,330 @@
 # Adobe (adobe)
+
 Adobe provides APIs and developer resources for its creative, document, and experience cloud platforms. Developers can integrate with PDF services, Creative Cloud, generative AI (Firefly), analytics, e-commerce, e-signatures, and many other Adobe products and services.
 
-**URL:** [Visit APIs.json URL](https://raw.githubusercontent.com/api-evangelist/adobe/refs/heads/main/apis.yml)
+**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/adobe/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/adobe/refs/heads/main/apis.yml)
 
-**Run:** [Capabilities Using Naftiko](https://github.com/naftiko/fleet?utm_source=api-evangelist&utm_medium=readme&utm_campaign=company-api-evangelist&utm_content=repo)
+## Scope
 
-## Tags:
+- **Type:** Index
 
- - Analytics, Creative Cloud, Digital Asset Management, Document Services, E-Commerce, E-Signatures, Experience Cloud, Generative AI, Marketing, PDF, Work Management
+## Tags
+
+- Analytics
+- Creative Cloud
+- Digital Asset Management
+- Document Services
+- E-Commerce
+- E-Signatures
+- Experience Cloud
+- Generative AI
+- Marketing
+- PDF
+- Work Management
 
 ## Timestamps
 
 - **Created:** 2024-01-01
-- **Modified:** 2026-04-18
+- **Modified:** 2026-05-19
 
 ## APIs
 
 ### Adobe PDF Services API
+
 Create, manipulate, and export PDF documents programmatically.
 
-**Human URL:** [https://developer.adobe.com/document-services/apis/pdf-services/](https://developer.adobe.com/document-services/apis/pdf-services/)
+- **Human URL:** [https://developer.adobe.com/document-services/apis/pdf-services/](https://developer.adobe.com/document-services/apis/pdf-services/)
+- **Base URL:** `https://pdf-services.adobe.io`
 
-#### Tags:
+#### Tags
 
- - Conversion, Documents, PDF
+- Conversion
+- Documents
+- PDF
 
 #### Properties
 
 - [Documentation](https://developer.adobe.com/document-services/docs/overview/pdf-services-api/)
-- [GettingStarted](https://developer.adobe.com/document-services/docs/overview/pdf-services-api/gettingstarted/)
-- [ChangeLog](https://developer.adobe.com/document-services/docs/overview/releasenotes/)
-- [OpenAPI](openapi/adobe-pdf-services-api-openapi.yml)
-- [JSONSchema](json-schema/adobe-pdf-services-asset-upload-request-schema.json)
-- [JSONLD](json-ld/adobe-pdf-services-context.jsonld)
+- [Getting Started](https://developer.adobe.com/document-services/docs/overview/pdf-services-api/gettingstarted/)
+- [Changelog](https://developer.adobe.com/document-services/docs/overview/releasenotes/)
+- [OpenAPI](openapi/adobe-pdf-services-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [Postman Collection](collections/adobe-pdf-services-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/adobe-pdf-services-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [JSON Schema](json-schema/adobe-pdf-services-asset-upload-request-schema.json) — [JSON Schema](https://json-schema.org/specification)
+- [JSON-LD](json-ld/adobe-pdf-services-context.jsonld) — [JSON-LD](https://www.w3.org/TR/json-ld11/)
 
 ### Adobe PDF Extract API
+
 Extract text, images, tables, and more from native and scanned PDFs into structured JSON using AI technology.
 
-**Human URL:** [https://developer.adobe.com/document-services/docs/overview/pdf-extract-api/](https://developer.adobe.com/document-services/docs/overview/pdf-extract-api/)
+- **Human URL:** [https://developer.adobe.com/document-services/docs/overview/pdf-extract-api/](https://developer.adobe.com/document-services/docs/overview/pdf-extract-api/)
+- **Base URL:** `https://pdf-services.adobe.io`
 
-#### Tags:
+#### Tags
 
- - AI, Extraction, PDF
+- AI
+- Extraction
+- PDF
 
 #### Properties
 
 - [Documentation](https://developer.adobe.com/document-services/docs/overview/pdf-extract-api/)
-- [GettingStarted](https://developer.adobe.com/document-services/docs/overview/pdf-extract-api/gettingstarted/)
+- [Getting Started](https://developer.adobe.com/document-services/docs/overview/pdf-extract-api/gettingstarted/)
+- [Postman Collection](collections/adobe-pdf-services-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/adobe-pdf-services-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
 
 ### Adobe Acrobat Sign API
+
 Embed e-signature workflows and manage signing agreements programmatically.
 
-**Human URL:** [https://developer.adobe.com/document-services/apis/sign-api/](https://developer.adobe.com/document-services/apis/sign-api/)
+- **Human URL:** [https://developer.adobe.com/document-services/apis/sign-api/](https://developer.adobe.com/document-services/apis/sign-api/)
+- **Base URL:** `https://api.adobesign.com`
 
-#### Tags:
+#### Tags
 
- - Documents, E-Signatures
+- Documents
+- E-Signatures
 
 #### Properties
 
 - [Documentation](https://opensource.adobe.com/acrobat-sign/developer_guide/index.html)
-- [APIReference](https://opensource.adobe.com/acrobat-sign/developer_guide/apiusage.html)
-- [GettingStarted](https://opensource.adobe.com/acrobat-sign/developer_guide/gstarted.html)
+- [API Reference](https://opensource.adobe.com/acrobat-sign/developer_guide/apiusage.html)
+- [Getting Started](https://opensource.adobe.com/acrobat-sign/developer_guide/gstarted.html)
 - [SDK](https://developer.adobe.com/acrobat-sign/docs/overview/sdks/rest)
-- [ChangeLog](https://opensource.adobe.com/acrobat-sign/releasenotes/acrobatsignreleasenotes.html)
+- [Changelog](https://opensource.adobe.com/acrobat-sign/releasenotes/acrobatsignreleasenotes.html)
+- [Postman Collection](collections/adobe-pdf-services-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/adobe-pdf-services-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
 
 ### Adobe Analytics API
+
 Access and analyze digital marketing data and metrics.
 
-**Human URL:** [https://developer.adobe.com/analytics-apis/docs/2.0/](https://developer.adobe.com/analytics-apis/docs/2.0/)
+- **Human URL:** [https://developer.adobe.com/analytics-apis/docs/2.0/](https://developer.adobe.com/analytics-apis/docs/2.0/)
+- **Base URL:** `https://analytics.adobe.io`
 
-#### Tags:
+#### Tags
 
- - Analytics, Metrics
+- Analytics
+- Metrics
 
 #### Properties
 
 - [Documentation](https://developer.adobe.com/analytics-apis/docs/2.0/)
 - [Authentication](https://developer.adobe.com/analytics-apis/docs/2.0/guides/authentication/)
-- [GettingStarted](https://developer.adobe.com/analytics-apis/docs/2.0/guides/)
+- [Getting Started](https://developer.adobe.com/analytics-apis/docs/2.0/guides/)
+- [Postman Collection](collections/adobe-pdf-services-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/adobe-pdf-services-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
 
 ### Adobe Firefly API
+
 Generate and edit images using generative AI models through a RESTful API.
 
-**Human URL:** [https://developer.adobe.com/firefly-services/docs/firefly-api/](https://developer.adobe.com/firefly-services/docs/firefly-api/)
+- **Human URL:** [https://developer.adobe.com/firefly-services/docs/firefly-api/](https://developer.adobe.com/firefly-services/docs/firefly-api/)
+- **Base URL:** `https://firefly-api.adobe.io`
 
-#### Tags:
+#### Tags
 
- - Generative AI, Image Generation
+- Generative AI
+- Image Generation
 
 #### Properties
 
 - [Documentation](https://developer.adobe.com/firefly-services/docs/firefly-api/)
-- [APIReference](https://developer.adobe.com/firefly-services/docs/firefly-api/api/)
-- [GettingStarted](https://developer.adobe.com/firefly-services/docs/firefly-api/guides/)
+- [API Reference](https://developer.adobe.com/firefly-services/docs/firefly-api/api/)
+- [Getting Started](https://developer.adobe.com/firefly-services/docs/firefly-api/guides/)
 - [SDK](https://developer.adobe.com/firefly-services/docs/guides/sdks/)
-- [ChangeLog](https://developer.adobe.com/firefly-services/docs/firefly-api/guides/changelog/)
+- [Changelog](https://developer.adobe.com/firefly-services/docs/firefly-api/guides/changelog/)
+- [Postman Collection](collections/adobe-pdf-services-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/adobe-pdf-services-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
 
 ### Adobe Experience Platform API
+
 Build and manage customer experience applications on Adobe Experience Platform.
 
-**Human URL:** [https://developer.adobe.com/experience-platform-apis/](https://developer.adobe.com/experience-platform-apis/)
+- **Human URL:** [https://developer.adobe.com/experience-platform-apis/](https://developer.adobe.com/experience-platform-apis/)
+- **Base URL:** `https://platform.adobe.io`
 
-#### Tags:
+#### Tags
 
- - Customer Data, Experience Platform
+- Customer Data
+- Experience Platform
 
 #### Properties
 
 - [Documentation](https://experienceleague.adobe.com/docs/experience-platform/landing/platform-apis/api-guide.html)
-- [APIReference](https://developer.adobe.com/experience-platform-apis/references/)
-- [GettingStarted](https://experienceleague.adobe.com/en/docs/experience-platform/landing/platform-apis/api-guide)
+- [API Reference](https://developer.adobe.com/experience-platform-apis/references/)
+- [Getting Started](https://experienceleague.adobe.com/en/docs/experience-platform/landing/platform-apis/api-guide)
+- [Postman Collection](collections/adobe-pdf-services-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/adobe-pdf-services-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
 
 ### Adobe Stock API
+
 Search, license, and manage Adobe Stock assets including photos, vectors, videos, and templates.
 
-**Human URL:** [https://developer.adobe.com/stock/](https://developer.adobe.com/stock/)
+- **Human URL:** [https://developer.adobe.com/stock/](https://developer.adobe.com/stock/)
+- **Base URL:** `https://stock.adobe.io`
 
-#### Tags:
+#### Tags
 
- - Assets, Stock
+- Assets
+- Stock
 
 #### Properties
 
 - [Documentation](https://developer.adobe.com/stock/docs/getting-started/)
-- [APIReference](https://developer.adobe.com/stock/docs/api/)
-- [GettingStarted](https://developer.adobe.com/stock/docs/getting-started/)
+- [API Reference](https://developer.adobe.com/stock/docs/api/)
+- [Getting Started](https://developer.adobe.com/stock/docs/getting-started/)
 - [SDK](https://github.com/adobe/stock-api-sdk)
+- [Postman Collection](collections/adobe-pdf-services-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/adobe-pdf-services-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
 
 ### Adobe Commerce API
+
 Build and integrate e-commerce applications with REST, GraphQL, and SOAP web APIs.
 
-**Human URL:** [https://developer.adobe.com/commerce/webapi/](https://developer.adobe.com/commerce/webapi/)
+- **Human URL:** [https://developer.adobe.com/commerce/webapi/](https://developer.adobe.com/commerce/webapi/)
 
-#### Tags:
+#### Tags
 
- - E-Commerce, REST
+- E-Commerce
+- REST
 
 #### Properties
 
 - [Documentation](https://developer.adobe.com/commerce/docs/)
-- [APIReference](https://developer.adobe.com/commerce/webapi/rest/reference/)
-- [GettingStarted](https://developer.adobe.com/commerce/webapi/get-started/)
+- [API Reference](https://developer.adobe.com/commerce/webapi/rest/reference/)
+- [Getting Started](https://developer.adobe.com/commerce/webapi/get-started/)
 - [Authentication](https://developer.adobe.com/commerce/webapi/get-started/authentication/)
+- [Postman Collection](collections/adobe-pdf-services-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/adobe-pdf-services-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
 
 ### Adobe Marketo Engage API
+
 Automate marketing processes and manage leads, campaigns, and assets via REST APIs.
 
-**Human URL:** [https://developer.adobe.com/marketo-apis/](https://developer.adobe.com/marketo-apis/)
+- **Human URL:** [https://developer.adobe.com/marketo-apis/](https://developer.adobe.com/marketo-apis/)
 
-#### Tags:
+#### Tags
 
- - Leads, Marketing Automation
+- Leads
+- Marketing Automation
 
 #### Properties
 
 - [Documentation](https://experienceleague.adobe.com/en/docs/marketo-developer/marketo/rest/rest-api)
-- [APIReference](https://experienceleague.adobe.com/en/docs/marketo-developer/marketo/rest/endpoint-reference)
+- [API Reference](https://experienceleague.adobe.com/en/docs/marketo-developer/marketo/rest/endpoint-reference)
 - [Authentication](https://experienceleague.adobe.com/en/docs/marketo-developer/marketo/rest/authentication)
-- [GettingStarted](https://experienceleague.adobe.com/en/docs/marketo-developer/marketo/rest/rest-api)
+- [Getting Started](https://experienceleague.adobe.com/en/docs/marketo-developer/marketo/rest/rest-api)
+- [Postman Collection](collections/adobe-pdf-services-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/adobe-pdf-services-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
 
 ### Adobe Workfront API
+
 Manage work, projects, tasks, and resources programmatically with a REST API.
 
-**Human URL:** [https://developer.adobe.com/workfront-apis/](https://developer.adobe.com/workfront-apis/)
+- **Human URL:** [https://developer.adobe.com/workfront-apis/](https://developer.adobe.com/workfront-apis/)
 
-#### Tags:
+#### Tags
 
- - Projects, Work Management
+- Projects
+- Work Management
 
 #### Properties
 
 - [Documentation](https://experienceleague.adobe.com/en/docs/workfront/using/adobe-workfront-api/workfront-api)
-- [APIReference](https://developer.adobe.com/workfront/api-explorer/)
-- [GettingStarted](https://experienceleague.adobe.com/en/docs/workfront/using/adobe-workfront-api/api-general-information/api-basics)
+- [API Reference](https://developer.adobe.com/workfront/api-explorer/)
+- [Getting Started](https://experienceleague.adobe.com/en/docs/workfront/using/adobe-workfront-api/api-general-information/api-basics)
+- [Postman Collection](collections/adobe-pdf-services-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/adobe-pdf-services-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
 
 ### Adobe User Management API
+
 Programmatically manage users, groups, and product entitlements for Adobe enterprise organizations.
 
-**Human URL:** [https://developer.adobe.com/umapi/](https://developer.adobe.com/umapi/)
+- **Human URL:** [https://developer.adobe.com/umapi/](https://developer.adobe.com/umapi/)
+- **Base URL:** `https://usermanagement.adobe.io`
 
-#### Tags:
+#### Tags
 
- - Identity, User Management
+- Identity
+- User Management
 
 #### Properties
 
 - [Documentation](https://adobe-apiplatform.github.io/umapi-documentation/)
-- [APIReference](https://adobe-apiplatform.github.io/umapi-documentation/en/RefOverview.html)
-- [GettingStarted](https://adobe-apiplatform.github.io/umapi-documentation/en/getstarted.html)
+- [API Reference](https://adobe-apiplatform.github.io/umapi-documentation/en/RefOverview.html)
+- [Getting Started](https://adobe-apiplatform.github.io/umapi-documentation/en/getstarted.html)
+- [Postman Collection](collections/adobe-pdf-services-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/adobe-pdf-services-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
 
 ### Adobe I/O Events API
+
 Subscribe to and receive near real-time events from Adobe services for event-driven integrations.
 
-**Human URL:** [https://developer.adobe.com/events/](https://developer.adobe.com/events/)
+- **Human URL:** [https://developer.adobe.com/events/](https://developer.adobe.com/events/)
+- **Base URL:** `https://platform.adobe.io`
 
-#### Tags:
+#### Tags
 
- - Events, Webhooks
+- Events
+- Webhooks
 
 #### Properties
 
 - [Documentation](https://developer.adobe.com/events/docs/)
-- [APIReference](https://developer.adobe.com/events/docs/guides/api/)
-- [GettingStarted](https://developer.adobe.com/events/docs/)
+- [API Reference](https://developer.adobe.com/events/docs/guides/api/)
+- [Getting Started](https://developer.adobe.com/events/docs/)
+- [Postman Collection](collections/adobe-pdf-services-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/adobe-pdf-services-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
 
 ### Adobe Experience Manager API
+
 Create, read, update, and delete content, assets, and forms in Adobe Experience Manager as a Cloud Service.
 
-**Human URL:** [https://developer.adobe.com/experience-cloud/experience-manager-apis](https://developer.adobe.com/experience-cloud/experience-manager-apis)
+- **Human URL:** [https://developer.adobe.com/experience-cloud/experience-manager-apis](https://developer.adobe.com/experience-cloud/experience-manager-apis)
+- **Base URL:** `https://platform.adobe.io`
 
-#### Tags:
+#### Tags
 
- - Content Management, Digital Asset Management
+- Content Management
+- Digital Asset Management
 
 #### Properties
 
 - [Documentation](https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service)
-- [APIReference](https://developer.adobe.com/experience-cloud/experience-manager-apis)
-- [GettingStarted](https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/implementing/developing/reference-materials)
+- [API Reference](https://developer.adobe.com/experience-cloud/experience-manager-apis)
+- [Getting Started](https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/implementing/developing/reference-materials)
+- [Postman Collection](collections/adobe-pdf-services-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/adobe-pdf-services-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
 
 ## Common Properties
 
+- [Arazzo Workflows](arazzo/) — [Arazzo Specification](https://spec.openapis.org/arazzo/latest.html)
+- [LinkedIn](https://www.linkedin.com/company/adobe)
 - [Portal](https://developer.adobe.com/)
 - [Console](https://developer.adobe.com/console/)
 - [Authentication](https://developer.adobe.com/developer-console/docs/guides/authentication/)
 - [Support](https://developer.adobe.com/developer-support/)
-- [StatusPage](https://status.adobe.com/)
+- [Status Page](https://status.adobe.com/)
 - [Blog](https://blog.developer.adobe.com/)
-- [TermsOfService](https://www.adobe.com/legal/terms.html)
-- [PrivacyPolicy](https://www.adobe.com/privacy/policy.html)
-- [GettingStarted](https://developer.adobe.com/developer-console/docs/guides/getting-started)
-- [GitHubOrganization](https://github.com/AdobeDocs/)
+- [Terms of Service](https://www.adobe.com/legal/terms.html)
+- [Privacy Policy](https://www.adobe.com/privacy/policy.html)
+- [Getting Started](https://developer.adobe.com/developer-console/docs/guides/getting-started)
+- [GitHub Organization](https://github.com/AdobeDocs/)
 - [SDK](https://developer.adobe.com/apis)
-- [SignUp](https://developer.adobe.com/console/)
-
-## Features
-
-| Name |
-|------|
-| PDF creation, conversion, and manipulation via REST API |
-| AI-powered PDF content extraction into structured JSON |
-| Generative AI image creation and editing with Firefly |
-| E-signature workflows with Acrobat Sign |
-| Digital analytics and marketing insights |
-| Customer data platform with Experience Platform |
-| Content management with Experience Manager |
-| Marketing automation with Marketo Engage |
-| E-commerce platform with Adobe Commerce |
-| Work management and project tracking with Workfront |
-| Event-driven integrations with I/O Events |
-| Stock asset search and licensing |
-
-## Use Cases
-
-| Name |
-|------|
-| Automating document workflows with PDF Services API |
-| Extracting data from invoices and forms with PDF Extract |
-| Generating creative assets at scale with Firefly API |
-| Embedding e-signature capabilities into business applications |
-| Building personalized customer experiences with Experience Platform |
-| Automating marketing campaigns and lead management |
-| Managing digital content and assets across channels |
-| Building and managing e-commerce storefronts |
-
-## Integrations
-
-| Name |
-|------|
-| Microsoft 365 and Teams integration |
-| Salesforce CRM integration |
-| Adobe Creative Cloud libraries |
-| Workfront and Jira project management |
-| SAP and Oracle ERP systems |
-| Shopify and Magento marketplaces |
-| Google Analytics and Tag Manager |
-| Slack and Microsoft Teams notifications |
-
-## Artifacts
-
-Machine-readable API specifications organized by format.
-
-### OpenAPI
-
-- [Adobe PDF Services API](openapi/adobe-pdf-services-api-openapi.yml)
-
-### JSON Schema
-
-- [Adobe PDF Services Asset Upload Request Schema](json-schema/adobe-pdf-services-asset-upload-request-schema.json)
-
-### JSON-LD
-
-- [Adobe Context](json-ld/adobe-context.jsonld)
-- [Adobe PDF Services Context](json-ld/adobe-pdf-services-context.jsonld)
-
-## Capabilities
-
-Naftiko capabilities organized as shared per-API definitions composed into customer-facing workflows.
-
-### Shared Per-API Definitions
-
-- [Adobe PDF Services](capabilities/shared/pdf-services.yaml) -- 22 operations for PDF document processing
-
-### Workflow Capabilities
-
-| Workflow | APIs Combined | Tools | Persona |
-|----------|--------------|-------|---------|
-| [Document Processing](capabilities/document-processing.yaml) | PDF Services | 22 | Document Automation Engineer |
-
-## Vocabulary
-
-- [Adobe Vocabulary](vocabulary/adobe-vocabulary.yaml)
-
-## Rules
-
-- [Adobe Spectral Rules](rules/adobe-spectral-rules.yml)
+- [Sign Up](https://developer.adobe.com/console/)
+- [Login](https://developer.adobe.com/console/)
+- [OpenAPI](openapi/adobe-pdf-services-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [JSON Schema](json-schema/adobe-pdf-services-asset-upload-request-schema.json) — [JSON Schema](https://json-schema.org/specification)
+- [JSON-LD](json-ld/adobe-context.jsonld) — [JSON-LD](https://www.w3.org/TR/json-ld11/)
+- [Spectral Rules](rules/adobe-spectral-rules.yml)
+- [Vocabulary](vocabulary/adobe-vocabulary.yaml)
+- [Features](undefined)
+- [Use Cases](undefined)
+- [Integrations](undefined)
+- [M C P Server](https://blog.developer.adobe.com/en/publish/2025/09/introducing-the-adobe-express-add-on-dev-mcp-server-beta)
 
 ## Maintainers
 
 **FN:** Kin Lane
-
 **Email:** kin@apievangelist.com
