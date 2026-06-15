@@ -1,0 +1,524 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Adobe PDF Services API",
+    "version": "4.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Assets",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Adobe Upload an Asset",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://pdf-services-ue1.adobe.io/assets",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Upload a document to the PDF Services platform for processing. Returns a pre-signed upload URI and an asset ID. You must first call this endpoint to get the upload URI, then PUT the file content to that URI, and finally use the asset ID in subsequent operation requests."
+        },
+        {
+          "info": {
+            "name": "Adobe Get Asset Download Uri",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://pdf-services-ue1.adobe.io/assets/:assetID",
+            "params": [
+              {
+                "name": "assetID",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the asset."
+              }
+            ]
+          },
+          "docs": "Retrieve a pre-signed download URI for a previously created asset or job output. The download URI is valid for a limited time."
+        },
+        {
+          "info": {
+            "name": "Adobe Delete an Asset",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://pdf-services-ue1.adobe.io/assets/:assetID",
+            "params": [
+              {
+                "name": "assetID",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the asset."
+              }
+            ]
+          },
+          "docs": "Delete a previously uploaded asset from the platform."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Create PDF",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Adobe Create a Pdf",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://pdf-services-ue1.adobe.io/operation/createpdf",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a PDF document from a supported source file format. Supported input formats include Microsoft Word (DOC, DOCX), Excel (XLS, XLSX), PowerPoint (PPT, PPTX), images (BMP, GIF, JPEG, PNG, TIFF), HTML, and RTF. The operation runs asynchronously; poll the returned location header for job status."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Export PDF",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Adobe Export a Pdf",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://pdf-services-ue1.adobe.io/operation/exportpdf",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Convert a PDF document to a supported output format. Supported output formats include DOCX, DOC, PPTX, XLSX, RTF, and image formats (JPEG, PNG). For image output, each page is converted to a separate image file."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Combine PDF",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Adobe Combine Pdf Files",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://pdf-services-ue1.adobe.io/operation/combinepdf",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Combine multiple PDF documents into a single PDF. You can specify page ranges from each source document to include. Supports combining up to 20 files or 100 pages total."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Split PDF",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Adobe Split a Pdf",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://pdf-services-ue1.adobe.io/operation/splitpdf",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Split a PDF document into multiple smaller PDF files. You can split by page count, page ranges, or number of output files."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "OCR",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Adobe Ocr a Pdf",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://pdf-services-ue1.adobe.io/operation/ocr",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Apply optical character recognition to a scanned PDF, converting image-based text into searchable and selectable text. Supports multiple OCR languages and output types (searchable image or searchable image exact)."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Compress PDF",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Adobe Compress a Pdf",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://pdf-services-ue1.adobe.io/operation/compresspdf",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Reduce the file size of a PDF document. Supports multiple compression levels to balance file size reduction against quality."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Protect PDF",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Adobe Protect a Pdf",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://pdf-services-ue1.adobe.io/operation/protectpdf",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add password protection and set permissions on a PDF document. Supports setting user passwords (to open), owner passwords (to edit/print), and encryption algorithms (AES-128 or AES-256)."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Remove Protection",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Adobe Remove Protection From a Pdf",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://pdf-services-ue1.adobe.io/operation/removeprotection",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Remove password protection from a PDF document. Requires the current password to unlock the document."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Linearize PDF",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Adobe Linearize a Pdf",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://pdf-services-ue1.adobe.io/operation/linearizepdf",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Optimize a PDF for fast web viewing. Linearized PDFs allow the first page to be displayed in a web browser before the entire file has been downloaded."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Extract PDF",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Adobe Extract Content From a Pdf",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://pdf-services-ue1.adobe.io/operation/extractpdf",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Extract text, tables, and figures from a PDF document into structured JSON output. Uses Adobe Sensei AI technology to identify and extract document structure elements. Returns a ZIP file containing the structured JSON and optionally extracted tables as CSV and figures as images."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Accessibility Auto-Tag",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Adobe Auto-tag a Pdf for Accessibility",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://pdf-services-ue1.adobe.io/operation/accessibilitychecker",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Automatically add accessibility tags to a PDF document using Adobe Sensei AI technology. Generates a tagged PDF that meets WCAG 2.0 and PDF/UA standards. Optionally generates a report detailing the tagging results."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Document Generation",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Adobe Generate a Document From a Template",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://pdf-services-ue1.adobe.io/operation/documentgeneration",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Generate a PDF or Word document by merging a Word template (DOCX) with JSON data. Supports dynamic text insertion, conditional sections, tables, lists, images, and computed expressions."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "PDF Properties",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Adobe Get Pdf Properties",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://pdf-services-ue1.adobe.io/operation/pdfproperties",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Retrieve metadata and properties from a PDF document, including page count, page size, whether the document is encrypted, font information, and PDF/A compliance status."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Reorder Pages",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Adobe Reorder Pages in a Pdf",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://pdf-services-ue1.adobe.io/operation/reorderpages",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Rearrange the order of pages within a PDF document by specifying the desired page sequence."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Delete Pages",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Adobe Delete Pages From a Pdf",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://pdf-services-ue1.adobe.io/operation/deletepages",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Remove specific pages from a PDF document by specifying page ranges to delete."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Rotate Pages",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Adobe Rotate Pages in a Pdf",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://pdf-services-ue1.adobe.io/operation/rotatepages",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Rotate specific pages within a PDF document by 90, 180, or 270 degrees."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Insert Pages",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Adobe Insert Pages Into a Pdf",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://pdf-services-ue1.adobe.io/operation/insertpages",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Insert pages from one or more source PDFs into a base PDF at specified positions."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Replace Pages",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Adobe Replace Pages in a Pdf",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://pdf-services-ue1.adobe.io/operation/replacepages",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Replace specific pages in a base PDF with pages from another PDF document."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Jobs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Adobe Get Job Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://pdf-services-ue1.adobe.io/operation/:operationType/status/:jobID",
+            "params": [
+              {
+                "name": "operationType",
+                "value": "createpdf",
+                "type": "path",
+                "description": "The type of operation that was submitted."
+              },
+              {
+                "name": "jobID",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique identifier of the job returned when the operation was submitted."
+              }
+            ]
+          },
+          "docs": "Poll for the status of an asynchronous PDF operation job. Returns the current status (in progress, done, or failed) and, when complete, the output asset information."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

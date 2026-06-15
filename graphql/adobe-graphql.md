@@ -1,0 +1,1 @@
+# Adobe GraphQL API
