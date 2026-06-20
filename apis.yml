@@ -2,7 +2,7 @@ aid: adobe
 url: https://raw.githubusercontent.com/api-evangelist/adobe/refs/heads/main/apis.yml
 name: Adobe
 type: Index
-image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 tags:
   - Fortune 1000
 - Analytics
