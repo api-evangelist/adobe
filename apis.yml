@@ -5,17 +5,17 @@ type: Index
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 tags:
   - Fortune 1000
-- Analytics
-- Creative Cloud
-- Digital Asset Management
-- Document Services
-- E-Commerce
-- E-Signatures
-- Experience Cloud
-- Generative AI
-- Marketing
-- PDF
-- Work Management
+  - Analytics
+  - Creative Cloud
+  - Digital Asset Management
+  - Document Services
+  - E-Commerce
+  - E-Signatures
+  - Experience Cloud
+  - Generative AI
+  - Marketing
+  - PDF
+  - Work Management
 description: >-
   Adobe provides APIs and developer resources for its creative, document, and experience cloud platforms. Developers can
   integrate with PDF services, Creative Cloud, generative AI (Firefly), analytics, e-commerce, e-signatures, and many
@@ -76,7 +76,7 @@ apis:
     url: https://opensource.adobe.com/acrobat-sign/developer_guide/apiusage.html
   - type: GettingStarted
     url: https://opensource.adobe.com/acrobat-sign/developer_guide/gstarted.html
-  - type: SDK
+  - type: SDKs
     url: https://developer.adobe.com/acrobat-sign/docs/overview/sdks/rest
   - type: ChangeLog
     url: https://opensource.adobe.com/acrobat-sign/releasenotes/acrobatsignreleasenotes.html
@@ -110,7 +110,7 @@ apis:
     url: https://developer.adobe.com/firefly-services/docs/firefly-api/api/
   - type: GettingStarted
     url: https://developer.adobe.com/firefly-services/docs/firefly-api/guides/
-  - type: SDK
+  - type: SDKs
     url: https://developer.adobe.com/firefly-services/docs/guides/sdks/
   - type: ChangeLog
     url: https://developer.adobe.com/firefly-services/docs/firefly-api/guides/changelog/
@@ -144,7 +144,7 @@ apis:
     url: https://developer.adobe.com/stock/docs/api/
   - type: GettingStarted
     url: https://developer.adobe.com/stock/docs/getting-started/
-  - type: SDK
+  - type: SDKs
     url: https://github.com/adobe/stock-api-sdk
   description: Search, license, and manage Adobe Stock assets including photos, vectors, videos, and templates.
 - aid: adobe:adobe-commerce-api
@@ -243,54 +243,51 @@ apis:
 common:
 - type: PostmanWorkspace
   url: https://www.postman.com/kinlaneapi/adobe/overview
-- type: ArazzoWorkflows
-  url: arazzo/
-  workflows:
-  - url: arazzo/adobe-auto-tag-pdf-workflow.yml
-    name: Adobe Auto-tag a PDF For Accessibility
-    summary: Upload a PDF, auto-tag it for accessibility, poll the job, and fetch the tagged result.
-  - url: arazzo/adobe-combine-pdfs-workflow.yml
-    name: Adobe Combine Two PDFs Into One
-    summary: Upload two PDFs, combine them into a single document, poll the job, and fetch the merged result.
-  - url: arazzo/adobe-compress-pdf-workflow.yml
-    name: Adobe Compress a PDF
-    summary: Upload a PDF, compress it to reduce file size, poll the job, and fetch the smaller result.
-  - url: arazzo/adobe-create-pdf-workflow.yml
-    name: Adobe Create PDF From Source File
-    summary: Upload a source document, convert it to PDF, poll the async job, and fetch the download URI.
-  - url: arazzo/adobe-delete-pages-workflow.yml
-    name: Adobe Delete Pages From a PDF
-    summary: Upload a PDF, delete a page range, poll the job, and fetch the trimmed result.
-  - url: arazzo/adobe-download-and-cleanup-asset-workflow.yml
-    name: Adobe Download Then Clean Up an Asset
-    summary: Resolve a download URI for a finished output asset, then delete it from the platform.
-  - url: arazzo/adobe-export-pdf-workflow.yml
-    name: Adobe Export PDF To Another Format
-    summary: Upload a PDF, export it to DOCX/PPTX/XLSX/RTF/image, poll the job, and fetch the result.
-  - url: arazzo/adobe-extract-pdf-workflow.yml
-    name: Adobe Extract Content From a PDF
-    summary: Upload a PDF, extract text and tables into structured JSON, poll the job, and fetch the result.
-  - url: arazzo/adobe-generate-document-workflow.yml
-    name: Adobe Generate a Document From a Template
-    summary: Upload a Word template, merge JSON data into it, poll the job, and fetch the generated document.
-  - url: arazzo/adobe-inspect-pdf-properties-workflow.yml
-    name: Adobe Inspect PDF Properties
-    summary: Upload a PDF, request its metadata properties, and poll the job until done or failed.
-  - url: arazzo/adobe-ocr-pdf-workflow.yml
-    name: Adobe OCR a Scanned PDF
-    summary: Upload a scanned PDF, run OCR to make it searchable, poll the job, and fetch the result.
-  - url: arazzo/adobe-protect-pdf-workflow.yml
-    name: Adobe Protect a PDF With a Password
-    summary: Upload a PDF, apply password protection and encryption, poll the job, and fetch the result.
-  - url: arazzo/adobe-remove-protection-workflow.yml
-    name: Adobe Remove Protection From a PDF
-    summary: Upload a protected PDF, unlock it with its password, poll the job, and fetch the result.
-  - url: arazzo/adobe-rotate-pages-workflow.yml
-    name: Adobe Rotate Pages In a PDF
-    summary: Upload a PDF, rotate a page range, poll the job, and fetch the rotated result.
-  - url: arazzo/adobe-split-pdf-workflow.yml
-    name: Adobe Split a PDF
-    summary: Upload a PDF, split it by page count into multiple files, poll the job, and fetch the result.
+- type: Arazzo
+  url: arazzo/adobe-auto-tag-pdf-workflow.yml
+  name: Adobe Auto-tag a PDF For Accessibility
+- type: Arazzo
+  url: arazzo/adobe-combine-pdfs-workflow.yml
+  name: Adobe Combine Two PDFs Into One
+- type: Arazzo
+  url: arazzo/adobe-compress-pdf-workflow.yml
+  name: Adobe Compress a PDF
+- type: Arazzo
+  url: arazzo/adobe-create-pdf-workflow.yml
+  name: Adobe Create PDF From Source File
+- type: Arazzo
+  url: arazzo/adobe-delete-pages-workflow.yml
+  name: Adobe Delete Pages From a PDF
+- type: Arazzo
+  url: arazzo/adobe-download-and-cleanup-asset-workflow.yml
+  name: Adobe Download Then Clean Up an Asset
+- type: Arazzo
+  url: arazzo/adobe-export-pdf-workflow.yml
+  name: Adobe Export PDF To Another Format
+- type: Arazzo
+  url: arazzo/adobe-extract-pdf-workflow.yml
+  name: Adobe Extract Content From a PDF
+- type: Arazzo
+  url: arazzo/adobe-generate-document-workflow.yml
+  name: Adobe Generate a Document From a Template
+- type: Arazzo
+  url: arazzo/adobe-inspect-pdf-properties-workflow.yml
+  name: Adobe Inspect PDF Properties
+- type: Arazzo
+  url: arazzo/adobe-ocr-pdf-workflow.yml
+  name: Adobe OCR a Scanned PDF
+- type: Arazzo
+  url: arazzo/adobe-protect-pdf-workflow.yml
+  name: Adobe Protect a PDF With a Password
+- type: Arazzo
+  url: arazzo/adobe-remove-protection-workflow.yml
+  name: Adobe Remove Protection From a PDF
+- type: Arazzo
+  url: arazzo/adobe-rotate-pages-workflow.yml
+  name: Adobe Rotate Pages In a PDF
+- type: Arazzo
+  url: arazzo/adobe-split-pdf-workflow.yml
+  name: Adobe Split a PDF
 - type: LinkedIn
   url: https://www.linkedin.com/company/adobe
 - type: Portal
@@ -313,9 +310,9 @@ common:
   url: https://developer.adobe.com/developer-console/docs/guides/getting-started
 - type: GitHubOrganization
   url: https://github.com/AdobeDocs/
-- type: SDK
+- type: SDKs
   url: https://developer.adobe.com/apis
-- type: SignUp
+- type: Signup
   url: https://developer.adobe.com/console/
 - type: Login
   url: https://developer.adobe.com/console/
