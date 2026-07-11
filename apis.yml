@@ -241,6 +241,12 @@ apis:
       https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/implementing/developing/reference-materials
   description: Create, read, update, and delete content, assets, and forms in Adobe Experience Manager as a Cloud Service.
 common:
+- type: VulnerabilityDisclosure
+  url: security/adobe-vulnerability-disclosure.yml
+- type: DomainSecurity
+  url: security/adobe-domain-security.yml
+- type: Authentication
+  url: authentication/adobe-authentication.yml
 - type: PostmanWorkspace
   url: https://www.postman.com/kinlaneapi/adobe/overview
 - type: Arazzo
