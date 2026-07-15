@@ -241,6 +241,8 @@ apis:
       https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/implementing/developing/reference-materials
   description: Create, read, update, and delete content, assets, and forms in Adobe Experience Manager as a Cloud Service.
 common:
+- type: AgenticAccess
+  url: agentic-access/adobe-agentic-access.yml
 - type: VulnerabilityDisclosure
   url: security/adobe-vulnerability-disclosure.yml
 - type: DomainSecurity
