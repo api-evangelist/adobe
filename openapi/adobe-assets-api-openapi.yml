@@ -1,0 +1,215 @@
+openapi: 3.1.0
+info:
+  title: Adobe PDF Services Accessibility Auto-Tag Assets API
+  description: The Adobe PDF Services API enables developers to create, convert, manipulate, and extract content from PDF documents programmatically. The API uses an asynchronous job-based model where you submit a job, poll for its status, and retrieve the result. Operations include creating PDFs from various formats, exporting PDFs to other formats, combining and splitting PDFs, compressing, OCR processing, protecting with passwords, extracting structured content, auto-tagging for accessibility, and generating documents from templates. Authentication uses OAuth 2.0 with client credentials (server-to-server).
+  version: 4.0.0
+  contact:
+    name: Adobe Developer Support
+    url: https://developer.adobe.com/document-services/
+    email: pdfsvcops@adobe.com
+  license:
+    name: Adobe Terms of Service
+    url: https://www.adobe.com/legal/terms.html
+  termsOfService: https://www.adobe.com/legal/terms.html
+servers:
+- url: https://pdf-services-ue1.adobe.io
+  description: Adobe PDF Services API - US East Production
+- url: https://pdf-services.adobe.io
+  description: Adobe PDF Services API - Default Production
+security:
+- bearerAuth: []
+tags:
+- name: Assets
+  description: Upload and manage assets (source files) for PDF operations.
+paths:
+  /assets:
+    post:
+      operationId: uploadAsset
+      summary: Adobe Upload an Asset
+      description: Upload a document to the PDF Services platform for processing. Returns a pre-signed upload URI and an asset ID. You must first call this endpoint to get the upload URI, then PUT the file content to that URI, and finally use the asset ID in subsequent operation requests.
+      tags:
+      - Assets
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AssetUploadRequest'
+            examples:
+              UploadassetRequestExample:
+                summary: Default uploadAsset request
+                x-microcks-default: true
+                value:
+                  mediaType: example_value
+      responses:
+        '200':
+          description: Asset upload URI and metadata returned successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AssetUploadResponse'
+              examples:
+                Uploadasset200Example:
+                  summary: Default uploadAsset 200 response
+                  x-microcks-default: true
+                  value:
+                    assetID: '500123'
+                    uploadUri: https://www.example.com
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /assets/{assetID}:
+    get:
+      operationId: getAsset
+      summary: Adobe Get Asset Download Uri
+      description: Retrieve a pre-signed download URI for a previously created asset or job output. The download URI is valid for a limited time.
+      tags:
+      - Assets
+      parameters:
+      - $ref: '#/components/parameters/assetID'
+      responses:
+        '200':
+          description: Asset download URI returned successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AssetDownloadResponse'
+              examples:
+                Getasset200Example:
+                  summary: Default getAsset 200 response
+                  x-microcks-default: true
+                  value:
+                    assetID: '500123'
+                    downloadUri: https://www.example.com
+        '404':
+          $ref: '#/components/responses/NotFound'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    delete:
+      operationId: deleteAsset
+      summary: Adobe Delete an Asset
+      description: Delete a previously uploaded asset from the platform.
+      tags:
+      - Assets
+      parameters:
+      - $ref: '#/components/parameters/assetID'
+      responses:
+        '204':
+          description: Asset deleted successfully.
+        '404':
+          $ref: '#/components/responses/NotFound'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    ErrorResponse:
+      type: object
+      description: Error response returned when a request fails.
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+              description: A machine-readable error code.
+              examples:
+              - INVALID_ASSET_ID
+              - BAD_REQUEST
+              - UNAUTHORIZED
+              - RATE_LIMIT_EXCEEDED
+            message:
+              type: string
+              description: A human-readable error message.
+            status:
+              type: integer
+              description: The HTTP status code.
+              examples:
+              - 400
+              - 401
+              - 404
+              - 429
+          example: example_value
+    AssetDownloadResponse:
+      type: object
+      properties:
+        assetID:
+          type: string
+          description: The unique identifier of the asset.
+          example: '500123'
+        downloadUri:
+          type: string
+          format: uri
+          description: The pre-signed URI to download the asset. Valid for a limited time.
+          example: https://www.example.com
+    AssetUploadRequest:
+      type: object
+      required:
+      - mediaType
+      properties:
+        mediaType:
+          type: string
+          description: The MIME type of the file being uploaded.
+          examples:
+          - application/pdf
+          - application/vnd.openxmlformats-officedocument.wordprocessingml.document
+          - image/jpeg
+    AssetUploadResponse:
+      type: object
+      properties:
+        assetID:
+          type: string
+          description: The unique identifier for the uploaded asset.
+          examples:
+          - urn:aaid:AS:UE1:23456789-abcd-1234-efgh-567890abcdef
+        uploadUri:
+          type: string
+          format: uri
+          description: The pre-signed URI to upload the file content via HTTP PUT. Valid for a limited time.
+          example: https://www.example.com
+  responses:
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    BadRequest:
+      description: The request was malformed or contained invalid parameters. Check the error message for details.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Authentication failed. The access token is missing, expired, or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    TooManyRequests:
+      description: Rate limit exceeded. Wait before retrying. Check Retry-After header for guidance.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  parameters:
+    assetID:
+      name: assetID
+      in: path
+      required: true
+      description: The unique identifier of the asset.
+      schema:
+        type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: OAuth 2.0 access token obtained via client credentials grant from Adobe Identity Management Service (IMS). Generate credentials in the Adobe Developer Console and exchange them for an access token at https://ims-na1.adobelogin.com/ims/token/v3.

@@ -1,0 +1,230 @@
+openapi: 3.1.0
+info:
+  title: Adobe PDF Services Accessibility Auto-Tag OCR API
+  description: The Adobe PDF Services API enables developers to create, convert, manipulate, and extract content from PDF documents programmatically. The API uses an asynchronous job-based model where you submit a job, poll for its status, and retrieve the result. Operations include creating PDFs from various formats, exporting PDFs to other formats, combining and splitting PDFs, compressing, OCR processing, protecting with passwords, extracting structured content, auto-tagging for accessibility, and generating documents from templates. Authentication uses OAuth 2.0 with client credentials (server-to-server).
+  version: 4.0.0
+  contact:
+    name: Adobe Developer Support
+    url: https://developer.adobe.com/document-services/
+    email: pdfsvcops@adobe.com
+  license:
+    name: Adobe Terms of Service
+    url: https://www.adobe.com/legal/terms.html
+  termsOfService: https://www.adobe.com/legal/terms.html
+servers:
+- url: https://pdf-services-ue1.adobe.io
+  description: Adobe PDF Services API - US East Production
+- url: https://pdf-services.adobe.io
+  description: Adobe PDF Services API - Default Production
+security:
+- bearerAuth: []
+tags:
+- name: OCR
+  description: Apply optical character recognition to scanned PDFs to make text searchable and selectable.
+paths:
+  /operation/ocr:
+    post:
+      operationId: ocrPDF
+      summary: Adobe Ocr a Pdf
+      description: Apply optical character recognition to a scanned PDF, converting image-based text into searchable and selectable text. Supports multiple OCR languages and output types (searchable image or searchable image exact).
+      tags:
+      - OCR
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OCRRequest'
+            examples:
+              OcrpdfRequestExample:
+                summary: Default ocrPDF request
+                x-microcks-default: true
+                value:
+                  assetID: '500123'
+                  ocrLanguage: en-US
+                  ocrType: SEARCHABLE_IMAGE
+      responses:
+        '201':
+          description: Job created successfully.
+          headers:
+            Location:
+              description: URL to poll for job status.
+              schema:
+                type: string
+                format: uri
+            x-request-id:
+              $ref: '#/components/headers/x-request-id'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobStatusResponse'
+              examples:
+                Ocrpdf201Example:
+                  summary: Default ocrPDF 201 response
+                  x-microcks-default: true
+                  value:
+                    status: in progress
+                    asset:
+                      assetID: '500123'
+                      downloadUri: https://www.example.com
+                      metadata:
+                        type: example_value
+                        size: 10
+                    error:
+                      code: example_value
+                      message: example_value
+                      status: 10
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    OCRRequest:
+      type: object
+      required:
+      - assetID
+      properties:
+        assetID:
+          type: string
+          description: The asset ID of the PDF to OCR.
+          example: '500123'
+        ocrLanguage:
+          type: string
+          description: The language for OCR processing.
+          enum:
+          - en-US
+          - de-DE
+          - fr-FR
+          - ja-JP
+          - da-DK
+          - fi-FI
+          - it-IT
+          - ko-KR
+          - nb-NO
+          - nl-NL
+          - pt-BR
+          - es-ES
+          - sv-SE
+          - zh-CN
+          - zh-TW
+          default: en-US
+          example: en-US
+        ocrType:
+          type: string
+          description: The type of OCR output. SEARCHABLE_IMAGE produces a searchable PDF maintaining visual fidelity. SEARCHABLE_IMAGE_EXACT preserves the original image appearance precisely.
+          enum:
+          - SEARCHABLE_IMAGE
+          - SEARCHABLE_IMAGE_EXACT
+          default: SEARCHABLE_IMAGE
+          example: SEARCHABLE_IMAGE
+    ErrorResponse:
+      type: object
+      description: Error response returned when a request fails.
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+              description: A machine-readable error code.
+              examples:
+              - INVALID_ASSET_ID
+              - BAD_REQUEST
+              - UNAUTHORIZED
+              - RATE_LIMIT_EXCEEDED
+            message:
+              type: string
+              description: A human-readable error message.
+            status:
+              type: integer
+              description: The HTTP status code.
+              examples:
+              - 400
+              - 401
+              - 404
+              - 429
+          example: example_value
+    JobStatusResponse:
+      type: object
+      description: The status and result of an asynchronous PDF operation job.
+      properties:
+        status:
+          type: string
+          description: The current status of the job.
+          enum:
+          - in progress
+          - done
+          - failed
+          example: in progress
+        asset:
+          type: object
+          description: The output asset information, available when status is done.
+          properties:
+            assetID:
+              type: string
+              description: The asset ID of the output file.
+            downloadUri:
+              type: string
+              format: uri
+              description: The pre-signed download URI for the output file.
+            metadata:
+              type: object
+              description: Metadata about the output asset.
+              properties:
+                type:
+                  type: string
+                  description: The MIME type of the output file.
+                size:
+                  type: integer
+                  description: The size of the output file in bytes.
+          example: example_value
+        error:
+          type: object
+          description: Error information, available when status is failed.
+          properties:
+            code:
+              type: string
+              description: A machine-readable error code.
+            message:
+              type: string
+              description: A human-readable error message.
+            status:
+              type: integer
+              description: The HTTP status code associated with the error.
+          example: example_value
+  headers:
+    x-request-id:
+      description: A unique identifier for the request, useful for debugging and support.
+      schema:
+        type: string
+  responses:
+    BadRequest:
+      description: The request was malformed or contained invalid parameters. Check the error message for details.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Authentication failed. The access token is missing, expired, or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    TooManyRequests:
+      description: Rate limit exceeded. Wait before retrying. Check Retry-After header for guidance.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: OAuth 2.0 access token obtained via client credentials grant from Adobe Identity Management Service (IMS). Generate credentials in the Adobe Developer Console and exchange them for an access token at https://ims-na1.adobelogin.com/ims/token/v3.

@@ -1,0 +1,245 @@
+openapi: 3.1.0
+info:
+  title: Adobe PDF Services Accessibility Auto-Tag Extract PDF API
+  description: The Adobe PDF Services API enables developers to create, convert, manipulate, and extract content from PDF documents programmatically. The API uses an asynchronous job-based model where you submit a job, poll for its status, and retrieve the result. Operations include creating PDFs from various formats, exporting PDFs to other formats, combining and splitting PDFs, compressing, OCR processing, protecting with passwords, extracting structured content, auto-tagging for accessibility, and generating documents from templates. Authentication uses OAuth 2.0 with client credentials (server-to-server).
+  version: 4.0.0
+  contact:
+    name: Adobe Developer Support
+    url: https://developer.adobe.com/document-services/
+    email: pdfsvcops@adobe.com
+  license:
+    name: Adobe Terms of Service
+    url: https://www.adobe.com/legal/terms.html
+  termsOfService: https://www.adobe.com/legal/terms.html
+servers:
+- url: https://pdf-services-ue1.adobe.io
+  description: Adobe PDF Services API - US East Production
+- url: https://pdf-services.adobe.io
+  description: Adobe PDF Services API - Default Production
+security:
+- bearerAuth: []
+tags:
+- name: Extract PDF
+  description: Extract text, tables, and figures from PDF documents into structured JSON output.
+paths:
+  /operation/extractpdf:
+    post:
+      operationId: extractPDF
+      summary: Adobe Extract Content From a Pdf
+      description: Extract text, tables, and figures from a PDF document into structured JSON output. Uses Adobe Sensei AI technology to identify and extract document structure elements. Returns a ZIP file containing the structured JSON and optionally extracted tables as CSV and figures as images.
+      tags:
+      - Extract PDF
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExtractPDFRequest'
+            examples:
+              ExtractpdfRequestExample:
+                summary: Default extractPDF request
+                x-microcks-default: true
+                value:
+                  assetID: '500123'
+                  elementsToExtract:
+                  - text
+                  elementsToExtractRenditions:
+                  - tables
+                  tableOutputFormat: csv
+                  getStylingInfo: true
+                  addCharInfo: true
+      responses:
+        '201':
+          description: Job created successfully.
+          headers:
+            Location:
+              description: URL to poll for job status.
+              schema:
+                type: string
+                format: uri
+            x-request-id:
+              $ref: '#/components/headers/x-request-id'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobStatusResponse'
+              examples:
+                Extractpdf201Example:
+                  summary: Default extractPDF 201 response
+                  x-microcks-default: true
+                  value:
+                    status: in progress
+                    asset:
+                      assetID: '500123'
+                      downloadUri: https://www.example.com
+                      metadata:
+                        type: example_value
+                        size: 10
+                    error:
+                      code: example_value
+                      message: example_value
+                      status: 10
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    ErrorResponse:
+      type: object
+      description: Error response returned when a request fails.
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+              description: A machine-readable error code.
+              examples:
+              - INVALID_ASSET_ID
+              - BAD_REQUEST
+              - UNAUTHORIZED
+              - RATE_LIMIT_EXCEEDED
+            message:
+              type: string
+              description: A human-readable error message.
+            status:
+              type: integer
+              description: The HTTP status code.
+              examples:
+              - 400
+              - 401
+              - 404
+              - 429
+          example: example_value
+    ExtractPDFRequest:
+      type: object
+      required:
+      - assetID
+      properties:
+        assetID:
+          type: string
+          description: The asset ID of the PDF to extract from.
+          example: '500123'
+        elementsToExtract:
+          type: array
+          description: The types of elements to extract from the PDF.
+          items:
+            type: string
+            enum:
+            - text
+            - tables
+          default:
+          - text
+          - tables
+          example: []
+        elementsToExtractRenditions:
+          type: array
+          description: Rendition types to generate for extracted elements.
+          items:
+            type: string
+            enum:
+            - tables
+            - figures
+          example: []
+        tableOutputFormat:
+          type: string
+          description: The output format for extracted tables.
+          enum:
+          - csv
+          - xlsx
+          default: csv
+          example: csv
+        getStylingInfo:
+          type: boolean
+          description: Whether to include styling information (font, color, etc.) in the extraction output.
+          default: false
+          example: true
+        addCharInfo:
+          type: boolean
+          description: Whether to include character-level bounding box information.
+          default: false
+          example: true
+    JobStatusResponse:
+      type: object
+      description: The status and result of an asynchronous PDF operation job.
+      properties:
+        status:
+          type: string
+          description: The current status of the job.
+          enum:
+          - in progress
+          - done
+          - failed
+          example: in progress
+        asset:
+          type: object
+          description: The output asset information, available when status is done.
+          properties:
+            assetID:
+              type: string
+              description: The asset ID of the output file.
+            downloadUri:
+              type: string
+              format: uri
+              description: The pre-signed download URI for the output file.
+            metadata:
+              type: object
+              description: Metadata about the output asset.
+              properties:
+                type:
+                  type: string
+                  description: The MIME type of the output file.
+                size:
+                  type: integer
+                  description: The size of the output file in bytes.
+          example: example_value
+        error:
+          type: object
+          description: Error information, available when status is failed.
+          properties:
+            code:
+              type: string
+              description: A machine-readable error code.
+            message:
+              type: string
+              description: A human-readable error message.
+            status:
+              type: integer
+              description: The HTTP status code associated with the error.
+          example: example_value
+  headers:
+    x-request-id:
+      description: A unique identifier for the request, useful for debugging and support.
+      schema:
+        type: string
+  responses:
+    BadRequest:
+      description: The request was malformed or contained invalid parameters. Check the error message for details.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Authentication failed. The access token is missing, expired, or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    TooManyRequests:
+      description: Rate limit exceeded. Wait before retrying. Check Retry-After header for guidance.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: OAuth 2.0 access token obtained via client credentials grant from Adobe Identity Management Service (IMS). Generate credentials in the Adobe Developer Console and exchange them for an access token at https://ims-na1.adobelogin.com/ims/token/v3.
