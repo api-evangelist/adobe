@@ -1,0 +1,2202 @@
+openapi: 3.1.0
+info:
+  title: Adobe PDF Services API
+  description: >-
+    The Adobe PDF Services API enables developers to create, convert, manipulate,
+    and extract content from PDF documents programmatically. The API uses an
+    asynchronous job-based model where you submit a job, poll for its status, and
+    retrieve the result. Operations include creating PDFs from various formats,
+    exporting PDFs to other formats, combining and splitting PDFs, compressing,
+    OCR processing, protecting with passwords, extracting structured content,
+    auto-tagging for accessibility, and generating documents from templates.
+    Authentication uses OAuth 2.0 with client credentials (server-to-server).
+  version: 4.0.0
+  contact:
+    name: Adobe Developer Support
+    url: https://developer.adobe.com/document-services/
+    email: pdfsvcops@adobe.com
+  license:
+    name: Adobe Terms of Service
+    url: https://www.adobe.com/legal/terms.html
+  termsOfService: https://www.adobe.com/legal/terms.html
+
+servers:
+- url: https://pdf-services-ue1.adobe.io
+  description: Adobe PDF Services API - US East Production
+- url: https://pdf-services.adobe.io
+  description: Adobe PDF Services API - Default Production
+
+security:
+- bearerAuth: []
+
+tags:
+- name: Accessibility Auto-Tag
+  description: Automatically add accessibility tags to PDF documents using AI.
+- name: Assets
+  description: Upload and manage assets (source files) for PDF operations.
+- name: Combine PDF
+  description: Combine multiple PDF documents into a single PDF.
+- name: Compress PDF
+  description: Reduce the file size of PDF documents while maintaining quality.
+- name: Create PDF
+  description: Create PDF documents from supported file formats including Microsoft Office, images, and HTML.
+- name: Delete Pages
+  description: Delete specific pages from a PDF document.
+- name: Document Generation
+  description: Generate PDF and Word documents from templates with dynamic JSON data.
+- name: Export PDF
+  description: Export (convert) PDF documents to other formats such as DOCX, PPTX, XLSX, images, and RTF.
+- name: Extract PDF
+  description: Extract text, tables, and figures from PDF documents into structured JSON output.
+- name: Insert Pages
+  description: Insert pages from one PDF into another.
+- name: Jobs
+  description: Poll for the status and results of asynchronous PDF operations.
+
+- name: Linearize PDF
+  description: Optimize PDFs for fast web viewing (linearization).
+- name: OCR
+  description: Apply optical character recognition to scanned PDFs to make text searchable and selectable.
+- name: PDF Properties
+  description: Retrieve metadata and properties from PDF documents.
+- name: Protect PDF
+  description: Add password protection and encryption to PDF documents.
+- name: Remove Protection
+  description: Remove password protection from PDF documents.
+- name: Reorder Pages
+  description: Reorder pages within a PDF document.
+- name: Replace Pages
+  description: Replace pages in a PDF with pages from another PDF.
+- name: Rotate Pages
+  description: Rotate pages within a PDF document.
+- name: Split PDF
+  description: Split a PDF document into multiple smaller PDFs.
+paths:
+  /assets:
+    post:
+      operationId: uploadAsset
+      summary: Adobe Upload an Asset
+      description: >-
+        Upload a document to the PDF Services platform for processing. Returns
+        a pre-signed upload URI and an asset ID. You must first call this
+        endpoint to get the upload URI, then PUT the file content to that URI,
+        and finally use the asset ID in subsequent operation requests.
+      tags:
+      - Assets
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AssetUploadRequest'
+            examples:
+              UploadassetRequestExample:
+                summary: Default uploadAsset request
+                x-microcks-default: true
+                value:
+                  mediaType: example_value
+      responses:
+        '200':
+          description: Asset upload URI and metadata returned successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AssetUploadResponse'
+              examples:
+                Uploadasset200Example:
+                  summary: Default uploadAsset 200 response
+                  x-microcks-default: true
+                  value:
+                    assetID: '500123'
+                    uploadUri: https://www.example.com
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /assets/{assetID}:
+    get:
+      operationId: getAsset
+      summary: Adobe Get Asset Download Uri
+      description: >-
+        Retrieve a pre-signed download URI for a previously created asset or
+        job output. The download URI is valid for a limited time.
+      tags:
+      - Assets
+      parameters:
+      - $ref: '#/components/parameters/assetID'
+      responses:
+        '200':
+          description: Asset download URI returned successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AssetDownloadResponse'
+              examples:
+                Getasset200Example:
+                  summary: Default getAsset 200 response
+                  x-microcks-default: true
+                  value:
+                    assetID: '500123'
+                    downloadUri: https://www.example.com
+        '404':
+          $ref: '#/components/responses/NotFound'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    delete:
+      operationId: deleteAsset
+      summary: Adobe Delete an Asset
+      description: Delete a previously uploaded asset from the platform.
+      tags:
+      - Assets
+      parameters:
+      - $ref: '#/components/parameters/assetID'
+      responses:
+        '204':
+          description: Asset deleted successfully.
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /operation/createpdf:
+    post:
+      operationId: createPDF
+      summary: Adobe Create a Pdf
+      description: >-
+        Create a PDF document from a supported source file format. Supported
+        input formats include Microsoft Word (DOC, DOCX), Excel (XLS, XLSX),
+        PowerPoint (PPT, PPTX), images (BMP, GIF, JPEG, PNG, TIFF), HTML,
+        and RTF. The operation runs asynchronously; poll the returned location
+        header for job status.
+      tags:
+      - Create PDF
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreatePDFRequest'
+            examples:
+              CreatepdfRequestExample:
+                summary: Default createPDF request
+                x-microcks-default: true
+                value:
+                  assetID: '500123'
+                  documentLanguage: en-US
+                  createPDFFromDOCXOptions: {}
+                  createPDFFromPPTXOptions: {}
+                  createPDFFromXLSXOptions: {}
+                  createPDFFromHTMLOptions:
+                    includeHeaderFooter: true
+                    pageLayout:
+                      pageWidth: 42.5
+                      pageHeight: 42.5
+      responses:
+        '201':
+          description: Job created successfully. Poll the Location header URL for status.
+          headers:
+            Location:
+              description: URL to poll for job status.
+              schema:
+                type: string
+                format: uri
+            x-request-id:
+              $ref: '#/components/headers/x-request-id'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobStatusResponse'
+              examples:
+                Createpdf201Example:
+                  summary: Default createPDF 201 response
+                  x-microcks-default: true
+                  value:
+                    status: in progress
+                    asset:
+                      assetID: '500123'
+                      downloadUri: https://www.example.com
+                      metadata:
+                        type: example_value
+                        size: 10
+                    error:
+                      code: example_value
+                      message: example_value
+                      status: 10
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /operation/exportpdf:
+    post:
+      operationId: exportPDF
+      summary: Adobe Export a Pdf
+      description: >-
+        Convert a PDF document to a supported output format. Supported output
+        formats include DOCX, DOC, PPTX, XLSX, RTF, and image formats (JPEG,
+        PNG). For image output, each page is converted to a separate image file.
+      tags:
+      - Export PDF
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExportPDFRequest'
+            examples:
+              ExportpdfRequestExample:
+                summary: Default exportPDF request
+                x-microcks-default: true
+                value:
+                  assetID: '500123'
+                  targetFormat: docx
+                  ocrLanguage: en-US
+      responses:
+        '201':
+          description: Job created successfully.
+          headers:
+            Location:
+              description: URL to poll for job status.
+              schema:
+                type: string
+                format: uri
+            x-request-id:
+              $ref: '#/components/headers/x-request-id'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobStatusResponse'
+              examples:
+                Exportpdf201Example:
+                  summary: Default exportPDF 201 response
+                  x-microcks-default: true
+                  value:
+                    status: in progress
+                    asset:
+                      assetID: '500123'
+                      downloadUri: https://www.example.com
+                      metadata:
+                        type: example_value
+                        size: 10
+                    error:
+                      code: example_value
+                      message: example_value
+                      status: 10
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /operation/combinepdf:
+    post:
+      operationId: combinePDF
+      summary: Adobe Combine Pdf Files
+      description: >-
+        Combine multiple PDF documents into a single PDF. You can specify
+        page ranges from each source document to include. Supports combining
+        up to 20 files or 100 pages total.
+      tags:
+      - Combine PDF
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CombinePDFRequest'
+            examples:
+              CombinepdfRequestExample:
+                summary: Default combinePDF request
+                x-microcks-default: true
+                value:
+                  assets:
+                  - assetID: '500123'
+                    pageRanges:
+                    - {}
+      responses:
+        '201':
+          description: Job created successfully.
+          headers:
+            Location:
+              description: URL to poll for job status.
+              schema:
+                type: string
+                format: uri
+            x-request-id:
+              $ref: '#/components/headers/x-request-id'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobStatusResponse'
+              examples:
+                Combinepdf201Example:
+                  summary: Default combinePDF 201 response
+                  x-microcks-default: true
+                  value:
+                    status: in progress
+                    asset:
+                      assetID: '500123'
+                      downloadUri: https://www.example.com
+                      metadata:
+                        type: example_value
+                        size: 10
+                    error:
+                      code: example_value
+                      message: example_value
+                      status: 10
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /operation/splitpdf:
+    post:
+      operationId: splitPDF
+      summary: Adobe Split a Pdf
+      description: >-
+        Split a PDF document into multiple smaller PDF files. You can split
+        by page count, page ranges, or number of output files.
+      tags:
+      - Split PDF
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SplitPDFRequest'
+            examples:
+              SplitpdfRequestExample:
+                summary: Default splitPDF request
+                x-microcks-default: true
+                value:
+                  assetID: '500123'
+                  splitOptions:
+                    pageCount: 10
+                    pageRanges:
+                    - {}
+                    fileCount: 10
+      responses:
+        '201':
+          description: Job created successfully.
+          headers:
+            Location:
+              description: URL to poll for job status.
+              schema:
+                type: string
+                format: uri
+            x-request-id:
+              $ref: '#/components/headers/x-request-id'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobStatusResponse'
+              examples:
+                Splitpdf201Example:
+                  summary: Default splitPDF 201 response
+                  x-microcks-default: true
+                  value:
+                    status: in progress
+                    asset:
+                      assetID: '500123'
+                      downloadUri: https://www.example.com
+                      metadata:
+                        type: example_value
+                        size: 10
+                    error:
+                      code: example_value
+                      message: example_value
+                      status: 10
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /operation/ocr:
+    post:
+      operationId: ocrPDF
+      summary: Adobe Ocr a Pdf
+      description: >-
+        Apply optical character recognition to a scanned PDF, converting
+        image-based text into searchable and selectable text. Supports
+        multiple OCR languages and output types (searchable image or
+        searchable image exact).
+      tags:
+      - OCR
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OCRRequest'
+            examples:
+              OcrpdfRequestExample:
+                summary: Default ocrPDF request
+                x-microcks-default: true
+                value:
+                  assetID: '500123'
+                  ocrLanguage: en-US
+                  ocrType: SEARCHABLE_IMAGE
+      responses:
+        '201':
+          description: Job created successfully.
+          headers:
+            Location:
+              description: URL to poll for job status.
+              schema:
+                type: string
+                format: uri
+            x-request-id:
+              $ref: '#/components/headers/x-request-id'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobStatusResponse'
+              examples:
+                Ocrpdf201Example:
+                  summary: Default ocrPDF 201 response
+                  x-microcks-default: true
+                  value:
+                    status: in progress
+                    asset:
+                      assetID: '500123'
+                      downloadUri: https://www.example.com
+                      metadata:
+                        type: example_value
+                        size: 10
+                    error:
+                      code: example_value
+                      message: example_value
+                      status: 10
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /operation/compresspdf:
+    post:
+      operationId: compressPDF
+      summary: Adobe Compress a Pdf
+      description: >-
+        Reduce the file size of a PDF document. Supports multiple compression
+        levels to balance file size reduction against quality.
+      tags:
+      - Compress PDF
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CompressPDFRequest'
+            examples:
+              CompresspdfRequestExample:
+                summary: Default compressPDF request
+                x-microcks-default: true
+                value:
+                  assetID: '500123'
+                  compressionLevel: LOW
+      responses:
+        '201':
+          description: Job created successfully.
+          headers:
+            Location:
+              description: URL to poll for job status.
+              schema:
+                type: string
+                format: uri
+            x-request-id:
+              $ref: '#/components/headers/x-request-id'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobStatusResponse'
+              examples:
+                Compresspdf201Example:
+                  summary: Default compressPDF 201 response
+                  x-microcks-default: true
+                  value:
+                    status: in progress
+                    asset:
+                      assetID: '500123'
+                      downloadUri: https://www.example.com
+                      metadata:
+                        type: example_value
+                        size: 10
+                    error:
+                      code: example_value
+                      message: example_value
+                      status: 10
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /operation/protectpdf:
+    post:
+      operationId: protectPDF
+      summary: Adobe Protect a Pdf
+      description: >-
+        Add password protection and set permissions on a PDF document. Supports
+        setting user passwords (to open), owner passwords (to edit/print), and
+        encryption algorithms (AES-128 or AES-256).
+      tags:
+      - Protect PDF
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProtectPDFRequest'
+            examples:
+              ProtectpdfRequestExample:
+                summary: Default protectPDF request
+                x-microcks-default: true
+                value:
+                  assetID: '500123'
+                  passwordProtection:
+                    userPassword: example_value
+                    ownerPassword: example_value
+                  encryptionAlgorithm: AES_128
+                  permissions:
+                    printQuality: NONE
+                    editContent: true
+                    copyContent: true
+                    editAnnotations: true
+                    fillForms: true
+                    assembleDocument: true
+      responses:
+        '201':
+          description: Job created successfully.
+          headers:
+            Location:
+              description: URL to poll for job status.
+              schema:
+                type: string
+                format: uri
+            x-request-id:
+              $ref: '#/components/headers/x-request-id'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobStatusResponse'
+              examples:
+                Protectpdf201Example:
+                  summary: Default protectPDF 201 response
+                  x-microcks-default: true
+                  value:
+                    status: in progress
+                    asset:
+                      assetID: '500123'
+                      downloadUri: https://www.example.com
+                      metadata:
+                        type: example_value
+                        size: 10
+                    error:
+                      code: example_value
+                      message: example_value
+                      status: 10
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /operation/removeprotection:
+    post:
+      operationId: removeProtection
+      summary: Adobe Remove Protection From a Pdf
+      description: >-
+        Remove password protection from a PDF document. Requires the
+        current password to unlock the document.
+      tags:
+      - Remove Protection
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RemoveProtectionRequest'
+            examples:
+              RemoveprotectionRequestExample:
+                summary: Default removeProtection request
+                x-microcks-default: true
+                value:
+                  assetID: '500123'
+                  password: example_value
+      responses:
+        '201':
+          description: Job created successfully.
+          headers:
+            Location:
+              description: URL to poll for job status.
+              schema:
+                type: string
+                format: uri
+            x-request-id:
+              $ref: '#/components/headers/x-request-id'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobStatusResponse'
+              examples:
+                Removeprotection201Example:
+                  summary: Default removeProtection 201 response
+                  x-microcks-default: true
+                  value:
+                    status: in progress
+                    asset:
+                      assetID: '500123'
+                      downloadUri: https://www.example.com
+                      metadata:
+                        type: example_value
+                        size: 10
+                    error:
+                      code: example_value
+                      message: example_value
+                      status: 10
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /operation/linearizepdf:
+    post:
+      operationId: linearizePDF
+      summary: Adobe Linearize a Pdf
+      description: >-
+        Optimize a PDF for fast web viewing. Linearized PDFs allow the first
+        page to be displayed in a web browser before the entire file has
+        been downloaded.
+      tags:
+      - Linearize PDF
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LinearizePDFRequest'
+            examples:
+              LinearizepdfRequestExample:
+                summary: Default linearizePDF request
+                x-microcks-default: true
+                value:
+                  assetID: '500123'
+      responses:
+        '201':
+          description: Job created successfully.
+          headers:
+            Location:
+              description: URL to poll for job status.
+              schema:
+                type: string
+                format: uri
+            x-request-id:
+              $ref: '#/components/headers/x-request-id'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobStatusResponse'
+              examples:
+                Linearizepdf201Example:
+                  summary: Default linearizePDF 201 response
+                  x-microcks-default: true
+                  value:
+                    status: in progress
+                    asset:
+                      assetID: '500123'
+                      downloadUri: https://www.example.com
+                      metadata:
+                        type: example_value
+                        size: 10
+                    error:
+                      code: example_value
+                      message: example_value
+                      status: 10
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /operation/extractpdf:
+    post:
+      operationId: extractPDF
+      summary: Adobe Extract Content From a Pdf
+      description: >-
+        Extract text, tables, and figures from a PDF document into structured
+        JSON output. Uses Adobe Sensei AI technology to identify and extract
+        document structure elements. Returns a ZIP file containing the
+        structured JSON and optionally extracted tables as CSV and figures
+        as images.
+      tags:
+      - Extract PDF
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExtractPDFRequest'
+            examples:
+              ExtractpdfRequestExample:
+                summary: Default extractPDF request
+                x-microcks-default: true
+                value:
+                  assetID: '500123'
+                  elementsToExtract:
+                  - text
+                  elementsToExtractRenditions:
+                  - tables
+                  tableOutputFormat: csv
+                  getStylingInfo: true
+                  addCharInfo: true
+      responses:
+        '201':
+          description: Job created successfully.
+          headers:
+            Location:
+              description: URL to poll for job status.
+              schema:
+                type: string
+                format: uri
+            x-request-id:
+              $ref: '#/components/headers/x-request-id'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobStatusResponse'
+              examples:
+                Extractpdf201Example:
+                  summary: Default extractPDF 201 response
+                  x-microcks-default: true
+                  value:
+                    status: in progress
+                    asset:
+                      assetID: '500123'
+                      downloadUri: https://www.example.com
+                      metadata:
+                        type: example_value
+                        size: 10
+                    error:
+                      code: example_value
+                      message: example_value
+                      status: 10
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /operation/accessibilitychecker:
+    post:
+      operationId: autoTagPDF
+      summary: Adobe Auto-tag a Pdf for Accessibility
+      description: >-
+        Automatically add accessibility tags to a PDF document using Adobe
+        Sensei AI technology. Generates a tagged PDF that meets WCAG 2.0
+        and PDF/UA standards. Optionally generates a report detailing the
+        tagging results.
+      tags:
+      - Accessibility Auto-Tag
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AutoTagRequest'
+            examples:
+              AutotagpdfRequestExample:
+                summary: Default autoTagPDF request
+                x-microcks-default: true
+                value:
+                  assetID: '500123'
+                  generateReport: true
+                  shiftHeadings: true
+      responses:
+        '201':
+          description: Job created successfully.
+          headers:
+            Location:
+              description: URL to poll for job status.
+              schema:
+                type: string
+                format: uri
+            x-request-id:
+              $ref: '#/components/headers/x-request-id'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobStatusResponse'
+              examples:
+                Autotagpdf201Example:
+                  summary: Default autoTagPDF 201 response
+                  x-microcks-default: true
+                  value:
+                    status: in progress
+                    asset:
+                      assetID: '500123'
+                      downloadUri: https://www.example.com
+                      metadata:
+                        type: example_value
+                        size: 10
+                    error:
+                      code: example_value
+                      message: example_value
+                      status: 10
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /operation/documentgeneration:
+    post:
+      operationId: generateDocument
+      summary: Adobe Generate a Document From a Template
+      description: >-
+        Generate a PDF or Word document by merging a Word template (DOCX)
+        with JSON data. Supports dynamic text insertion, conditional sections,
+        tables, lists, images, and computed expressions.
+      tags:
+      - Document Generation
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DocumentGenerationRequest'
+            examples:
+              GeneratedocumentRequestExample:
+                summary: Default generateDocument request
+                x-microcks-default: true
+                value:
+                  assetID: '500123'
+                  jsonDataForMerge: example_value
+                  outputFormat: pdf
+                  fragments: example_value
+      responses:
+        '201':
+          description: Job created successfully.
+          headers:
+            Location:
+              description: URL to poll for job status.
+              schema:
+                type: string
+                format: uri
+            x-request-id:
+              $ref: '#/components/headers/x-request-id'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobStatusResponse'
+              examples:
+                Generatedocument201Example:
+                  summary: Default generateDocument 201 response
+                  x-microcks-default: true
+                  value:
+                    status: in progress
+                    asset:
+                      assetID: '500123'
+                      downloadUri: https://www.example.com
+                      metadata:
+                        type: example_value
+                        size: 10
+                    error:
+                      code: example_value
+                      message: example_value
+                      status: 10
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /operation/pdfproperties:
+    post:
+      operationId: getPDFProperties
+      summary: Adobe Get Pdf Properties
+      description: >-
+        Retrieve metadata and properties from a PDF document, including page
+        count, page size, whether the document is encrypted, font information,
+        and PDF/A compliance status.
+      tags:
+      - PDF Properties
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PDFPropertiesRequest'
+            examples:
+              GetpdfpropertiesRequestExample:
+                summary: Default getPDFProperties request
+                x-microcks-default: true
+                value:
+                  assetID: '500123'
+                  includePageLevelProperties: true
+      responses:
+        '201':
+          description: Job created successfully.
+          headers:
+            Location:
+              description: URL to poll for job status.
+              schema:
+                type: string
+                format: uri
+            x-request-id:
+              $ref: '#/components/headers/x-request-id'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobStatusResponse'
+              examples:
+                Getpdfproperties201Example:
+                  summary: Default getPDFProperties 201 response
+                  x-microcks-default: true
+                  value:
+                    status: in progress
+                    asset:
+                      assetID: '500123'
+                      downloadUri: https://www.example.com
+                      metadata:
+                        type: example_value
+                        size: 10
+                    error:
+                      code: example_value
+                      message: example_value
+                      status: 10
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /operation/reorderpages:
+    post:
+      operationId: reorderPages
+      summary: Adobe Reorder Pages in a Pdf
+      description: >-
+        Rearrange the order of pages within a PDF document by specifying
+        the desired page sequence.
+      tags:
+      - Reorder Pages
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReorderPagesRequest'
+            examples:
+              ReorderpagesRequestExample:
+                summary: Default reorderPages request
+                x-microcks-default: true
+                value:
+                  assetID: '500123'
+                  pagesOrder:
+                  - 10
+      responses:
+        '201':
+          description: Job created successfully.
+          headers:
+            Location:
+              description: URL to poll for job status.
+              schema:
+                type: string
+                format: uri
+            x-request-id:
+              $ref: '#/components/headers/x-request-id'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobStatusResponse'
+              examples:
+                Reorderpages201Example:
+                  summary: Default reorderPages 201 response
+                  x-microcks-default: true
+                  value:
+                    status: in progress
+                    asset:
+                      assetID: '500123'
+                      downloadUri: https://www.example.com
+                      metadata:
+                        type: example_value
+                        size: 10
+                    error:
+                      code: example_value
+                      message: example_value
+                      status: 10
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /operation/deletepages:
+    post:
+      operationId: deletePages
+      summary: Adobe Delete Pages From a Pdf
+      description: >-
+        Remove specific pages from a PDF document by specifying page ranges
+        to delete.
+      tags:
+      - Delete Pages
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeletePagesRequest'
+            examples:
+              DeletepagesRequestExample:
+                summary: Default deletePages request
+                x-microcks-default: true
+                value:
+                  assetID: '500123'
+                  pageRanges:
+                  - start: 10
+                    end: 10
+      responses:
+        '201':
+          description: Job created successfully.
+          headers:
+            Location:
+              description: URL to poll for job status.
+              schema:
+                type: string
+                format: uri
+            x-request-id:
+              $ref: '#/components/headers/x-request-id'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobStatusResponse'
+              examples:
+                Deletepages201Example:
+                  summary: Default deletePages 201 response
+                  x-microcks-default: true
+                  value:
+                    status: in progress
+                    asset:
+                      assetID: '500123'
+                      downloadUri: https://www.example.com
+                      metadata:
+                        type: example_value
+                        size: 10
+                    error:
+                      code: example_value
+                      message: example_value
+                      status: 10
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /operation/rotatepages:
+    post:
+      operationId: rotatePages
+      summary: Adobe Rotate Pages in a Pdf
+      description: >-
+        Rotate specific pages within a PDF document by 90, 180, or 270
+        degrees.
+      tags:
+      - Rotate Pages
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RotatePagesRequest'
+            examples:
+              RotatepagesRequestExample:
+                summary: Default rotatePages request
+                x-microcks-default: true
+                value:
+                  assetID: '500123'
+                  pageActions:
+                  - pageRanges:
+                    - {}
+                    rotation: 90
+      responses:
+        '201':
+          description: Job created successfully.
+          headers:
+            Location:
+              description: URL to poll for job status.
+              schema:
+                type: string
+                format: uri
+            x-request-id:
+              $ref: '#/components/headers/x-request-id'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobStatusResponse'
+              examples:
+                Rotatepages201Example:
+                  summary: Default rotatePages 201 response
+                  x-microcks-default: true
+                  value:
+                    status: in progress
+                    asset:
+                      assetID: '500123'
+                      downloadUri: https://www.example.com
+                      metadata:
+                        type: example_value
+                        size: 10
+                    error:
+                      code: example_value
+                      message: example_value
+                      status: 10
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /operation/insertpages:
+    post:
+      operationId: insertPages
+      summary: Adobe Insert Pages Into a Pdf
+      description: >-
+        Insert pages from one or more source PDFs into a base PDF at
+        specified positions.
+      tags:
+      - Insert Pages
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InsertPagesRequest'
+            examples:
+              InsertpagesRequestExample:
+                summary: Default insertPages request
+                x-microcks-default: true
+                value:
+                  baseAssetID: '500123'
+                  assetsToInsert:
+                  - assetID: '500123'
+                    insertAt: 10
+                    pageRanges:
+                    - {}
+      responses:
+        '201':
+          description: Job created successfully.
+          headers:
+            Location:
+              description: URL to poll for job status.
+              schema:
+                type: string
+                format: uri
+            x-request-id:
+              $ref: '#/components/headers/x-request-id'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobStatusResponse'
+              examples:
+                Insertpages201Example:
+                  summary: Default insertPages 201 response
+                  x-microcks-default: true
+                  value:
+                    status: in progress
+                    asset:
+                      assetID: '500123'
+                      downloadUri: https://www.example.com
+                      metadata:
+                        type: example_value
+                        size: 10
+                    error:
+                      code: example_value
+                      message: example_value
+                      status: 10
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /operation/replacepages:
+    post:
+      operationId: replacePages
+      summary: Adobe Replace Pages in a Pdf
+      description: >-
+        Replace specific pages in a base PDF with pages from another PDF
+        document.
+      tags:
+      - Replace Pages
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReplacePagesRequest'
+            examples:
+              ReplacepagesRequestExample:
+                summary: Default replacePages request
+                x-microcks-default: true
+                value:
+                  baseAssetID: '500123'
+                  assetsToReplace:
+                  - assetID: '500123'
+      responses:
+        '201':
+          description: Job created successfully.
+          headers:
+            Location:
+              description: URL to poll for job status.
+              schema:
+                type: string
+                format: uri
+            x-request-id:
+              $ref: '#/components/headers/x-request-id'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobStatusResponse'
+              examples:
+                Replacepages201Example:
+                  summary: Default replacePages 201 response
+                  x-microcks-default: true
+                  value:
+                    status: in progress
+                    asset:
+                      assetID: '500123'
+                      downloadUri: https://www.example.com
+                      metadata:
+                        type: example_value
+                        size: 10
+                    error:
+                      code: example_value
+                      message: example_value
+                      status: 10
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /operation/{operationType}/status/{jobID}:
+    get:
+      operationId: getJobStatus
+      summary: Adobe Get Job Status
+      description: >-
+        Poll for the status of an asynchronous PDF operation job. Returns
+        the current status (in progress, done, or failed) and, when complete,
+        the output asset information.
+      tags:
+      - Jobs
+      parameters:
+      - name: operationType
+        in: path
+        required: true
+        description: The type of operation that was submitted.
+        schema:
+          type: string
+          enum:
+          - createpdf
+          - exportpdf
+          - combinepdf
+          - splitpdf
+          - ocr
+          - compresspdf
+          - protectpdf
+          - removeprotection
+          - linearizepdf
+          - extractpdf
+          - accessibilitychecker
+          - documentgeneration
+          - pdfproperties
+          - reorderpages
+          - deletepages
+          - rotatepages
+          - insertpages
+          - replacepages
+        example: createpdf
+      - name: jobID
+        in: path
+        required: true
+        description: The unique identifier of the job returned when the operation was submitted.
+        schema:
+          type: string
+        example: '500123'
+      responses:
+        '200':
+          description: Job status returned successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobStatusResponse'
+              examples:
+                Getjobstatus200Example:
+                  summary: Default getJobStatus 200 response
+                  x-microcks-default: true
+                  value:
+                    status: in progress
+                    asset:
+                      assetID: '500123'
+                      downloadUri: https://www.example.com
+                      metadata:
+                        type: example_value
+                        size: 10
+                    error:
+                      code: example_value
+                      message: example_value
+                      status: 10
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: >-
+        OAuth 2.0 access token obtained via client credentials grant from
+        Adobe Identity Management Service (IMS). Generate credentials in
+        the Adobe Developer Console and exchange them for an access token
+        at https://ims-na1.adobelogin.com/ims/token/v3.
+
+  parameters:
+    assetID:
+      name: assetID
+      in: path
+      required: true
+      description: The unique identifier of the asset.
+      schema:
+        type: string
+
+  headers:
+    x-request-id:
+      description: A unique identifier for the request, useful for debugging and support.
+      schema:
+        type: string
+
+  responses:
+    BadRequest:
+      description: >-
+        The request was malformed or contained invalid parameters. Check
+        the error message for details.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: >-
+        Authentication failed. The access token is missing, expired, or
+        invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    TooManyRequests:
+      description: >-
+        Rate limit exceeded. Wait before retrying. Check Retry-After header
+        for guidance.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+
+  schemas:
+    AssetReference:
+      type: object
+      description: A reference to an uploaded asset.
+      required:
+      - assetID
+      properties:
+        assetID:
+          type: string
+          description: The unique identifier of the uploaded asset.
+          examples:
+          - urn:aaid:AS:UE1:23456789-abcd-1234-efgh-567890abcdef
+
+    PageRange:
+      type: object
+      description: Specifies a range of pages in a PDF document.
+      properties:
+        start:
+          type: integer
+          description: The starting page number (1-based).
+          minimum: 1
+          examples:
+          - 1
+        end:
+          type: integer
+          description: The ending page number (1-based, inclusive).
+          minimum: 1
+          examples:
+          - 5
+
+    AssetUploadRequest:
+      type: object
+      required:
+      - mediaType
+      properties:
+        mediaType:
+          type: string
+          description: The MIME type of the file being uploaded.
+          examples:
+          - application/pdf
+          - application/vnd.openxmlformats-officedocument.wordprocessingml.document
+          - image/jpeg
+
+    AssetUploadResponse:
+      type: object
+      properties:
+        assetID:
+          type: string
+          description: The unique identifier for the uploaded asset.
+          examples:
+          - urn:aaid:AS:UE1:23456789-abcd-1234-efgh-567890abcdef
+        uploadUri:
+          type: string
+          format: uri
+          description: >-
+            The pre-signed URI to upload the file content via HTTP PUT.
+            Valid for a limited time.
+
+          example: https://www.example.com
+    AssetDownloadResponse:
+      type: object
+      properties:
+        assetID:
+          type: string
+          description: The unique identifier of the asset.
+          example: '500123'
+        downloadUri:
+          type: string
+          format: uri
+          description: >-
+            The pre-signed URI to download the asset. Valid for a limited time.
+
+          example: https://www.example.com
+    CreatePDFRequest:
+      type: object
+      required:
+      - assetID
+      properties:
+        assetID:
+          type: string
+          description: The asset ID of the source file to convert to PDF.
+          example: '500123'
+        documentLanguage:
+          type: string
+          description: The language of the source document for OCR processing.
+          enum:
+          - en-US
+          - de-DE
+          - fr-FR
+          - ja-JP
+          - da-DK
+          - fi-FI
+          - it-IT
+          - ko-KR
+          - nb-NO
+          - nl-NL
+          - pt-BR
+          - es-ES
+          - sv-SE
+          - zh-CN
+          - zh-TW
+          default: en-US
+          example: en-US
+        createPDFFromDOCXOptions:
+          type: object
+          description: Options specific to DOCX to PDF conversion.
+          properties: {}
+          example: example_value
+        createPDFFromPPTXOptions:
+          type: object
+          description: Options specific to PPTX to PDF conversion.
+          properties: {}
+          example: example_value
+        createPDFFromXLSXOptions:
+          type: object
+          description: Options specific to XLSX to PDF conversion.
+          properties: {}
+          example: example_value
+        createPDFFromHTMLOptions:
+          type: object
+          description: Options specific to HTML to PDF conversion.
+          properties:
+            includeHeaderFooter:
+              type: boolean
+              description: Whether to include header and footer in the output.
+              default: true
+            pageLayout:
+              type: object
+              properties:
+                pageWidth:
+                  type: number
+                  description: Page width in inches.
+                  default: 8.5
+                pageHeight:
+                  type: number
+                  description: Page height in inches.
+                  default: 11
+
+          example: example_value
+    ExportPDFRequest:
+      type: object
+      required:
+      - assetID
+      - targetFormat
+      properties:
+        assetID:
+          type: string
+          description: The asset ID of the PDF to export.
+          example: '500123'
+        targetFormat:
+          type: string
+          description: The desired output format.
+          enum:
+          - docx
+          - doc
+          - pptx
+          - xlsx
+          - rtf
+          - jpeg
+          - png
+          example: docx
+        ocrLanguage:
+          type: string
+          description: The language for OCR processing during export.
+          enum:
+          - en-US
+          - de-DE
+          - fr-FR
+          - ja-JP
+          - da-DK
+          - fi-FI
+          - it-IT
+          - ko-KR
+          - nb-NO
+          - nl-NL
+          - pt-BR
+          - es-ES
+          - sv-SE
+          - zh-CN
+          - zh-TW
+          default: en-US
+
+          example: en-US
+    CombinePDFRequest:
+      type: object
+      required:
+      - assets
+      properties:
+        assets:
+          type: array
+          description: The list of PDF assets to combine, in order.
+          items:
+            type: object
+            required:
+            - assetID
+            properties:
+              assetID:
+                type: string
+                description: The asset ID of a source PDF.
+              pageRanges:
+                type: array
+                description: Optional page ranges to include from this asset.
+                items:
+                  $ref: '#/components/schemas/PageRange'
+
+          example: []
+    SplitPDFRequest:
+      type: object
+      required:
+      - assetID
+      properties:
+        assetID:
+          type: string
+          description: The asset ID of the PDF to split.
+          example: '500123'
+        splitOptions:
+          type: object
+          description: Options controlling how the PDF is split.
+          properties:
+            pageCount:
+              type: integer
+              description: Split into files with this many pages each.
+              minimum: 1
+            pageRanges:
+              type: array
+              description: Split by specific page ranges.
+              items:
+                $ref: '#/components/schemas/PageRange'
+            fileCount:
+              type: integer
+              description: Split into this many equal files.
+              minimum: 2
+
+          example: example_value
+    OCRRequest:
+      type: object
+      required:
+      - assetID
+      properties:
+        assetID:
+          type: string
+          description: The asset ID of the PDF to OCR.
+          example: '500123'
+        ocrLanguage:
+          type: string
+          description: The language for OCR processing.
+          enum:
+          - en-US
+          - de-DE
+          - fr-FR
+          - ja-JP
+          - da-DK
+          - fi-FI
+          - it-IT
+          - ko-KR
+          - nb-NO
+          - nl-NL
+          - pt-BR
+          - es-ES
+          - sv-SE
+          - zh-CN
+          - zh-TW
+          default: en-US
+          example: en-US
+        ocrType:
+          type: string
+          description: >-
+            The type of OCR output. SEARCHABLE_IMAGE produces a searchable
+            PDF maintaining visual fidelity. SEARCHABLE_IMAGE_EXACT preserves
+            the original image appearance precisely.
+          enum:
+          - SEARCHABLE_IMAGE
+          - SEARCHABLE_IMAGE_EXACT
+          default: SEARCHABLE_IMAGE
+
+          example: SEARCHABLE_IMAGE
+    CompressPDFRequest:
+      type: object
+      required:
+      - assetID
+      properties:
+        assetID:
+          type: string
+          description: The asset ID of the PDF to compress.
+          example: '500123'
+        compressionLevel:
+          type: string
+          description: >-
+            The desired compression level. Higher compression results in
+            smaller files but may reduce image quality.
+          enum:
+          - LOW
+          - MEDIUM
+          - HIGH
+          default: MEDIUM
+
+          example: LOW
+    ProtectPDFRequest:
+      type: object
+      required:
+      - assetID
+      - passwordProtection
+      properties:
+        assetID:
+          type: string
+          description: The asset ID of the PDF to protect.
+          example: '500123'
+        passwordProtection:
+          type: object
+          required:
+          - userPassword
+          properties:
+            userPassword:
+              type: string
+              description: Password required to open the PDF.
+            ownerPassword:
+              type: string
+              description: Password required to change permissions or remove protection.
+          example: example_value
+        encryptionAlgorithm:
+          type: string
+          description: The encryption algorithm to use.
+          enum:
+          - AES_128
+          - AES_256
+          default: AES_256
+          example: AES_128
+        permissions:
+          type: object
+          description: Permissions to set on the protected document.
+          properties:
+            printQuality:
+              type: string
+              description: Print permission level.
+              enum:
+              - NONE
+              - LOW_QUALITY
+              - HIGH_QUALITY
+              default: NONE
+            editContent:
+              type: boolean
+              description: Whether editing content is allowed.
+              default: false
+            copyContent:
+              type: boolean
+              description: Whether copying content is allowed.
+              default: false
+            editAnnotations:
+              type: boolean
+              description: Whether editing annotations is allowed.
+              default: false
+            fillForms:
+              type: boolean
+              description: Whether filling forms is allowed.
+              default: false
+            assembleDocument:
+              type: boolean
+              description: Whether assembling the document (inserting, rotating, deleting pages) is allowed.
+              default: false
+
+          example: example_value
+    RemoveProtectionRequest:
+      type: object
+      required:
+      - assetID
+      - password
+      properties:
+        assetID:
+          type: string
+          description: The asset ID of the protected PDF.
+          example: '500123'
+        password:
+          type: string
+          description: The password to unlock the PDF.
+
+          example: example_value
+    LinearizePDFRequest:
+      type: object
+      required:
+      - assetID
+      properties:
+        assetID:
+          type: string
+          description: The asset ID of the PDF to linearize.
+
+          example: '500123'
+    ExtractPDFRequest:
+      type: object
+      required:
+      - assetID
+      properties:
+        assetID:
+          type: string
+          description: The asset ID of the PDF to extract from.
+          example: '500123'
+        elementsToExtract:
+          type: array
+          description: The types of elements to extract from the PDF.
+          items:
+            type: string
+            enum:
+            - text
+            - tables
+          default:
+          - text
+          - tables
+          example: []
+        elementsToExtractRenditions:
+          type: array
+          description: Rendition types to generate for extracted elements.
+          items:
+            type: string
+            enum:
+            - tables
+            - figures
+          example: []
+        tableOutputFormat:
+          type: string
+          description: The output format for extracted tables.
+          enum:
+          - csv
+          - xlsx
+          default: csv
+          example: csv
+        getStylingInfo:
+          type: boolean
+          description: Whether to include styling information (font, color, etc.) in the extraction output.
+          default: false
+          example: true
+        addCharInfo:
+          type: boolean
+          description: Whether to include character-level bounding box information.
+          default: false
+
+          example: true
+    AutoTagRequest:
+      type: object
+      required:
+      - assetID
+      properties:
+        assetID:
+          type: string
+          description: The asset ID of the PDF to auto-tag.
+          example: '500123'
+        generateReport:
+          type: boolean
+          description: Whether to generate an accessibility tagging report.
+          default: false
+          example: true
+        shiftHeadings:
+          type: boolean
+          description: Whether to shift heading levels to start at H1.
+          default: false
+
+          example: true
+    DocumentGenerationRequest:
+      type: object
+      required:
+      - assetID
+      - jsonDataForMerge
+      - outputFormat
+      properties:
+        assetID:
+          type: string
+          description: The asset ID of the Word template (DOCX).
+          example: '500123'
+        jsonDataForMerge:
+          type: object
+          description: The JSON data to merge with the template.
+          additionalProperties: true
+          example: example_value
+        outputFormat:
+          type: string
+          description: The desired output format.
+          enum:
+          - pdf
+          - docx
+          default: pdf
+          example: pdf
+        fragments:
+          type: object
+          description: Reusable document fragments for template composition.
+          additionalProperties:
+            type: string
+
+          example: example_value
+    PDFPropertiesRequest:
+      type: object
+      required:
+      - assetID
+      properties:
+        assetID:
+          type: string
+          description: The asset ID of the PDF to inspect.
+          example: '500123'
+        includePageLevelProperties:
+          type: boolean
+          description: Whether to include page-level property details.
+          default: false
+
+          example: true
+    ReorderPagesRequest:
+      type: object
+      required:
+      - assetID
+      - pagesOrder
+      properties:
+        assetID:
+          type: string
+          description: The asset ID of the PDF to reorder.
+          example: '500123'
+        pagesOrder:
+          type: array
+          description: The desired page order as an array of 1-based page numbers.
+          items:
+            type: integer
+            minimum: 1
+
+          example: []
+    DeletePagesRequest:
+      type: object
+      required:
+      - assetID
+      - pageRanges
+      properties:
+        assetID:
+          type: string
+          description: The asset ID of the PDF from which to delete pages.
+          example: '500123'
+        pageRanges:
+          type: array
+          description: Page ranges to delete.
+          items:
+            $ref: '#/components/schemas/PageRange'
+
+          example: []
+    RotatePagesRequest:
+      type: object
+      required:
+      - assetID
+      - pageActions
+      properties:
+        assetID:
+          type: string
+          description: The asset ID of the PDF containing pages to rotate.
+          example: '500123'
+        pageActions:
+          type: array
+          description: Rotation actions to apply to page ranges.
+          items:
+            type: object
+            required:
+            - pageRanges
+            - rotation
+            properties:
+              pageRanges:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PageRange'
+              rotation:
+                type: integer
+                description: The rotation angle in degrees (clockwise).
+                enum:
+                - 90
+                - 180
+                - 270
+
+          example: []
+    InsertPagesRequest:
+      type: object
+      required:
+      - baseAssetID
+      - assetsToInsert
+      properties:
+        baseAssetID:
+          type: string
+          description: The asset ID of the base PDF.
+          example: '500123'
+        assetsToInsert:
+          type: array
+          description: Assets and positions for insertion.
+          items:
+            type: object
+            required:
+            - assetID
+            - insertAt
+            properties:
+              assetID:
+                type: string
+                description: The asset ID of the PDF to insert.
+              insertAt:
+                type: integer
+                description: The page number in the base PDF after which to insert (1-based).
+                minimum: 1
+              pageRanges:
+                type: array
+                description: Optional page ranges to include from the insert asset.
+                items:
+                  $ref: '#/components/schemas/PageRange'
+
+          example: []
+    ReplacePagesRequest:
+      type: object
+      required:
+      - baseAssetID
+      - assetsToReplace
+      properties:
+        baseAssetID:
+          type: string
+          description: The asset ID of the base PDF.
+          example: '500123'
+        assetsToReplace:
+          type: array
+          description: Assets and page specifications for replacement.
+          items:
+            type: object
+            required:
+            - assetID
+            - basePagesRange
+            properties:
+              assetID:
+                type: string
+                description: The asset ID of the replacement PDF.
+              basePagesRange:
+                $ref: '#/components/schemas/PageRange'
+              assetPagesRange:
+                $ref: '#/components/schemas/PageRange'
+
+          example: []
+    JobStatusResponse:
+      type: object
+      description: The status and result of an asynchronous PDF operation job.
+      properties:
+        status:
+          type: string
+          description: The current status of the job.
+          enum:
+          - in progress
+          - done
+          - failed
+          example: in progress
+        asset:
+          type: object
+          description: The output asset information, available when status is done.
+          properties:
+            assetID:
+              type: string
+              description: The asset ID of the output file.
+            downloadUri:
+              type: string
+              format: uri
+              description: The pre-signed download URI for the output file.
+            metadata:
+              type: object
+              description: Metadata about the output asset.
+              properties:
+                type:
+                  type: string
+                  description: The MIME type of the output file.
+                size:
+                  type: integer
+                  description: The size of the output file in bytes.
+          example: example_value
+        error:
+          type: object
+          description: Error information, available when status is failed.
+          properties:
+            code:
+              type: string
+              description: A machine-readable error code.
+            message:
+              type: string
+              description: A human-readable error message.
+            status:
+              type: integer
+              description: The HTTP status code associated with the error.
+
+          example: example_value
+    ErrorResponse:
+      type: object
+      description: Error response returned when a request fails.
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+              description: A machine-readable error code.
+              examples:
+              - INVALID_ASSET_ID
+              - BAD_REQUEST
+              - UNAUTHORIZED
+              - RATE_LIMIT_EXCEEDED
+            message:
+              type: string
+              description: A human-readable error message.
+            status:
+              type: integer
+              description: The HTTP status code.
+              examples:
+              - 400
+              - 401
+              - 404
+              - 429
+          example: example_value
