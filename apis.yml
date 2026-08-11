@@ -754,7 +754,7 @@ common:
 - type: Login
   url: https://developer.adobe.com/console/
 - type: OpenAPI
-  url: openapi/adobe-pdf-services-api-openapi.yml
+  url: openapi/_original/adobe-pdf-services-api-openapi.yml
 - type: JSONSchema
   url: json-schema/adobe-pdf-services-asset-upload-request-schema.json
 - type: JSONLD
