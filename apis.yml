@@ -33,7 +33,7 @@ description: Adobe provides APIs and developer resources for its creative, docum
   platforms. Developers can integrate with PDF services, Creative Cloud, generative AI (Firefly), analytics,
   e-commerce, e-signatures, and many other Adobe products and services.
 created: '2024-01-01'
-modified: '2026-05-19'
+modified: '2026-08-13'
 specificationVersion: '0.19'
 apis:
 - aid: adobe:adobe-pdf-extract-api
@@ -669,7 +669,114 @@ apis:
     url: json-ld/adobe-pdf-services-context.jsonld
   - type: GraphQL
     url: graphql/adobe-graphql.md
+- aid: adobe:adobe-substance-3d-api
+  name: Adobe Substance 3D API
+  description: Generate 3D object composites, render 3D scenes, and run Substance 3D material and
+    model operations through the Firefly Services REST API.
+  humanURL: https://developer.adobe.com/firefly-services/docs/s3dapi/
+  baseURL: https://s3d.adobe.io
+  tags:
+  - 3D
+  - Firefly Services
+  - Rendering
+  properties:
+  - type: OpenAPI
+    url: openapi/_original/adobe-substance-3d-api-openapi.yml
+  - type: Documentation
+    url: https://developer.adobe.com/firefly-services/docs/s3dapi/
+  - type: SourceCode
+    url: https://github.com/AdobeDocs/ffs-s3d-api
+- aid: adobe:adobe-cc-libraries-api
+  name: Adobe Creative Cloud Libraries API
+  description: Read and manage Creative Cloud Libraries, their elements, representations, bookmarks,
+    and public library shares on behalf of a Creative Cloud user.
+  humanURL: https://developer.adobe.com/creative-cloud-libraries/docs
+  baseURL: https://cc-libraries.adobe.io
+  tags:
+  - Assets
+  - Creative Cloud
+  - Libraries
+  properties:
+  - type: OpenAPI
+    url: openapi/_original/adobe-cc-libraries-api-openapi.json
+  - type: Documentation
+    url: https://developer.adobe.com/creative-cloud-libraries/docs
+  - type: SourceCode
+    url: https://github.com/AdobeDocs/cc-libraries-api-spec
 common:
+- type: Packages
+  url: packages/adobe-packages.yml
+- type: SDKs
+  url: packages/adobe-packages.yml
+  name: Adobe first-party client libraries (Node, Python, Java, .NET, App Builder, Express)
+- type: WellKnown
+  url: well-known/adobe-well-known.yml
+- type: SecurityTxt
+  url: well-known/adobe-security.txt
+- type: LLMsTxt
+  url: llms/adobe-llms.txt
+  name: Adobe Experience League llms.txt (v1.8)
+- type: MCPServer
+  url: mcp/adobe-mcp.yml
+  name: Adobe MCP servers (AEM, Analytics, CJA, Creative Cloud, Express)
+- type: ToolCrosswalk
+  url: mcp/adobe-tool-crosswalk.yml
+- type: AgentSkill
+  url: skills/_index.yml
+  name: Adobe Skills for AI Coding Agents (160 published skills)
+- type: Conformance
+  url: conformance/adobe-conformance.yml
+- type: Compliance
+  url: https://www.adobe.com/trust/compliance/compliance-list.html
+  name: Adobe compliance certifications (SOC 2, ISO 27001/27017/27018, PCI DSS, HIPAA, FedRAMP)
+- type: TrustCenter
+  url: security/adobe-trust-center.yml
+- type: Security
+  url: https://helpx.adobe.com/security.html/security/policy.ug.html
+  name: Adobe vulnerability disclosure policy
+- type: ErrorCatalog
+  url: errors/adobe-problem-types.yml
+- type: Lifecycle
+  url: lifecycle/adobe-lifecycle.yml
+- type: Deprecation
+  url: https://developer.adobe.com/document-services/docs/overview/pdf-services-api/policies/
+  name: Adobe PDF Services version and support policy (12-month deprecation notice)
+- type: Conventions
+  url: conventions/adobe-conventions.yml
+- type: DataModel
+  url: data-model/adobe-data-model.yml
+- type: Overlay
+  url: overlays/adobe-pdf-services-overlay.yaml
+- type: Webhooks
+  url: asyncapi/adobe-pdf-services-webhooks.yml
+  name: Adobe PDF Services callback notifiers + Adobe I/O Events
+- type: Sandbox
+  url: sandbox/adobe-sandbox.yml
+- type: ChangeLog
+  url: changelog/adobe-changelog.yml
+  name: Adobe PDF Services release notes
+- type: CLI
+  url: cli/adobe-cli.yml
+  name: Adobe I/O Extensible CLI (aio) and AEM CLI
+- type: Components
+  url: components/adobe-components.yml
+  name: PDF Embed, React Spectrum, Spectrum Web Components, Express Add-on SDK
+- type: Plans
+  url: plans/adobe-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/adobe-rate-limits.yml
+  name: Adobe PDF Services published rate limits and usage limits
+- type: FinOps
+  url: finops/adobe-finops.yml
+- type: OpenAPI
+  url: openapi/_original/adobe-pdf-services-api-openapi-official.json
+  name: Adobe PDF Services API (official, 49 operations)
+- type: OpenAPI
+  url: openapi/_original/adobe-substance-3d-api-openapi.yml
+  name: Adobe Substance 3D API - Firefly Services (official)
+- type: OpenAPI
+  url: openapi/_original/adobe-cc-libraries-api-openapi.json
+  name: Adobe Creative Cloud Libraries API (official, Swagger 2.0)
 - type: AgenticAccess
   url: agentic-access/adobe-agentic-access.yml
 - type: VulnerabilityDisclosure
@@ -729,6 +836,19 @@ common:
   url: https://www.linkedin.com/company/adobe
 - type: Portal
   url: https://developer.adobe.com/
+- type: DeveloperPortal
+  url: https://developer.adobe.com/
+- type: Documentation
+  url: https://developer.adobe.com/apis/
+  name: Adobe Developer API catalog
+- type: APIReference
+  url: https://developer.adobe.com/document-services/docs/apis/
+  name: Adobe PDF Services API reference
+- type: Pricing
+  url: https://developer.adobe.com/document-services/pricing/main/
+  name: Adobe Document Services API pricing
+- type: Postman
+  url: https://www.postman.com/kinlaneapi/adobe/overview
 - type: Console
   url: https://developer.adobe.com/console/
 - type: Authentication
@@ -797,8 +917,8 @@ common:
   - Shopify and Magento marketplaces
   - Google Analytics and Tag Manager
   - Slack and Microsoft Teams notifications
-- name: MCP Server
-  url: https://blog.developer.adobe.com/en/publish/2025/09/introducing-the-adobe-express-add-on-dev-mcp-server-beta
+- name: Adobe Express Developer MCP Server (local stdio)
+  url: https://developer.adobe.com/express/add-ons/docs/guides/getting-started/local-development/mcp-server
   type: MCPServer
 - type: RateLimits
   url: https://developer.adobe.com/document-services/docs/overview/limits/
@@ -809,3 +929,8 @@ common:
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
+x-enrichment:
+  date: '2026-08-13'
+  status: enriched
+  artifacts_added: 22
+  pass: local-v1
