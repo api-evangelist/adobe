@@ -1,0 +1,39 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Adobe PDF Services Split PDF API",
+    "version": "4.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Split PDF",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Adobe Split a Pdf",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://pdf-services-ue1.adobe.io/operation/splitpdf",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Split a PDF document into multiple smaller PDF files. You can split by page count, page ranges, or number of output files."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

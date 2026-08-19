@@ -1,0 +1,39 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Adobe PDF Services Reorder Pages API",
+    "version": "4.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Reorder Pages",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Adobe Reorder Pages in a Pdf",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://pdf-services-ue1.adobe.io/operation/reorderpages",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Rearrange the order of pages within a PDF document by specifying the desired page sequence."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

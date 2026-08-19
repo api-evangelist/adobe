@@ -1,0 +1,80 @@
+generated: '2026-08-13'
+method: searched
+source: >-
+  https://developer.adobe.com/app-builder/docs/guides/runtime_guides/tools/cli-install and
+  https://www.npmjs.com/package/@adobe/aio-cli (registry metadata read 2026-08-13)
+description: >-
+  Adobe ships two first-party command-line tools. `aio` (the Adobe I/O Extensible CLI) is the
+  platform CLI for App Builder, I/O Runtime, I/O Events and Adobe Developer Console projects.
+  `aem` is the Edge Delivery Services development CLI. Neither is a client for the PDF Services
+  REST API — Adobe ships no CLI for Acrobat Services.
+
+clis:
+- name: aio
+  display_name: Adobe I/O Extensible CLI
+  package: "@adobe/aio-cli"
+  registry: npm
+  version: 11.1.2
+  published: '2026-06-03'
+  url: https://www.npmjs.com/package/@adobe/aio-cli
+  docs: https://developer.adobe.com/app-builder/docs/guides/runtime_guides/tools/cli-install
+  official: true
+  install:
+  - npm install -g @adobe/aio-cli
+  architecture: oclif plugin-based — the core CLI discovers and installs command plugins
+  command_groups:
+  - group: app
+    purpose: Scaffold, run, test, build, deploy and undeploy App Builder applications
+  - group: auth
+    purpose: Log in and out of Adobe IMS; manage tokens
+  - group: console
+    purpose: Select and manage Adobe Developer Console organisations, projects and workspaces
+  - group: runtime
+    purpose: Manage Adobe I/O Runtime actions, triggers, rules, packages, activations and logs
+  - group: event
+    purpose: Manage Adobe I/O Events providers, event metadata and registrations
+  - group: config
+    purpose: Read and write CLI configuration
+  - group: plugins
+    purpose: Install, link and discover CLI plugins
+  - group: telemetry
+    purpose: Opt in to or out of usage telemetry
+  key_flows:
+  - aio login — authenticate against Adobe IMS
+  - aio console org/project/workspace select — bind the local project to a Developer Console workspace
+  - aio app init / aio app run / aio app deploy — the App Builder inner loop
+  - aio runtime activation logs — tail serverless action logs
+  - aio event registration create — subscribe to Adobe I/O Events
+  agent_skills:
+    note: >-
+      Adobe publishes an `app-builder` Agent Skills plugin (10 skills incl. appbuilder-project-init,
+      appbuilder-cicd-pipeline, appbuilder-testing) that drives this CLI. See skills/_index.yml.
+
+- name: aem
+  display_name: AEM CLI (Edge Delivery Services)
+  package: "@adobe/aem-cli"
+  registry: npm
+  url: https://www.npmjs.com/package/@adobe/aem-cli
+  docs: https://www.aem.live/docs/
+  official: true
+  install:
+  - npm install -g @adobe/aem-cli
+  command_groups:
+  - group: up
+    purpose: Run the local Edge Delivery Services development server with proxying and TLS
+  - group: import
+    purpose: Import existing web pages into EDS block format
+  - group: content
+    purpose: Sync content with da.live
+  supersedes: "@adobe/helix-cli"
+  agent_skills:
+    note: >-
+      Adobe publishes an `aem-cli` Agent Skill in adobe/skills covering install, `aem up`,
+      .env/TLS/proxy setup, `aem import`, `aem content` sync, troubleshooting, and migration from
+      @adobe/helix-cli.
+
+not_shipped:
+- product: Adobe PDF Services / Acrobat Services
+  note: >-
+    No first-party CLI. Adobe ships four language SDKs (see packages/adobe-packages.yml) and a
+    Postman collection, but nothing callable from a shell.

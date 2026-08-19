@@ -1,0 +1,39 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Adobe PDF Services PDF Properties API",
+    "version": "4.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "PDF Properties",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Adobe Get Pdf Properties",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://pdf-services-ue1.adobe.io/operation/pdfproperties",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Retrieve metadata and properties from a PDF document, including page count, page size, whether the document is encrypted, font information, and PDF/A compliance status."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

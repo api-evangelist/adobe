@@ -1,0 +1,39 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Adobe PDF Services Extract PDF API",
+    "version": "4.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Extract PDF",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Adobe Extract Content From a Pdf",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://pdf-services-ue1.adobe.io/operation/extractpdf",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Extract text, tables, and figures from a PDF document into structured JSON output. Uses Adobe Sensei AI technology to identify and extract document structure elements. Returns a ZIP file containing the structured JSON and optionally extracted tables as CSV and figures as images."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

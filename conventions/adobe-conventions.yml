@@ -1,0 +1,127 @@
+generated: '2026-08-13'
+method: searched
+source: >-
+  https://developer.adobe.com/document-services/docs/overview/pdf-services-api/howtos/service-region-configuration-for-apis/,
+  https://developer.adobe.com/document-services/docs/overview/pdf-services-api/howtos/webhook-notification/,
+  https://developer.adobe.com/document-services/docs/overview/pdf-services-api/policies/,
+  https://developer.adobe.com/document-services/docs/overview/limits/ — cross-derived from
+  openapi/_original/adobe-pdf-services-api-openapi-official.json (49 operations)
+scope: >-
+  Adobe PDF Services / Acrobat Services API. Adobe's other API families (Analytics 2.0, Firefly,
+  Experience Platform, Acrobat Sign, Commerce, Marketo, Workfront) each publish their own
+  conventions; only PDF Services has a public machine-readable contract to derive from.
+
+authentication:
+  style: bearer + api-key (both required together)
+  headers:
+  - name: Authorization
+    value: 'Bearer <IMS access token>'
+    required: true
+    operations: 48
+  - name: x-api-key
+    value: '<client_id from Adobe Developer Console>'
+    required: true
+    operations: 48
+  token_endpoint: POST /token
+  token_operation_id: authentication.generatetoken
+  issuer: Adobe Identity Management Services (IMS)
+  grant: OAuth 2.0 Server-to-Server (client credentials)
+  docs: https://developer.adobe.com/developer-console/docs/guides/authentication/
+  note: >-
+    The API key is not redundant with the token — omitting x-api-key returns 401 even with a valid
+    bearer token. See authentication/adobe-authentication.yml.
+
+idempotency:
+  supported: false
+  header: null
+  note: >-
+    Adobe PDF Services publishes NO idempotency key and no request-deduplication contract. Because
+    billing is per Document Transaction on the initial endpoint request, a blind retry of a submit
+    is a second billable job. The only retry-safety handle is the client-suppliable `x-request-id`
+    correlation header, which Adobe echoes but does not deduplicate on.
+  guidance: >-
+    Retry only 5xx and 429/TOO_MANY_REQUESTS. Never retry a submit after an unclear timeout without
+    first checking job status by the `location` URI returned on the 201.
+
+asynchrony:
+  model: submit-then-poll
+  submit_response: 'HTTP 201, empty body'
+  submit_headers: [location, x-request-id]
+  poll: 'GET {location} -> /operation/{operation}/{jobID}/status'
+  terminal_states: [done, failed]
+  status_operations: 22
+  note: >-
+    Every operation in the API is asynchronous. There is no synchronous variant. The Create PDF
+    status operationId is the bare `pdfoperations.jobstatus`; every other operation follows
+    `pdfoperations.<operation>.jobstatus`.
+
+pagination:
+  supported: false
+  note: >-
+    No collection endpoints. The API is job-oriented — assets and jobs are addressed by id, never
+    listed — so there is no pagination surface to document.
+
+request_tracing:
+  header: x-request-id
+  direction: bidirectional
+  echoed: true
+  present_on: all responses, all 49 operations
+  description: >-
+    "A unique value to identify this request. If x-request-id is specified in the POST request,
+    this value will be the same as the input." (OpenAPI response header description)
+
+regions:
+  model: host-per-region
+  default: United States
+  hosts:
+  - {code: ue1, name: United States (default), host: 'https://pdf-services-ue1.adobe.io'}
+  - {code: ew1, name: Europe, host: 'https://pdf-services-ew1.adobe.io'}
+  pattern: 'https://pdf-services-{regionCode}.adobe.io'
+  note: >-
+    Region is selected by hostname, not by header or path. Assets are region-scoped — an asset
+    uploaded to ue1 is not addressable from ew1. Region configuration requires a purchased plan;
+    Free Tier processes in the United States.
+
+versioning:
+  scheme: per-operation assetId, not a URL or header version
+  docs: https://developer.adobe.com/document-services/docs/overview/pdf-services-api/policies/
+  description: >-
+    "Generally, APIs will be enhanced while keeping them backward compatible. If its functionality
+    can't be enhanced without breaking changes, then its new version will be released with its own
+    unique assetId." There is no /v1/ path segment and no version header on the REST surface.
+  sdk_scheme: semver (Major.Minor.Patch)
+
+error_envelope:
+  format: vendor
+  rfc9457: false
+  shape: '{"error": {"code": "<MNEMONIC>", "message": "<text>"}}'
+  detail: errors/adobe-problem-types.yml
+
+rate_limit_signalling:
+  status_on_exhaustion: 429
+  response_headers_published: false
+  note: >-
+    Adobe publishes the NUMBERS (25 RPM Free Tier / 100 RPM Enterprise) but no runtime signal — no
+    RateLimit-*, no X-RateLimit-*, no Retry-After is declared on the 429 in the OpenAPI or the
+    limits documentation. An agent cannot learn its remaining budget from a response; it must
+    distinguish the two 429 codes instead (TOO_MANY_REQUESTS = back off; INSUFFICIENT_QUOTA = stop).
+  detail: rate-limits/adobe-rate-limits.yml
+
+event_delivery:
+  model: webhook callback notifier
+  opt_in_field: notifiers[]
+  detail: asyncapi/adobe-pdf-services-webhooks.yml
+
+metadata_and_expansion:
+  supported: false
+  note: >-
+    No `metadata` bag, no field expansion, no sparse fieldsets. Asset metadata is a dedicated
+    operation (asset.metadata) rather than an expansion parameter.
+
+cross_links:
+  errors: errors/adobe-problem-types.yml
+  lifecycle: lifecycle/adobe-lifecycle.yml
+  authentication: authentication/adobe-authentication.yml
+  rate_limits: rate-limits/adobe-rate-limits.yml
+  data_model: data-model/adobe-data-model.yml
+  sandbox: sandbox/adobe-sandbox.yml

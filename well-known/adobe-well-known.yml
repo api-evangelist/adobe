@@ -1,0 +1,147 @@
+generated: '2026-08-13'
+method: probed
+source: live GET of /.well-known/* across every apis.yml baseURL host, every OpenAPI servers[] host and the docs host
+note: >-
+  Only www.adobe.com serves a real /.well-known document (a PGP-signed RFC 9116 security.txt).
+  developer.adobe.com returned HTTP 200 for EVERY /.well-known/* path probed, but every body was
+  the Gatsby single-page-app HTML shell (content-type text/html, `<!DOCTYPE html>`), not a document —
+  recorded as a miss, not a hit. Every adobe.io API host 404s the whole discovery surface.
+hosts_probed:
+- www.adobe.com
+- developer.adobe.com
+- pdf-services.adobe.io
+- api.adobesign.com
+- analytics.adobe.io
+- firefly-api.adobe.io
+- platform.adobe.io
+- stock.adobe.io
+- usermanagement.adobe.io
+- mcp.adobeaemcloud.com
+documents:
+- host: https://www.adobe.com
+  path: /.well-known/security.txt
+  status: 200
+  content_type: text/plain
+  file: adobe-security.txt
+  real_document: true
+- host: https://www.adobe.com
+  path: /.well-known/openid-configuration
+  status: 404
+- host: https://www.adobe.com
+  path: /.well-known/oauth-authorization-server
+  status: 404
+- host: https://www.adobe.com
+  path: /.well-known/api-catalog
+  status: 404
+- host: https://www.adobe.com
+  path: /.well-known/ai-plugin.json
+  status: 404
+- host: https://www.adobe.com
+  path: /.well-known/agent-card.json
+  status: 404
+- host: https://www.adobe.com
+  path: /.well-known/agent.json
+  status: 404
+- host: https://developer.adobe.com
+  path: /.well-known/security.txt
+  status: 200
+  content_type: text/html
+  real_document: false
+  note: SPA catch-all — body is the Gatsby HTML shell, not a security.txt
+- host: https://developer.adobe.com
+  path: /.well-known/openid-configuration
+  status: 200
+  content_type: text/html
+  real_document: false
+  note: SPA catch-all HTML shell
+- host: https://developer.adobe.com
+  path: /.well-known/oauth-authorization-server
+  status: 200
+  content_type: text/html
+  real_document: false
+  note: SPA catch-all HTML shell
+- host: https://developer.adobe.com
+  path: /.well-known/api-catalog
+  status: 200
+  content_type: text/html
+  real_document: false
+  note: SPA catch-all HTML shell
+- host: https://developer.adobe.com
+  path: /.well-known/ai-plugin.json
+  status: 200
+  content_type: text/html
+  real_document: false
+  note: SPA catch-all HTML shell
+- host: https://developer.adobe.com
+  path: /.well-known/agent-card.json
+  status: 200
+  content_type: text/html
+  real_document: false
+  note: SPA catch-all HTML shell — NOT an A2A agent card; no a2a/ artifact was written
+- host: https://developer.adobe.com
+  path: /.well-known/agent.json
+  status: 200
+  content_type: text/html
+  real_document: false
+  note: SPA catch-all HTML shell — NOT an A2A agent card
+- host: https://pdf-services.adobe.io
+  path: /.well-known/security.txt
+  status: 404
+- host: https://pdf-services.adobe.io
+  path: /.well-known/openid-configuration
+  status: 404
+- host: https://pdf-services.adobe.io
+  path: /.well-known/oauth-authorization-server
+  status: 404
+- host: https://pdf-services.adobe.io
+  path: /.well-known/api-catalog
+  status: 404
+- host: https://pdf-services.adobe.io
+  path: /.well-known/ai-plugin.json
+  status: 404
+- host: https://api.adobesign.com
+  path: /.well-known/security.txt
+  status: 404
+- host: https://analytics.adobe.io
+  path: /.well-known/security.txt
+  status: 404
+- host: https://firefly-api.adobe.io
+  path: /.well-known/security.txt
+  status: 404
+- host: https://platform.adobe.io
+  path: /.well-known/security.txt
+  status: 404
+- host: https://stock.adobe.io
+  path: /.well-known/security.txt
+  status: 404
+- host: https://usermanagement.adobe.io
+  path: /.well-known/security.txt
+  status: 404
+- host: https://mcp.adobeaemcloud.com
+  path: /.well-known/oauth-authorization-server
+  status: 403
+- host: https://mcp.adobeaemcloud.com
+  path: /.well-known/oauth-protected-resource
+  status: 200
+  content_type: text/html
+  real_document: false
+  note: >-
+    HTML shell titled "Adobe Experience Manager APIs" — not an RFC 9728 protected-resource
+    metadata document. The AEM MCP servers answer tools/list with HTTP 401 and no
+    WWW-Authenticate discovery document was served anonymously.
+- host: https://mcp.adobeaemcloud.com
+  path: /.well-known/agent-card.json
+  status: 403
+security_txt:
+  served_by: https://www.adobe.com/.well-known/security.txt
+  canonical: https://www.adobe.com/.well-known/security.txt
+  expires: '2027-07-30T01:00:00.000Z'
+  pgp_signed: true
+  contact:
+  - https://hackerone.com/adobe
+  - psirt@adobe.com
+  policy: https://helpx.adobe.com/security.html/security/policy.ug.html
+  acknowledgments: https://helpx.adobe.com/security.html
+  encryption: https://helpx.adobe.com/security/key.html
+  preferred_languages: en, ro, hi
+  hiring: https://www.adobe.com/careers.html

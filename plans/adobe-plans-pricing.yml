@@ -4,8 +4,18 @@ schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main
 provider: Adobe
 providerId: adobe
 created: '2026-05-04'
-modified: '2026-05-05'
-reconciled: false
+# Provenance stamped 2026-08-11: this artifact was written by the API Evangelist
+# bulk sweep dated 2026-05-04, not harvested from the provider. See roadmap#35.
+# 2026-08-13 enrichment pass: the Adobe PDF Services FREE TIER was verified verbatim against
+# Adobe's own licensing and limits documentation and is now a first-class plan below with a
+# real quota. The other four entries remain archetypes with per-plan `method` markers — Adobe
+# publishes no machine-readable price for them and every Experience Cloud SKU is contact-sales.
+method: searched
+generated: '2026-08-13'
+source: https://developer.adobe.com/document-services/docs/overview/pdf-services-api/dcserviceslicensing/
+modified: '2026-08-13'
+reconciled: true
+plan_count: 5
 tags:
   - Analytics
   - Creative Cloud
@@ -38,9 +48,45 @@ sources:
   - https://developer.adobe.com/firefly-services/
   - https://business.adobe.com/products/
 plans:
+  - id: adobe-pdf-services-free-tier
+    name: PDF Services API Free Tier
+    type: free
+    method: searched
+    source: https://developer.adobe.com/document-services/docs/overview/pdf-services-api/dcserviceslicensing/
+    price: 0
+    currency: USD
+    billingPeriod: month
+    description: >-
+      "The PDF Services API has a Free Tier so that you can take a deep dive into its cool features
+      at zero cost. Free Tier users get free credentials that enable the processing of 500 Document
+      Transactions per month." Quota resets on the first of each month. No credit card required;
+      credentials are minted in the Adobe Developer Console.
+    entries:
+      - label: Included Document Transactions
+        name: free_document_transactions
+        type: included
+        metric: Document Transaction
+        limit: 500
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: 0
+        userMultiplied: false
+    limits:
+      requests_per_minute: 25
+      document_transactions_per_month: 500
+      max_file_size: 100MB
+      region: United States only (region configuration requires a paid plan)
+    overage:
+      allowed: false
+      behaviour: >-
+        HTTP 429 with error code INSUFFICIENT_QUOTA. Not transient — the quota does not resume
+        until the monthly reset.
+    signup: https://acrobatservices.adobe.com/dc-integration-creation-app-cdn/main.html
   - id: adobe-creative-cloud-subscription
     name: Creative Cloud Subscription
     type: subscription
+    method: generated
     description: >-
       Per-seat monthly/annual subscription to Creative Cloud apps. Tiers include
       Photography, single-app, All Apps, Teams and Enterprise. See per-product
@@ -64,6 +110,7 @@ plans:
   - id: adobe-document-services-api
     name: Document Services API (PDF Services / Acrobat Sign)
     type: usage-based
+    method: generated
     description: >-
       Per-document-transaction pricing for Adobe PDF Services API and Acrobat
       Sign API. Includes a free tier; paid usage is metered per transaction.
@@ -85,6 +132,7 @@ plans:
   - id: adobe-firefly-services
     name: Firefly Services
     type: usage-based
+    method: generated
     description: >-
       Generative-credit-metered access to Adobe Firefly image, vector, and
       design APIs. Credits are bundled with Creative Cloud plans and sold
@@ -107,6 +155,7 @@ plans:
   - id: adobe-experience-cloud-enterprise
     name: Experience Cloud (Enterprise)
     type: enterprise
+    method: generated
     description: >-
       Adobe Experience Cloud products (Analytics, Campaign, Experience Manager,
       Real-Time CDP, Target, Marketo Engage, Workfront, Commerce) are sold via

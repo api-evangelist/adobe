@@ -1,0 +1,118 @@
+generated: '2026-08-13'
+method: derived
+source: >-
+  mcp/adobe-mcp.yml (eight probed MCP endpoints) +
+  openapi/_original/adobe-pdf-services-api-openapi-official.json (49 operations) +
+  graphql/adobe-graphql.md
+description: >-
+  Adobe's MCP surface and Adobe's OpenAPI surface do not overlap. This crosswalk records that
+  divergence honestly rather than manufacturing bindings that do not exist.
+
+surfaces:
+  openapi:
+    file: openapi/_original/adobe-pdf-services-api-openapi-official.json
+    product: Adobe PDF Services API (Acrobat Services)
+    operations: 49
+    gated: false
+    note: >-
+      Harvested verbatim from AdobeDocs/pdfservices-api-documentation (static/openapi.json), the
+      spec developer.adobe.com renders through its Redocly API block. servers[] are
+      pdf-services-ue1.adobe.io / pdf-services-ew1.adobe.io.
+  mcp:
+    endpoints:
+    - https://mcp.adobeaemcloud.com/adobe/mcp/content
+    - https://mcp.adobeaemcloud.com/adobe/mcp/content-readonly
+    - https://mcp.adobeaemcloud.com/adobe/mcp/cloudmanager
+    - https://mcp.adobeaemcloud.com/adobe/mcp/experience-governance
+    - https://aa-mcp.adobe.io/mcp
+    - https://cja-mcp.adobe.io/mcp
+    - https://adobe-creativity.adobe.io/mcp
+    - https://run-workflow.adobe.io/mcp
+    gated: true
+    note: >-
+      tools/list returns 401 (403 on adobe-creativity) to an anonymous caller. Tool names and
+      inputSchemas are therefore NOT known and none are invented below.
+  graphql:
+    file: graphql/adobe-graphql.md
+    endpoints:
+    - "https://<aem-host>/content/_cq_graphql/<project>/endpoint.json (AEM Headless, per-tenant)"
+    - "https://<commerce-host>/graphql (Adobe Commerce, per-store)"
+    gated: true
+    note: >-
+      Both GraphQL surfaces are per-tenant/per-customer hosts, not an Adobe-operated public
+      endpoint, so anonymous introspection is not possible against any Adobe-owned domain.
+
+crosswalk: []
+
+mcp_only:
+- tool: '(unknown — AEM content server tool set)'
+  server: https://mcp.adobeaemcloud.com/adobe/mcp/content
+  reason: >-
+    Backed by AEM as a Cloud Service, whose authoring API is per-tenant and has no entry in this
+    repo's openapi/. Documented capabilities (page and content-fragment CRUD, asset import and
+    search) have no counterpart in the PDF Services OpenAPI.
+- tool: '(unknown — Cloud Manager tool set)'
+  server: https://mcp.adobeaemcloud.com/adobe/mcp/cloudmanager
+  reason: Backed by the Cloud Manager API; no OpenAPI captured in this repo.
+- tool: '(unknown — Experience Governance tool set)'
+  server: https://mcp.adobeaemcloud.com/adobe/mcp/experience-governance
+  reason: Brand-governance evaluation; no public REST contract captured.
+- tool: '(unknown — Adobe Analytics tool set)'
+  server: https://aa-mcp.adobe.io/mcp
+  reason: >-
+    Backed by the Adobe Analytics 2.0 API (analytics.adobe.io), which is documented at
+    developer.adobe.com/analytics-apis/docs/2.0/ but has no machine-readable spec in this repo.
+- tool: '(unknown — Customer Journey Analytics tool set)'
+  server: https://cja-mcp.adobe.io/mcp
+  reason: Backed by the CJA API; no machine-readable spec captured.
+- tool: '(unknown — Creative Cloud tool set)'
+  server: https://adobe-creativity.adobe.io/mcp
+  reason: Creative Cloud surface; no corresponding public REST contract in this repo.
+- tool: '(unknown — workflow runner tool set)'
+  server: https://run-workflow.adobe.io/mcp
+  reason: Server-side composite workflow execution; by shape not a 1:1 REST operation.
+
+rest_only:
+- capability: Authentication
+  operations: [authentication.generatetoken]
+- capability: Assets
+  operations: [asset.uploadpresignedurl, asset.get, asset.delete, asset.metadata]
+- capability: PDF creation and conversion
+  operations: [pdfoperations.createpdf, pdfoperations.jobstatus, pdfoperations.htmltopdf, pdfoperations.htmltopdf.jobstatus,
+    pdfoperations.exportpdf, pdfoperations.exportpdf.jobstatus, pdfoperations.pdftoimages, pdfoperations.pdftoimages.jobstatus]
+- capability: Content extraction
+  operations: [pdfoperations.extractpdf, pdfoperations.extractpdf.jobstatus, pdfoperations.pdftomarkdown,
+    pdfoperations.pdftomarkdown.jobstatus]
+- capability: Document generation
+  operations: [pdfoperations.documentgeneration, pdfoperations.documentgeneration.jobstatus]
+- capability: Page manipulation
+  operations: [pdfoperations.pagemanipulation, pdfoperations.pagemanipulation.jobstatus,
+    pdfoperations.combinepdf, pdfoperations.combinepdf.jobstatus, pdfoperations.splitpdf, pdfoperations.splitpdf.jobstatus]
+- capability: Optimisation
+  operations: [pdfoperations.compresspdf, pdfoperations.compresspdf.jobstatus, pdfoperations.linearizepdf,
+    pdfoperations.linearizepdf.jobstatus, pdfoperations.ocr, pdfoperations.ocr.jobstatus]
+- capability: Security and sealing
+  operations: [pdfoperations.protectpdf, pdfoperations.protectpdf.jobstatus, pdfoperations.removeprotection,
+    pdfoperations.removeprotection.jobstatus, pdfoperations.electronicseal, pdfoperations.electronicseal.jobstatus,
+    pdfoperations.addwatermark, pdfoperations.addwatermark.jobstatus]
+- capability: Accessibility
+  operations: [pdfoperations.autotag, pdfoperations.autotag.jobstatus, pdfoperations.accessibilitychecker,
+    pdfoperations.accessibilitychecker.jobstatus]
+- capability: Metadata and forms
+  operations: [pdfoperations.pdfproperties, pdfoperations.pdfproperties.jobstatus, pdfoperations.getformdata,
+    pdfoperations.getformdata.jobstatus, pdfoperations.setformdata, pdfoperations.setformdata.jobstatus]
+
+coverage:
+  mcp_servers: 8
+  mcp_tools_named: 0
+  mcp_tools_bound: 0
+  mcp_only_servers: 7
+  rest_operations_total: 49
+  rest_operations_with_a_tool: 0
+  finding: >-
+    Adobe's agent surface and Adobe's machine-readable REST surface describe different products.
+    Every published MCP server sits over Experience Cloud / Creative Cloud (AEM, Cloud Manager,
+    Analytics, CJA, Creative Cloud), while the only OpenAPI Adobe publishes covers Acrobat / PDF
+    Services — which has NO MCP server at all. An agent that can reach Adobe over MCP cannot call
+    the 49 PDF operations, and an agent holding the PDF Services spec has no tool contract for the
+    products Adobe made agent-reachable.

@@ -1,0 +1,86 @@
+generated: '2026-08-13'
+method: searched
+source: https://developer.adobe.com/document-services/docs/overview/pdf-services-api/howtos/webhook-notification/
+spec_type: null
+asyncapi_published: false
+note: >-
+  Adobe publishes NO AsyncAPI document for any of its event surfaces. Probes of
+  developer.adobe.com/asyncapi.yaml and the AdobeDocs GitHub organisation returned 404. What Adobe
+  DOES publish is a documented webhook catalogue, captured here. Do not read the absence of an
+  AsyncAPI as an absence of an event surface — nor the presence of this file as an AsyncAPI.
+
+surfaces:
+
+- name: PDF Services job completion callback
+  kind: webhook
+  product: Adobe PDF Services / Acrobat Services
+  docs: https://developer.adobe.com/document-services/docs/overview/pdf-services-api/howtos/webhook-notification/
+  availability: REST API and SDK 4.x.x only
+  subscription_model: per-request
+  subscription_detail: >-
+    Not a registered endpoint. The caller opts in per job by adding a `notifiers[]` array to the
+    submit request body. Each notifier object has `type` and `data`.
+  notifier_types:
+  - type: CALLBACK
+    required_fields:
+    - {name: data.url, required: true, description: HTTPS POST URL created by the user to receive the callback}
+    - {name: data.headers, required: false, description: 'map of key-value header pairs Adobe replays on the callback'}
+    note: CALLBACK is currently the only supported notifier type.
+  events:
+  - name: job.done
+    trigger: Asynchronous operation completed successfully
+    payload_shape: '{"jobID": "...", "statusResponse": {"status": "done", "asset": {"metadata": {"type": "...", "size": 0}, "downloadUri": "...", "assetID": "..."}}}'
+  - name: job.failed
+    trigger: Asynchronous operation failed
+    payload_shape: '{"jobID": "...", "statusResponse": {"status": "failed", "error": {"code": "...", "message": "...", "status": 400}}}'
+  delivery:
+    transport: HTTPS POST
+    signature: none
+    signature_note: >-
+      Adobe does not sign the callback. Authentication of the callback is delegated entirely to the
+      optional `data.headers` map the caller supplies, which Adobe replays verbatim. Treat an
+      unverified callback as untrusted input.
+    expected_response_status: 200
+    expected_response_body: '{"ack": "done"}'
+    failure_definition: >-
+      "If the response code is not 200 (OK) or the expected payload is not received, it will be
+      considered an error response."
+    circuit_breaker: >-
+      "In the event of 50 error responses within a 10-minute period, webhook notification support
+      will be temporarily blocked for that client for the next 20 minutes."
+    circuit_breaker_scope: client-wide, silent — jobs continue to run and complete, notifications stop
+  relates_to_operations:
+    note: >-
+      `notifiers` may be attached to any submit operation in
+      openapi/_original/adobe-pdf-services-api-openapi-official.json, e.g. pdfoperations.createpdf,
+      pdfoperations.documentgeneration, pdfoperations.extractpdf, pdfoperations.autotag.
+
+- name: Adobe I/O Events
+  kind: event-hub
+  product: Adobe I/O Events (Experience Cloud, Creative Cloud, Commerce, AEM)
+  docs: https://developer.adobe.com/events/docs/
+  api_reference: https://developer.adobe.com/events/docs/guides/api/
+  base_url: https://platform.adobe.io
+  delivery_models: [webhook, journaling, runtime-action, aws-eventbridge]
+  cloudevents: true
+  cloudevents_note: >-
+    Adobe I/O Events delivers CloudEvents-formatted payloads. Adobe publishes an event provider and
+    event-metadata registry through the Events API rather than a static AsyncAPI document.
+  asyncapi_published: false
+  sdk: "@adobe/aio-lib-events"
+  probe:
+    url: https://developer.adobe.com/events/docs/guides/api/
+    http_status: 200
+    fetched: '2026-08-13'
+
+- name: Adobe Commerce webhooks
+  kind: webhook
+  product: Adobe Commerce
+  docs: https://developer.adobe.com/commerce/extensibility/webhooks/
+  note: >-
+    Recorded from Adobe's own published Agent Skill `commerce-app-webhooks` in github.com/adobe/skills
+    and the Commerce extensibility documentation. No AsyncAPI document published.
+
+probes:
+- {url: 'https://developer.adobe.com/asyncapi.yaml', status: 404}
+- {url: 'https://raw.githubusercontent.com/AdobeDocs/adobeio-events/main/asyncapi.yaml', status: 404}

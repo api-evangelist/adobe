@@ -1,0 +1,135 @@
+generated: '2026-08-13'
+method: searched
+source: https://github.com/adobe/skills
+description: >-
+  Adobe PUBLISHES its own Agent Skills. `adobe/skills` ("Adobe Skills for AI Coding Agents",
+  Apache-2.0) is a first-party skill marketplace of 160 SKILL.md files across 15 plugin groups,
+  installable as Claude Code plugins, Vercel `npx skills`, or the `gh upskill` extension. This
+  index records what Adobe ships, verbatim from the repository tree and README; it does not
+  restate or re-author their content. Two locally GENERATED skills at the bottom cover Adobe PDF
+  Services, the one Adobe product with a public OpenAPI and no published skill.
+license: Apache-2.0
+repository:
+  url: https://github.com/adobe/skills
+  default_branch: main
+  last_updated: '2026-08-12'
+  skill_files: 160
+install:
+  claude_code: |
+    /plugin marketplace add adobe/skills
+    /plugin install adobe-analytics@adobe-skills
+  vercel_skills: npx skills add adobe/skills --all
+  gh_extension: |
+    gh extension install ai-ecoverse/gh-upskill
+    gh upskill adobe/skills --all
+
+published_plugins:
+- plugin: adobe-analytics
+  product: Adobe Analytics
+  mcp_server: https://aa-mcp.adobe.io/mcp
+  skill_count: 5
+  skills: [aa-kpi-pulse, aa-top-movers-watchlist, aa-conversion-funnel-analysis,
+    aa-segment-performance-comparator, aa-executive-briefing]
+- plugin: adobe-cja
+  product: Adobe Customer Journey Analytics
+  mcp_server: https://cja-mcp.adobe.io/mcp
+  skill_count: 6
+  skills: [cja-kpi-pulse, cja-top-movers-watchlist, cja-funnel-health-check, cja-dimension-analysis,
+    cja-segment-performance-comparator, cja-executive-briefing]
+- plugin: aem-cloud-service
+  product: Adobe Experience Manager as a Cloud Service
+  skill_count: 33
+  skills: [aem-rde, aem-workflow, asset-manager, code-assessment, config-authoring, content-distribution,
+    create-component, dispatcher, ensure-agents-md, event-migration, incident-response,
+    inject-in-sling-model, migration, outbound-call-timeouts, outdated-dependencies, performance-tuning,
+    remove-deprecated-api, replication, resource-change-listener, scheduler, security-hardening,
+    sling-distribution, technical-advisory, unbounded-query, workflow-debugging, workflow-development,
+    workflow-launchers, workflow-model-design, workflow-orchestrator, workflow-triaging, workflow-triggering]
+- plugin: aem-6-5-lts
+  product: Adobe Experience Manager 6.5 LTS / AMS
+  skill_count: 22
+  skills: [aem-replication, aem-workflow, config-authoring, configure-replication-agent, dispatcher,
+    ensure-agents-md, incident-response, performance-tuning, replicate-content, replication-api,
+    replication-orchestrator, security-hardening, technical-advisory, troubleshoot-replication,
+    workflow-debugging, workflow-development, workflow-launchers, workflow-model-design,
+    workflow-orchestrator, workflow-triaging, workflow-triggering]
+- plugin: aem-edge-delivery-services
+  product: AEM Edge Delivery Services
+  skill_count: 24
+  skills: [aem-cli, analyze-and-plan, authoring-analysis, block-collection-and-party, block-inventory,
+    building-blocks, code-review, content-driven-development, content-modeling, create-site, da-auth,
+    da-content, docs-search, find-test-content, generate-import-html, identify-page-structure,
+    page-decomposition, page-import, preview-import, scrape-webpage, slicc-handoff, snowflake,
+    testing-blocks, ue-component-model]
+- plugin: aem-edge-delivery-services-content-ops
+  product: AEM Edge Delivery Services content operations
+  skill_count: 13
+  skills: [accessibility-fix, bulk-metadata, content-audit, content-diff, cwv-optimizer, geo-rewrite,
+    heading-optimizer, image-seo, internal-linking, link-rot-scanner, product-page-seo, sitemap-audit,
+    structured-data]
+- plugin: aem-project-management
+  product: AEM project handover documentation
+  skill_count: 7
+  skills: [handover, handover-author, handover-developer, handover-admin, whitepaper, auth, ops]
+- plugin: app-builder
+  product: Adobe Developer App Builder
+  skill_count: 10
+  skills: [appbuilder-project-init, appbuilder-action-scaffolder, appbuilder-ui-scaffolder,
+    appbuilder-cicd-pipeline, appbuilder-testing, appbuilder-e2e-testing, appbuilder-workfront,
+    workfront-actions, workfront-local-testing, workfront-ui-extension]
+- plugin: commerce-app-management
+  product: Adobe Commerce
+  skill_count: 6
+  skills: [commerce-app-init, commerce-app-admin-ui, commerce-app-business-config, commerce-app-eventing,
+    commerce-app-storage, commerce-app-webhooks]
+- plugin: commerce-app-migration
+  product: Adobe Commerce
+  skill_count: 1
+  skills: [commerce-app-migrate]
+- plugin: creative-cloud/adobe-for-creativity
+  product: Adobe Creative Cloud
+  mcp_server: https://adobe-creativity.adobe.io/mcp
+  skill_count: 7
+  skills: [adobe-batch-edit-photos, adobe-create-pdfs-from-data, adobe-create-social-variations,
+    adobe-design-from-template, adobe-edit-quick-cut, adobe-resize-photos-and-videos,
+    adobe-retouch-portraits]
+- plugin: creative-cloud/run-workflow
+  product: Adobe Creative Cloud
+  mcp_server: https://run-workflow.adobe.io/mcp
+  skill_count: 2
+  skills: [run-workflow, run-featured-workflow]
+- plugin: stardust
+  product: Adobe migration/uplift tooling
+  skill_count: 14
+  skills: [stardust, audit, deploy, diff, direct, extract, migrate, prepare-migration, prototype, qa,
+    replica, reskin, rollout, uplift]
+- plugin: web
+  product: Browser/page tooling for agents
+  skill_count: 9
+  skills: [browser-probe, cdp-connect, cdp-ext-pilot, domain-mask, page-collect, page-langs, page-prep,
+    page-reduce, page-tree]
+- plugin: workfront
+  product: Adobe Workfront Planning
+  skill_count: 1
+  skills: [wf-planning-solution-architect]
+  note: No MCP server; searches and fetches Experience League documentation live at answer time.
+
+skills:
+- file: adobe-pdf-services-async-job-lifecycle.md
+  name: Run an Adobe PDF Services job end to end
+  api: openapi/_original/adobe-pdf-services-api-openapi-official.json
+  method: generated
+  operations: [authentication.generatetoken, asset.uploadpresignedurl, pdfoperations.extractpdf,
+    pdfoperations.extractpdf.jobstatus, asset.get, asset.delete]
+- file: adobe-pdf-services-webhook-notifications.md
+  name: Receive Adobe PDF Services job completion by webhook
+  api: openapi/_original/adobe-pdf-services-api-openapi-official.json
+  method: generated
+  operations: [pdfoperations.createpdf, pdfoperations.documentgeneration, pdfoperations.autotag]
+
+gaps:
+- product: Adobe PDF Services / Acrobat Services
+  note: >-
+    The only Adobe product with a fully public OpenAPI has NO Adobe-published Agent Skill and no MCP
+    server. The two generated skills above close that gap locally; they are grounded entirely in
+    operationIds verified against the harvested official spec.

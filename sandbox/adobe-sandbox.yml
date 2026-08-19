@@ -1,0 +1,89 @@
+generated: '2026-08-13'
+method: searched
+source: >-
+  https://developer.adobe.com/document-services/docs/overview/limits/,
+  https://developer.adobe.com/document-services/docs/overview/pdf-services-api/dcserviceslicensing/,
+  https://developer.adobe.com/console/
+scope: Adobe PDF Services / Acrobat Services and Adobe Experience Platform
+description: >-
+  Adobe does not ship a test-mode API with magic values. There are no test card numbers, no
+  test-vs-live key prefixes and no time simulation. What Adobe provides instead is a metered FREE
+  TIER against the real production endpoints, and — separately, in Experience Platform — named
+  sandbox environments that are real isolated tenants rather than a mock.
+
+test_live_separation:
+  model: none
+  key_prefixes: null
+  note: >-
+    Free Tier and paid credentials are the SAME credential shape (client_id + client_secret from the
+    Adobe Developer Console) hitting the SAME production hosts. There is no prefix or flag that lets
+    a caller tell from the credential whether it is operating against a trial quota. The only
+    observable difference is the rate ceiling (25 RPM vs 100 RPM) and the quota error
+    (INSUFFICIENT_QUOTA at 500 Document Transactions/month).
+
+free_tier:
+  available: true
+  cost: 0
+  quota: 500 Document Transactions per month
+  quota_reset: first of each month
+  rate_limit: 25 RPM
+  credentials_url: https://acrobatservices.adobe.com/dc-integration-creation-app-cdn/main.html
+  console_url: https://developer.adobe.com/console/
+  signup_required: true
+  card_required: false
+  description: >-
+    "The PDF Services API has a Free Tier so that you can take a deep dive into its cool features at
+    zero cost. Free Tier users get free credentials that enable the processing of 500 Document
+    Transactions per month."
+  worked_example: >-
+    "On March 20, you convert a ten-page Word document into PDF. This consumes 1 Document
+    Transaction of the Free Tier quota, leaving you with 499 Document Transactions available for
+    consumption through March 31."
+  gotcha: >-
+    Accessibility Auto-Tag bills 10 Document Transactions PER PAGE. A single 50-page auto-tag job
+    consumes the entire monthly free allowance. Extract bills 1 per 5 pages. Check the operation's
+    metering before submitting on a free credential.
+
+test_values:
+  published: false
+  note: >-
+    No test card numbers, test IBANs, magic identifiers or fixture tokens — the API processes real
+    documents and there is nothing to simulate. This is a correct absence for a document-processing
+    API, not a gap.
+
+time_simulation:
+  supported: false
+
+fixtures:
+  sample_files:
+  - url: https://raw.githubusercontent.com/AdobeDocs/pdfservices-api-documentation/main/static/receipt.json
+    description: Sample JSON data file used by the Document Generation quickstarts
+  - url: https://www.adobe.com/go/pdftoolsapi_java_samples
+    description: Official Java samples repository
+  - url: https://www.adobe.com/go/pdftoolsapi_node_sample
+    description: Official Node.js samples repository
+  - url: https://www.adobe.com/go/pdftoolsapi_net_samples
+    description: Official .NET samples repository
+  postman:
+    url: https://www.postman.com/kinlaneapi/adobe/overview
+    local: postman/adobe-pdf-services-api.postman_collection.json
+    note: >-
+      Adobe publishes an Acrobat Services Postman collection (referenced in the 2024-08-23 release
+      note); the copy in this repo is the API Evangelist mirror.
+
+other_sandboxes:
+- product: Adobe Experience Platform
+  model: named sandbox environments
+  docs: https://experienceleague.adobe.com/en/docs/experience-platform/sandbox/home
+  note: >-
+    AEP sandboxes are real isolated tenant partitions selected by the `x-sandbox-name` header, not
+    a mock or test-data mode. Every AEP API call is sandbox-scoped.
+- product: Adobe Commerce
+  model: cloud staging environment
+  note: Provisioned per project through Cloud Manager, not a shared public sandbox.
+- product: Adobe Acrobat Sign
+  model: developer account
+  docs: https://opensource.adobe.com/acrobat-sign/developer_guide/gstarted.html
+  note: >-
+    Adobe offers a free Acrobat Sign developer account for building and testing integrations, on
+    real infrastructure rather than a simulator.

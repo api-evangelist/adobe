@@ -1,0 +1,310 @@
+{
+  "item": [
+    {
+      "id": "54a5471b-439e-4823-a932-839ba201d865",
+      "name": "Protect PDF",
+      "description": {
+        "content": "Add password protection and encryption to PDF documents.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "fc549b65-80cf-497a-a602-c6962b7839fe",
+          "name": "Adobe Protect a Pdf",
+          "request": {
+            "name": "Adobe Protect a Pdf",
+            "description": {
+              "content": "Add password protection and set permissions on a PDF document. Supports setting user passwords (to open), owner passwords (to edit/print), and encryption algorithms (AES-128 or AES-256).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "operation",
+                "protectpdf"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"assetID\": \"<string>\",\n  \"passwordProtection\": {\n    \"userPassword\": \"<string>\",\n    \"ownerPassword\": \"<string>\"\n  },\n  \"encryptionAlgorithm\": \"AES_256\",\n  \"permissions\": {\n    \"printQuality\": \"NONE\",\n    \"editContent\": false,\n    \"copyContent\": false,\n    \"editAnnotations\": false,\n    \"fillForms\": false,\n    \"assembleDocument\": false\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "99d0acf7-c864-461b-b5f8-abee20610155",
+              "name": "Job created successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "operation",
+                    "protectpdf"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"assetID\": \"500123\",\n  \"passwordProtection\": {\n    \"userPassword\": \"example_value\",\n    \"ownerPassword\": \"example_value\"\n  },\n  \"encryptionAlgorithm\": \"AES_128\",\n  \"permissions\": {\n    \"printQuality\": \"NONE\",\n    \"editContent\": true,\n    \"copyContent\": true,\n    \"editAnnotations\": true,\n    \"fillForms\": true,\n    \"assembleDocument\": true\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "URL to poll for job status.",
+                  "key": "Location",
+                  "value": "http://mzkuktMYQDkdIzQpu.cdmo6b9CN0kqQV8G"
+                },
+                {
+                  "disabled": false,
+                  "description": "A unique identifier for the request, useful for debugging and support.",
+                  "key": "x-request-id",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"in progress\",\n  \"asset\": {\n    \"assetID\": \"500123\",\n    \"downloadUri\": \"https://www.example.com\",\n    \"metadata\": {\n      \"type\": \"example_value\",\n      \"size\": 10\n    }\n  },\n  \"error\": {\n    \"code\": \"example_value\",\n    \"message\": \"example_value\",\n    \"status\": 10\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4b640e05-032a-4444-ac3e-12162d9be86f",
+              "name": "The request was malformed or contained invalid parameters. Check the error message for details.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "operation",
+                    "protectpdf"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"assetID\": \"500123\",\n  \"passwordProtection\": {\n    \"userPassword\": \"example_value\",\n    \"ownerPassword\": \"example_value\"\n  },\n  \"encryptionAlgorithm\": \"AES_128\",\n  \"permissions\": {\n    \"printQuality\": \"NONE\",\n    \"editContent\": true,\n    \"copyContent\": true,\n    \"editAnnotations\": true,\n    \"fillForms\": true,\n    \"assembleDocument\": true\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"INVALID_ASSET_ID\",\n    \"message\": \"string\",\n    \"status\": 400\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1935495c-c6b9-4c9e-b075-b7127e2234d7",
+              "name": "Authentication failed. The access token is missing, expired, or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "operation",
+                    "protectpdf"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"assetID\": \"500123\",\n  \"passwordProtection\": {\n    \"userPassword\": \"example_value\",\n    \"ownerPassword\": \"example_value\"\n  },\n  \"encryptionAlgorithm\": \"AES_128\",\n  \"permissions\": {\n    \"printQuality\": \"NONE\",\n    \"editContent\": true,\n    \"copyContent\": true,\n    \"editAnnotations\": true,\n    \"fillForms\": true,\n    \"assembleDocument\": true\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"INVALID_ASSET_ID\",\n    \"message\": \"string\",\n    \"status\": 400\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d0a2397d-9781-4850-8fa4-07e49c5a19f7",
+              "name": "Rate limit exceeded. Wait before retrying. Check Retry-After header for guidance.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "operation",
+                    "protectpdf"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"assetID\": \"500123\",\n  \"passwordProtection\": {\n    \"userPassword\": \"example_value\",\n    \"ownerPassword\": \"example_value\"\n  },\n  \"encryptionAlgorithm\": \"AES_128\",\n  \"permissions\": {\n    \"printQuality\": \"NONE\",\n    \"editContent\": true,\n    \"copyContent\": true,\n    \"editAnnotations\": true,\n    \"fillForms\": true,\n    \"assembleDocument\": true\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"INVALID_ASSET_ID\",\n    \"message\": \"string\",\n    \"status\": 400\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://pdf-services-ue1.adobe.io",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "0d52cacb-7af3-4fe2-ada2-1228170d711d",
+    "name": "Adobe PDF Services Protect PDF API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Adobe PDF Services API enables developers to create, convert, manipulate, and extract content from PDF documents programmatically. The API uses an asynchronous job-based model where you submit a job, poll for its status, and retrieve the result. Operations include creating PDFs from various formats, exporting PDFs to other formats, combining and splitting PDFs, compressing, OCR processing, protecting with passwords, extracting structured content, auto-tagging for accessibility, and generating documents from templates. Authentication uses OAuth 2.0 with client credentials (server-to-server).\n\nContact Support:\n Name: Adobe Developer Support\n Email: pdfsvcops@adobe.com",
+      "type": "text/plain"
+    }
+  }
+}

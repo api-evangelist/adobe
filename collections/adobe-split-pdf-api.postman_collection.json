@@ -1,0 +1,310 @@
+{
+  "item": [
+    {
+      "id": "80453241-e9dc-44ee-84d5-cccfcebcf8dc",
+      "name": "Split PDF",
+      "description": {
+        "content": "Split a PDF document into multiple smaller PDFs.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "22a1dacd-9ad5-44dc-81c2-1c415a1d2250",
+          "name": "Adobe Split a Pdf",
+          "request": {
+            "name": "Adobe Split a Pdf",
+            "description": {
+              "content": "Split a PDF document into multiple smaller PDF files. You can split by page count, page ranges, or number of output files.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "operation",
+                "splitpdf"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"assetID\": \"<string>\",\n  \"splitOptions\": {\n    \"pageCount\": \"<integer>\",\n    \"pageRanges\": [\n      {\n        \"start\": \"<integer>\",\n        \"end\": \"<integer>\"\n      },\n      {\n        \"start\": \"<integer>\",\n        \"end\": \"<integer>\"\n      }\n    ],\n    \"fileCount\": \"<integer>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9a1ca6d2-fb27-4c47-b1ae-0187504ff3f1",
+              "name": "Job created successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "operation",
+                    "splitpdf"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"assetID\": \"500123\",\n  \"splitOptions\": {\n    \"pageCount\": 10,\n    \"pageRanges\": [\n      {}\n    ],\n    \"fileCount\": 10\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "URL to poll for job status.",
+                  "key": "Location",
+                  "value": "http://yQcfliiHBFptOcvFAAOdqyPGllHr.buZl3seFpVHbGRUP7,YTsQuDuLH"
+                },
+                {
+                  "disabled": false,
+                  "description": "A unique identifier for the request, useful for debugging and support.",
+                  "key": "x-request-id",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"in progress\",\n  \"asset\": {\n    \"assetID\": \"500123\",\n    \"downloadUri\": \"https://www.example.com\",\n    \"metadata\": {\n      \"type\": \"example_value\",\n      \"size\": 10\n    }\n  },\n  \"error\": {\n    \"code\": \"example_value\",\n    \"message\": \"example_value\",\n    \"status\": 10\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "813890a2-f33a-427e-843b-21c408a2ceae",
+              "name": "The request was malformed or contained invalid parameters. Check the error message for details.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "operation",
+                    "splitpdf"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"assetID\": \"500123\",\n  \"splitOptions\": {\n    \"pageCount\": 10,\n    \"pageRanges\": [\n      {}\n    ],\n    \"fileCount\": 10\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"INVALID_ASSET_ID\",\n    \"message\": \"string\",\n    \"status\": 400\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "65770e6f-181a-4911-b76d-0d3b79d27729",
+              "name": "Authentication failed. The access token is missing, expired, or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "operation",
+                    "splitpdf"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"assetID\": \"500123\",\n  \"splitOptions\": {\n    \"pageCount\": 10,\n    \"pageRanges\": [\n      {}\n    ],\n    \"fileCount\": 10\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"INVALID_ASSET_ID\",\n    \"message\": \"string\",\n    \"status\": 400\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9ab778a6-efa7-40cf-8b48-8e92226e8404",
+              "name": "Rate limit exceeded. Wait before retrying. Check Retry-After header for guidance.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "operation",
+                    "splitpdf"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"assetID\": \"500123\",\n  \"splitOptions\": {\n    \"pageCount\": 10,\n    \"pageRanges\": [\n      {}\n    ],\n    \"fileCount\": 10\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"INVALID_ASSET_ID\",\n    \"message\": \"string\",\n    \"status\": 400\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://pdf-services-ue1.adobe.io",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "1a260943-1773-4fe6-8da6-d3cebb7c726e",
+    "name": "Adobe PDF Services Split PDF API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Adobe PDF Services API enables developers to create, convert, manipulate, and extract content from PDF documents programmatically. The API uses an asynchronous job-based model where you submit a job, poll for its status, and retrieve the result. Operations include creating PDFs from various formats, exporting PDFs to other formats, combining and splitting PDFs, compressing, OCR processing, protecting with passwords, extracting structured content, auto-tagging for accessibility, and generating documents from templates. Authentication uses OAuth 2.0 with client credentials (server-to-server).\n\nContact Support:\n Name: Adobe Developer Support\n Email: pdfsvcops@adobe.com",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,89 @@
+generated: '2026-08-13'
+method: searched
+source: >-
+  https://developer.adobe.com/document-services/docs/overview/pdf-services-api/policies/ and
+  https://developer.adobe.com/document-services/docs/overview/releasenotes/ (both harvested verbatim
+  from AdobeDocs/pdfservices-api-documentation) — cross-derived from
+  openapi/_original/adobe-pdf-services-api-openapi-official.json
+scope: Adobe PDF Services / Acrobat Services; status page is Adobe-wide.
+
+versioning:
+  scheme: per-operation-assetId
+  current: null
+  docs: https://developer.adobe.com/document-services/docs/overview/pdf-services-api/policies/
+  description: >-
+    "Each operation has a unique assetId which is passed in Form Parameters. Generally, APIs will be
+    enhanced while keeping them backward compatible. If its functionality can't be enhanced without
+    breaking changes, then its new version will be released with its own unique assetId."
+  url_versioned: false
+  header_versioned: false
+  sdk_scheme: semver (Major.Minor.Patch)
+
+deprecation:
+  policy_url: https://developer.adobe.com/document-services/docs/overview/pdf-services-api/policies/
+  published: true
+  notice_period: 12 months
+  api_support_window: >-
+    "The previous version of the API will be supported for one year after the release of a new
+    version. Adobe will use reasonably commercial efforts to provide 12-months' notice of
+    deprecation, unless extenuating circumstances prompt a shorter notice period."
+  sdk_support_window: >-
+    "Every Major/Minor Version is supported for one year after the release of a newer Major/Minor
+    Version; that is a Major.Minor.X version reaches its end of life 1 year after the next
+    Major/Minor Release."
+  security_patch_policy: >-
+    "Security patches and critical bug fixes are generally provided for the last dot release of the
+    supported major versions."
+  end_of_life_effect: >-
+    "Once a version reaches its end of life, functionality may be deprecated and stop working."
+  sunset_header: false
+  deprecation_header: false
+  rfc8594: false
+  note: >-
+    The deprecation POLICY is published and specific, but it is prose only. Adobe declares no
+    RFC 8594 Sunset or Deprecation response headers on any of the 49 operations, so a running agent
+    gets no machine-readable deprecation signal — it must read the release notes page.
+  caveat: >-
+    Adobe reserves the right to "modify, deprecate, or discontinue the service, in whole or in part,
+    at any time", and states that checking for deprecation notices is the customer's
+    "sole responsibility".
+
+sla:
+  url: null
+  uptime_target: null
+  note: >-
+    No public SLA or uptime target is published for the PDF Services API. Enterprise ETLA terms are
+    contract-negotiated; the pricing page routes to sales.
+
+status_page: https://status.adobe.com/
+status_page_scope: Adobe-wide (all Creative Cloud, Document Cloud and Experience Cloud services)
+
+support:
+  channel: https://developer.adobe.com/developer-support/
+  forum: https://community.adobe.com/t5/document-services-apis/bd-p/Document-Cloud-SDK
+  sales_faq: https://developer.adobe.com/document-services/faq/sales/
+  tech_support_faq: https://developer.adobe.com/document-services/faq/tech-support/
+
+deprecated_operations: []
+deprecated_operations_note: >-
+  Zero of the 49 operations in the official OpenAPI carry `deprecated: true`.
+
+archived_documentation: https://developer.adobe.com/document-services/docs/overview/legacy-documentation/
+archived_note: >-
+  "Legacy docs for all past releases are not maintained. Some links may be broken and content may be
+  outdated." Only the latest documentation is typically available online.
+
+known_end_of_life:
+- product: PDF Tools SDK 1.x.x
+  eol: '2022-05'
+  successor: PDF Services SDK 4.x
+  migration_guide: https://developer.adobe.com/document-services/docs/overview/releasenotes/
+- package: "@adobe/documentservices-pdftools-node-sdk"
+  successor: "@adobe/pdfservices-node-sdk"
+- package: Adobe.DocumentServices.PDFTools
+  successor: Adobe.PDFServicesSDK
+- artifact: com.adobe.documentservices:pdftools-sdk
+  successor: com.adobe.documentservices:pdfservices-sdk
+- package: "@adobe/express-add-on-dev-mcp"
+  successor: "@adobe/express-developer-mcp"
+  note: Beta MCP package deprecated in favour of the stable one; see mcp/adobe-mcp.yml.

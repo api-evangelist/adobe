@@ -1,0 +1,87 @@
+generated: '2026-08-13'
+method: searched
+source: >-
+  https://developer.adobe.com/document-services/docs/overview/pdf-embed-api/,
+  https://react-spectrum.adobe.com/, https://opensource.adobe.com/spectrum-web-components/,
+  https://developer.adobe.com/express/add-ons/docs/guides/, npm registry metadata (2026-08-13)
+description: >-
+  Client-side and embeddable surfaces Adobe ships, distinct from the server-side SDKs in
+  packages/. Adobe's component story is unusually large for an API provider because Spectrum is a
+  full public design system, and because PDF Embed is a hosted viewer rather than a library.
+
+families:
+
+- family: PDF Embed API
+  kind: hosted embeddable viewer
+  docs: https://developer.adobe.com/document-services/docs/overview/pdf-embed-api/
+  loader: https://acrobatservices.adobe.com/view-sdk/viewer.js
+  registry: cdn
+  version: null
+  version_note: >-
+    The loader URL is unpinned and floats to whatever Adobe currently serves — there is no version
+    in the path and no CDN metadata endpoint to query. A consumer cannot tell which build they are
+    getting, which is itself the finding.
+  free: true
+  credential: client ID from the Adobe Developer Console, domain-bound
+  embed_modes: [full-window, sized-container, in-line, lightbox]
+  capabilities:
+  - High-fidelity PDF rendering in a web page
+  - Annotation and commenting APIs
+  - Analytics events for document interaction
+  - Search-engine-indexable rendering
+  - Modern viewer UI variant
+  release_notes: https://developer.adobe.com/document-services/docs/overview/pdf-embed-api/releasenotes/
+
+- family: React Spectrum
+  kind: React component library
+  docs: https://react-spectrum.adobe.com/
+  package: "@adobe/react-spectrum"
+  registry: npm
+  version: 3.47.3
+  published: '2026-07-31'
+  source: https://github.com/adobe/react-spectrum
+  license: Apache-2.0
+  note: >-
+    Adobe's Spectrum design system implemented for React, plus the React Aria and React Stately
+    lower-level libraries. The interface layer behind App Builder and Adobe Express add-on UIs.
+
+- family: Spectrum Web Components
+  kind: web components
+  docs: https://opensource.adobe.com/spectrum-web-components/
+  source: https://github.com/adobe/spectrum-web-components
+  registry: npm
+  scope: "@spectrum-web-components/*"
+  version: null
+  version_note: >-
+    Distributed as a large set of per-component packages under the @spectrum-web-components scope
+    rather than one versioned entry point; no single version applies to the family.
+  license: Apache-2.0
+  note: Framework-agnostic custom elements; the recommended UI layer for Adobe Express add-ons.
+
+- family: Adobe Express Add-on SDK
+  kind: embedded application surface
+  docs: https://developer.adobe.com/express/add-ons/docs/guides/
+  packages:
+  - {name: '@adobe/create-ccweb-add-on', registry: npm, version: 3.10.0, published: '2026-06-16'}
+  - {name: '@adobe/ccweb-add-on-scripts', registry: npm, version: 3.10.0, published: '2026-06-16'}
+  - {name: '@adobe/ccweb-add-on-sdk-types', registry: npm, version: 1.38.0, published: '2026-08-11'}
+  note: >-
+    Add-ons run inside an iframe hosted by Adobe Express, with a document sandbox API for
+    manipulating the user's document. Distributed through the Adobe Express add-on marketplace.
+
+- family: UXP (Unified Extensibility Platform)
+  kind: native plugin runtime
+  docs: https://developer.adobe.com/photoshop/uxp/
+  note: >-
+    The plugin runtime for Photoshop, InDesign and (since 2025) Premiere Pro. Hybrid plugins and
+    WebView UI are supported. Not distributed through npm; plugins ship via the Creative Cloud
+    marketplace. Changelog and product support matrix published at
+    https://developer.adobe.com/photoshop/uxp/2022/guides/changelog/
+
+- family: AEM Universal Editor and Edge Delivery blocks
+  kind: authoring/runtime components
+  docs: https://www.aem.live/docs/
+  note: >-
+    The EDS Block Collection is Adobe's published component set for Edge Delivery Services sites;
+    Adobe ships Agent Skills (block-inventory, block-collection-and-party, building-blocks) to
+    work with it. Distributed as source in project repositories, not as a versioned package.

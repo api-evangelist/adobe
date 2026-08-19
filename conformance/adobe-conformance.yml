@@ -1,0 +1,154 @@
+generated: '2026-08-13'
+method: searched
+source: >-
+  openapi/_original/adobe-pdf-services-api-openapi-official.json,
+  https://www.adobe.com/trust/compliance/compliance-list.html,
+  https://www.adobe.com/trust/security.html,
+  https://experienceleague.adobe.com/llms.txt,
+  well-known/adobe-security.txt
+description: >-
+  Cross-cutting standards conformance for the Adobe API surface. Split into technical standards
+  (derived from the machine-readable contract) and published compliance certifications (Adobe's own
+  Trust Center claims).
+
+standards:
+- id: openapi-3.0
+  conforms: true
+  evidence: >-
+    Adobe publishes an OpenAPI 3.0.1 document for PDF Services at
+    AdobeDocs/pdfservices-api-documentation/static/openapi.json (49 operations, 152 schemas), rendered
+    on developer.adobe.com through a Redocly API block.
+- id: openapi-3.1
+  conforms: true
+  evidence: >-
+    The Adobe Substance 3D API (Firefly Services) spec at AdobeDocs/ffs-s3d-api is OpenAPI 3.1.0.
+- id: oauth2
+  conforms: true
+  evidence: >-
+    Adobe Identity Management Services (IMS) issues OAuth 2.0 Server-to-Server (client credentials)
+    tokens; POST /token is operationId authentication.generatetoken. Documented at
+    developer.adobe.com/developer-console/docs/guides/authentication/.
+  caveat: >-
+    The published OpenAPI declares NO securitySchemes at all — auth is modelled as two ordinary
+    header parameters (Authorization, x-api-key) on 48 of 49 operations. A generated client from
+    this spec gets no security metadata.
+- id: oidc
+  conforms: partial
+  evidence: >-
+    Adobe IMS supports OpenID Connect for user-facing sign-in (Adobe ID), but no
+    /.well-known/openid-configuration is served on any host probed for this profile — every probe
+    returned 404, or an HTML SPA shell on developer.adobe.com.
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: >-
+    Errors use a vendor envelope {"error":{"code","message"}} with content-type application/json,
+    not application/problem+json. See errors/adobe-problem-types.yml.
+- id: rfc9116-security-txt
+  conforms: true
+  evidence: >-
+    https://www.adobe.com/.well-known/security.txt returns 200 with a PGP-signed RFC 9116 document
+    carrying Contact, Expires (2027-07-30), Policy, Encryption, Acknowledgments, Canonical,
+    Preferred-Languages and Hiring fields.
+- id: rfc8594-sunset-header
+  conforms: false
+  evidence: >-
+    A 12-month deprecation policy is published in prose, but no Sunset or Deprecation response
+    header is declared on any operation. See lifecycle/adobe-lifecycle.yml.
+- id: idempotency
+  conforms: false
+  evidence: >-
+    No idempotency key header or request-deduplication contract is published. See
+    conventions/adobe-conventions.yml.
+- id: pagination
+  conforms: not-applicable
+  evidence: The API exposes no collection endpoints; assets and jobs are addressed by id.
+- id: cloudevents
+  conforms: true
+  evidence: >-
+    Adobe I/O Events delivers CloudEvents-formatted payloads to webhook, journaling, runtime-action
+    and AWS EventBridge consumers. developer.adobe.com/events/docs/
+- id: asyncapi
+  conforms: false
+  evidence: >-
+    No AsyncAPI document is published for any Adobe event surface; /asyncapi.yaml probes 404. The
+    webhook catalogue is captured in asyncapi/adobe-pdf-services-webhooks.yml instead.
+- id: mcp
+  conforms: true
+  evidence: >-
+    Eight hosted MCP endpoints answer JSON-RPC over HTTP (AEM content, content-readonly,
+    cloudmanager, experience-governance; Adobe Analytics; CJA; Creative Cloud; run-workflow), plus a
+    local-stdio npm server for Adobe Express. All remote endpoints returned 401/403 to an anonymous
+    tools/list on 2026-08-13 — present and gated. See mcp/adobe-mcp.yml.
+- id: agent-skills
+  conforms: true
+  evidence: >-
+    github.com/adobe/skills — 160 SKILL.md files across 15 plugin groups, Apache-2.0, distributed as
+    Claude Code plugins, Vercel skills and a gh extension. See skills/_index.yml.
+- id: agents-md
+  conforms: true
+  evidence: >-
+    "AEM as a Cloud Service projects support a generated AGENTS.md file at the project root"
+    (Adobe llms.txt, 2026-08-05); the ensure-agents-md skill generates it.
+- id: llms-txt
+  conforms: true
+  evidence: >-
+    https://experienceleague.adobe.com/llms.txt returns 200 text/plain — a versioned (v1.8,
+    2026-08-05), spec-conformant llms.txt with a change log, source-authority ordering, an
+    Authorization & Boundaries section and curated URL lists. Saved verbatim to llms/adobe-llms.txt.
+  caveat: developer.adobe.com/llms.txt returns 404 — the Creative/Document Cloud docs host has none.
+- id: a2a
+  conforms: false
+  evidence: >-
+    /.well-known/agent-card.json and /.well-known/agent.json probed on ten Adobe hosts. Every API
+    host 404s. developer.adobe.com returns HTTP 200 for both paths but the body is the Gatsby SPA
+    HTML shell, not an AgentCard — recorded as a miss, and NO a2a/ artifact was written.
+- id: graphql
+  conforms: true
+  evidence: >-
+    Adobe Commerce and AEM Headless both expose GraphQL, but on per-customer/per-tenant hosts rather
+    than an Adobe-operated public endpoint, so no SDL could be introspected. See graphql/adobe-graphql.md.
+- id: json-schema
+  conforms: true
+  evidence: >-
+    Adobe publishes standalone JSON Schema documents for the PDF Extract JSON output
+    (static/extract-json-output-schema.json and ...schema2.json in
+    AdobeDocs/pdfservices-api-documentation).
+- id: wcag
+  conforms: true
+  evidence: >-
+    The Accessibility Auto-Tag and Accessibility Checker operations exist to produce and verify
+    PDF/UA and WCAG-conformant tagged PDFs; Adobe publishes accessibility conformance reports at
+    adobe.com/accessibility/compliance.html.
+
+compliance:
+  published: true
+  trust_center: https://www.adobe.com/trust.html
+  compliance_list: https://www.adobe.com/trust/compliance/compliance-list.html
+  privacy: https://www.adobe.com/privacy/policy.html
+  certifications:
+  - SOC 2 Type 2
+  - ISO 27001
+  - ISO 27017
+  - ISO 27018
+  - PCI DSS
+  - HIPAA (for eligible services)
+  - FedRAMP (Adobe Experience Manager Managed Services / Adobe Connect)
+  - GDPR
+  - CCPA
+  - CSA STAR
+  note: >-
+    Adobe operates a public Trust Center with a per-product certification list. Individual
+    certifications are scoped to specific products — Adobe explicitly does not claim every
+    certification across every service — so consult the compliance list for the product in question
+    rather than treating the set above as blanket coverage.
+  probe_caveat: >-
+    0-working/probe-security-programs.py recorded `trust=none` for this domain because
+    trust.adobe.com does not resolve as a subdomain; Adobe's trust centre lives at
+    https://www.adobe.com/trust.html on the apex.
+
+vulnerability_disclosure:
+  program: HackerOne
+  url: https://hackerone.com/adobe
+  policy: https://helpx.adobe.com/security.html/security/policy.ug.html
+  contact: psirt@adobe.com
+  evidence: well-known/adobe-security.txt

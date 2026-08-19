@@ -1,0 +1,147 @@
+generated: '2026-08-13'
+method: derived
+source: >-
+  openapi/_original/adobe-pdf-services-api-openapi-official.json — 49 operations, 152 component
+  schemas, $ref graph and id-reference fields walked mechanically
+scope: Adobe PDF Services / Acrobat Services
+description: >-
+  A deliberately small object model. Adobe PDF Services has exactly three first-class entities —
+  Asset, Job and Token — and everything else in the 152-schema components block is a per-operation
+  request/response variant of the same submit-poll-download shape. There are no collections, no
+  customers, no accounts: identity lives in the IMS credential, not in the data model.
+
+entities:
+
+- name: Asset
+  description: An uploaded source document or a generated output document, addressed by assetID.
+  id_field: assetID
+  id_prefix: null
+  id_note: >-
+    Opaque server-generated string; Adobe publishes no prefix scheme. assetID appears as a
+    request field on 22 operation schemas.
+  operations:
+    create: asset.uploadpresignedurl
+    read: asset.get
+    metadata: asset.metadata
+    delete: asset.delete
+  fields:
+  - {name: assetID, type: string, description: Opaque asset identifier}
+  - {name: uploadUri, type: string, description: Short-lived presigned URL the client PUTs bytes to}
+  - {name: downloadUri, type: string, description: Short-lived presigned URL the client GETs results from}
+  - {name: mediaType, type: string, description: 'MIME type declared at upload, e.g. application/pdf'}
+  - {name: metadata.type, type: string}
+  - {name: metadata.size, type: integer}
+  durability: >-
+    Not durable storage. Assets expire on Adobe's schedule and 404 (NOT_FOUND) thereafter. Region
+    scoped — an asset created against pdf-services-ue1 is not addressable from pdf-services-ew1.
+
+- name: Job
+  description: An asynchronous execution of one PDF operation against one or more Assets.
+  id_field: jobID
+  id_prefix: null
+  operations:
+    create: 'pdfoperations.<operation> (22 submit operations)'
+    read: 'pdfoperations.<operation>.jobstatus (22 status operations)'
+  states: [in progress, done, failed]
+  fields:
+  - {name: jobID, type: string}
+  - {name: status, type: string, enum: '[in progress, done, failed]'}
+  - {name: asset, type: responseAsset, description: Output asset on success}
+  - {name: error, type: object, description: '{code, message} on failure'}
+  discovery: >-
+    The job is NOT returned in the submit response body (HTTP 201 is empty). Its URI arrives in the
+    `location` response header. An agent that ignores response headers loses the job entirely.
+
+- name: Token
+  description: An Adobe IMS OAuth Server-to-Server access token.
+  operations:
+    create: authentication.generatetoken
+  note: >-
+    Minted from client_id + client_secret. Presented as `Authorization: Bearer`, alongside a
+    separate `x-api-key: <client_id>` header. Not addressable and not readable back.
+
+relationships:
+- from: Job
+  to: Asset
+  type: belongs_to
+  via: assetID
+  cardinality: many-to-one
+  note: 22 request schemas carry an assetID naming the input Asset.
+- from: Job
+  to: Asset
+  type: has_one
+  via: statusResponse.asset.assetID
+  cardinality: one-to-one
+  note: On `done`, the job's output is a new Asset.
+- from: Job
+  to: Asset
+  type: has_many
+  via: assetList
+  cardinality: one-to-many
+  note: >-
+    PDF To Images and Split PDF return an asset list / zip (responseAssetZip) rather than a single
+    output asset.
+- from: ElectronicSealJob
+  to: Asset
+  type: belongs_to
+  via: sealImageAssetID
+  cardinality: many-to-one
+- from: AddWatermarkJob
+  to: Asset
+  type: belongs_to
+  via: watermarkDocumentAssetID
+  cardinality: many-to-one
+- from: PageManipulationJob
+  to: Asset
+  type: belongs_to
+  via: inputDocumentAssetID
+  cardinality: many-to-one
+  note: Insert / Replace pages reference a second source document.
+- from: Job
+  to: Notifier
+  type: has_many
+  via: notifiers
+  cardinality: one-to-many
+  note: >-
+    Every submit schema (*Internal and *External alike) $refs the shared `notifiers` schema — the
+    webhook callback opt-in. See asyncapi/adobe-pdf-services-webhooks.yml.
+
+storage_modes:
+  description: >-
+    Every operation is declared twice in the spec — an *Internal variant (Adobe-hosted assets, by
+    assetID) and an *External variant (customer-owned cloud storage, by presigned input/output URI).
+    This is the single largest structural fact in the schema graph.
+  internal:
+    marker_schemas: '*Internal (e.g. ExtractPDFInternal, ProtectPDFInternal)'
+    reference: assetID
+  external:
+    marker_schemas: '*External (e.g. ExtractPDFExternal, ProtectPDFExternal)'
+    reference: '$ref ExternalStorageInput / ExternalStorageOutput / ExternalStorageOutputZip'
+    docs: https://developer.adobe.com/document-services/docs/overview/pdf-services-api/howtos/pdf-external-storage-sol/
+    note: >-
+      With external storage the Asset entity drops out entirely — the customer's own signed URLs
+      carry the bytes and Adobe never holds the document.
+
+shared_value_objects:
+- {name: notifiers, used_by: 22, purpose: webhook callback configuration}
+- {name: responseAsset, used_by: 4, purpose: single output asset on job completion}
+- {name: responseAssetZip, used_by: 4, purpose: multi-file/zip output on job completion}
+- {name: ExternalStorageInput, used_by: 14, purpose: customer-supplied presigned input URI}
+- {name: ExternalStorageOutput, used_by: 12, purpose: customer-supplied presigned output URI}
+- {name: ExternalStorageOutputZip, used_by: 4, purpose: customer-supplied presigned zip output URI}
+- {name: PageRange / PageManipulationPageRanges / pageRangesWatermark, purpose: page selection}
+- {name: ocrLang / exportOCRLang / documentLanguage, purpose: language selection}
+- {name: sealOptions, purpose: electronic seal certificate and appearance configuration}
+- {name: watermarkappearance, purpose: watermark rendering options}
+
+counts:
+  operations: 49
+  submit_operations: 22
+  status_operations: 22
+  asset_operations: 4
+  auth_operations: 1
+  component_schemas: 152
+  first_class_entities: 3
+
+render: subway/
+render_note: The repo's subway/ diagrams visualise the PDF Services operation surface.

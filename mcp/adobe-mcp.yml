@@ -1,0 +1,145 @@
+generated: '2026-08-13'
+method: searched
+status: published
+source: >-
+  https://experienceleague.adobe.com/llms.txt (Adobe's own llms.txt, "MCP Server Access" section,
+  v1.8 dated 2026-08-05) and https://github.com/adobe/skills (Adobe Skills for AI Coding Agents,
+  Apache-2.0) — the .mcp.json manifests inside each published plugin name the endpoints verbatim.
+  Every endpoint below was then POSTed with a tools/list JSON-RPC call on 2026-08-13.
+description: >-
+  Adobe ships BOTH halves of an MCP surface. Six hosted remote HTTP endpoints across AEM Cloud,
+  Adobe Analytics, Customer Journey Analytics and Creative Cloud answer JSON-RPC today (all
+  auth-gated behind Adobe IMS), and a separate local-stdio npm package serves Adobe Express
+  add-on development. They are different products and are recorded separately.
+
+deployment:
+  mode: both
+  endpoint: https://mcp.adobeaemcloud.com/adobe/mcp/content
+  install: npx -y @adobe/express-developer-mcp
+  package: https://www.npmjs.com/package/@adobe/express-developer-mcp
+  auth: oauth
+  verified: probed
+  note: >-
+    `endpoint` names the primary AEM content server; five further remote endpoints are listed under
+    servers[] below. Every remote endpoint returned HTTP 401 to an anonymous tools/list — the
+    servers exist and are reachable, the tool schemas are not anonymously introspectable.
+
+servers:
+- name: aem-content
+  product: Adobe Experience Manager as a Cloud Service
+  transport: http
+  url: https://mcp.adobeaemcloud.com/adobe/mcp/content
+  auth: oauth
+  probe:
+    method: 'POST tools/list (jsonrpc 2.0)'
+    http_status: 401
+    body: '{"jsonrpc":"2.0","error":{"code":401,"message":"Authorization header is required"}}'
+    fetched: '2026-08-13'
+  documented_capabilities: >-
+    Create, read, update, and delete pages and content fragments; asset import and search.
+- name: aem-content-readonly
+  product: Adobe Experience Manager as a Cloud Service
+  transport: http
+  url: https://mcp.adobeaemcloud.com/adobe/mcp/content-readonly
+  auth: oauth
+  probe: {method: 'POST tools/list', http_status: 401, fetched: '2026-08-13'}
+  documented_capabilities: Read-only equivalent of the content server.
+- name: aem-cloud-manager
+  product: Adobe Cloud Manager
+  transport: http
+  url: https://mcp.adobeaemcloud.com/adobe/mcp/cloudmanager
+  auth: oauth
+  probe: {method: 'POST tools/list', http_status: 401, fetched: '2026-08-13'}
+  documented_capabilities: Manage Cloud Manager programs, environments, repositories, and pipelines.
+- name: aem-experience-governance
+  product: Adobe Experience Manager Experience Governance
+  transport: http
+  url: https://mcp.adobeaemcloud.com/adobe/mcp/experience-governance
+  auth: oauth
+  probe: {method: 'POST tools/list', http_status: 401, fetched: '2026-08-13'}
+  documented_capabilities: Evaluate content against brand governance and compliance rules.
+- name: adobe-analytics
+  product: Adobe Analytics
+  transport: http
+  url: https://aa-mcp.adobe.io/mcp
+  auth: oauth
+  probe:
+    method: 'POST tools/list'
+    http_status: 401
+    body: 'Missing or empty Authorization token'
+    fetched: '2026-08-13'
+  source_manifest: https://github.com/adobe/skills/blob/main/plugins/adobe-analytics/.mcp.json
+  documented_capabilities: >-
+    Backing server for the adobe-analytics Agent Skills plugin. Requires IMS auth headers
+    (Authorization, x-gw-ims-org-id, x-gw-ims-user-id); an OAuth proxy may inject these.
+- name: adobe-cja
+  product: Adobe Customer Journey Analytics
+  transport: http
+  url: https://cja-mcp.adobe.io/mcp
+  auth: oauth
+  probe: {method: 'POST tools/list', http_status: 401, fetched: '2026-08-13'}
+  source_manifest: https://github.com/adobe/skills/blob/main/plugins/adobe-cja/.mcp.json
+  documented_capabilities: Backing server for the adobe-cja Agent Skills plugin.
+- name: adobe-for-creativity
+  product: Adobe Creative Cloud
+  transport: http
+  url: https://adobe-creativity.adobe.io/mcp
+  auth: unknown
+  probe: {method: 'POST tools/list', http_status: 403, fetched: '2026-08-13'}
+  source_manifest: https://github.com/adobe/skills/blob/main/plugins/creative-cloud/adobe-for-creativity/.mcp.json
+  note: Returned 403 with an empty body to an anonymous POST — reachable, gated, no challenge document.
+- name: run-workflow
+  product: Adobe Creative Cloud workflow runner
+  transport: http
+  url: https://run-workflow.adobe.io/mcp
+  auth: oauth
+  probe:
+    method: 'POST tools/list'
+    http_status: 401
+    body: '{"error":"UNAUTHORIZED","message":"Authorization header is required."}'
+    fetched: '2026-08-13'
+  source_manifest: https://github.com/adobe/skills/blob/main/plugins/creative-cloud/run-workflow/.mcp.json
+- name: express-developer-mcp
+  product: Adobe Express add-on development
+  transport: stdio
+  install: npx -y @adobe/express-developer-mcp
+  package: https://www.npmjs.com/package/@adobe/express-developer-mcp
+  version: 1.0.0
+  published: '2026-01-14'
+  auth: none
+  docs: https://developer.adobe.com/express/add-ons/docs/guides/getting-started/local-development/mcp-server
+  note: >-
+    Local stdio server for add-on developers — a human installs and runs it on a machine before any
+    agent sees it. Not an agent-reachable surface in the way the eight https endpoints above are.
+
+tools:
+  status: gated
+  note: >-
+    NO TOOL LIST IS RECORDED. Every remote endpoint refuses an anonymous tools/list (401/403), and
+    Adobe's own llms.txt instructs agents to "discover tools at runtime (tools/list) rather than
+    hardcoding tool names". Real input schemas require an authenticated IMS introspection. Nothing
+    is guessed here; see mcp/adobe-tool-crosswalk.yml for the honest REST-side coverage picture.
+
+access_model:
+  identity: >-
+    "MCP tools run under the authenticated user's identity and enforce the user's existing AEM
+    permissions. AI-assisted operations follow the same access rules as manual work in AEM."
+    (Adobe llms.txt, 2026-08-05)
+  human_in_the_loop: >-
+    Adobe states the servers "are designed for human-operated clients with interactive UX" and that
+    "fully autonomous use should be treated as a separate compatibility tier."
+  source: https://experienceleague.adobe.com/llms.txt
+
+not_generally_available:
+- name: experience-league-content
+  note: >-
+    Adobe's llms.txt states a dedicated Experience League content MCP server (semantic search over
+    ExL documentation) "is not yet generally available." No endpoint published, none probed.
+
+related:
+- type: AGENTS.md
+  note: >-
+    AEM as a Cloud Service projects support a generated AGENTS.md at the repo root; the
+    `ensure-agents-md` bootstrap skill in adobe/skills writes it.
+- type: AgentSkill
+  url: skills/_index.yml

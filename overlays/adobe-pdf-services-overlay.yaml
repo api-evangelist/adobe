@@ -1,0 +1,102 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Adobe PDF Services API
+  version: 1.0.0
+x-generated: '2026-08-13'
+x-method: generated
+x-source: openapi/_original/adobe-pdf-services-api-openapi-official.json
+x-note: >-
+  Non-destructive enhancements to the OFFICIAL Adobe-published spec (harvested verbatim from
+  AdobeDocs/pdfservices-api-documentation). Adobe's document declares no securitySchemes, no
+  contact, no termsOfService and no top-level security requirement even though every operation
+  carries Authorization + x-api-key header parameters. This overlay records the auth model as
+  first-class OpenAPI security so a generated client and an agent can both see it, and annotates the
+  runtime facts that live in the docs but not the contract. The original file is never mutated.
+extends: openapi/_original/adobe-pdf-services-api-openapi-official.json
+actions:
+
+- target: $.info
+  update:
+    contact:
+      name: Adobe Developer Support
+      url: https://developer.adobe.com/developer-support/
+    termsOfService: https://www.adobe.com/legal/terms.html
+    x-apievangelist-provider: adobe
+    x-apievangelist-artifacts:
+      conventions: conventions/adobe-conventions.yml
+      errors: errors/adobe-problem-types.yml
+      lifecycle: lifecycle/adobe-lifecycle.yml
+      authentication: authentication/adobe-authentication.yml
+      rate-limits: rate-limits/adobe-rate-limits.yml
+      data-model: data-model/adobe-data-model.yml
+      sandbox: sandbox/adobe-sandbox.yml
+      webhooks: asyncapi/adobe-pdf-services-webhooks.yml
+      skills: skills/_index.yml
+
+- target: $.components
+  update:
+    securitySchemes:
+      bearerAuth:
+        type: http
+        scheme: bearer
+        bearerFormat: JWT
+        description: >-
+          Adobe IMS OAuth 2.0 Server-to-Server (client credentials) access token, minted via
+          POST /token (operationId authentication.generatetoken) from a client_id/client_secret pair
+          issued in the Adobe Developer Console.
+      apiKeyAuth:
+        type: apiKey
+        in: header
+        name: x-api-key
+        description: >-
+          The client_id from the Adobe Developer Console. Required IN ADDITION to the bearer token —
+          omitting it returns 401 even with a valid token.
+
+- target: $
+  update:
+    security:
+    - bearerAuth: []
+      apiKeyAuth: []
+
+- target: $.servers
+  update:
+    x-regions:
+    - {code: ue1, name: United States (default), url: 'https://pdf-services-ue1.adobe.io'}
+    - {code: ew1, name: Europe, url: 'https://pdf-services-ew1.adobe.io'}
+    x-region-note: >-
+      Region is selected by hostname. Assets are region-scoped and are not addressable across
+      regions. Region configuration requires a paid plan; the Free Tier processes in the US.
+
+- target: $.info
+  update:
+    x-rate-limits:
+      free_tier_rpm: 25
+      enterprise_rpm: 100
+      monthly_free_quota: 500 Document Transactions
+      status_on_exhaustion: 429
+      response_headers: none
+      note: >-
+        Two distinct error codes share HTTP 429 — TOO_MANY_REQUESTS (transient, back off) and
+        INSUFFICIENT_QUOTA (monthly allowance consumed, do NOT retry). No RateLimit-*, X-RateLimit-*
+        or Retry-After headers are published.
+    x-idempotency:
+      supported: false
+      note: >-
+        No idempotency key. Billing is per Document Transaction on the initial endpoint request, so
+        a blind retry of a submit is a second billable job. Use the echoed x-request-id to correlate
+        before resubmitting.
+    x-usage-limits:
+      max_file_size: 100MB
+      max_documents_combine_insert_replace_split: 20
+      max_output_images_export: 50
+      max_pages_extract_and_markdown: 400
+      max_pages_autotag: 200
+      max_pages_scanned: 150
+      max_json_size: 10MB
+    x-async-model:
+      pattern: submit-then-poll
+      submit_response: 201 with empty body
+      job_uri_header: location
+      correlation_header: x-request-id
+      terminal_states: [done, failed]
+      webhook_alternative: notifiers[] with type CALLBACK

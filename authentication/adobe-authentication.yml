@@ -1,16 +1,107 @@
-generated: '2026-07-11'
-method: derived
-source: openapi/adobe-pdf-services-api-openapi.yml
+generated: '2026-08-13'
+method: searched
+source: >-
+  https://developer.adobe.com/developer-console/docs/guides/authentication/ and
+  https://developer.adobe.com/document-services/docs/overview/pdf-services-api/howtos/service-region-configuration-for-apis/
+  — cross-derived from openapi/_original/adobe-pdf-services-api-openapi-official.json
+docs: https://developer.adobe.com/developer-console/docs/guides/authentication/
+# 2026-08-13: upgraded from `derived` (1 scheme, read from the scaffolded spec) to `searched`.
+# The official Adobe-published OpenAPI declares NO securitySchemes at all — it models auth as two
+# ordinary header parameters on 48 of 49 operations — so a purely derived pass understates the
+# model. The dual-header requirement below is the fact that matters and it is invisible to a
+# spec-only derivation.
 summary:
-  types:
-  - http
+  types: [http, apiKey, oauth2]
+  api_key_in: [header]
+  oauth2_flows: [clientCredentials]
+  both_required: true
+  note: >-
+    Adobe requires TWO credentials on every request, not one. A valid bearer token WITHOUT the
+    x-api-key header returns 401. This is the single most common integration failure against Adobe
+    APIs and the published OpenAPI does not encode it as security.
+identity_provider:
+  name: Adobe Identity Management Services (IMS)
+  console: https://developer.adobe.com/console/
+  token_endpoints:
+  - https://ims-na1.adobelogin.com/ims/token/v3
+  - 'POST /token on the PDF Services host (operationId authentication.generatetoken)'
+  credential_types:
+  - name: OAuth Server-to-Server
+    status: current
+    grant: client_credentials
+    inputs: [client_id, client_secret, scopes]
+    note: The recommended credential for all new Adobe API integrations.
+  - name: OAuth User Authentication
+    status: current
+    grant: authorization_code
+    note: For integrations acting on behalf of a signed-in Adobe user.
+  - name: Service Account (JWT)
+    status: deprecated
+    note: >-
+      Adobe deprecated the JWT/Service Account credential in favour of OAuth Server-to-Server;
+      existing integrations were required to migrate. Recorded here because older Adobe SDK samples
+      and third-party guides still show it.
 schemes:
 - name: bearerAuth
   type: http
   scheme: bearer
   bearerFormat: JWT
-  description: OAuth 2.0 access token obtained via client credentials grant from Adobe Identity
-    Management Service (IMS). Generate credentials in the Adobe Developer Console and exchange
-    them for an access token at https://ims-na1.adobelogin.com/ims/token/v3.
+  in: header
+  parameter: Authorization
+  value_format: 'Bearer <access_token>'
+  required: true
+  operations: 48
+  description: >-
+    OAuth 2.0 access token obtained via the client credentials grant from Adobe IMS. Generate
+    credentials in the Adobe Developer Console and exchange them at
+    https://ims-na1.adobelogin.com/ims/token/v3.
   sources:
-  - openapi/adobe-pdf-services-api-openapi.yml
+  - openapi/_original/adobe-pdf-services-api-openapi-official.json
+  - openapi/_original/adobe-pdf-services-api-openapi.yml
+- name: apiKeyAuth
+  type: apiKey
+  in: header
+  parameter: x-api-key
+  value: the client_id from the Adobe Developer Console project
+  required: true
+  operations: 48
+  description: >-
+    Declared as a required header parameter on 48 of 49 operations in the official spec (every
+    operation except POST /token). Not optional and not redundant with the bearer token.
+  sources:
+  - openapi/_original/adobe-pdf-services-api-openapi-official.json
+- name: X-User-Token
+  type: apiKey
+  in: header
+  parameter: X-User-Token
+  required: false
+  product: Adobe Substance 3D API (Firefly Services)
+  description: >-
+    "A user token referencing the user's individual account, obtained using their credentials."
+    Declared on the Substance 3D operations in openapi/_original/adobe-substance-3d-api-openapi.yml.
+  sources:
+  - openapi/_original/adobe-substance-3d-api-openapi.yml
+spec_gap:
+  securitySchemes_declared: 0
+  security_requirement_declared: false
+  note: >-
+    Adobe's own OpenAPI has an empty components.securitySchemes and no top-level `security` block.
+    Clients generated from it will not send credentials. overlays/adobe-pdf-services-overlay.yaml
+    adds the two schemes and the top-level requirement without mutating the harvested spec.
+other_products:
+- product: Adobe Analytics 2.0
+  docs: https://developer.adobe.com/analytics-apis/docs/2.0/guides/authentication/
+  extra_headers: [x-gw-ims-org-id, x-proxy-global-company-id]
+- product: Adobe Experience Platform
+  extra_headers: [x-gw-ims-org-id, x-sandbox-name]
+- product: Adobe Commerce
+  docs: https://developer.adobe.com/commerce/webapi/get-started/authentication/
+  models: [integration token, admin/customer token, OAuth 1.0a]
+- product: Adobe Marketo Engage
+  docs: https://experienceleague.adobe.com/en/docs/marketo-developer/marketo/rest/authentication
+  models: [OAuth 2.0 client credentials against the per-instance munchkin host]
+- product: Adobe MCP servers
+  note: >-
+    "Requests require IMS auth headers (Authorization, x-gw-ims-org-id, x-gw-ims-user-id); an OAuth
+    proxy may inject these." (github.com/adobe/skills README). Every remote MCP endpoint returned
+    401 to an anonymous tools/list. See mcp/adobe-mcp.yml.

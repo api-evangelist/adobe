@@ -4,63 +4,132 @@ schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main
 provider: Adobe
 providerId: adobe
 created: '2026-05-04'
-modified: '2026-05-05'
-reconciled: false
+modified: '2026-08-13'
+generated: '2026-08-13'
+method: searched
+reconciled: true
+source: https://developer.adobe.com/document-services/docs/overview/limits/
+raw_source: https://raw.githubusercontent.com/AdobeDocs/pdfservices-api-documentation/main/src/pages/overview/limits.md
+# 2026-08-13: upgraded from the 2026-05-04 bulk-sweep GENERATED placeholder (which recorded no
+# numbers because WebFetch to adobe.com timed out) to SEARCHED, with the published PDF Services
+# figures read from Adobe's own limits page and its source markdown in AdobeDocs.
 tags:
   - Rate Limiting
-  - Analytics
-  - Creative Cloud
   - Document Services
-  - Experience Cloud
-  - Generative AI
   - PDF
-notes: >-
-  Adobe does not publish unified rate limits across its API portfolio. Each
-  service (PDF Services, Firefly, Acrobat Sign, Experience Platform, Analytics,
-  Marketo, Commerce) defines its own throttling model in product-specific
-  documentation. WebFetch attempts to adobe.com domains timed out during
-  reconciliation; per-service numbers are deferred to per-product repos.
+scope: >-
+  Adobe PDF Services / Acrobat Services. Adobe publishes no unified rate limit across its API
+  portfolio; Firefly, Experience Platform, Analytics, Acrobat Sign, Marketo and Commerce each define
+  their own throttling in product-specific documentation. Only PDF Services publishes concrete
+  numbers against a public machine-readable contract, so those are the numbers recorded here.
 description: >-
-  Rate limits across the Adobe API surface are service-specific. Document
-  Services and Firefly publish per-API-key request quotas; Experience Platform
-  uses sandbox-scoped throttling; Acrobat Sign limits are documented per
-  endpoint. This artifact captures the umbrella policy; consult per-service
-  rate-limit pages for numeric ceilings.
-sources:
-  - https://developer.adobe.com/document-services/docs/overview/limits/
-  - https://developer.adobe.com/firefly-services/docs/
-  - https://developer.adobe.com/experience-platform-apis/
-  - https://opensource.adobe.com/acrobat-sign/developer_guide/
+  PDF Services publishes a per-minute request ceiling that differs by tier, a monthly Document
+  Transaction quota, and a set of hard per-request usage limits. It publishes NO runtime rate-limit
+  response headers — an agent cannot learn its remaining budget from a response, only from which of
+  two error codes comes back on a 429.
+
+limit_count: 10
+
+limits:
+- scope: per-credential
+  tier: Free Tier
+  window: minute
+  limit: 25
+  unit: requests
+  burst: null
+  status_on_exhaustion: 429
+  error_code: TOO_MANY_REQUESTS
+  source: https://developer.adobe.com/document-services/docs/overview/limits/
+- scope: per-credential
+  tier: Enterprise
+  window: minute
+  limit: 100
+  unit: requests
+  burst: null
+  status_on_exhaustion: 429
+  error_code: TOO_MANY_REQUESTS
+  note: >-
+    "Please contact us on RPM or file size if interested in understanding how it can scale under
+    your ETLA."
+- scope: per-account
+  tier: Free Tier
+  window: month
+  limit: 500
+  unit: Document Transactions
+  reset: first of each month
+  status_on_exhaustion: 429
+  error_code: INSUFFICIENT_QUOTA
+  note: >-
+    NOT transient. Shares HTTP 429 with the rate limit but must not be retried — an agent that
+    treats every 429 as backoff-and-retry will loop until the month rolls over.
+- scope: per-request
+  window: request
+  limit: 100
+  unit: MB
+  subject: file size (all documents)
+- scope: per-request
+  window: request
+  limit: 20
+  unit: documents
+  subject: Combine, Insert, Replace, Split
+- scope: per-request
+  window: request
+  limit: 50
+  unit: output images
+  subject: Export (per Document Transaction)
+- scope: per-request
+  window: request
+  limit: 400
+  unit: pages
+  subject: Extract and PDF To Markdown
+  note: May be lower for documents with a large number of tables.
+- scope: per-request
+  window: request
+  limit: 200
+  unit: pages
+  subject: Accessibility Auto-Tag
+- scope: per-request
+  window: request
+  limit: 150
+  unit: pages
+  subject: Scanned documents (Extract, PDF To Markdown, Accessibility Auto-Tag)
+- scope: per-request
+  window: request
+  limit: 10
+  unit: MB
+  subject: JSON file size (Document Generation, HTML to PDF, Import PDF Form Data)
+
+response_headers:
+  published: false
+  rate_limit_headers: []
+  retry_after: false
+  note: >-
+    Adobe declares no RateLimit-*, X-RateLimit-* or Retry-After header on the 429 in either the
+    OpenAPI (48 of 49 operations declare a 429, none with a rate-limit header) or the limits
+    documentation. The only headers on a 429 are `content-type` and `x-request-id`.
+
 responseCodes:
   throttled: 429
   quotaExceeded: 429
   serviceUnavailable: 503
-limits:
-  - name: Per-service quotas (varies)
-    scope: api-key
-    metric: varies
-    limit: see service-specific limits documentation
-    notes: >-
-      Each Adobe API documents its own per-second / per-minute ceilings; consult
-      the developer.adobe.com docs for the specific service.
-  - name: Generative-credit pacing (Firefly)
-    scope: account
-    metric: varies
-    limit: see https://developer.adobe.com/firefly-services/docs/
-    notes: >-
-      Firefly throttling is governed by the generative credit balance and the
-      per-minute concurrent-request ceiling specific to each Firefly endpoint.
-policies:
-  - name: Backoff Strategy
-    description: Implement exponential backoff with jitter and honor any Retry-After header.
-  - name: Per-service throttling
-    description: >-
-      Limits are enforced per-API and per-API-key; exceeding one service does
-      not impact unrelated services on the same Adobe IMS organisation.
-  - name: Enterprise raise
-    description: >-
-      Enterprise customers can negotiate raised quotas for production traffic
-      via their Adobe account team or technical account manager.
-maintainers:
-  - FN: Kin Lane
-    email: kin@apievangelist.com
+
+metering:
+  unit: Document Transaction
+  basis: the initial endpoint request and its digital output
+  rules:
+  - All operations except those below — 1 Document Transaction per document, up to 50 pages
+  - Extract and PDF To Markdown — 1 Document Transaction per 5 pages
+  - Accessibility Auto-Tag — 10 Document Transactions PER PAGE
+  - Electronic Seal — 10 Document Transactions per PDF
+  - Protect, Remove Password, Get PDF Properties, Accessibility Checker — the 50-page count does not apply
+  docs: https://developer.adobe.com/document-services/docs/overview/pdf-services-api/dcserviceslicensing/
+
+other_products:
+  note: >-
+    Numbers for the rest of the Adobe portfolio remain unrecorded rather than guessed. Consult the
+    product-specific pages.
+  sources:
+  - https://developer.adobe.com/firefly-services/docs/
+  - https://developer.adobe.com/experience-platform-apis/
+  - https://opensource.adobe.com/acrobat-sign/developer_guide/
+  - https://developer.adobe.com/analytics-apis/docs/2.0/

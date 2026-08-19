@@ -1,0 +1,85 @@
+generated: '2026-08-13'
+method: searched
+source: https://developer.adobe.com/document-services/docs/overview/releasenotes/
+raw_source: https://raw.githubusercontent.com/AdobeDocs/pdfservices-api-documentation/main/src/pages/overview/releasenotes.md
+scope: Adobe PDF Services / Acrobat Services (SDKs + server-side API)
+scheme: semver
+scheme_detail: >-
+  Major.Minor.Patch on the SDKs. The REST API itself is NOT versioned in the URL — breaking changes
+  ship as a new operation assetId. Server-side releases are dated, not numbered.
+current_versions:
+  dotnet_sdk: 4.4.0
+  python_sdk: 4.3.0
+  java_sdk: 4.3.0
+  node_sdk: 4.1.0
+change_types:
+- New — features or implementation changes added in the current release
+- Changed — modified code that changes a feature or implementation detail
+- Security — a patch or bug fix released in an out-of-band patch
+- Deprecated — existing functionality for which support is ending (or ended)
+compatibility_statement: >-
+  "Minor and Patch releases are backward compatible with the previous release. Upgrading to the
+  latest SDK should not break existing applications."
+entries:
+- date: '2026-08-10'
+  version: .NET SDK 4.4.0
+  breaking: false
+  highlights:
+  - Added support for the PDF to Markdown operation in the PDF Services .NET SDK
+  - Support for generating PDFs from Markdown files in the Create PDF operation
+  - Added includeRenderedHtml parameter to the HTML to PDF operation
+  - Added includeHeaderFooter and tagEncapsulatedText parameters to the Extract operation
+- date: '2026-08-10'
+  version: Python SDK 4.3.0
+  breaking: false
+  highlights:
+  - Added support for the PDF to Markdown operation in the PDF Services Python SDK
+  - Support for generating PDFs from Markdown files in the Create PDF operation
+  - Added includeRenderedHtml parameter to the HTML to PDF operation
+  - Added includeHeaderFooter and tagEncapsulatedText parameters to the Extract operation
+- date: '2025-09-29'
+  version: .NET SDK 4.3.1
+  breaking: false
+  type: patch
+- date: '2025-07-10'
+  version: Python SDK 4.2.0
+  breaking: false
+- date: '2025-05-22'
+  version: .NET SDK 4.3.0
+  breaking: false
+- date: '2025-05-12'
+  version: Python SDK 4.1.1
+  breaking: false
+- date: '2025-04-30'
+  version: Adobe Document Generation server-side release
+  breaking: false
+- date: '2025-04-25'
+  version: Adobe Document Generation server-side release
+  breaking: false
+- date: '2025-04-22'
+  version: Java SDK 4.3.0
+  breaking: false
+- date: '2025-03-03'
+  version: Adobe Document Generation server-side release
+  breaking: false
+- date: '2025-02-24'
+  version: Adobe Document Generation server-side release
+  breaking: false
+- date: '2025-02-21'
+  version: .NET SDK 4.2.0
+  breaking: false
+- date: '2024-11-06'
+  version: Java SDK 4.2.0 / Node, .NET, Python SDK 4.1.0
+  breaking: false
+  type: minor
+other_changelogs:
+- product: Adobe Firefly API
+  url: https://developer.adobe.com/firefly-services/docs/firefly-api/guides/changelog/
+- product: Adobe Acrobat Sign
+  url: https://opensource.adobe.com/acrobat-sign/releasenotes/acrobatsignreleasenotes.html
+- product: Adobe Express add-ons (UXP)
+  url: https://developer.adobe.com/express/add-ons/docs/guides/changelog/
+- product: Adobe Experience Cloud
+  url: https://experienceleague.adobe.com/en/docs/release-notes/experience-cloud/current
+- product: Adobe PDF Embed API
+  url: https://developer.adobe.com/document-services/docs/overview/pdf-embed-api/releasenotes/

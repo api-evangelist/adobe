@@ -1,0 +1,99 @@
+generated: '2026-08-13'
+method: derived
+source: >-
+  openapi/_original/adobe-pdf-services-api-openapi-official.json (49 operations, harvested from
+  AdobeDocs/pdfservices-api-documentation) + the callback failure payload documented at
+  https://developer.adobe.com/document-services/docs/overview/pdf-services-api/howtos/webhook-notification/
+format: vendor-envelope
+rfc9457: false
+note: >-
+  Adobe PDF Services does NOT use RFC 9457 problem+json. Every 4xx/5xx returns application/json with
+  a two-field envelope carrying a mnemonic string code. Adobe states the code list "is extendable
+  and going forward the error codes can become more specific", so clients must branch on
+  `error.code` and tolerate unknown values — never parse `error.message`.
+envelope:
+  content_type: application/json
+  shape: '{"error": {"code": "<MNEMONIC>", "message": "<English text>"}}'
+  fields:
+  - name: error.code
+    type: string
+    description: Mnemonic returned by the service on any failure. Extendable set.
+  - name: error.message
+    type: string
+    description: English-language string with more information about the error.
+  - name: error.status
+    type: integer
+    description: Present in the asynchronous webhook callback failure payload only.
+correlation:
+  header: x-request-id
+  note: >-
+    Returned on EVERY response, success or failure, across all 49 operations. If x-request-id is
+    supplied on the request it is echoed back, making it a client-supplied correlation id — the
+    closest thing this API has to a retry-safety handle (there is no idempotency key).
+problems:
+- status: 400
+  code: BAD_REQUEST
+  title: Bad Request.
+  description: The request was invalid or cannot be otherwise served.
+  remediation: >-
+    Validate the request body against the operation schema; confirm the assetID exists and belongs
+    to the same region host as the submit call.
+  operations_declaring: 49
+- status: 401
+  code: UNAUTHORIZED
+  title: Not authorised to perform the operation.
+  description: >-
+    Missing, expired or mismatched credentials. Both Authorization (Bearer IMS token) and x-api-key
+    (client_id) headers are required on every operation.
+  remediation: Re-mint the IMS access token via POST /token (authentication.generatetoken).
+  operations_declaring: 49
+  extra_headers: [x-server]
+- status: 403
+  code: FORBIDDEN
+  title: Forbidden.
+  description: Credentials are valid but not entitled to this operation.
+  operations_declaring: 1
+- status: 404
+  code: NOT_FOUND
+  title: Asset not found.
+  description: The referenced assetID or jobID does not exist, has expired, or was deleted.
+  remediation: Re-upload via asset.uploadpresignedurl; assets are not durable storage.
+  operations_declaring: 45
+- status: 409
+  code: CONFLICT
+  title: Conflict.
+  description: Declared on one operation only.
+  operations_declaring: 1
+- status: 429
+  code: TOO_MANY_REQUESTS
+  title: Too Many Requests.
+  description: Request rate exceeded — 25 RPM on the Free Tier, 100 RPM on Enterprise.
+  remediation: Exponential backoff and retry. This is transient.
+  operations_declaring: 48
+- status: 429
+  code: INSUFFICIENT_QUOTA
+  title: >-
+    Either Quota for this operation is not available or Free trial quota is exhausted.
+  description: >-
+    Monthly Document Transaction allowance consumed (500/month on the Free Tier). Shares HTTP 429
+    with TOO_MANY_REQUESTS but is NOT transient.
+  remediation: >-
+    Do not retry. Wait for the monthly reset on the 1st, or purchase paid credentials. An agent that
+    treats every 429 as backoff-and-retry will loop indefinitely against this code.
+  operations_declaring: 48
+- status: 500
+  code: INTERNAL_SERVER_ERROR
+  title: There was an error processing your request.
+  description: The server encountered an error and is unable to process the request at this time.
+  remediation: Retry with backoff; include x-request-id when reporting.
+  operations_declaring: 49
+- status: 500
+  code: UNKNOWN
+  title: Unknown error.
+  operations_declaring: 49
+coverage:
+  operations_analysed: 49
+  operations_with_4xx: 49
+  operations_with_5xx: 49
+  distinct_status_codes: [400, 401, 403, 404, 409, 429, 500]
+  distinct_codes: 8

@@ -1,0 +1,77 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Adobe PDF Services Assets API",
+    "version": "4.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Assets",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Adobe Upload an Asset",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://pdf-services-ue1.adobe.io/assets",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Upload a document to the PDF Services platform for processing. Returns a pre-signed upload URI and an asset ID. You must first call this endpoint to get the upload URI, then PUT the file content to that URI, and finally use the asset ID in subsequent operation requests."
+        },
+        {
+          "info": {
+            "name": "Adobe Get Asset Download Uri",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://pdf-services-ue1.adobe.io/assets/:assetID",
+            "params": [
+              {
+                "name": "assetID",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the asset."
+              }
+            ]
+          },
+          "docs": "Retrieve a pre-signed download URI for a previously created asset or job output. The download URI is valid for a limited time."
+        },
+        {
+          "info": {
+            "name": "Adobe Delete an Asset",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://pdf-services-ue1.adobe.io/assets/:assetID",
+            "params": [
+              {
+                "name": "assetID",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the asset."
+              }
+            ]
+          },
+          "docs": "Delete a previously uploaded asset from the platform."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,167 @@
+generated: '2026-08-13'
+method: searched
+source: >-
+  registry.npmjs.org, pypi.org, search.maven.org, api.nuget.org (all queried unauthenticated
+  2026-08-13), cross-checked against developer.adobe.com SDK pages and the adobe/ + AdobeDocs/
+  GitHub organisations.
+note: >-
+  Adobe ships first-party client libraries across four product families: Acrobat Services /
+  PDF Services (Node, Python, Java, .NET), Adobe Developer App Builder (aio CLI + SDK modules),
+  Adobe Express add-on tooling, and React Spectrum (the design system). Versions and dates below
+  are read from each registry's metadata endpoint, not from prose.
+packages:
+- language: javascript
+  registry: npm
+  name: "@adobe/pdfservices-node-sdk"
+  url: https://www.npmjs.com/package/@adobe/pdfservices-node-sdk
+  install: npm install @adobe/pdfservices-node-sdk
+  official: true
+  product: Adobe PDF Services API
+  version: 4.1.0
+  published: '2024-11-05'
+  note: >-
+    DECAY SIGNAL — the Node SDK's last release (4.1.0, 2024-11-05) is over 21 months behind its
+    siblings: the Python SDK shipped 4.3.0 on 2026-08-10 and the .NET SDK shipped 4.4.0 the same
+    day. Same major line, very different release cadence.
+- language: python
+  registry: pypi
+  name: pdfservices-sdk
+  url: https://pypi.org/project/pdfservices-sdk/
+  install: pip install pdfservices-sdk
+  official: true
+  product: Adobe PDF Services API
+  version: 4.3.0
+  published: '2026-08-10'
+- language: java
+  registry: maven
+  name: com.adobe.documentservices:pdfservices-sdk
+  url: https://central.sonatype.com/artifact/com.adobe.documentservices/pdfservices-sdk
+  install: "<dependency><groupId>com.adobe.documentservices</groupId><artifactId>pdfservices-sdk</artifactId><version>4.3.0</version></dependency>"
+  official: true
+  product: Adobe PDF Services API
+  version: 4.3.0
+  published: '2025-04-25'
+- language: dotnet
+  registry: nuget
+  name: Adobe.PDFServicesSDK
+  url: https://www.nuget.org/packages/Adobe.PDFServicesSDK
+  install: dotnet add package Adobe.PDFServicesSDK
+  official: true
+  product: Adobe PDF Services API
+  version: 4.4.0
+  published: '2026-08-10'
+- language: javascript
+  registry: npm
+  name: "@adobe/aio-cli"
+  url: https://www.npmjs.com/package/@adobe/aio-cli
+  install: npm install -g @adobe/aio-cli
+  official: true
+  product: Adobe Developer App Builder (Adobe I/O CLI)
+  version: 11.1.2
+  published: '2026-06-03'
+  note: The first-party CLI; its command surface is catalogued in cli/adobe-cli.yml.
+- language: javascript
+  registry: npm
+  name: "@adobe/aio-sdk"
+  url: https://www.npmjs.com/package/@adobe/aio-sdk
+  install: npm install @adobe/aio-sdk
+  official: true
+  product: Adobe Developer Platform SDK aggregate
+  version: 6.0.0
+  published: '2024-09-03'
+- language: javascript
+  registry: npm
+  name: "@adobe/aio-lib-events"
+  url: https://www.npmjs.com/package/@adobe/aio-lib-events
+  install: npm install @adobe/aio-lib-events
+  official: true
+  product: Adobe I/O Events
+  version: 4.1.0
+  published: '2026-05-13'
+- language: javascript
+  registry: npm
+  name: "@adobe/aio-lib-ims"
+  url: https://www.npmjs.com/package/@adobe/aio-lib-ims
+  install: npm install @adobe/aio-lib-ims
+  official: true
+  product: Adobe Identity Management Services (IMS) auth
+  version: 8.1.2
+  published: '2026-04-29'
+- language: javascript
+  registry: npm
+  name: "@adobe/create-ccweb-add-on"
+  url: https://www.npmjs.com/package/@adobe/create-ccweb-add-on
+  install: npx @adobe/create-ccweb-add-on
+  official: true
+  product: Adobe Express add-on scaffolding
+  version: 3.10.0
+  published: '2026-06-16'
+- language: javascript
+  registry: npm
+  name: "@adobe/ccweb-add-on-scripts"
+  url: https://www.npmjs.com/package/@adobe/ccweb-add-on-scripts
+  install: npm install @adobe/ccweb-add-on-scripts
+  official: true
+  product: Adobe Express add-on build scripts
+  version: 3.10.0
+  published: '2026-06-16'
+- language: typescript
+  registry: npm
+  name: "@adobe/ccweb-add-on-sdk-types"
+  url: https://www.npmjs.com/package/@adobe/ccweb-add-on-sdk-types
+  install: npm install --save-dev @adobe/ccweb-add-on-sdk-types
+  official: true
+  product: Adobe Express Add-on SDK type definitions
+  version: 1.38.0
+  published: '2026-08-11'
+- language: javascript
+  registry: npm
+  name: "@adobe/express-developer-mcp"
+  url: https://www.npmjs.com/package/@adobe/express-developer-mcp
+  install: npx -y @adobe/express-developer-mcp
+  official: true
+  product: Adobe Express Developer MCP Server (local stdio)
+  version: 1.0.0
+  published: '2026-01-14'
+  note: >-
+    Supersedes the beta package @adobe/express-add-on-dev-mcp (0.1.0, 2025-08-19). See
+    mcp/adobe-mcp.yml — this is the local-stdio half of Adobe's MCP surface.
+- language: javascript
+  registry: npm
+  name: "@adobe/react-spectrum"
+  url: https://www.npmjs.com/package/@adobe/react-spectrum
+  install: npm install @adobe/react-spectrum
+  official: true
+  product: Spectrum design system (React)
+  version: 3.47.3
+  published: '2026-07-31'
+- language: javascript
+  registry: npm
+  name: "@adobe/aem-headless-client-js"
+  url: https://www.npmjs.com/package/@adobe/aem-headless-client-js
+  install: npm install @adobe/aem-headless-client-js
+  official: true
+  product: Adobe Experience Manager Headless (GraphQL) client
+  version: 4.0.0
+  published: '2024-07-11'
+  note: DECAY SIGNAL — no release in over two years while AEM shipped MCP servers and Agent Skills.
+- language: javascript
+  registry: npm
+  name: "@adobe/aem-upload"
+  url: https://www.npmjs.com/package/@adobe/aem-upload
+  install: npm install @adobe/aem-upload
+  official: true
+  product: AEM Assets direct binary access upload
+  version: 2.0.5
+  published: '2026-06-10'
+not_found:
+- name: "@adobe/firefly-services-sdk"
+  registry: npm
+  version: null
+  note: >-
+    Adobe documents Firefly Services SDKs at developer.adobe.com/firefly-services/docs/guides/sdks/
+    but no package under this name resolves on registry.npmjs.org (HTTP 404). Checked, nothing to record.
+- name: pdfservices-sdk
+  registry: rubygems
+  version: null
+  note: rubygems.org returns 404 — Adobe ships no first-party Ruby client for PDF Services.

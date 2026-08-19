@@ -1,0 +1,49 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Adobe PDF Services Jobs API",
+    "version": "4.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Jobs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Adobe Get Job Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://pdf-services-ue1.adobe.io/operation/:operationType/status/:jobID",
+            "params": [
+              {
+                "name": "operationType",
+                "value": "createpdf",
+                "type": "path",
+                "description": "The type of operation that was submitted."
+              },
+              {
+                "name": "jobID",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique identifier of the job returned when the operation was submitted."
+              }
+            ]
+          },
+          "docs": "Poll for the status of an asynchronous PDF operation job. Returns the current status (in progress, done, or failed) and, when complete, the output asset information."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

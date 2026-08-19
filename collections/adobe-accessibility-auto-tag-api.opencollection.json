@@ -1,0 +1,39 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Adobe PDF Services Accessibility Auto-Tag API",
+    "version": "4.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Accessibility Auto-Tag",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Adobe Auto-tag a Pdf for Accessibility",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://pdf-services-ue1.adobe.io/operation/accessibilitychecker",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Automatically add accessibility tags to a PDF document using Adobe Sensei AI technology. Generates a tagged PDF that meets WCAG 2.0 and PDF/UA standards. Optionally generates a report detailing the tagging results."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

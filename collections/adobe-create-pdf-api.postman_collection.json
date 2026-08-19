@@ -1,0 +1,310 @@
+{
+  "item": [
+    {
+      "id": "c053124e-de3e-413d-ac12-b356ea03d7ea",
+      "name": "Create PDF",
+      "description": {
+        "content": "Create PDF documents from supported file formats including Microsoft Office, images, and HTML.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "da8c13df-5809-44dc-b5d5-f0ddbe8fc53e",
+          "name": "Adobe Create a Pdf",
+          "request": {
+            "name": "Adobe Create a Pdf",
+            "description": {
+              "content": "Create a PDF document from a supported source file format. Supported input formats include Microsoft Word (DOC, DOCX), Excel (XLS, XLSX), PowerPoint (PPT, PPTX), images (BMP, GIF, JPEG, PNG, TIFF), HTML, and RTF. The operation runs asynchronously; poll the returned location header for job status.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "operation",
+                "createpdf"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"assetID\": \"<string>\",\n  \"documentLanguage\": \"en-US\",\n  \"createPDFFromDOCXOptions\": {},\n  \"createPDFFromPPTXOptions\": {},\n  \"createPDFFromXLSXOptions\": {},\n  \"createPDFFromHTMLOptions\": {\n    \"includeHeaderFooter\": true,\n    \"pageLayout\": {\n      \"pageWidth\": 8.5,\n      \"pageHeight\": 11\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7b81e565-f252-433e-a2fd-d7ff93226e31",
+              "name": "Job created successfully. Poll the Location header URL for status.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "operation",
+                    "createpdf"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"assetID\": \"500123\",\n  \"documentLanguage\": \"en-US\",\n  \"createPDFFromDOCXOptions\": {},\n  \"createPDFFromPPTXOptions\": {},\n  \"createPDFFromXLSXOptions\": {},\n  \"createPDFFromHTMLOptions\": {\n    \"includeHeaderFooter\": true,\n    \"pageLayout\": {\n      \"pageWidth\": 42.5,\n      \"pageHeight\": 42.5\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "URL to poll for job status.",
+                  "key": "Location",
+                  "value": "https://kovxFdkeuIOrzxUljGVrANlzWzlR.npBFWegbLnouMUpB8lIK1zWED6xq+VyK.wywGKhaHfyHiZq8SedrVyADe"
+                },
+                {
+                  "disabled": false,
+                  "description": "A unique identifier for the request, useful for debugging and support.",
+                  "key": "x-request-id",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"in progress\",\n  \"asset\": {\n    \"assetID\": \"500123\",\n    \"downloadUri\": \"https://www.example.com\",\n    \"metadata\": {\n      \"type\": \"example_value\",\n      \"size\": 10\n    }\n  },\n  \"error\": {\n    \"code\": \"example_value\",\n    \"message\": \"example_value\",\n    \"status\": 10\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "622fbc62-66e9-483d-9a93-a5d792296317",
+              "name": "The request was malformed or contained invalid parameters. Check the error message for details.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "operation",
+                    "createpdf"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"assetID\": \"500123\",\n  \"documentLanguage\": \"en-US\",\n  \"createPDFFromDOCXOptions\": {},\n  \"createPDFFromPPTXOptions\": {},\n  \"createPDFFromXLSXOptions\": {},\n  \"createPDFFromHTMLOptions\": {\n    \"includeHeaderFooter\": true,\n    \"pageLayout\": {\n      \"pageWidth\": 42.5,\n      \"pageHeight\": 42.5\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"INVALID_ASSET_ID\",\n    \"message\": \"string\",\n    \"status\": 400\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "79b76517-6d7d-4726-b165-842d4240a931",
+              "name": "Authentication failed. The access token is missing, expired, or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "operation",
+                    "createpdf"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"assetID\": \"500123\",\n  \"documentLanguage\": \"en-US\",\n  \"createPDFFromDOCXOptions\": {},\n  \"createPDFFromPPTXOptions\": {},\n  \"createPDFFromXLSXOptions\": {},\n  \"createPDFFromHTMLOptions\": {\n    \"includeHeaderFooter\": true,\n    \"pageLayout\": {\n      \"pageWidth\": 42.5,\n      \"pageHeight\": 42.5\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"INVALID_ASSET_ID\",\n    \"message\": \"string\",\n    \"status\": 400\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3f790bdb-3bf9-4178-9eea-62b0b7f548cc",
+              "name": "Rate limit exceeded. Wait before retrying. Check Retry-After header for guidance.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "operation",
+                    "createpdf"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"assetID\": \"500123\",\n  \"documentLanguage\": \"en-US\",\n  \"createPDFFromDOCXOptions\": {},\n  \"createPDFFromPPTXOptions\": {},\n  \"createPDFFromXLSXOptions\": {},\n  \"createPDFFromHTMLOptions\": {\n    \"includeHeaderFooter\": true,\n    \"pageLayout\": {\n      \"pageWidth\": 42.5,\n      \"pageHeight\": 42.5\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"INVALID_ASSET_ID\",\n    \"message\": \"string\",\n    \"status\": 400\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://pdf-services-ue1.adobe.io",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "6a145f9b-4907-43d5-bcd6-6e50e74e88a7",
+    "name": "Adobe PDF Services Create PDF API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Adobe PDF Services API enables developers to create, convert, manipulate, and extract content from PDF documents programmatically. The API uses an asynchronous job-based model where you submit a job, poll for its status, and retrieve the result. Operations include creating PDFs from various formats, exporting PDFs to other formats, combining and splitting PDFs, compressing, OCR processing, protecting with passwords, extracting structured content, auto-tagging for accessibility, and generating documents from templates. Authentication uses OAuth 2.0 with client credentials (server-to-server).\n\nContact Support:\n Name: Adobe Developer Support\n Email: pdfsvcops@adobe.com",
+      "type": "text/plain"
+    }
+  }
+}
