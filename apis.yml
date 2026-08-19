@@ -34,7 +34,7 @@ description: Adobe provides APIs and developer resources for its creative, docum
   e-commerce, e-signatures, and many other Adobe products and services.
 created: '2024-01-01'
 modified: '2026-08-13'
-specificationVersion: '0.19'
+specificationVersion: '0.23'
 apis:
 - aid: adobe:adobe-pdf-extract-api
   name: Adobe PDF Extract API
