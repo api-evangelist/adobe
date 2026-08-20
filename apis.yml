@@ -39,6 +39,10 @@ apis:
 - aid: adobe:adobe-pdf-extract-api
   name: Adobe PDF Extract API
   tags:
+  - Artificial Intelligence
+  - Extraction
+  - PDF
+  tags_raw:
   - AI
   - Extraction
   - PDF
@@ -88,6 +92,9 @@ apis:
 - aid: adobe:adobe-firefly-api
   name: Adobe Firefly API
   tags:
+  - Generative AI
+  - Image-Generation
+  tags_raw:
   - Generative AI
   - Image Generation
   humanURL: https://developer.adobe.com/firefly-services/docs/firefly-api/
@@ -171,6 +178,9 @@ apis:
 - aid: adobe:adobe-workfront-api
   name: Adobe Workfront API
   tags:
+  - Project
+  - Work Management
+  tags_raw:
   - Projects
   - Work Management
   humanURL: https://developer.adobe.com/workfront-apis/
@@ -200,6 +210,9 @@ apis:
 - aid: adobe:adobe-io-events-api
   name: Adobe I/O Events API
   tags:
+  - Event
+  - Webhook
+  tags_raw:
   - Events
   - Webhooks
   humanURL: https://developer.adobe.com/events/
@@ -455,6 +468,8 @@ apis:
   humanURL: https://developer.adobe.com/document-services/apis/pdf-services/
   baseURL: https://pdf-services.adobe.io
   tags:
+  - Job
+  tags_raw:
   - Jobs
   properties:
   - type: OpenAPI
