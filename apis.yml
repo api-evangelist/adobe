@@ -52,9 +52,11 @@ apis:
   - type: Documentation
     url: https://developer.adobe.com/document-services/docs/overview/pdf-extract-api/
   - type: GettingStarted
-    url: https://developer.adobe.com/document-services/docs/overview/pdf-extract-api/gettingstarted/
-  description: Extract text, images, tables, and more from native and scanned PDFs into structured JSON
-    using AI technology.
+    url: >-
+      https://developer.adobe.com/document-services/docs/overview/pdf-extract-api/gettingstarted/
+  description: >-
+    Extract text, images, tables, and more from native and scanned PDFs into structured JSON using AI
+    technology.
 - aid: adobe:adobe-acrobat-sign-api
   name: Adobe Acrobat Sign API
   tags:
@@ -120,11 +122,13 @@ apis:
   baseURL: https://platform.adobe.io
   properties:
   - type: Documentation
-    url: https://experienceleague.adobe.com/docs/experience-platform/landing/platform-apis/api-guide.html
+    url: >-
+      https://experienceleague.adobe.com/docs/experience-platform/landing/platform-apis/api-guide.html
   - type: APIReference
     url: https://developer.adobe.com/experience-platform-apis/references/
   - type: GettingStarted
-    url: https://experienceleague.adobe.com/en/docs/experience-platform/landing/platform-apis/api-guide
+    url: >-
+      https://experienceleague.adobe.com/en/docs/experience-platform/landing/platform-apis/api-guide
   description: Build and manage customer experience applications on Adobe Experience Platform.
 - aid: adobe:adobe-stock-api
   name: Adobe Stock API
@@ -142,7 +146,8 @@ apis:
     url: https://developer.adobe.com/stock/docs/getting-started/
   - type: SDKs
     url: https://github.com/adobe/stock-api-sdk
-  description: Search, license, and manage Adobe Stock assets including photos, vectors, videos, and templates.
+  description: >-
+    Search, license, and manage Adobe Stock assets including photos, vectors, videos, and templates.
 - aid: adobe:adobe-commerce-api
   name: Adobe Commerce API
   tags:
@@ -169,7 +174,8 @@ apis:
   - type: Documentation
     url: https://experienceleague.adobe.com/en/docs/marketo-developer/marketo/rest/rest-api
   - type: APIReference
-    url: https://experienceleague.adobe.com/en/docs/marketo-developer/marketo/rest/endpoint-reference
+    url: >-
+      https://experienceleague.adobe.com/en/docs/marketo-developer/marketo/rest/endpoint-reference
   - type: Authentication
     url: https://experienceleague.adobe.com/en/docs/marketo-developer/marketo/rest/authentication
   - type: GettingStarted
@@ -186,11 +192,13 @@ apis:
   humanURL: https://developer.adobe.com/workfront-apis/
   properties:
   - type: Documentation
-    url: https://experienceleague.adobe.com/en/docs/workfront/using/adobe-workfront-api/workfront-api
+    url: >-
+      https://experienceleague.adobe.com/en/docs/workfront/using/adobe-workfront-api/workfront-api
   - type: APIReference
     url: https://developer.adobe.com/workfront/api-explorer/
   - type: GettingStarted
-    url: https://experienceleague.adobe.com/en/docs/workfront/using/adobe-workfront-api/api-general-information/api-basics
+    url: >-
+      https://experienceleague.adobe.com/en/docs/workfront/using/adobe-workfront-api/api-general-information/api-basics
   description: Manage work, projects, tasks, and resources programmatically with a REST API.
 - aid: adobe:adobe-user-management-api
   name: Adobe User Management API
@@ -206,7 +214,8 @@ apis:
     url: https://adobe-apiplatform.github.io/umapi-documentation/en/RefOverview.html
   - type: GettingStarted
     url: https://adobe-apiplatform.github.io/umapi-documentation/en/getstarted.html
-  description: Programmatically manage users, groups, and product entitlements for Adobe enterprise organizations.
+  description: >-
+    Programmatically manage users, groups, and product entitlements for Adobe enterprise organizations.
 - aid: adobe:adobe-io-events-api
   name: Adobe I/O Events API
   tags:
@@ -224,7 +233,8 @@ apis:
     url: https://developer.adobe.com/events/docs/guides/api/
   - type: GettingStarted
     url: https://developer.adobe.com/events/docs/
-  description: Subscribe to and receive near real-time events from Adobe services for event-driven integrations.
+  description: >-
+    Subscribe to and receive near real-time events from Adobe services for event-driven integrations.
 - aid: adobe:adobe-experience-manager-api
   name: Adobe Experience Manager API
   tags:
@@ -238,9 +248,11 @@ apis:
   - type: APIReference
     url: https://developer.adobe.com/experience-cloud/experience-manager-apis
   - type: GettingStarted
-    url: https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/implementing/developing/reference-materials
-  description: Create, read, update, and delete content, assets, and forms in Adobe Experience Manager
-    as a Cloud Service.
+    url: >-
+      https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/implementing/developing/reference-materials
+  description: >-
+    Create, read, update, and delete content, assets, and forms in Adobe Experience Manager as a Cloud
+    Service.
 - aid: adobe:adobe-accessibility-auto-tag-api
   name: Adobe PDF Services Accessibility Auto-Tag API
   description: Automatically add accessibility tags to PDF documents using AI.
@@ -254,7 +266,8 @@ apis:
   - type: Documentation
     url: https://developer.adobe.com/document-services/docs/overview/pdf-services-api/
   - type: GettingStarted
-    url: https://developer.adobe.com/document-services/docs/overview/pdf-services-api/gettingstarted/
+    url: >-
+      https://developer.adobe.com/document-services/docs/overview/pdf-services-api/gettingstarted/
   - type: ChangeLog
     url: https://developer.adobe.com/document-services/docs/overview/releasenotes/
   - type: JSONSchema
@@ -276,7 +289,8 @@ apis:
   - type: Documentation
     url: https://developer.adobe.com/document-services/docs/overview/pdf-services-api/
   - type: GettingStarted
-    url: https://developer.adobe.com/document-services/docs/overview/pdf-services-api/gettingstarted/
+    url: >-
+      https://developer.adobe.com/document-services/docs/overview/pdf-services-api/gettingstarted/
   - type: ChangeLog
     url: https://developer.adobe.com/document-services/docs/overview/releasenotes/
   - type: JSONSchema
@@ -298,7 +312,8 @@ apis:
   - type: Documentation
     url: https://developer.adobe.com/document-services/docs/overview/pdf-services-api/
   - type: GettingStarted
-    url: https://developer.adobe.com/document-services/docs/overview/pdf-services-api/gettingstarted/
+    url: >-
+      https://developer.adobe.com/document-services/docs/overview/pdf-services-api/gettingstarted/
   - type: ChangeLog
     url: https://developer.adobe.com/document-services/docs/overview/releasenotes/
   - type: JSONSchema
@@ -320,7 +335,8 @@ apis:
   - type: Documentation
     url: https://developer.adobe.com/document-services/docs/overview/pdf-services-api/
   - type: GettingStarted
-    url: https://developer.adobe.com/document-services/docs/overview/pdf-services-api/gettingstarted/
+    url: >-
+      https://developer.adobe.com/document-services/docs/overview/pdf-services-api/gettingstarted/
   - type: ChangeLog
     url: https://developer.adobe.com/document-services/docs/overview/releasenotes/
   - type: JSONSchema
@@ -331,8 +347,8 @@ apis:
     url: graphql/adobe-graphql.md
 - aid: adobe:adobe-create-pdf-api
   name: Adobe PDF Services Create PDF API
-  description: Create PDF documents from supported file formats including Microsoft Office, images, and
-    HTML.
+  description: >-
+    Create PDF documents from supported file formats including Microsoft Office, images, and HTML.
   humanURL: https://developer.adobe.com/document-services/apis/pdf-services/
   baseURL: https://pdf-services.adobe.io
   tags:
@@ -343,7 +359,8 @@ apis:
   - type: Documentation
     url: https://developer.adobe.com/document-services/docs/overview/pdf-services-api/
   - type: GettingStarted
-    url: https://developer.adobe.com/document-services/docs/overview/pdf-services-api/gettingstarted/
+    url: >-
+      https://developer.adobe.com/document-services/docs/overview/pdf-services-api/gettingstarted/
   - type: ChangeLog
     url: https://developer.adobe.com/document-services/docs/overview/releasenotes/
   - type: JSONSchema
@@ -365,7 +382,8 @@ apis:
   - type: Documentation
     url: https://developer.adobe.com/document-services/docs/overview/pdf-services-api/
   - type: GettingStarted
-    url: https://developer.adobe.com/document-services/docs/overview/pdf-services-api/gettingstarted/
+    url: >-
+      https://developer.adobe.com/document-services/docs/overview/pdf-services-api/gettingstarted/
   - type: ChangeLog
     url: https://developer.adobe.com/document-services/docs/overview/releasenotes/
   - type: JSONSchema
@@ -387,7 +405,8 @@ apis:
   - type: Documentation
     url: https://developer.adobe.com/document-services/docs/overview/pdf-services-api/
   - type: GettingStarted
-    url: https://developer.adobe.com/document-services/docs/overview/pdf-services-api/gettingstarted/
+    url: >-
+      https://developer.adobe.com/document-services/docs/overview/pdf-services-api/gettingstarted/
   - type: ChangeLog
     url: https://developer.adobe.com/document-services/docs/overview/releasenotes/
   - type: JSONSchema
@@ -398,7 +417,8 @@ apis:
     url: graphql/adobe-graphql.md
 - aid: adobe:adobe-export-pdf-api
   name: Adobe PDF Services Export PDF API
-  description: Export (convert) PDF documents to other formats such as DOCX, PPTX, XLSX, images, and RTF.
+  description: >-
+    Export (convert) PDF documents to other formats such as DOCX, PPTX, XLSX, images, and RTF.
   humanURL: https://developer.adobe.com/document-services/apis/pdf-services/
   baseURL: https://pdf-services.adobe.io
   tags:
@@ -409,7 +429,8 @@ apis:
   - type: Documentation
     url: https://developer.adobe.com/document-services/docs/overview/pdf-services-api/
   - type: GettingStarted
-    url: https://developer.adobe.com/document-services/docs/overview/pdf-services-api/gettingstarted/
+    url: >-
+      https://developer.adobe.com/document-services/docs/overview/pdf-services-api/gettingstarted/
   - type: ChangeLog
     url: https://developer.adobe.com/document-services/docs/overview/releasenotes/
   - type: JSONSchema
@@ -431,7 +452,8 @@ apis:
   - type: Documentation
     url: https://developer.adobe.com/document-services/docs/overview/pdf-services-api/
   - type: GettingStarted
-    url: https://developer.adobe.com/document-services/docs/overview/pdf-services-api/gettingstarted/
+    url: >-
+      https://developer.adobe.com/document-services/docs/overview/pdf-services-api/gettingstarted/
   - type: ChangeLog
     url: https://developer.adobe.com/document-services/docs/overview/releasenotes/
   - type: JSONSchema
@@ -453,7 +475,8 @@ apis:
   - type: Documentation
     url: https://developer.adobe.com/document-services/docs/overview/pdf-services-api/
   - type: GettingStarted
-    url: https://developer.adobe.com/document-services/docs/overview/pdf-services-api/gettingstarted/
+    url: >-
+      https://developer.adobe.com/document-services/docs/overview/pdf-services-api/gettingstarted/
   - type: ChangeLog
     url: https://developer.adobe.com/document-services/docs/overview/releasenotes/
   - type: JSONSchema
@@ -477,7 +500,8 @@ apis:
   - type: Documentation
     url: https://developer.adobe.com/document-services/docs/overview/pdf-services-api/
   - type: GettingStarted
-    url: https://developer.adobe.com/document-services/docs/overview/pdf-services-api/gettingstarted/
+    url: >-
+      https://developer.adobe.com/document-services/docs/overview/pdf-services-api/gettingstarted/
   - type: ChangeLog
     url: https://developer.adobe.com/document-services/docs/overview/releasenotes/
   - type: JSONSchema
@@ -499,7 +523,8 @@ apis:
   - type: Documentation
     url: https://developer.adobe.com/document-services/docs/overview/pdf-services-api/
   - type: GettingStarted
-    url: https://developer.adobe.com/document-services/docs/overview/pdf-services-api/gettingstarted/
+    url: >-
+      https://developer.adobe.com/document-services/docs/overview/pdf-services-api/gettingstarted/
   - type: ChangeLog
     url: https://developer.adobe.com/document-services/docs/overview/releasenotes/
   - type: JSONSchema
@@ -510,7 +535,8 @@ apis:
     url: graphql/adobe-graphql.md
 - aid: adobe:adobe-ocr-api
   name: Adobe PDF Services OCR API
-  description: Apply optical character recognition to scanned PDFs to make text searchable and selectable.
+  description: >-
+    Apply optical character recognition to scanned PDFs to make text searchable and selectable.
   humanURL: https://developer.adobe.com/document-services/apis/pdf-services/
   baseURL: https://pdf-services.adobe.io
   tags:
@@ -521,7 +547,8 @@ apis:
   - type: Documentation
     url: https://developer.adobe.com/document-services/docs/overview/pdf-services-api/
   - type: GettingStarted
-    url: https://developer.adobe.com/document-services/docs/overview/pdf-services-api/gettingstarted/
+    url: >-
+      https://developer.adobe.com/document-services/docs/overview/pdf-services-api/gettingstarted/
   - type: ChangeLog
     url: https://developer.adobe.com/document-services/docs/overview/releasenotes/
   - type: JSONSchema
@@ -543,7 +570,8 @@ apis:
   - type: Documentation
     url: https://developer.adobe.com/document-services/docs/overview/pdf-services-api/
   - type: GettingStarted
-    url: https://developer.adobe.com/document-services/docs/overview/pdf-services-api/gettingstarted/
+    url: >-
+      https://developer.adobe.com/document-services/docs/overview/pdf-services-api/gettingstarted/
   - type: ChangeLog
     url: https://developer.adobe.com/document-services/docs/overview/releasenotes/
   - type: JSONSchema
@@ -565,7 +593,8 @@ apis:
   - type: Documentation
     url: https://developer.adobe.com/document-services/docs/overview/pdf-services-api/
   - type: GettingStarted
-    url: https://developer.adobe.com/document-services/docs/overview/pdf-services-api/gettingstarted/
+    url: >-
+      https://developer.adobe.com/document-services/docs/overview/pdf-services-api/gettingstarted/
   - type: ChangeLog
     url: https://developer.adobe.com/document-services/docs/overview/releasenotes/
   - type: JSONSchema
@@ -587,7 +616,8 @@ apis:
   - type: Documentation
     url: https://developer.adobe.com/document-services/docs/overview/pdf-services-api/
   - type: GettingStarted
-    url: https://developer.adobe.com/document-services/docs/overview/pdf-services-api/gettingstarted/
+    url: >-
+      https://developer.adobe.com/document-services/docs/overview/pdf-services-api/gettingstarted/
   - type: ChangeLog
     url: https://developer.adobe.com/document-services/docs/overview/releasenotes/
   - type: JSONSchema
@@ -609,7 +639,8 @@ apis:
   - type: Documentation
     url: https://developer.adobe.com/document-services/docs/overview/pdf-services-api/
   - type: GettingStarted
-    url: https://developer.adobe.com/document-services/docs/overview/pdf-services-api/gettingstarted/
+    url: >-
+      https://developer.adobe.com/document-services/docs/overview/pdf-services-api/gettingstarted/
   - type: ChangeLog
     url: https://developer.adobe.com/document-services/docs/overview/releasenotes/
   - type: JSONSchema
@@ -631,7 +662,8 @@ apis:
   - type: Documentation
     url: https://developer.adobe.com/document-services/docs/overview/pdf-services-api/
   - type: GettingStarted
-    url: https://developer.adobe.com/document-services/docs/overview/pdf-services-api/gettingstarted/
+    url: >-
+      https://developer.adobe.com/document-services/docs/overview/pdf-services-api/gettingstarted/
   - type: ChangeLog
     url: https://developer.adobe.com/document-services/docs/overview/releasenotes/
   - type: JSONSchema
@@ -653,7 +685,8 @@ apis:
   - type: Documentation
     url: https://developer.adobe.com/document-services/docs/overview/pdf-services-api/
   - type: GettingStarted
-    url: https://developer.adobe.com/document-services/docs/overview/pdf-services-api/gettingstarted/
+    url: >-
+      https://developer.adobe.com/document-services/docs/overview/pdf-services-api/gettingstarted/
   - type: ChangeLog
     url: https://developer.adobe.com/document-services/docs/overview/releasenotes/
   - type: JSONSchema
@@ -675,7 +708,8 @@ apis:
   - type: Documentation
     url: https://developer.adobe.com/document-services/docs/overview/pdf-services-api/
   - type: GettingStarted
-    url: https://developer.adobe.com/document-services/docs/overview/pdf-services-api/gettingstarted/
+    url: >-
+      https://developer.adobe.com/document-services/docs/overview/pdf-services-api/gettingstarted/
   - type: ChangeLog
     url: https://developer.adobe.com/document-services/docs/overview/releasenotes/
   - type: JSONSchema
@@ -684,40 +718,6 @@ apis:
     url: json-ld/adobe-pdf-services-context.jsonld
   - type: GraphQL
     url: graphql/adobe-graphql.md
-- aid: adobe:adobe-substance-3d-api
-  name: Adobe Substance 3D API
-  description: Generate 3D object composites, render 3D scenes, and run Substance 3D material and
-    model operations through the Firefly Services REST API.
-  humanURL: https://developer.adobe.com/firefly-services/docs/s3dapi/
-  baseURL: https://s3d.adobe.io
-  tags:
-  - 3D
-  - Firefly Services
-  - Rendering
-  properties:
-  - type: OpenAPI
-    url: openapi/_original/adobe-substance-3d-api-openapi.yml
-  - type: Documentation
-    url: https://developer.adobe.com/firefly-services/docs/s3dapi/
-  - type: SourceCode
-    url: https://github.com/AdobeDocs/ffs-s3d-api
-- aid: adobe:adobe-cc-libraries-api
-  name: Adobe Creative Cloud Libraries API
-  description: Read and manage Creative Cloud Libraries, their elements, representations, bookmarks,
-    and public library shares on behalf of a Creative Cloud user.
-  humanURL: https://developer.adobe.com/creative-cloud-libraries/docs
-  baseURL: https://cc-libraries.adobe.io
-  tags:
-  - Assets
-  - Creative Cloud
-  - Libraries
-  properties:
-  - type: OpenAPI
-    url: openapi/_original/adobe-cc-libraries-api-openapi.json
-  - type: Documentation
-    url: https://developer.adobe.com/creative-cloud-libraries/docs
-  - type: SourceCode
-    url: https://github.com/AdobeDocs/cc-libraries-api-spec
 common:
 - type: Packages
   url: packages/adobe-packages.yml
