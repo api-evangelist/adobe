@@ -14,8 +14,14 @@ info:
     polling is supplied as a workflow input.
   version: 1.0.0
 sourceDescriptions:
-- name: pdfServicesApi
-  url: ../openapi/adobe-pdf-services-api-openapi.yml
+- name: assetsApi
+  url: ../openapi/adobe-assets-api-openapi.yml
+  type: openapi
+- name: createPdfApi
+  url: ../openapi/adobe-create-pdf-api-openapi.yml
+  type: openapi
+- name: jobsApi
+  url: ../openapi/adobe-jobs-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: create-pdf-from-source

@@ -11,8 +11,8 @@ info:
     underlying OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: pdfServicesApi
-  url: ../openapi/adobe-pdf-services-api-openapi.yml
+- name: assetsApi
+  url: ../openapi/adobe-assets-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: download-and-cleanup-asset
