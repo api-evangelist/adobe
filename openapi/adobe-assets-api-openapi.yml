@@ -1,69 +1,408 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: "Adobe PDF Services Assets API"
-  description: The Adobe PDF Services API enables developers to create, convert, manipulate, and extract content from PDF documents programmatically. The API uses an asynchronous job-based model where you submit a job, poll for its status, and retrieve the result. Operations include creating PDFs from various formats, exporting PDFs to other formats, combining and splitting PDFs, compressing, OCR processing, protecting with passwords, extracting structured content, auto-tagging for accessibility, and generating documents from templates. Authentication uses OAuth 2.0 with client credentials (server-to-server).
-  version: 4.0.0
-  contact:
-    name: Adobe Developer Support
-    url: https://developer.adobe.com/document-services/
-    email: pdfsvcops@adobe.com
-  license:
-    name: Adobe Terms of Service
-    url: https://www.adobe.com/legal/terms.html
-  termsOfService: https://www.adobe.com/legal/terms.html
+  title: Adobe Assets API
+  version: '1.0'
+  description: 'Operations tagged Assets across 2 of this provider''s published API definitions: adobe-pdf-services-api-openapi-official.json, adobe-pdf-services-api-openapi.yml. Each path carries the servers of the definition it was published in.'
 servers:
 - url: https://pdf-services-ue1.adobe.io
-  description: Adobe PDF Services API - US East Production
+- url: https://pdf-services-ew1.adobe.io
 - url: https://pdf-services.adobe.io
   description: Adobe PDF Services API - Default Production
-security:
-- bearerAuth: []
 tags:
 - name: Assets
-  description: Upload and manage assets (source files) for PDF operations.
+  description: Upload and download assets to Adobe internal storage. <br> Uploading and downloading of assets is not required when using a custom <a href = "https://developer.adobe.com/document-services/docs/overview/pdf-services-api/howtos/pdf-external-storage-sol">external storage solution</a> with signed URLs. <div><small><b>Note:</b> Assets uploaded to Adobe internal storage are transiently stored for 24 hours.</small></div>
 paths:
   /assets:
     post:
-      operationId: uploadAsset
-      summary: Adobe Upload an Asset
-      description: Upload a document to the PDF Services platform for processing. Returns a pre-signed upload URI and an asset ID. You must first call this endpoint to get the upload URI, then PUT the file content to that URI, and finally use the asset ID in subsequent operation requests.
       tags:
       - Assets
-      requestBody:
+      summary: 'Get upload pre-signed URI. '
+      description: "Get the pre-signed URI to directly upload the content to the adobe's internal cloud provider. \n\nOutput: Response will have the asset URI of created asset and pre-signed URI for uploading the content.<div><small><b>Note:</b> The pre-signed URI provided for uploading or downloading the content has an expiry of 1 hour.</small></div>"
+      operationId: asset.uploadpresignedurl
+      parameters:
+      - name: Authorization
+        in: header
+        description: Bearer + Token (<a href="https://developer.adobe.com/document-services/docs/overview/pdf-services-api/gettingstarted/#step-1--getting-the-access-token">Learn more</a> about getting the access token)
         required: true
+        schema:
+          type: string
+      - name: x-api-key
+        in: header
+        description: The clientId from the generated credentials
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: Params for getting upload presigned url Operation
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/AssetUploadRequest'
-            examples:
-              UploadassetRequestExample:
-                summary: Default uploadAsset request
-                x-microcks-default: true
-                value:
-                  mediaType: example_value
+              $ref: '#/components/schemas/GetUploadPresignedUrlRequest'
+        required: true
       responses:
         '200':
-          description: Asset upload URI and metadata returned successfully.
+          description: The request was successful.
+          headers:
+            x-request-id:
+              description: A unique value to identify this request. If x-request-id is specified in the POST request, this value will be the same as the input.
+              schema:
+                type: string
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AssetUploadResponse'
-              examples:
-                Uploadasset200Example:
-                  summary: Default uploadAsset 200 response
-                  x-microcks-default: true
-                  value:
-                    assetID: '500123'
-                    uploadUri: https://www.example.com
+                $ref: '#/components/schemas/GetUploadPresignedUrlAsset'
         '400':
-          $ref: '#/components/responses/BadRequest'
+          description: Bad Request. The request was invalid or cannot be otherwise served.
+          headers:
+            content-type:
+              description: The content type of the POST API call response
+              schema:
+                type: string
+            x-request-id:
+              description: A unique value to identify this request. If x-request-id is specified in the POST request, this value will be the same as the input.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/400'
         '401':
-          $ref: '#/components/responses/Unauthorized'
+          description: Unauthorized.
+          headers:
+            content-type:
+              description: The content type of the error JSON response.
+              schema:
+                type: string
+            x-request-id:
+              description: A unique value to identify this request. If x-request-id is specified in the POST request, this value will be the same as the input.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/401'
         '429':
-          $ref: '#/components/responses/TooManyRequests'
-      x-microcks-operation:
-        delay: 0
-        dispatcher: FALLBACK
+          description: Caller doesn't have sufficient quota for this operation.
+          headers:
+            content-type:
+              description: The content type of the POST API call response
+              schema:
+                type: string
+            x-request-id:
+              description: A unique value to identify this request. If x-request-id is specified in the POST request, this value will be the same as the input.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Asset429'
+        '500':
+          description: Internal Server Error. The server has encountered an error and is unable to process your request at this time.
+          headers:
+            content-type:
+              description: The content type of the POST API call response
+              schema:
+                type: string
+            x-request-id:
+              description: A unique value to identify this request. If x-request-id is specified in the POST request, this value will be the same as the input.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/500'
+    servers:
+    - url: https://pdf-services-ue1.adobe.io
+    - url: https://pdf-services-ew1.adobe.io
+  /assets/{assetId}:
+    get:
+      tags:
+      - Assets
+      summary: Get download pre-signed URI.
+      description: Get the pre-signed URI to fetch the content directly from the cloud provider.<div><small><b>Note:</b> The pre-signed URI provided for uploading or downloading the content has an expiry of 1 hour.</small></div>
+      operationId: asset.get
+      parameters:
+      - name: Authorization
+        in: header
+        description: Bearer + Token (<a href="https://developer.adobe.com/document-services/docs/overview/pdf-services-api/gettingstarted/#step-1--getting-the-access-token">Learn more</a> about getting the access token)
+        required: true
+        schema:
+          type: string
+      - name: x-api-key
+        in: header
+        description: The clientId from the generated credentials
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: The request was successful.
+          headers:
+            Content-Type:
+              description: The media type of the response body, which is application/json.
+              schema:
+                type: string
+            x-request-id:
+              description: A unique ID to identify each individual request.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetPresignedUrl'
+        '400':
+          description: Bad Request. The request was invalid or cannot be otherwise served.
+          headers:
+            content-type:
+              description: The content type of the POST API call response
+              schema:
+                type: string
+            x-request-id:
+              description: A unique value to identify this request. If x-request-id is specified in the POST request, this value will be the same as the input.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/400'
+        '401':
+          description: Unauthorized.
+          headers:
+            content-type:
+              description: The content type of the error JSON response.
+              schema:
+                type: string
+            x-request-id:
+              description: A unique value to identify this request. If x-request-id is specified in the POST request, this value will be the same as the input.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/401'
+        '429':
+          description: Caller doesn't have sufficient quota for this operation.
+          headers:
+            content-type:
+              description: The content type of the POST API call response
+              schema:
+                type: string
+            x-request-id:
+              description: A unique value to identify this request. If x-request-id is specified in the POST request, this value will be the same as the input.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Asset429'
+        '500':
+          description: Internal Server Error. The server has encountered an error and is unable to process your request at this time.
+          headers:
+            content-type:
+              description: The content type of the POST API call response
+              schema:
+                type: string
+            x-request-id:
+              description: A unique value to identify this request. If x-request-id is specified in the POST request, this value will be the same as the input.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/500'
+    delete:
+      tags:
+      - Assets
+      summary: Delete the asset from storage.
+      description: Delete the stored asset from the cloud provider.
+      operationId: asset.delete
+      parameters:
+      - name: Authorization
+        in: header
+        description: Bearer + Token (<a href="https://developer.adobe.com/document-services/docs/overview/pdf-services-api/gettingstarted/#step-1--getting-the-access-token">Learn more</a> about getting the access token)
+        required: true
+        schema:
+          type: string
+      - name: x-api-key
+        in: header
+        description: The clientId from the generated credentials
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: The request was successful, but no content received.
+          headers:
+            Content-Type:
+              description: The media type of the response body, which is application/json.
+              schema:
+                type: string
+            x-request-id:
+              description: A unique ID to identify each individual request.
+              schema:
+                type: string
+        '400':
+          description: Bad Request. The request was invalid or cannot be otherwise served.
+          headers:
+            content-type:
+              description: The content type of the POST API call response
+              schema:
+                type: string
+            x-request-id:
+              description: A unique value to identify this request. If x-request-id is specified in the POST request, this value will be the same as the input.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/400'
+        '401':
+          description: Unauthorized.
+          headers:
+            content-type:
+              description: The content type of the error JSON response.
+              schema:
+                type: string
+            x-request-id:
+              description: A unique value to identify this request. If x-request-id is specified in the POST request, this value will be the same as the input.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/401'
+        '429':
+          description: Caller doesn't have sufficient quota for this operation.
+          headers:
+            content-type:
+              description: The content type of the POST API call response
+              schema:
+                type: string
+            x-request-id:
+              description: A unique value to identify this request. If x-request-id is specified in the POST request, this value will be the same as the input.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Asset429'
+        '500':
+          description: Internal Server Error. The server has encountered an error and is unable to process your request at this time.
+          headers:
+            content-type:
+              description: The content type of the POST API call response
+              schema:
+                type: string
+            x-request-id:
+              description: A unique value to identify this request. If x-request-id is specified in the POST request, this value will be the same as the input.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/500'
+    servers:
+    - url: https://pdf-services-ue1.adobe.io
+    - url: https://pdf-services-ew1.adobe.io
+  /assets/{assetId}/metadata:
+    get:
+      tags:
+      - Assets
+      summary: Get asset metadata.
+      description: Get the metadata of the stored temporary asset.
+      operationId: asset.metadata
+      parameters:
+      - name: Authorization
+        in: header
+        description: Bearer + Token (<a href="https://developer.adobe.com/document-services/docs/overview/pdf-services-api/gettingstarted/#step-1--getting-the-access-token">Learn more</a> about getting the access token)
+        required: true
+        schema:
+          type: string
+      - name: x-api-key
+        in: header
+        description: The clientId from the generated credentials
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: The request was successful.
+          headers:
+            Content-Type:
+              description: The media type of the response body, which is application/json.
+              schema:
+                type: string
+            x-request-id:
+              description: A unique ID to identify each individual request.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AssetMetadata'
+        '400':
+          description: Bad Request. The request was invalid or cannot be otherwise served.
+          headers:
+            content-type:
+              description: The content type of the POST API call response
+              schema:
+                type: string
+            x-request-id:
+              description: A unique value to identify this request. If x-request-id is specified in the POST request, this value will be the same as the input.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/400'
+        '401':
+          description: Unauthorized.
+          headers:
+            content-type:
+              description: The content type of the error JSON response.
+              schema:
+                type: string
+            x-request-id:
+              description: A unique value to identify this request. If x-request-id is specified in the POST request, this value will be the same as the input.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/401'
+        '429':
+          description: Caller doesn't have sufficient quota for this operation.
+          headers:
+            content-type:
+              description: The content type of the POST API call response
+              schema:
+                type: string
+            x-request-id:
+              description: A unique value to identify this request. If x-request-id is specified in the POST request, this value will be the same as the input.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Asset429'
+        '500':
+          description: Internal Server Error. The server has encountered an error and is unable to process your request at this time.
+          headers:
+            content-type:
+              description: The content type of the POST API call response
+              schema:
+                type: string
+            x-request-id:
+              description: A unique value to identify this request. If x-request-id is specified in the POST request, this value will be the same as the input.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/500'
+    servers:
+    - url: https://pdf-services-ue1.adobe.io
+    - url: https://pdf-services-ew1.adobe.io
   /assets/{assetID}:
     get:
       operationId: getAsset
@@ -92,6 +431,8 @@ paths:
       x-microcks-operation:
         delay: 0
         dispatcher: FALLBACK
+      security:
+      - bearerAuth: []
     delete:
       operationId: deleteAsset
       summary: Adobe Delete an Asset
@@ -108,8 +449,148 @@ paths:
       x-microcks-operation:
         delay: 0
         dispatcher: FALLBACK
+      security:
+      - bearerAuth: []
+    servers:
+    - url: https://pdf-services-ue1.adobe.io
+      description: Adobe PDF Services API - US East Production
+    - url: https://pdf-services.adobe.io
+      description: Adobe PDF Services API - Default Production
 components:
   schemas:
+    Asset429:
+      properties:
+        error_code:
+          description: 'The string containing the code field. code is the Mnemonic returned by service in case of any failure. The below list is extendable and going forward the error codes can become more specific. '
+          type: string
+        message:
+          description: "An English language string that contains more information about the error. \n\n<table><tr><th>code</th><th>message</th></tr><tr><td>429001</td><td>Service usage limit reached</td></tr><tr><td>429002</td><td>Developer key usage limit reached</td></tr><tr><td>429050</td><td>Too many requests</td></tr></table>"
+          type: string
+      example:
+        error_code: '429050'
+        message: Too many requests
+    GetUploadPresignedUrlAsset:
+      type: object
+      properties:
+        assetID:
+          description: An asset ID identifying an asset that is globally unique and never reused.
+          type: string
+        uploadUri:
+          description: The URL used to upload the Resource directly to the cloud provider.
+          type: string
+      example:
+        assetID: urn:aaid:AS:UE1:23c30ee0-2c4d-46d6-87f2-087832fca718
+        uploadUri: https://dcplatformstorageservice-dev-us-east-1.s3-accelerate.amazonaws.com/aa8d8790-321a-4487-92da-0e90ba931239?X-Amz-Security-Token=FwoGZXIvYXdzEP7%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaDDvZayrA6JI2vhkxPiLTAVI%2Fy0F2v7Us5rBDlEd53dHuO2KAe5Bkbs2AmUHtscOPbsH%2Bzh1aFDnv%2BW2nHAiENSNbV2Auq6b5%2FatImE8hUs2wTwV%2BCSB%2FJb896AF905k%2B9ljhZDty2caFGQSHY2lC2OQ4Rr9%2FdS%2FNKwWgnHr4Ld5AtweavSyfhFMfz%2Fw7zLXvHupnLhOISBqqEOTMQim4YDLGzxIt9%2F4C1MKBUSSdGYBX14rfjTSiB%2FivjjjEdNrRRnkGoIg%2Fxe5b1dFDdgukwXWEBsKtZ2qpmZl2uW1boMTHonQoxMTCmAYyLS2FEiNOvaV7rvm8oy6MtGvv2JVY%2FPz%2FFPab%2BhjsCG60vS3kHih4Zy8rUUKv%2Fw%3D%3D&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20220901T121500Z&X-Amz-SignedHeaders=content-type%3Bhost&X-Amz-Expires=3599&X-Amz-Credential=REDACTED_AWS_ACCESS_KEY_ID%2F20220901%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=5424c781b8671fb1d7e068267af26e9de4d9a606f343c0bb8602d2a70ab52fcd
+    '401':
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              description: The string containing the code field. code is the Mnemonic returned by service in case of any failure. The below list is extendable and going forward the error codes can become more specific.
+              type: string
+            message:
+              description: "An English language string that contains more information about the error.  \n\n<table><tr><th>code</th><th>message</th></tr><tr><td>UNAUTHORIZED</td><td>Not authorised to perform the operation.</td></tr></table>"
+              type: string
+      example:
+        error:
+          code: UNAUTHORIZED
+          message: Not authorised to perform the operation.
+    '500':
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              description: The string containing the code field. code is the Mnemonic returned by service in case of any failure. The below list is extendable and going forward the error codes can become more specific.
+              type: string
+            message:
+              description: "An English language string that contains more information about the error.  \n\n<table><tr><th>code</th><th>message</th></tr><tr><td>INTERNAL_SERVER_ERROR</td><td>There was an error processing your request.</td></tr><tr><td>UNKNOWN</td><td>Unknown error.</td></tr></table>"
+              type: string
+      example:
+        error:
+          code: INTERNAL_SERVER_ERROR
+          message: There was an error processing your request.
+    '400':
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              description: The string containing the code field. code is the Mnemonic returned by service in case of any failure. The below list is extendable and going forward the error codes can become more specific.
+              type: string
+            message:
+              description: "An English language string that contains more information about the error. \n\n<table><tr><th>code</th><th>message</th></tr><tr><td>BAD_REQUEST</td><td>Bad Request.</td></tr></table>"
+              type: string
+      example:
+        error:
+          code: BAD_REQUEST
+          message: Bad Request.
+    GetUploadPresignedUrlRequest:
+      type: object
+      properties:
+        mediaType:
+          description: 'The content type of the file to be stored. For e.g: application/pdf.'
+          type: string
+      example:
+        mediaType: application/pdf
+    AssetMetadata:
+      type: object
+      properties:
+        entity:
+          description: Technical Account ID or User ID with access to blob.
+          type: string
+        size:
+          description: The size of the Resource in bytes. This value helps in making range requests.
+          type: integer
+        type:
+          description: 'The content type of the file. For e.g: application/pdf.'
+          type: string
+      example:
+        entity: 49505D56624424F00A49423A@techacct.adobe.com
+        size: 13552
+        type: application/pdf
+    GetPresignedUrl:
+      type: object
+      properties:
+        downloadUri:
+          description: The URL used to download the Resource directly from the storage provider.
+          type: string
+        size:
+          description: The size of the Resource in bytes. This value helps in making range requests.
+          type: integer
+        type:
+          description: The media type of the Resource.
+          type: string
+      example:
+        downloadUri: https://dcplatformstorageservice-dev-us-east-1.s3-accelerate.amazonaws.com/a059e98b-43bf-4e76-886b-e61a1a19c7bd?X-Amz-Security-Token=FwoGZXIvYXdzEOz%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaDJoRurLDIx1KmzjT9yLTAZwtCBavc2xtc6InMLLl2rS480ulHYpVTyWSAtCDj34blxS9sghuPqX%2FwTsvUOJZCvgL8kMqHm0khmO3Pnh1%2FOYU1MksBbAlZ47JExBGdzwIsnh8gMIEXBaty0nVmQjIVLUogOKTIyoBuJsnGDvjytpABIpIzbYH50aTS4yECx42ejL6Po%2F4LOroTO3bv98MuUh05hdiFeoCrTfu29%2FXL5%2FuHXo0R1TfgiNPeR6Riq4PL3v%2BSNzPflWlToGIPtWYMWKuEtIEtK0J2Ut3Bddpxevd%2BxsozM2%2BmAYyLblFR%2BVAADnVcQZDc0fW7A8g9iM9BpKQIgmBY9rJrKjj53%2BFHvDko8%2FbkUlGcA%3D%3D&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20220831T182204Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=REDACTED_AWS_ACCESS_KEY_ID%2F20220831%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=298a811048105d8093539c6fab4e8649f96af0fcbad17ee5a716e6175e6e166b
+        size: 13130
+        type: application/pdf
+    AssetDownloadResponse:
+      type: object
+      properties:
+        assetID:
+          type: string
+          description: The unique identifier of the asset.
+          example: '500123'
+        downloadUri:
+          type: string
+          format: uri
+          description: The pre-signed URI to download the asset. Valid for a limited time.
+          example: https://www.example.com
+    AssetUploadResponse:
+      type: object
+      properties:
+        assetID:
+          type: string
+          description: The unique identifier for the uploaded asset.
+          examples:
+          - urn:aaid:AS:UE1:23456789-abcd-1234-efgh-567890abcdef
+        uploadUri:
+          type: string
+          format: uri
+          description: The pre-signed URI to upload the file content via HTTP PUT. Valid for a limited time.
+          example: https://www.example.com
     ErrorResponse:
       type: object
       description: Error response returned when a request fails.
@@ -137,18 +618,6 @@ components:
               - 404
               - 429
           example: example_value
-    AssetDownloadResponse:
-      type: object
-      properties:
-        assetID:
-          type: string
-          description: The unique identifier of the asset.
-          example: '500123'
-        downloadUri:
-          type: string
-          format: uri
-          description: The pre-signed URI to download the asset. Valid for a limited time.
-          example: https://www.example.com
     AssetUploadRequest:
       type: object
       required:
@@ -161,28 +630,15 @@ components:
           - application/pdf
           - application/vnd.openxmlformats-officedocument.wordprocessingml.document
           - image/jpeg
-    AssetUploadResponse:
-      type: object
-      properties:
-        assetID:
-          type: string
-          description: The unique identifier for the uploaded asset.
-          examples:
-          - urn:aaid:AS:UE1:23456789-abcd-1234-efgh-567890abcdef
-        uploadUri:
-          type: string
-          format: uri
-          description: The pre-signed URI to upload the file content via HTTP PUT. Valid for a limited time.
-          example: https://www.example.com
   responses:
-    NotFound:
-      description: The requested resource was not found.
+    BadRequest:
+      description: The request was malformed or contained invalid parameters. Check the error message for details.
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    BadRequest:
-      description: The request was malformed or contained invalid parameters. Check the error message for details.
+    TooManyRequests:
+      description: Rate limit exceeded. Wait before retrying. Check Retry-After header for guidance.
       content:
         application/json:
           schema:
@@ -193,8 +649,8 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    TooManyRequests:
-      description: Rate limit exceeded. Wait before retrying. Check Retry-After header for guidance.
+    NotFound:
+      description: The requested resource was not found.
       content:
         application/json:
           schema:
@@ -213,3 +669,6 @@ components:
       scheme: bearer
       bearerFormat: JWT
       description: OAuth 2.0 access token obtained via client credentials grant from Adobe Identity Management Service (IMS). Generate credentials in the Adobe Developer Console and exchange them for an access token at https://ims-na1.adobelogin.com/ims/token/v3.
+x-refined-from:
+- adobe-pdf-services-api-openapi-official.json
+- adobe-pdf-services-api-openapi.yml

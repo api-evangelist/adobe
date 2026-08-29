@@ -1,93 +1,787 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: "Adobe PDF Services Split PDF API"
-  description: The Adobe PDF Services API enables developers to create, convert, manipulate, and extract content from PDF documents programmatically. The API uses an asynchronous job-based model where you submit a job, poll for its status, and retrieve the result. Operations include creating PDFs from various formats, exporting PDFs to other formats, combining and splitting PDFs, compressing, OCR processing, protecting with passwords, extracting structured content, auto-tagging for accessibility, and generating documents from templates. Authentication uses OAuth 2.0 with client credentials (server-to-server).
-  version: 4.0.0
-  contact:
-    name: Adobe Developer Support
-    url: https://developer.adobe.com/document-services/
-    email: pdfsvcops@adobe.com
-  license:
-    name: Adobe Terms of Service
-    url: https://www.adobe.com/legal/terms.html
-  termsOfService: https://www.adobe.com/legal/terms.html
+  title: Adobe Split PDF API
+  version: '1.0'
+  description: 'Operations tagged Split PDF across 2 of this provider''s published API definitions: adobe-pdf-services-api-openapi-official.json, adobe-pdf-services-api-openapi.yml. Each path carries the servers of the definition it was published in.'
 servers:
 - url: https://pdf-services-ue1.adobe.io
-  description: Adobe PDF Services API - US East Production
+- url: https://pdf-services-ew1.adobe.io
 - url: https://pdf-services.adobe.io
   description: Adobe PDF Services API - Default Production
-security:
-- bearerAuth: []
 tags:
 - name: Split PDF
-  description: Split a PDF document into multiple smaller PDFs.
+  description: Split a PDF File into multiple PDF Files
 paths:
   /operation/splitpdf:
     post:
-      operationId: splitPDF
-      summary: Adobe Split a Pdf
-      description: Split a PDF document into multiple smaller PDF files. You can split by page count, page ranges, or number of output files.
       tags:
       - Split PDF
-      requestBody:
+      summary: Split a PDF File into multiple PDF Files
+      description: 'Split a PDF document into multiple smaller documents by simply specifying either the number of files, pages per file, or page ranges. Various available options are: (mutually exclusive)
+
+
+        1. Use the page count to specify the maximum number of pages in each of the output file(s).
+
+
+        2. Creating smaller PDFs with a set number of pages, you can split PDFs into multiple smaller documents by specifying page ranges where each page range corresponds to a single output file.
+
+
+        3. Split PDFs by file count. In this case, the operation creates the specified number of files with each containing an identical number of pages (if possible).'
+      operationId: pdfoperations.splitpdf
+      parameters:
+      - name: Authorization
+        in: header
+        description: Bearer + Token (<a href="https://developer.adobe.com/document-services/docs/overview/pdf-services-api/gettingstarted/#step-1--getting-the-access-token">Learn more</a> about getting the access token)
         required: true
+        schema:
+          type: string
+      - name: x-api-key
+        in: header
+        description: The clientId from the generated credentials
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: Params for Split PDF Operation. Refer to the External Section below for using external storage with Split PDF Operation.
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/SplitPDFRequest'
-            examples:
-              SplitpdfRequestExample:
-                summary: Default splitPDF request
-                x-microcks-default: true
-                value:
-                  assetID: '500123'
-                  splitOptions:
-                    pageCount: 10
-                    pageRanges:
-                    - {}
-                    fileCount: 10
+              oneOf:
+              - $ref: '#/components/schemas/SplitPDFInternal'
+              - $ref: '#/components/schemas/SplitPDFExternal'
+        required: true
       responses:
         '201':
-          description: Job created successfully.
+          description: Request creation for the operation and status uri generated, which can be found in the 'location' header.
           headers:
-            Location:
-              description: URL to poll for job status.
+            location:
+              description: Job status URI for polling the results
               schema:
                 type: string
-                format: uri
             x-request-id:
-              $ref: '#/components/headers/x-request-id'
+              description: A unique value to identify this request. If x-request-id is specified in the POST request, this value will be the same as the input.
+              schema:
+                type: string
+        '400':
+          description: Bad Request. The request was invalid or cannot be otherwise served.
+          headers:
+            content-type:
+              description: The content type of the POST API call response
+              schema:
+                type: string
+            x-request-id:
+              description: A unique value to identify this request. If x-request-id is specified in the POST request, this value will be the same as the input.
+              schema:
+                type: string
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/JobStatusResponse'
-              examples:
-                Splitpdf201Example:
-                  summary: Default splitPDF 201 response
-                  x-microcks-default: true
-                  value:
-                    status: in progress
-                    asset:
-                      assetID: '500123'
-                      downloadUri: https://www.example.com
-                      metadata:
-                        type: example_value
-                        size: 10
-                    error:
-                      code: example_value
-                      message: example_value
-                      status: 10
-        '400':
-          $ref: '#/components/responses/BadRequest'
+                $ref: '#/components/schemas/400'
+        '404':
+          description: Resource Not Found.
+          headers:
+            content-type:
+              description: The content type of the POST API call response
+              schema:
+                type: string
+            x-request-id:
+              description: A unique value to identify this request. If x-request-id is specified in the POST request, this value will be the same as the input.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/404'
         '401':
-          $ref: '#/components/responses/Unauthorized'
+          description: Unauthorized.
+          headers:
+            content-type:
+              description: The content type of the error JSON response.
+              schema:
+                type: string
+            x-request-id:
+              description: A unique value to identify this request. If x-request-id is specified in the POST request, this value will be the same as the input.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/401'
         '429':
-          $ref: '#/components/responses/TooManyRequests'
-      x-microcks-operation:
-        delay: 0
-        dispatcher: FALLBACK
+          description: Caller doesn't have sufficient quota for this operation.
+          headers:
+            content-type:
+              description: The content type of the POST API call response
+              schema:
+                type: string
+            x-request-id:
+              description: A unique value to identify this request. If x-request-id is specified in the POST request, this value will be the same as the input.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/429'
+        '500':
+          description: Internal Server Error. The server has encountered an error and is unable to process your request at this time.
+          headers:
+            content-type:
+              description: The content type of the POST API call response
+              schema:
+                type: string
+            x-request-id:
+              description: A unique value to identify this request. If x-request-id is specified in the POST request, this value will be the same as the input.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/500'
+      x-codegen-request-body-name: body
+    servers:
+    - url: https://pdf-services-ue1.adobe.io
+    - url: https://pdf-services-ew1.adobe.io
+  /operation/splitpdf/{jobID}/status:
+    get:
+      tags:
+      - Split PDF
+      summary: Poll the split pdf job for completion
+      operationId: pdfoperations.splitpdf.jobstatus
+      parameters:
+      - name: jobID
+        in: path
+        description: Job ID of the request
+        required: true
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        description: Bearer + Token (<a href="https://developer.adobe.com/document-services/docs/overview/pdf-services-api/gettingstarted/#step-1--getting-the-access-token">Learn more</a> about getting the access token)
+        required: true
+        schema:
+          type: string
+      - name: x-api-key
+        in: header
+        description: The clientId from the generated credentials
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: A response with job information.
+          headers:
+            content-type:
+              description: The content type of the status call response.
+              schema:
+                type: string
+            x-request-id:
+              description: A unique value to identify this request. If x-request-id is specified in the POST request, this value will be the same as the input.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SplitPDFJobStatus'
+        '400':
+          description: Bad Request. The request was invalid or cannot be otherwise served.
+          headers:
+            content-type:
+              description: The content type of the status call response
+              schema:
+                type: string
+            x-request-id:
+              description: A unique value to identify this request. If x-request-id is specified in the POST request, this value will be the same as the input.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status400'
+        '404':
+          description: Resource Not Found.
+          headers:
+            content-type:
+              description: The content type of the POST API call response
+              schema:
+                type: string
+            x-request-id:
+              description: A unique value to identify this request. If x-request-id is specified in the POST request, this value will be the same as the input.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Satus404'
+        '401':
+          description: Unauthorized.
+          headers:
+            content-type:
+              description: The content type of the POST API call response
+              schema:
+                type: string
+            x-server:
+              description: The name and version of the server.
+              schema:
+                type: string
+            x-request-id:
+              description: A unique value to identify this request. If x-request-id is specified in the POST request, this value will be the same as the input.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Satus401'
+        '429':
+          description: Caller doesn't have sufficient quota for this operation.
+          headers:
+            content-type:
+              description: The content type of the POST API call response
+              schema:
+                type: string
+            x-request-id:
+              description: A unique value to identify this request. If x-request-id is specified in the POST request, this value will be the same as the input.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Satus429'
+        '500':
+          description: Internal Server Error. The server has encountered an error and is unable to process your request at this time.
+          headers:
+            content-type:
+              description: The content type of the POST API call response
+              schema:
+                type: string
+            x-request-id:
+              description: A unique value to identify this request. If x-request-id is specified in the POST request, this value will be the same as the input.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Satus500'
+    servers:
+    - url: https://pdf-services-ue1.adobe.io
+    - url: https://pdf-services-ew1.adobe.io
 components:
   schemas:
+    ExternalStorageOutputZip:
+      title: Output
+      description: Params representing output object
+      type: object
+      properties:
+        uri:
+          description: Output file Upload Signed URI. It should be of format zip only in case of external storage.
+          type: string
+        storage:
+          description: Specifies the type of the external storage
+          type: string
+          enum:
+          - S3
+          - SHAREPOINT
+          - DROPBOX
+          - BLOB
+    Satus404:
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              description: The string containing the code field. code is the Mnemonic returned by service in case of any failure. The below list is extendable and going forward the error codes can become more specific.
+              type: string
+            message:
+              description: "An English language string that contains more information about the error.  \n\n<table><tr><th>code</th><th>message</th></tr><tr><td>NOT_FOUND</td><td>Job not found.</td></tr></table>"
+              type: string
+      example:
+        error:
+          code: NOT_FOUND
+          message: Job not found.
+    external:
+      title: External with an output URI in the request
+      description: Response in case of 'done' status using signed urls
+      type: object
+      properties:
+        status:
+          description: Job Status
+          type: string
+          enum:
+          - done
+      example:
+        status: done
+    splitpdfdone:
+      title: done
+      oneOf:
+      - $ref: '#/components/schemas/splitpdfdoneInternal'
+      - $ref: '#/components/schemas/splitpdfdoneExternal'
+    responseAssetZip:
+      title: asset
+      description: Details of output asset document in zip format. For more details <a href = 'https://developer.adobe.com/document-services/docs/apis/#tag/Assets'> click here </a>.
+      type: object
+      properties:
+        metadata:
+          type: object
+          description: metadata details of output asset.
+          properties:
+            size:
+              description: The size of the Resource in bytes. This value helps in making range requests.
+              type: integer
+            type:
+              description: The media type of the Resource.
+              type: string
+        assetID:
+          description: An asset ID identifying an asset that is globally unique and never reused.
+          type: string
+          required: false
+        downloadUri:
+          description: The URL used to download the Resource directly to the cloud provider.
+          type: string
+      example:
+        status: done
+        asset:
+          metadata:
+            type: application/pdf
+            size: 200791
+          downloadUri: https://dcplatformstorageservice-dev-us-east-1.s3-accelerate.amazonaws.com/6bb12fd8-3233-4340-916b-4835917857be?X-Amz-Security-Token=FwoGZXIvYXdzEE0aDOLg7PFwVB1bjEMxQCLTAe3pjf%2Fgl2Pj%2FcjOaY%2BHfduju9SXTp1Pn8C4GapIXm%2F8tuR4cGPYGC0goU21qZxCq9R%2F8z2bOmB2EL%2BZrhbPLbaNcpzf5Vud%2B3Bmn61MEJiBdU%2BhZqasX5YhVxdnzhfpl5KfKeq2kwROVMqJcyHGdxw5h0%2Bi0sD2I8sqkbPmnBi0WOtYNwz7TQq42oe8W5KYHpq6WMya9OQgx0u7qg0inYwBnQu5UQ9NJJQY2MSU11IuZ0uE%2B%2FNAPuq3VfEIn3txK%2FFfIxGz9%2BInehhHroKjBFULzy0olY2rlwYyLQDwHHr2eyuy%2BaoGVaq%2BSUNH8T0OKIicbbZfQ5wjF0hK2FzVXwfebtDG4qq%2BiA%3D%3D&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20220803T190422Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=REDACTED_AWS_ACCESS_KEY_ID%2F20220803%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=5d8c3f421c68c009b4471919a319ba460495c72afe51674d23266bc124fe9a56
+          assetID: urn:aaid:AS:UE1:23c30ee0-2c4d-46d6-87f2-087832fca718
+    '400':
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              description: The string containing the code field. code is the Mnemonic returned by service in case of any failure. The below list is extendable and going forward the error codes can become more specific.
+              type: string
+            message:
+              description: "An English language string that contains more information about the error. \n\n<table><tr><th>code</th><th>message</th></tr><tr><td>BAD_REQUEST</td><td>Bad Request.</td></tr></table>"
+              type: string
+      example:
+        error:
+          code: BAD_REQUEST
+          message: Bad Request.
+    '500':
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              description: The string containing the code field. code is the Mnemonic returned by service in case of any failure. The below list is extendable and going forward the error codes can become more specific.
+              type: string
+            message:
+              description: "An English language string that contains more information about the error.  \n\n<table><tr><th>code</th><th>message</th></tr><tr><td>INTERNAL_SERVER_ERROR</td><td>There was an error processing your request.</td></tr><tr><td>UNKNOWN</td><td>Unknown error.</td></tr></table>"
+              type: string
+      example:
+        error:
+          code: INTERNAL_SERVER_ERROR
+          message: There was an error processing your request.
+    '404':
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              description: The string containing the code field. code is the Mnemonic returned by service in case of any failure. The below list is extendable and going forward the error codes can become more specific.
+              type: string
+            message:
+              description: "An English language string that contains more information about the error. \n\n<table><tr><th>code</th><th>message</th></tr><tr><td>NOT_FOUND</td><td>Asset not found.</td></tr></table>"
+              type: string
+      example:
+        error:
+          code: NOT_FOUND
+          message: Asset not found.
+    ExternalStorageInput:
+      title: Input
+      description: Params representing input object.
+      type: object
+      properties:
+        uri:
+          description: Input file Download Signed URI.
+          type: string
+        storage:
+          description: Specifies the type of the external storage
+          type: string
+          enum:
+          - S3
+          - SHAREPOINT
+          - DROPBOX
+          - BLOB
+      required:
+      - uri
+    failed:
+      description: Response in case of 'failed' status
+      type: object
+      properties:
+        status:
+          description: Job Status
+          type: string
+          enum:
+          - failed
+        error:
+          type: object
+          properties:
+            status:
+              description: Http status code returned by the service
+              type: integer
+            code:
+              description: The string containing the code field. code is the Mnemonic returned by service in case of any failure. The below list is extendable and going forward the error codes can become more specific.
+              type: string
+            message:
+              description: "An English language string that contains more information about the error. \n\n<table><tr><th>status</th><th>code</th><th>message</th></tr><tr><td>400</td><td>CORRUPT_DOCUMENT</td><td>For $(format) mime-type The input file appears to be corrupted and cannot be processed.</td></tr><tr><td>400</td><td>PASSWORD_PROTECTED</td><td>Source file is protected and cannot be processed.</td></tr><tr><td>500</td><td>INTERNAL_SERVER_ERROR</td><td>There was an error processing your request.</td></tr></table>"
+              type: string
+      example:
+        status: failed
+        error:
+          status: 500
+          code: INTERNAL_SERVER_ERROR
+          message: There was an error processing your request
+    SplitPDFExternal:
+      title: External
+      description: Params for Split PDF Operation using external storage.
+      type: object
+      required:
+      - input
+      - params
+      properties:
+        input:
+          $ref: '#/components/schemas/ExternalStorageInput'
+        output:
+          $ref: '#/components/schemas/ExternalStorageOutputZip'
+        params:
+          description: Params for Split PDF processing
+          type: object
+          required:
+          - splitoption
+          properties:
+            splitoption:
+              description: Provide option to split the PDF document. Different options for splitting PDF document are mutually exclusive.
+              oneOf:
+              - title: fileCount
+                description: The number of documents to split the input PDF file into.
+                type: number
+              - title: pageCount
+                description: The maximum number of pages each of the output files can have.
+                type: number
+              - $ref: '#/components/schemas/pageRanges'
+        notifiers:
+          $ref: '#/components/schemas/notifiers'
+      example:
+        input:
+          uri: https://dcplatformstorageservice-dev-us-east-1.s3-accelerate.amazonaws.com/dc-platformService-automation_dc-platformService-automation%40AdobeID/1c4f4674-ce8d-4b21-a69d-60aeae35bf43?X-Amz-Security-Token=FwoGZXIvYXdzEBkaDK%2By2wxl94khIbkxzCLTAQn6n6Wo0vFSul%2FpXW66aFX4T%2BPxtuOy%2Bz8eTxrnexeJRvMreBHNQm1myLwp20MkE%2Bb0H%2BwYgOhFaepi9AMml1aLNxXn1UPnEWJ7y8llhvsrXHimEfWvb3TMAkZddgUIDBue8oGUYqm4f2s0sMvPWBCxI45zM0%2F37EK%2B4JnIo1SlrKNm0GSZ44AEiOAhXupQ8ih6KoUbUciD3Biile6CwTMVIhME3mJiRSgVK6W91EaDn8%2Ba3mU%2BVvU1K9sgDSPZ%2F81DOpj25pvMW%2B1cMuCtUNsu9KUo7dHvpAYyLYiy%2FPGEmO9EquKjfMPRr17PAjeunD1QdgbRss4ysG%2B6XF2Has8zsGqX1sQalA%3D%3D&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20230628T081557Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3599&X-Amz-Credential=REDACTED_AWS_ACCESS_KEY_ID%2F20230628%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=ac6998566dbbde22509b128fe94d1cb5d3146cd3fb8ba78d7068e10d61302ec2
+          storage: S3
+        output:
+          uri: https://dcplatformstorageservice-dev-us-east-1.s3-accelerate.amazonaws.com/dc-platformService-automation_dc-platformService-automation%40AdobeID/f02f9927-4971-4589-8fdf-41ff56c2d520?X-Amz-Security-Token=FwoGZXIvYXdzEBkaDK%2By2wxl94khIbkxzCLTAQn6n6Wo0vFSul%2FpXW66aFX4T%2BPxtuOy%2Bz8eTxrnexeJRvMreBHNQm1myLwp20MkE%2Bb0H%2BwYgOhFaepi9AMml1aLNxXn1UPnEWJ7y8llhvsrXHimEfWvb3TMAkZddgUIDBue8oGUYqm4f2s0sMvPWBCxI45zM0%2F37EK%2B4JnIo1SlrKNm0GSZ44AEiOAhXupQ8ih6KoUbUciD3Biile6CwTMVIhME3mJiRSgVK6W91EaDn8%2Ba3mU%2BVvU1K9sgDSPZ%2F81DOpj25pvMW%2B1cMuCtUNsu9KUo7dHvpAYyLYiy%2FPGEmO9EquKjfMPRr17PAjeunD1QdgbRss4ysG%2B6XF2Has8zsGqX1sQalA%3D%3D&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20230628T081559Z&X-Amz-SignedHeaders=content-type%3Bhost&X-Amz-Expires=3600&X-Amz-Credential=REDACTED_AWS_ACCESS_KEY_ID%2F20230628%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=4f765277eb6e36bd5f7bf9d42be24244440092b5a705eadf178c78a9a9fb5d71
+          storage: S3
+        params:
+          splitoption:
+            pageRanges:
+            - start: 1
+              end: 10
+        notifiers:
+        - type: CALLBACK
+          data:
+            url: https://dummy.callback.org/
+            headers:
+              x-api-key: dummykey
+              access-token: dummytoken
+      additionalProperties: false
+    splitpdfdoneExternal:
+      title: External
+      oneOf:
+      - $ref: '#/components/schemas/splitpdfdoneWithoutOutput'
+      - $ref: '#/components/schemas/external'
+    splitpdfdoneWithoutOutput:
+      title: External without an output URI in the request
+      description: Response in case of 'done' status when ouput uri is not passed in the rquest
+      type: object
+      properties:
+        status:
+          description: Job Status
+          type: string
+          enum:
+          - done
+        asset:
+          $ref: '#/components/schemas/responseAssetZip'
+      example:
+        status: done
+        asset:
+          metadata:
+            type: application/pdf
+            size: 200791
+          downloadUri: https://dcplatformstorageservice-dev-us-east-1.s3-accelerate.amazonaws.com/6bb12fd8-3233-4340-916b-4835917857be?X-Amz-Security-Token=FwoGZXIvYXdzEE0aDOLg7PFwVB1bjEMxQCLTAe3pjf%2Fgl2Pj%2FcjOaY%2BHfduju9SXTp1Pn8C4GapIXm%2F8tuR4cGPYGC0goU21qZxCq9R%2F8z2bOmB2EL%2BZrhbPLbaNcpzf5Vud%2B3Bmn61MEJiBdU%2BhZqasX5YhVxdnzhfpl5KfKeq2kwROVMqJcyHGdxw5h0%2Bi0sD2I8sqkbPmnBi0WOtYNwz7TQq42oe8W5KYHpq6WMya9OQgx0u7qg0inYwBnQu5UQ9NJJQY2MSU11IuZ0uE%2B%2FNAPuq3VfEIn3txK%2FFfIxGz9%2BInehhHroKjBFULzy0olY2rlwYyLQDwHHr2eyuy%2BaoGVaq%2BSUNH8T0OKIicbbZfQ5wjF0hK2FzVXwfebtDG4qq%2BiA%3D%3D&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20220803T190422Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=REDACTED_AWS_ACCESS_KEY_ID%2F20220803%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=5d8c3f421c68c009b4471919a319ba460495c72afe51674d23266bc124fe9a56
+          assetID: urn:aaid:AS:UE1:23c30ee0-2c4d-46d6-87f2-087832fca718
+    '429':
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              description: The string containing the code field. code is the Mnemonic returned by service in case of any failure. The below list is extendable and going forward the error codes can become more specific.
+              type: string
+            message:
+              description: "An English language string that contains more information about the error.  \n\n<table><tr><th>code</th><th>message</th></tr><tr><td>TOO_MANY_REQUESTS</td><td>Too Many Requests.</td></tr><tr><td>INSUFFICIENT_QUOTA</td><td>Either Quota for this operation is not available or Free trial quota is exhausted. Please visit (www.adobe.com/go/pdftoolsapi_home) to start using free trial quota or (www.adobe.com/go/pdftoolsapi_err_quota) to upgrade to paid credentials.</td></tr></table>"
+              type: string
+      example:
+        error:
+          code: TOO_MANY_REQUESTS
+          message: Too Many Requests.
+    splitpdfdoneInternal:
+      title: Internal
+      description: Response in case of 'done' status
+      type: object
+      properties:
+        status:
+          description: Job Status
+          type: string
+          enum:
+          - done
+        assetList:
+          description: List of assets. For more details <a href = 'https://developer.adobe.com/document-services/docs/apis/#tag/Assets'> click here </a>.
+          type: array
+          items:
+            type: object
+            properties:
+              metadata:
+                type: object
+                description: metadata details of output asset.
+                properties:
+                  size:
+                    description: The size of the Resource in bytes. This value helps in making range requests.
+                    type: integer
+                  type:
+                    description: The media type of the Resource.
+                    type: string
+              assetID:
+                description: An asset ID identifying an asset that is globally unique and never reused.
+                type: string
+              downloadUri:
+                description: The URL used to download the Resource directly to the cloud provider.
+                type: string
+      example:
+        status: done
+        assetList:
+        - metadata:
+            type: application/pdf
+            size: 200791
+          downloadUri: https://dcplatformstorageservice-dev-us-east-1.s3-accelerate.amazonaws.com/6bb12fd8-3233-4340-916b-4835917857be?X-Amz-Security-Token=FwoGZXIvYXdzEE0aDOLg7PFwVB1bjEMxQCLTAe3pjf%2Fgl2Pj%2FcjOaY%2BHfduju9SXTp1Pn8C4GapIXm%2F8tuR4cGPYGC0goU21qZxCq9R%2F8z2bOmB2EL%2BZrhbPLbaNcpzf5Vud%2B3Bmn61MEJiBdU%2BhZqasX5YhVxdnzhfpl5KfKeq2kwROVMqJcyHGdxw5h0%2Bi0sD2I8sqkbPmnBi0WOtYNwz7TQq42oe8W5KYHpq6WMya9OQgx0u7qg0inYwBnQu5UQ9NJJQY2MSU11IuZ0uE%2B%2FNAPuq3VfEIn3txK%2FFfIxGz9%2BInehhHroKjBFULzy0olY2rlwYyLQDwHHr2eyuy%2BaoGVaq%2BSUNH8T0OKIicbbZfQ5wjF0hK2FzVXwfebtDG4qq%2BiA%3D%3D&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20220803T190422Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=REDACTED_AWS_ACCESS_KEY_ID%2F20220803%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=5d8c3f421c68c009b4471919a319ba460495c72afe51674d23266bc124fe9a56
+          assetID: urn:aaid:AS:UE1:23c30ee0-2c4d-46d6-87f2-087832fca718
+        - metadata:
+            type: application/pdf
+            size: 200791
+          downloadUri: https://dcplatformstorageservice-dev-us-east-1.s3-accelerate.amazonaws.com/6bb12fd8-3233-4340-916b-4835917857be?X-Amz-Security-Token=FwoGZXIvYXdzEE0aDOLg7PFwVB1bjEMxQCLTAe3pjf%2Fgl2Pj%2FcjOaY%2BHfduju9SXTp1Pn8C4GapIXm%2F8tuR4cGPYGC0goU21qZxCq9R%2F8z2bOmB2EL%2BZrhbPLbaNcpzf5Vud%2B3Bmn61MEJiBdU%2BhZqasX5YhVxdnzhfpl5KfKeq2kwROVMqJcyHGdxw5h0%2Bi0sD2I8sqkbPmnBi0WOtYNwz7TQq42oe8W5KYHpq6WMya9OQgx0u7qg0inYwBnQu5UQ9NJJQY2MSU11IuZ0uE%2B%2FNAPuq3VfEIn3txK%2FFfIxGz9%2BInehhHroKjBFULzy0olY2rlwYyLQDwHHr2eyuy%2BaoGVaq%2BSUNH8T0OKIicbbZfQ5wjF0hK2FzVXwfebtDG4qq%2BiA%3D%3D&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20220803T190422Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=REDACTED_AWS_ACCESS_KEY_ID%2F20220803%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=5d8c3f421c68c009b4471919a319ba460495c72afe51674d23266bc124fe9a56
+          assetID: urn:aaid:AS:UE1:23c30ee0-2c4d-96a6-87f2-087832fca718
+    Status400:
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              description: The string containing the code field. code is the Mnemonic returned by service in case of any failure. The below list is extendable and going forward the error codes can become more specific.
+              type: string
+            message:
+              description: "An English language string that contains more information about the error.  \n\n<table><tr><th>code</th><th>message</th></tr><tr><td>INVALID_JOB_ID</td><td>Invalid job id present in path param.</td></tr></table>"
+              type: string
+      example:
+        error:
+          code: INVALID_JOB_ID
+          message: Invalid job id present in path param.
+    pageRanges:
+      description: Page ranges on the basis of which to split the input PDF file. Each page range corresponds to a single output file having the pages specified in the page range. The page ranges may not overlap.
+      type: array
+      items:
+        properties:
+          start:
+            description: Start page of this page range. Page numbers are indexed from 1 to N.
+            type: number
+          end:
+            description: End page of this page range. Page numbers are indexed from 1 to N.
+            type: number
+    inprogress:
+      description: Response in case of 'in progress' status
+      type: object
+      properties:
+        status:
+          description: Job Status
+          type: string
+          enum:
+          - in progress
+      example:
+        status: in progress
+    SplitPDFJobStatus:
+      oneOf:
+      - $ref: '#/components/schemas/inprogress'
+      - $ref: '#/components/schemas/splitpdfdone'
+      - $ref: '#/components/schemas/failed'
+    SplitPDFInternal:
+      title: Internal
+      description: Params for Split PDF Operation.
+      type: object
+      properties:
+        assetID:
+          description: A file assetID. For more details <a href = 'https://developer.adobe.com/document-services/docs/apis/#tag/Assets'> click here </a>.
+          type: string
+        splitoption:
+          description: Provide option to split the PDF document. Different options for splitting PDF document are mutually exclusive.
+          oneOf:
+          - title: fileCount
+            description: The number of documents to split the input PDF file into.
+            type: number
+          - title: pageCount
+            description: The maximum number of pages each of the output files can have.
+            type: number
+          - $ref: '#/components/schemas/pageRanges'
+        notifiers:
+          $ref: '#/components/schemas/notifiers'
+      example:
+        assetID: urn:aaid:AS:UE1:23c30ee0-2c4d-46d6-87f2-087832fca718
+        splitoption:
+          pageRanges:
+          - start: 1
+            end: 10
+        notifiers:
+        - type: CALLBACK
+          data:
+            url: https://dummy.callback.org/
+            headers:
+              x-api-key: dummykey
+              access-token: dummytoken
+      required:
+      - assetID
+      - splitoption
+      additionalProperties: false
+    Satus429:
+      properties:
+        error_code:
+          description: 'The string containing the code field. code is the Mnemonic returned by service in case of any failure. The below list is extendable and going forward the error codes can become more specific. '
+          type: string
+        message:
+          description: "An English language string that contains more information about the error. \n\n<table><tr><th>code</th><th>message</th></tr><tr><td>429001</td><td>Service usage limit reached</td></tr><tr><td>429002</td><td>Developer key usage limit reached</td></tr><tr><td>429050</td><td>Too many requests</td></tr></table>"
+          type: string
+      example:
+        error_code: '429050'
+        message: Too many requests
+    notifiers:
+      description: Specifies the notifiers to be invoked on the completion of job. To know more about notifiers, please see the <a href="https://developer.adobe.com/document-services/docs/overview/pdf-services-api/howtos/webhook-notification/">documentation</a>.
+      type: array
+      items:
+        properties:
+          type:
+            description: Specifies the notifier type. Currently supported value is "CALLBACK" only.
+            type: string
+          data:
+            description: Specifies the data needed to invoke the notifier.
+            type: object
+        required:
+        - type
+        - data
+    Satus401:
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              description: The string containing the code field. code is the Mnemonic returned by service in case of any failure. The below list is extendable and going forward the error codes can become more specific.
+              type: string
+            message:
+              description: "An English language string that contains more information about the error.  \n\n<table><tr><th>code</th><th>message</th></tr><tr><td>UNAUTHORIZED</td><td>Not authorised to perform the operation.</td></tr></table>"
+              type: string
+      example:
+        error:
+          code: UNAUTHORIZED
+          message: Not authorised to perform the operation.
+    '401':
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              description: The string containing the code field. code is the Mnemonic returned by service in case of any failure. The below list is extendable and going forward the error codes can become more specific.
+              type: string
+            message:
+              description: "An English language string that contains more information about the error.  \n\n<table><tr><th>code</th><th>message</th></tr><tr><td>UNAUTHORIZED</td><td>Not authorised to perform the operation.</td></tr></table>"
+              type: string
+      example:
+        error:
+          code: UNAUTHORIZED
+          message: Not authorised to perform the operation.
+    Satus500:
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              description: The string containing the code field. code is the Mnemonic returned by service in case of any failure. The below list is extendable and going forward the error codes can become more specific.
+              type: string
+            message:
+              description: "An English language string that contains more information about the error. \n\n<table><tr><th>code</th><th>message</th></tr><tr><td>INTERNAL_SERVER_ERROR</td><td>There was an error processing your request.</td></tr><tr><td>UNKNOWN</td><td>Unknown error.</td></tr></table>"
+              type: string
+      example:
+        error:
+          code: INTERNAL_SERVER_ERROR
+          message: There was an error processing your request.
+    JobStatusResponse:
+      type: object
+      description: The status and result of an asynchronous PDF operation job.
+      properties:
+        status:
+          type: string
+          description: The current status of the job.
+          enum:
+          - in progress
+          - done
+          - failed
+          example: in progress
+        asset:
+          type: object
+          description: The output asset information, available when status is done.
+          properties:
+            assetID:
+              type: string
+              description: The asset ID of the output file.
+            downloadUri:
+              type: string
+              format: uri
+              description: The pre-signed download URI for the output file.
+            metadata:
+              type: object
+              description: Metadata about the output asset.
+              properties:
+                type:
+                  type: string
+                  description: The MIME type of the output file.
+                size:
+                  type: integer
+                  description: The size of the output file in bytes.
+          example: example_value
+        error:
+          type: object
+          description: Error information, available when status is failed.
+          properties:
+            code:
+              type: string
+              description: A machine-readable error code.
+            message:
+              type: string
+              description: A human-readable error message.
+            status:
+              type: integer
+              description: The HTTP status code associated with the error.
+          example: example_value
+    PageRange:
+      type: object
+      description: Specifies a range of pages in a PDF document.
+      properties:
+        start:
+          type: integer
+          description: The starting page number (1-based).
+          minimum: 1
+          examples:
+          - 1
+        end:
+          type: integer
+          description: The ending page number (1-based, inclusive).
+          minimum: 1
+          examples:
+          - 5
     SplitPDFRequest:
       type: object
       required:
@@ -142,84 +836,9 @@ components:
               - 404
               - 429
           example: example_value
-    PageRange:
-      type: object
-      description: Specifies a range of pages in a PDF document.
-      properties:
-        start:
-          type: integer
-          description: The starting page number (1-based).
-          minimum: 1
-          examples:
-          - 1
-        end:
-          type: integer
-          description: The ending page number (1-based, inclusive).
-          minimum: 1
-          examples:
-          - 5
-    JobStatusResponse:
-      type: object
-      description: The status and result of an asynchronous PDF operation job.
-      properties:
-        status:
-          type: string
-          description: The current status of the job.
-          enum:
-          - in progress
-          - done
-          - failed
-          example: in progress
-        asset:
-          type: object
-          description: The output asset information, available when status is done.
-          properties:
-            assetID:
-              type: string
-              description: The asset ID of the output file.
-            downloadUri:
-              type: string
-              format: uri
-              description: The pre-signed download URI for the output file.
-            metadata:
-              type: object
-              description: Metadata about the output asset.
-              properties:
-                type:
-                  type: string
-                  description: The MIME type of the output file.
-                size:
-                  type: integer
-                  description: The size of the output file in bytes.
-          example: example_value
-        error:
-          type: object
-          description: Error information, available when status is failed.
-          properties:
-            code:
-              type: string
-              description: A machine-readable error code.
-            message:
-              type: string
-              description: A human-readable error message.
-            status:
-              type: integer
-              description: The HTTP status code associated with the error.
-          example: example_value
-  headers:
-    x-request-id:
-      description: A unique identifier for the request, useful for debugging and support.
-      schema:
-        type: string
   responses:
     BadRequest:
       description: The request was malformed or contained invalid parameters. Check the error message for details.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    Unauthorized:
-      description: Authentication failed. The access token is missing, expired, or invalid.
       content:
         application/json:
           schema:
@@ -230,9 +849,23 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Authentication failed. The access token is missing, expired, or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  headers:
+    x-request-id:
+      description: A unique identifier for the request, useful for debugging and support.
+      schema:
+        type: string
   securitySchemes:
     bearerAuth:
       type: http
       scheme: bearer
       bearerFormat: JWT
       description: OAuth 2.0 access token obtained via client credentials grant from Adobe Identity Management Service (IMS). Generate credentials in the Adobe Developer Console and exchange them for an access token at https://ims-na1.adobelogin.com/ims/token/v3.
+x-refined-from:
+- adobe-pdf-services-api-openapi-official.json
+- adobe-pdf-services-api-openapi.yml

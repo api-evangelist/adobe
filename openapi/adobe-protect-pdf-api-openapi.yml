@@ -1,126 +1,744 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: "Adobe PDF Services Protect PDF API"
-  description: The Adobe PDF Services API enables developers to create, convert, manipulate, and extract content from PDF documents programmatically. The API uses an asynchronous job-based model where you submit a job, poll for its status, and retrieve the result. Operations include creating PDFs from various formats, exporting PDFs to other formats, combining and splitting PDFs, compressing, OCR processing, protecting with passwords, extracting structured content, auto-tagging for accessibility, and generating documents from templates. Authentication uses OAuth 2.0 with client credentials (server-to-server).
-  version: 4.0.0
-  contact:
-    name: Adobe Developer Support
-    url: https://developer.adobe.com/document-services/
-    email: pdfsvcops@adobe.com
-  license:
-    name: Adobe Terms of Service
-    url: https://www.adobe.com/legal/terms.html
-  termsOfService: https://www.adobe.com/legal/terms.html
+  title: Adobe Protect PDF API
+  version: '1.0'
+  description: 'Operations tagged Protect PDF across 2 of this provider''s published API definitions: adobe-pdf-services-api-openapi-official.json, adobe-pdf-services-api-openapi.yml. Each path carries the servers of the definition it was published in.'
 servers:
 - url: https://pdf-services-ue1.adobe.io
-  description: Adobe PDF Services API - US East Production
+- url: https://pdf-services-ew1.adobe.io
 - url: https://pdf-services.adobe.io
   description: Adobe PDF Services API - Default Production
-security:
-- bearerAuth: []
 tags:
 - name: Protect PDF
-  description: Add password protection and encryption to PDF documents.
+  description: Add encryption and/or restrict permissions on a PDF File
 paths:
   /operation/protectpdf:
     post:
-      operationId: protectPDF
-      summary: Adobe Protect a Pdf
-      description: Add password protection and set permissions on a PDF document. Supports setting user passwords (to open), owner passwords (to edit/print), and encryption algorithms (AES-128 or AES-256).
       tags:
       - Protect PDF
-      requestBody:
+      summary: Add encryption and/or restrict permissions on a PDF File
+      description: Secure a PDF Document with user or/and owner password and set the restrictions on certain features like printing, editing and copying in the PDF document. You can specify the type of content to be encrypted with your specified encryption algorithm.<br><b>All Adobe products enforce the restrictions set by the permissions password. However, if third-party products don’t support these settings, document recipients can bypass some or all of your restrictions.</b>
+      operationId: pdfoperations.protectpdf
+      parameters:
+      - name: Authorization
+        in: header
+        description: Bearer + Token (<a href="https://developer.adobe.com/document-services/docs/overview/pdf-services-api/gettingstarted/#step-1--getting-the-access-token">Learn more</a> about getting the access token)
         required: true
+        schema:
+          type: string
+      - name: x-api-key
+        in: header
+        description: The clientId from the generated credentials
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: Params for Protect PDF Operation. Refer to the External Section below for using external storage with Protect PDF Operation.
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/ProtectPDFRequest'
-            examples:
-              ProtectpdfRequestExample:
-                summary: Default protectPDF request
-                x-microcks-default: true
-                value:
-                  assetID: '500123'
-                  passwordProtection:
-                    userPassword: example_value
-                    ownerPassword: example_value
-                  encryptionAlgorithm: AES_128
-                  permissions:
-                    printQuality: NONE
-                    editContent: true
-                    copyContent: true
-                    editAnnotations: true
-                    fillForms: true
-                    assembleDocument: true
+              oneOf:
+              - $ref: '#/components/schemas/ProtectPDFInternal'
+              - $ref: '#/components/schemas/ProtectPDFExternal'
+        required: true
       responses:
         '201':
-          description: Job created successfully.
+          description: Request creation for the operation and status uri generated, which can be found in the 'location' header.
           headers:
-            Location:
-              description: URL to poll for job status.
+            location:
+              description: Job status URI for polling the results
               schema:
                 type: string
-                format: uri
             x-request-id:
-              $ref: '#/components/headers/x-request-id'
+              description: A unique value to identify this request. If x-request-id is specified in the POST request, this value will be the same as the input.
+              schema:
+                type: string
+        '400':
+          description: Bad Request. The request was invalid or cannot be otherwise served.
+          headers:
+            content-type:
+              description: The content type of the POST API call response
+              schema:
+                type: string
+            x-request-id:
+              description: A unique value to identify this request. If x-request-id is specified in the POST request, this value will be the same as the input.
+              schema:
+                type: string
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/JobStatusResponse'
-              examples:
-                Protectpdf201Example:
-                  summary: Default protectPDF 201 response
-                  x-microcks-default: true
-                  value:
-                    status: in progress
-                    asset:
-                      assetID: '500123'
-                      downloadUri: https://www.example.com
-                      metadata:
-                        type: example_value
-                        size: 10
-                    error:
-                      code: example_value
-                      message: example_value
-                      status: 10
-        '400':
-          $ref: '#/components/responses/BadRequest'
+                $ref: '#/components/schemas/400'
+        '404':
+          description: Resource Not Found.
+          headers:
+            content-type:
+              description: The content type of the POST API call response
+              schema:
+                type: string
+            x-request-id:
+              description: A unique value to identify this request. If x-request-id is specified in the POST request, this value will be the same as the input.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/404'
         '401':
-          $ref: '#/components/responses/Unauthorized'
+          description: Unauthorized.
+          headers:
+            content-type:
+              description: The content type of the error JSON response.
+              schema:
+                type: string
+            x-request-id:
+              description: A unique value to identify this request. If x-request-id is specified in the POST request, this value will be the same as the input.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/401'
         '429':
-          $ref: '#/components/responses/TooManyRequests'
-      x-microcks-operation:
-        delay: 0
-        dispatcher: FALLBACK
+          description: Caller doesn't have sufficient quota for this operation.
+          headers:
+            content-type:
+              description: The content type of the POST API call response
+              schema:
+                type: string
+            x-request-id:
+              description: A unique value to identify this request. If x-request-id is specified in the POST request, this value will be the same as the input.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/429'
+        '500':
+          description: Internal Server Error. The server has encountered an error and is unable to process your request at this time.
+          headers:
+            content-type:
+              description: The content type of the POST API call response
+              schema:
+                type: string
+            x-request-id:
+              description: A unique value to identify this request. If x-request-id is specified in the POST request, this value will be the same as the input.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/500'
+      x-codegen-request-body-name: body
+    servers:
+    - url: https://pdf-services-ue1.adobe.io
+    - url: https://pdf-services-ew1.adobe.io
+  /operation/protectpdf/{jobID}/status:
+    get:
+      tags:
+      - Protect PDF
+      summary: Poll the protect pdf job for completion
+      operationId: pdfoperations.protectpdf.jobstatus
+      parameters:
+      - name: jobID
+        in: path
+        description: Job ID of the request
+        required: true
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        description: Bearer + Token (<a href="https://developer.adobe.com/document-services/docs/overview/pdf-services-api/gettingstarted/#step-1--getting-the-access-token">Learn more</a> about getting the access token)
+        required: true
+        schema:
+          type: string
+      - name: x-api-key
+        in: header
+        description: The clientId from the generated credentials
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: A response with job information.
+          headers:
+            content-type:
+              description: The content type of the status call response.
+              schema:
+                type: string
+            x-request-id:
+              description: A unique value to identify this request. If x-request-id is specified in the POST request, this value will be the same as the input.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProtectPDFJobStatus'
+        '400':
+          description: Bad Request. The request was invalid or cannot be otherwise served.
+          headers:
+            content-type:
+              description: The content type of the status call response
+              schema:
+                type: string
+            x-request-id:
+              description: A unique value to identify this request. If x-request-id is specified in the POST request, this value will be the same as the input.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status400'
+        '404':
+          description: Resource Not Found.
+          headers:
+            content-type:
+              description: The content type of the POST API call response
+              schema:
+                type: string
+            x-request-id:
+              description: A unique value to identify this request. If x-request-id is specified in the POST request, this value will be the same as the input.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Satus404'
+        '401':
+          description: Unauthorized.
+          headers:
+            content-type:
+              description: The content type of the POST API call response
+              schema:
+                type: string
+            x-server:
+              description: The name and version of the server.
+              schema:
+                type: string
+            x-request-id:
+              description: A unique value to identify this request. If x-request-id is specified in the POST request, this value will be the same as the input.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Satus401'
+        '429':
+          description: Caller doesn't have sufficient quota for this operation.
+          headers:
+            content-type:
+              description: The content type of the POST API call response
+              schema:
+                type: string
+            x-request-id:
+              description: A unique value to identify this request. If x-request-id is specified in the POST request, this value will be the same as the input.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Satus429'
+        '500':
+          description: Internal Server Error. The server has encountered an error and is unable to process your request at this time.
+          headers:
+            content-type:
+              description: The content type of the POST API call response
+              schema:
+                type: string
+            x-request-id:
+              description: A unique value to identify this request. If x-request-id is specified in the POST request, this value will be the same as the input.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Satus500'
+    servers:
+    - url: https://pdf-services-ue1.adobe.io
+    - url: https://pdf-services-ew1.adobe.io
 components:
   schemas:
-    ErrorResponse:
+    done:
+      title: done
+      oneOf:
+      - $ref: '#/components/schemas/internal'
+      - $ref: '#/components/schemas/externalstatus'
+    external:
+      title: External with an output URI in the request
+      description: Response in case of 'done' status using signed urls
       type: object
-      description: Error response returned when a request fails.
+      properties:
+        status:
+          description: Job Status
+          type: string
+          enum:
+          - done
+      example:
+        status: done
+    Satus404:
       properties:
         error:
           type: object
           properties:
             code:
+              description: The string containing the code field. code is the Mnemonic returned by service in case of any failure. The below list is extendable and going forward the error codes can become more specific.
               type: string
-              description: A machine-readable error code.
-              examples:
-              - INVALID_ASSET_ID
-              - BAD_REQUEST
-              - UNAUTHORIZED
-              - RATE_LIMIT_EXCEEDED
             message:
+              description: "An English language string that contains more information about the error.  \n\n<table><tr><th>code</th><th>message</th></tr><tr><td>NOT_FOUND</td><td>Job not found.</td></tr></table>"
               type: string
-              description: A human-readable error message.
+      example:
+        error:
+          code: NOT_FOUND
+          message: Job not found.
+    '400':
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              description: The string containing the code field. code is the Mnemonic returned by service in case of any failure. The below list is extendable and going forward the error codes can become more specific.
+              type: string
+            message:
+              description: "An English language string that contains more information about the error. \n\n<table><tr><th>code</th><th>message</th></tr><tr><td>BAD_REQUEST</td><td>Bad Request.</td></tr></table>"
+              type: string
+      example:
+        error:
+          code: BAD_REQUEST
+          message: Bad Request.
+    '500':
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              description: The string containing the code field. code is the Mnemonic returned by service in case of any failure. The below list is extendable and going forward the error codes can become more specific.
+              type: string
+            message:
+              description: "An English language string that contains more information about the error.  \n\n<table><tr><th>code</th><th>message</th></tr><tr><td>INTERNAL_SERVER_ERROR</td><td>There was an error processing your request.</td></tr><tr><td>UNKNOWN</td><td>Unknown error.</td></tr></table>"
+              type: string
+      example:
+        error:
+          code: INTERNAL_SERVER_ERROR
+          message: There was an error processing your request.
+    ProtectPDFJobStatus:
+      oneOf:
+      - $ref: '#/components/schemas/inprogress'
+      - $ref: '#/components/schemas/done'
+      - $ref: '#/components/schemas/failed'
+    externaldonewithoutoutput:
+      title: External without an output URI in the request
+      description: Response in case of 'done' status
+      type: object
+      properties:
+        status:
+          description: Job Status
+          type: string
+          enum:
+          - done
+        asset:
+          $ref: '#/components/schemas/responseAsset'
+      example:
+        status: done
+        asset:
+          metadata:
+            type: application/pdf
+            size: 200791
+          downloadUri: https://dcplatformstorageservice-dev-us-east-1.s3-accelerate.amazonaws.com/6bb12fd8-3233-4340-916b-4835917857be?X-Amz-Security-Token=FwoGZXIvYXdzEE0aDOLg7PFwVB1bjEMxQCLTAe3pjf%2Fgl2Pj%2FcjOaY%2BHfduju9SXTp1Pn8C4GapIXm%2F8tuR4cGPYGC0goU21qZxCq9R%2F8z2bOmB2EL%2BZrhbPLbaNcpzf5Vud%2B3Bmn61MEJiBdU%2BhZqasX5YhVxdnzhfpl5KfKeq2kwROVMqJcyHGdxw5h0%2Bi0sD2I8sqkbPmnBi0WOtYNwz7TQq42oe8W5KYHpq6WMya9OQgx0u7qg0inYwBnQu5UQ9NJJQY2MSU11IuZ0uE%2B%2FNAPuq3VfEIn3txK%2FFfIxGz9%2BInehhHroKjBFULzy0olY2rlwYyLQDwHHr2eyuy%2BaoGVaq%2BSUNH8T0OKIicbbZfQ5wjF0hK2FzVXwfebtDG4qq%2BiA%3D%3D&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20220803T190422Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=REDACTED_AWS_ACCESS_KEY_ID%2F20220803%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=5d8c3f421c68c009b4471919a319ba460495c72afe51674d23266bc124fe9a56
+          assetID: urn:aaid:AS:UE1:23c30ee0-2c4d-46d6-87f2-087832fca718
+    '404':
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              description: The string containing the code field. code is the Mnemonic returned by service in case of any failure. The below list is extendable and going forward the error codes can become more specific.
+              type: string
+            message:
+              description: "An English language string that contains more information about the error. \n\n<table><tr><th>code</th><th>message</th></tr><tr><td>NOT_FOUND</td><td>Asset not found.</td></tr></table>"
+              type: string
+      example:
+        error:
+          code: NOT_FOUND
+          message: Asset not found.
+    ExternalStorageInput:
+      title: Input
+      description: Params representing input object.
+      type: object
+      properties:
+        uri:
+          description: Input file Download Signed URI.
+          type: string
+        storage:
+          description: Specifies the type of the external storage
+          type: string
+          enum:
+          - S3
+          - SHAREPOINT
+          - DROPBOX
+          - BLOB
+      required:
+      - uri
+    failed:
+      description: Response in case of 'failed' status
+      type: object
+      properties:
+        status:
+          description: Job Status
+          type: string
+          enum:
+          - failed
+        error:
+          type: object
+          properties:
             status:
+              description: Http status code returned by the service
               type: integer
-              description: The HTTP status code.
-              examples:
-              - 400
-              - 401
-              - 404
-              - 429
-          example: example_value
+            code:
+              description: The string containing the code field. code is the Mnemonic returned by service in case of any failure. The below list is extendable and going forward the error codes can become more specific.
+              type: string
+            message:
+              description: "An English language string that contains more information about the error. \n\n<table><tr><th>status</th><th>code</th><th>message</th></tr><tr><td>400</td><td>CORRUPT_DOCUMENT</td><td>For $(format) mime-type The input file appears to be corrupted and cannot be processed.</td></tr><tr><td>400</td><td>PASSWORD_PROTECTED</td><td>Source file is protected and cannot be processed.</td></tr><tr><td>500</td><td>INTERNAL_SERVER_ERROR</td><td>There was an error processing your request.</td></tr></table>"
+              type: string
+      example:
+        status: failed
+        error:
+          status: 500
+          code: INTERNAL_SERVER_ERROR
+          message: There was an error processing your request
+    externalstatus:
+      title: External
+      oneOf:
+      - $ref: '#/components/schemas/externaldonewithoutoutput'
+      - $ref: '#/components/schemas/external'
+    '429':
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              description: The string containing the code field. code is the Mnemonic returned by service in case of any failure. The below list is extendable and going forward the error codes can become more specific.
+              type: string
+            message:
+              description: "An English language string that contains more information about the error.  \n\n<table><tr><th>code</th><th>message</th></tr><tr><td>TOO_MANY_REQUESTS</td><td>Too Many Requests.</td></tr><tr><td>INSUFFICIENT_QUOTA</td><td>Either Quota for this operation is not available or Free trial quota is exhausted. Please visit (www.adobe.com/go/pdftoolsapi_home) to start using free trial quota or (www.adobe.com/go/pdftoolsapi_err_quota) to upgrade to paid credentials.</td></tr></table>"
+              type: string
+      example:
+        error:
+          code: TOO_MANY_REQUESTS
+          message: Too Many Requests.
+    ExternalStorageOutput:
+      title: Output
+      description: Params representing output object
+      type: object
+      properties:
+        uri:
+          description: Output file Upload Signed URI.
+          type: string
+        storage:
+          description: Specifies the type of the external storage
+          type: string
+          enum:
+          - S3
+          - SHAREPOINT
+          - DROPBOX
+          - BLOB
+    Status400:
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              description: The string containing the code field. code is the Mnemonic returned by service in case of any failure. The below list is extendable and going forward the error codes can become more specific.
+              type: string
+            message:
+              description: "An English language string that contains more information about the error.  \n\n<table><tr><th>code</th><th>message</th></tr><tr><td>INVALID_JOB_ID</td><td>Invalid job id present in path param.</td></tr></table>"
+              type: string
+      example:
+        error:
+          code: INVALID_JOB_ID
+          message: Invalid job id present in path param.
+    inprogress:
+      description: Response in case of 'in progress' status
+      type: object
+      properties:
+        status:
+          description: Job Status
+          type: string
+          enum:
+          - in progress
+      example:
+        status: in progress
+    ProtectPDFExternal:
+      title: External
+      description: Params for Protect PDF Operation
+      type: object
+      properties:
+        input:
+          $ref: '#/components/schemas/ExternalStorageInput'
+        output:
+          $ref: '#/components/schemas/ExternalStorageOutput'
+        params:
+          description: Params for Protect PDF processing
+          type: object
+          properties:
+            passwordProtection:
+              description: Enables the use of passwords to encrypt the input PDF document. At least one of userPassword and ownerPassword must be specified and non-empty. Each password can be up to 128 characters in length.
+              anyOf:
+              - $ref: '#/components/schemas/userPassword'
+              - $ref: '#/components/schemas/ownerPassword'
+            encryptionAlgorithm:
+              description: Sets the encryption algorithm. For AES-128 encryption, the password supports LATIN-I characters only. For AES-256 encryption, the password supports Unicode character set.
+              type: string
+              enum:
+              - AES_128
+              - AES_256
+            contentToEncrypt:
+              description: Sets the type of content to be encrypted. If ONLY_EMBEDDED_FILES option is set, it will render any provided access permissions as ineffective.
+              type: string
+              enum:
+              - ALL_CONTENT
+              - ALL_CONTENT_EXCEPT_METADATA
+              - ONLY_EMBEDDED_FILES
+              default: ALL_CONTENT
+            permissions:
+              description: Permissions to allow printing, editing and content copying in the PDF document. By default, none of the specified actions are permitted. PRINT_HIGH_QUALITY permission includes PRINT_LOW_QUALITY permission. EDIT_CONTENT permission includes EDIT_DOCUMENT_ASSEMBLY and EDIT_FILL_AND_SIGN_FORM_FIELDS permissions. Permissions settings will only be used in case the ownerPassword is set.
+              type: array
+              items:
+                type: string
+                enum:
+                - PRINT_LOW_QUALITY
+                - PRINT_HIGH_QUALITY
+                - EDIT_CONTENT
+                - EDIT_FILL_AND_SIGN_FORM_FIELDS
+                - EDIT_ANNOTATIONS
+                - EDIT_DOCUMENT_ASSEMBLY
+                - COPY_CONTENT
+          required:
+          - passwordProtection
+          - encryptionAlgorithm
+        notifiers:
+          $ref: '#/components/schemas/notifiers'
+      example:
+        input:
+          uri: https://dcplatformstorageservice-dev-us-east-1.s3-accelerate.amazonaws.com/e0983a2df4d647a8818e2c5e06f85169_097819C664A2BBC20A49421A%40techacct.adobe.com/5744605e-3937-48d8-88c5-96dd84e6b2ac?X-Amz-Security-Token=FwoGZXIvYXdzEPf%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaDFO%2Fye5bzll%2B8gzn4SLTAXEbkG1qef0EhWfnj%2FrBwcek9ConiBxFQ5Xya89H2u9g4h7Y%2F%2FgbvkwvdwCp0Bh%2BPRiGgapO%2BvhPJmpD2knaa%2FmOFle9l11ya41PjORZca%2FkOCESIbEmrRJ%2FJUIkCwLYfaJ0hQl6JghQW08EsxW0%2BYfKcG%2Bf9f0Dan3p9TgeD2eoJoZXqFfuw5JxaKVU4%2BCHtDxFbUplXOhcskMhjf%2FlY4tXJ%2F3o8a%2BEgkOQLC8U%2BPmjmdiWLWOxI13EbWa3NENaiOfw1WzK%2B%2FNgiBIhM78xPQpkNqwoz6WgpQYyLUc%2FqLVbWpz%2FoQVmuvbSaaRu9vAdowKmLvv%2BjE3nrpyQ7UbqL%2Ftw67ZZgp5R0Q%3D%3D&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20230707T133352Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3599&X-Amz-Credential=REDACTED_AWS_ACCESS_KEY_ID%2F20230707%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=b72a7c6e6b875cf8d6f43a6e8b12284476dec9552ba3edb34e83df45dd825a54
+          storage: S3
+        output:
+          uri: https://dcplatformstorageservice-dev-us-east-1.s3-accelerate.amazonaws.com/e0983a2df4d647a8818e2c5e06f85169_097819C664A2BBC20A49421A%40techacct.adobe.com/764630da-70b8-49b1-b35e-7e100063a6b6?X-Amz-Security-Token=FwoGZXIvYXdzEPf%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaDFO%2Fye5bzll%2B8gzn4SLTAXEbkG1qef0EhWfnj%2FrBwcek9ConiBxFQ5Xya89H2u9g4h7Y%2F%2FgbvkwvdwCp0Bh%2BPRiGgapO%2BvhPJmpD2knaa%2FmOFle9l11ya41PjORZca%2FkOCESIbEmrRJ%2FJUIkCwLYfaJ0hQl6JghQW08EsxW0%2BYfKcG%2Bf9f0Dan3p9TgeD2eoJoZXqFfuw5JxaKVU4%2BCHtDxFbUplXOhcskMhjf%2FlY4tXJ%2F3o8a%2BEgkOQLC8U%2BPmjmdiWLWOxI13EbWa3NENaiOfw1WzK%2B%2FNgiBIhM78xPQpkNqwoz6WgpQYyLUc%2FqLVbWpz%2FoQVmuvbSaaRu9vAdowKmLvv%2BjE3nrpyQ7UbqL%2Ftw67ZZgp5R0Q%3D%3D&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20230707T133354Z&X-Amz-SignedHeaders=content-type%3Bhost&X-Amz-Expires=3599&X-Amz-Credential=REDACTED_AWS_ACCESS_KEY_ID%2F20230707%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=41cb00193e49b216bd76a49bce1afb55598f72e84ef6d26907e8c76a31f155cc
+          storage: S3
+        params:
+          passwordProtection:
+            userPassword: XXXX
+            ownerPassword: YYYY
+          encryptionAlgorithm: AES_256
+          contentToEncrypt: ALL_CONTENT
+          permissions:
+          - PRINT_LOW_QUALITY
+          - PRINT_HIGH_QUALITY
+          - EDIT_CONTENT
+          - EDIT_FILL_AND_SIGN_FORM_FIELDS
+          - EDIT_ANNOTATIONS
+          - EDIT_DOCUMENT_ASSEMBLY
+          - COPY_CONTENT
+        notifiers:
+        - type: CALLBACK
+          data:
+            url: https://dummy.callback.org/
+            headers:
+              x-api-key: dummykey
+              access-token: dummytoken
+      required:
+      - input
+      - params
+      - passwordProtection
+      - encryptionAlgorithm
+      additionalProperties: false
+    responseAsset:
+      title: asset
+      description: Details of output asset document. For more details <a href = 'https://developer.adobe.com/document-services/docs/apis/#tag/Assets'> click here </a>.
+      type: object
+      properties:
+        metadata:
+          type: object
+          description: metadata details of output asset.
+          properties:
+            size:
+              description: The size of the Resource in bytes. This value helps in making range requests.
+              type: integer
+            type:
+              description: The media type of the Resource.
+              type: string
+        assetID:
+          description: An asset ID identifying an asset that is globally unique and never reused.
+          type: string
+          required: false
+        downloadUri:
+          description: The URL used to download the Resource directly to the cloud provider.
+          type: string
+      example:
+        status: done
+        asset:
+          metadata:
+            type: application/pdf
+            size: 200791
+          downloadUri: https://dcplatformstorageservice-dev-us-east-1.s3-accelerate.amazonaws.com/6bb12fd8-3233-4340-916b-4835917857be?X-Amz-Security-Token=FwoGZXIvYXdzEE0aDOLg7PFwVB1bjEMxQCLTAe3pjf%2Fgl2Pj%2FcjOaY%2BHfduju9SXTp1Pn8C4GapIXm%2F8tuR4cGPYGC0goU21qZxCq9R%2F8z2bOmB2EL%2BZrhbPLbaNcpzf5Vud%2B3Bmn61MEJiBdU%2BhZqasX5YhVxdnzhfpl5KfKeq2kwROVMqJcyHGdxw5h0%2Bi0sD2I8sqkbPmnBi0WOtYNwz7TQq42oe8W5KYHpq6WMya9OQgx0u7qg0inYwBnQu5UQ9NJJQY2MSU11IuZ0uE%2B%2FNAPuq3VfEIn3txK%2FFfIxGz9%2BInehhHroKjBFULzy0olY2rlwYyLQDwHHr2eyuy%2BaoGVaq%2BSUNH8T0OKIicbbZfQ5wjF0hK2FzVXwfebtDG4qq%2BiA%3D%3D&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20220803T190422Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=REDACTED_AWS_ACCESS_KEY_ID%2F20220803%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=5d8c3f421c68c009b4471919a319ba460495c72afe51674d23266bc124fe9a56
+          assetID: urn:aaid:AS:UE1:23c30ee0-2c4d-46d6-87f2-087832fca718
+    Satus429:
+      properties:
+        error_code:
+          description: 'The string containing the code field. code is the Mnemonic returned by service in case of any failure. The below list is extendable and going forward the error codes can become more specific. '
+          type: string
+        message:
+          description: "An English language string that contains more information about the error. \n\n<table><tr><th>code</th><th>message</th></tr><tr><td>429001</td><td>Service usage limit reached</td></tr><tr><td>429002</td><td>Developer key usage limit reached</td></tr><tr><td>429050</td><td>Too many requests</td></tr></table>"
+          type: string
+      example:
+        error_code: '429050'
+        message: Too many requests
+    notifiers:
+      description: Specifies the notifiers to be invoked on the completion of job. To know more about notifiers, please see the <a href="https://developer.adobe.com/document-services/docs/overview/pdf-services-api/howtos/webhook-notification/">documentation</a>.
+      type: array
+      items:
+        properties:
+          type:
+            description: Specifies the notifier type. Currently supported value is "CALLBACK" only.
+            type: string
+          data:
+            description: Specifies the data needed to invoke the notifier.
+            type: object
+        required:
+        - type
+        - data
+    Satus401:
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              description: The string containing the code field. code is the Mnemonic returned by service in case of any failure. The below list is extendable and going forward the error codes can become more specific.
+              type: string
+            message:
+              description: "An English language string that contains more information about the error.  \n\n<table><tr><th>code</th><th>message</th></tr><tr><td>UNAUTHORIZED</td><td>Not authorised to perform the operation.</td></tr></table>"
+              type: string
+      example:
+        error:
+          code: UNAUTHORIZED
+          message: Not authorised to perform the operation.
+    '401':
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              description: The string containing the code field. code is the Mnemonic returned by service in case of any failure. The below list is extendable and going forward the error codes can become more specific.
+              type: string
+            message:
+              description: "An English language string that contains more information about the error.  \n\n<table><tr><th>code</th><th>message</th></tr><tr><td>UNAUTHORIZED</td><td>Not authorised to perform the operation.</td></tr></table>"
+              type: string
+      example:
+        error:
+          code: UNAUTHORIZED
+          message: Not authorised to perform the operation.
+    ownerPassword:
+      description: Password used to control permissions in a PDF document. Conforming PDF viewers require this password to change the permissions. This password can also be used to open/view the PDF document.
+      type: string
+    ProtectPDFInternal:
+      title: Internal
+      description: Params for Protect PDF Operation
+      type: object
+      properties:
+        assetID:
+          description: A file assetID. For more details <a href = 'https://developer.adobe.com/document-services/docs/apis/#tag/Assets'> click here </a>.
+          type: string
+        passwordProtection:
+          description: Enables the use of passwords to encrypt the input PDF document. At least one of userPassword and ownerPassword must be specified and non-empty. Each password can be up to 128 characters in length.
+          anyOf:
+          - $ref: '#/components/schemas/userPassword'
+          - $ref: '#/components/schemas/ownerPassword'
+        encryptionAlgorithm:
+          description: Sets the encryption algorithm. For AES-128 encryption, the password supports LATIN-I characters only. For AES-256 encryption, the password supports Unicode character set.
+          type: string
+          enum:
+          - AES_128
+          - AES_256
+        contentToEncrypt:
+          description: Sets the type of content to be encrypted. If ONLY_EMBEDDED_FILES option is set, it will render any provided access permissions as ineffective.
+          type: string
+          enum:
+          - ALL_CONTENT
+          - ALL_CONTENT_EXCEPT_METADATA
+          - ONLY_EMBEDDED_FILES
+          default: ALL_CONTENT
+        permissions:
+          description: Permissions to allow printing, editing and content copying in the PDF document. By default, none of the specified actions are permitted. PRINT_HIGH_QUALITY permission includes PRINT_LOW_QUALITY permission. EDIT_CONTENT permission includes EDIT_DOCUMENT_ASSEMBLY and EDIT_FILL_AND_SIGN_FORM_FIELDS permissions. Permissions settings will only be used in case the ownerPassword is set.
+          type: array
+          items:
+            type: string
+            enum:
+            - PRINT_LOW_QUALITY
+            - PRINT_HIGH_QUALITY
+            - EDIT_CONTENT
+            - EDIT_FILL_AND_SIGN_FORM_FIELDS
+            - EDIT_ANNOTATIONS
+            - EDIT_DOCUMENT_ASSEMBLY
+            - COPY_CONTENT
+        notifiers:
+          $ref: '#/components/schemas/notifiers'
+      example:
+        assetID: urn:aaid:AS:UE1:23c30ee0-2c4d-46d6-87f2-087832fca718
+        passwordProtection:
+          ownerPassword: XXXXXX
+        encryptionAlgorithm: AES_256
+        contentToEncrypt: ALL_CONTENT
+        permissions:
+        - PRINT_HIGH_QUALITY
+        - EDIT_CONTENT
+        notifiers:
+        - type: CALLBACK
+          data:
+            url: https://dummy.callback.org/
+            headers:
+              x-api-key: dummykey
+              access-token: dummytoken
+      required:
+      - assetID
+      - passwordProtection
+      - encryptionAlgorithm
+      additionalProperties: false
+    internal:
+      title: Internal
+      description: Response in case of 'done' status
+      type: object
+      properties:
+        status:
+          description: Job Status
+          type: string
+          enum:
+          - done
+        asset:
+          $ref: '#/components/schemas/responseAsset'
+      example:
+        status: done
+        asset:
+          metadata:
+            type: application/pdf
+            size: 200791
+          downloadUri: https://dcplatformstorageservice-dev-us-east-1.s3-accelerate.amazonaws.com/6bb12fd8-3233-4340-916b-4835917857be?X-Amz-Security-Token=FwoGZXIvYXdzEE0aDOLg7PFwVB1bjEMxQCLTAe3pjf%2Fgl2Pj%2FcjOaY%2BHfduju9SXTp1Pn8C4GapIXm%2F8tuR4cGPYGC0goU21qZxCq9R%2F8z2bOmB2EL%2BZrhbPLbaNcpzf5Vud%2B3Bmn61MEJiBdU%2BhZqasX5YhVxdnzhfpl5KfKeq2kwROVMqJcyHGdxw5h0%2Bi0sD2I8sqkbPmnBi0WOtYNwz7TQq42oe8W5KYHpq6WMya9OQgx0u7qg0inYwBnQu5UQ9NJJQY2MSU11IuZ0uE%2B%2FNAPuq3VfEIn3txK%2FFfIxGz9%2BInehhHroKjBFULzy0olY2rlwYyLQDwHHr2eyuy%2BaoGVaq%2BSUNH8T0OKIicbbZfQ5wjF0hK2FzVXwfebtDG4qq%2BiA%3D%3D&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20220803T190422Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=REDACTED_AWS_ACCESS_KEY_ID%2F20220803%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=5d8c3f421c68c009b4471919a319ba460495c72afe51674d23266bc124fe9a56
+          assetID: urn:aaid:AS:UE1:23c30ee0-2c4d-46d6-87f2-087832fca718
+    Satus500:
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              description: The string containing the code field. code is the Mnemonic returned by service in case of any failure. The below list is extendable and going forward the error codes can become more specific.
+              type: string
+            message:
+              description: "An English language string that contains more information about the error. \n\n<table><tr><th>code</th><th>message</th></tr><tr><td>INTERNAL_SERVER_ERROR</td><td>There was an error processing your request.</td></tr><tr><td>UNKNOWN</td><td>Unknown error.</td></tr></table>"
+              type: string
+      example:
+        error:
+          code: INTERNAL_SERVER_ERROR
+          message: There was an error processing your request.
+    userPassword:
+      description: Password used to control opening of an encrypted PDF document. When this property is included and non-empty, the use of a password (either this one or, if specified, the owner password) is necessary to open/view the document. If this password is empty or omitted the document can be opened automatically by conforming PDF viewers.
+      type: string
     ProtectPDFRequest:
       type: object
       required:
@@ -232,20 +850,36 @@ components:
               type: integer
               description: The HTTP status code associated with the error.
           example: example_value
-  headers:
-    x-request-id:
-      description: A unique identifier for the request, useful for debugging and support.
-      schema:
-        type: string
+    ErrorResponse:
+      type: object
+      description: Error response returned when a request fails.
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+              description: A machine-readable error code.
+              examples:
+              - INVALID_ASSET_ID
+              - BAD_REQUEST
+              - UNAUTHORIZED
+              - RATE_LIMIT_EXCEEDED
+            message:
+              type: string
+              description: A human-readable error message.
+            status:
+              type: integer
+              description: The HTTP status code.
+              examples:
+              - 400
+              - 401
+              - 404
+              - 429
+          example: example_value
   responses:
     BadRequest:
       description: The request was malformed or contained invalid parameters. Check the error message for details.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    Unauthorized:
-      description: Authentication failed. The access token is missing, expired, or invalid.
       content:
         application/json:
           schema:
@@ -256,9 +890,23 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Authentication failed. The access token is missing, expired, or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  headers:
+    x-request-id:
+      description: A unique identifier for the request, useful for debugging and support.
+      schema:
+        type: string
   securitySchemes:
     bearerAuth:
       type: http
       scheme: bearer
       bearerFormat: JWT
       description: OAuth 2.0 access token obtained via client credentials grant from Adobe Identity Management Service (IMS). Generate credentials in the Adobe Developer Console and exchange them for an access token at https://ims-na1.adobelogin.com/ims/token/v3.
+x-refined-from:
+- adobe-pdf-services-api-openapi-official.json
+- adobe-pdf-services-api-openapi.yml

@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: "Adobe PDF Services Jobs API"
+  title: Adobe PDF Services Jobs API
   description: The Adobe PDF Services API enables developers to create, convert, manipulate, and extract content from PDF documents programmatically. The API uses an asynchronous job-based model where you submit a job, poll for its status, and retrieve the result. Operations include creating PDFs from various formats, exporting PDFs to other formats, combining and splitting PDFs, compressing, OCR processing, protecting with passwords, extracting structured content, auto-tagging for accessibility, and generating documents from templates. Authentication uses OAuth 2.0 with client credentials (server-to-server).
   version: 4.0.0
   contact:
@@ -94,19 +94,6 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
-  responses:
-    Unauthorized:
-      description: Authentication failed. The access token is missing, expired, or invalid.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    NotFound:
-      description: The requested resource was not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
   schemas:
     ErrorResponse:
       type: object
@@ -183,6 +170,19 @@ components:
               type: integer
               description: The HTTP status code associated with the error.
           example: example_value
+  responses:
+    Unauthorized:
+      description: Authentication failed. The access token is missing, expired, or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   securitySchemes:
     bearerAuth:
       type: http

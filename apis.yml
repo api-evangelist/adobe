@@ -730,6 +730,217 @@ apis:
     url: json-ld/adobe-pdf-services-context.jsonld
   - type: GraphQL
     url: graphql/adobe-graphql.md
+- aid: adobe:adobe-composites-api
+  name: Adobe Composites API
+  description: The Composites API from Adobe — 1 operation(s) for composites.
+  humanURL: https://developer.adobe.com/document-services/docs/overview/pdf-extract-api/
+  baseURL: https://pdf-services.adobe.io
+  tags:
+  - Composites
+  properties:
+  - type: OpenAPI
+    url: openapi/adobe-composites-api-openapi.yml
+- aid: adobe:adobe-export-pdf-form-data-api
+  name: Adobe Export PDF Form Data API
+  description: >-
+    The Export PDF Form Data API will retrieve the data from a PDF form and return it as a JSON file.
+  humanURL: https://developer.adobe.com/document-services/docs/overview/pdf-extract-api/
+  baseURL: https://pdf-services.adobe.io
+  tags:
+  - Export PDF Form Data
+  properties:
+  - type: OpenAPI
+    url: openapi/adobe-export-pdf-form-data-api-openapi.yml
+- aid: adobe:adobe-generate-token-api
+  name: Adobe Generate Token API
+  description: >-
+    Creates an access token using client id and client secret. Click <a href="https://developer.adobe.com/developer-console/docs/guides/authentication/ServerToServerAuthentication/IMS/">here</a>
+    to refer underlying IMS authentication APIs.
+  humanURL: https://developer.adobe.com/document-services/docs/overview/pdf-extract-api/
+  baseURL: https://pdf-services.adobe.io
+  tags:
+  - Generate Token
+  properties:
+  - type: OpenAPI
+    url: openapi/adobe-generate-token-api-openapi.yml
+- aid: adobe:adobe-html-to-pdf-api
+  name: Adobe Html to PDF API
+  description: Convert HTML Resources to a PDF File
+  humanURL: https://developer.adobe.com/document-services/docs/overview/pdf-extract-api/
+  baseURL: https://pdf-services.adobe.io
+  tags:
+  - Html to PDF
+  properties:
+  - type: OpenAPI
+    url: openapi/adobe-html-to-pdf-api-openapi.yml
+- aid: adobe:adobe-import-pdf-form-data-api
+  name: Adobe Import PDF Form Data API
+  description: >-
+    The Import PDF Form Data API will take the form data provided as a JSON, insert it into the PDF form,
+    and generate the resulting PDF.
+  humanURL: https://developer.adobe.com/document-services/docs/overview/pdf-extract-api/
+  baseURL: https://pdf-services.adobe.io
+  tags:
+  - Import PDF Form Data
+  properties:
+  - type: OpenAPI
+    url: openapi/adobe-import-pdf-form-data-api-openapi.yml
+- aid: adobe:adobe-library-service-api
+  name: Adobe Library Service API
+  description: App-facing APIs for Adobe CC Libraries.
+  humanURL: https://developer.adobe.com/document-services/docs/overview/pdf-extract-api/
+  baseURL: https://pdf-services.adobe.io
+  tags:
+  - Library Service
+  properties:
+  - type: OpenAPI
+    url: openapi/adobe-library-service-api-openapi.yml
+- aid: adobe:adobe-library-service-bookmarks-api
+  name: Adobe Library Service - Bookmarks API
+  description: App-facing APIs specifically for Adobe CC Library Bookmarks.
+  humanURL: https://developer.adobe.com/document-services/docs/overview/pdf-extract-api/
+  baseURL: https://pdf-services.adobe.io
+  tags:
+  - Library Service - Bookmarks
+  properties:
+  - type: OpenAPI
+    url: openapi/adobe-library-service-bookmarks-api-openapi.yml
+- aid: adobe:adobe-library-service-public-api
+  name: Adobe Library Service - Public API
+  description: App-facing APIs specifically for Adobe CC Public Libraries.
+  humanURL: https://developer.adobe.com/document-services/docs/overview/pdf-extract-api/
+  baseURL: https://pdf-services.adobe.io
+  tags:
+  - Library Service - Public
+  properties:
+  - type: OpenAPI
+    url: openapi/adobe-library-service-public-api-openapi.yml
+- aid: adobe:adobe-page-manipulation-api
+  name: Adobe Page Manipulation API
+  description: Rotate and delete pages of a PDF File
+  humanURL: https://developer.adobe.com/document-services/docs/overview/pdf-extract-api/
+  baseURL: https://pdf-services.adobe.io
+  tags:
+  - Page Manipulation
+  properties:
+  - type: OpenAPI
+    url: openapi/adobe-page-manipulation-api-openapi.yml
+- aid: adobe:adobe-pdf-accessibility-auto-tag-api
+  name: Adobe PDF Accessibility Auto-Tag API
+  description: Operation to create the tagged pdf and excel report for accessibility auto-tag use case.
+  humanURL: https://developer.adobe.com/document-services/docs/overview/pdf-extract-api/
+  baseURL: https://pdf-services.adobe.io
+  tags:
+  - PDF Accessibility Auto-Tag
+  properties:
+  - type: OpenAPI
+    url: openapi/adobe-pdf-accessibility-auto-tag-api-openapi.yml
+- aid: adobe:adobe-pdf-accessibility-checker-api
+  name: Adobe PDF Accessibility Checker API
+  description: >-
+    Accessibility Checker API will check PDF files to see if they meet the machine-verifiable requirements
+    of PDF/UA and WCAG.
+  humanURL: https://developer.adobe.com/document-services/docs/overview/pdf-extract-api/
+  baseURL: https://pdf-services.adobe.io
+  tags:
+  - PDF Accessibility Checker
+  properties:
+  - type: OpenAPI
+    url: openapi/adobe-pdf-accessibility-checker-api-openapi.yml
+- aid: adobe:adobe-pdf-electronic-seal-api
+  name: Adobe PDF Electronic Seal API
+  description: >-
+    Create electronic seal on PDF documents like invoices, agreements etc using the digital certificate
+    issued to the user by Trust Service Provider.
+  humanURL: https://developer.adobe.com/document-services/docs/overview/pdf-extract-api/
+  baseURL: https://pdf-services.adobe.io
+  tags:
+  - PDF Electronic Seal
+  properties:
+  - type: OpenAPI
+    url: openapi/adobe-pdf-electronic-seal-api-openapi.yml
+- aid: adobe:adobe-pdf-to-images-api
+  name: Adobe PDF To Images API
+  description: Convert a PDF File to image files
+  humanURL: https://developer.adobe.com/document-services/docs/overview/pdf-extract-api/
+  baseURL: https://pdf-services.adobe.io
+  tags:
+  - PDF To Images
+  properties:
+  - type: OpenAPI
+    url: openapi/adobe-pdf-to-images-api-openapi.yml
+- aid: adobe:adobe-pdf-to-markdown-api
+  name: Adobe PDF To Markdown API
+  description: >-
+    Extract content from PDF documents and output it in a well-formatted LLM-friendly Markdown text, along
+    with tables and figures
+  humanURL: https://developer.adobe.com/document-services/docs/overview/pdf-extract-api/
+  baseURL: https://pdf-services.adobe.io
+  tags:
+  - PDF To Markdown
+  properties:
+  - type: OpenAPI
+    url: openapi/adobe-pdf-to-markdown-api-openapi.yml
+- aid: adobe:adobe-pdf-watermark-api
+  name: Adobe PDF Watermark API
+  description: PDF Watermark API will add a watermark in PDF document.
+  humanURL: https://developer.adobe.com/document-services/docs/overview/pdf-extract-api/
+  baseURL: https://pdf-services.adobe.io
+  tags:
+  - PDF Watermark
+  properties:
+  - type: OpenAPI
+    url: openapi/adobe-pdf-watermark-api-openapi.yml
+- aid: adobe:adobe-scenes-api
+  name: Adobe Scenes API
+  description: The Scenes API from Adobe — 5 operation(s) for scenes.
+  humanURL: https://developer.adobe.com/document-services/docs/overview/pdf-extract-api/
+  baseURL: https://pdf-services.adobe.io
+  tags:
+  - Scenes
+  properties:
+  - type: OpenAPI
+    url: openapi/adobe-scenes-api-openapi.yml
+- aid: adobe:adobe-spaces-api
+  name: Adobe Spaces API
+  description: The Spaces API from Adobe — 2 operation(s) for spaces.
+  humanURL: https://developer.adobe.com/document-services/docs/overview/pdf-extract-api/
+  baseURL: https://pdf-services.adobe.io
+  tags:
+  - Spaces
+  properties:
+  - type: OpenAPI
+    url: openapi/adobe-spaces-api-openapi.yml
+- aid: adobe:adobe-spacesframeio-api
+  name: Adobe Spaces Frame IO API
+  description: The SpacesFrameIO API from Adobe — 1 operation(s) for spacesframeio.
+  humanURL: https://developer.adobe.com/document-services/docs/overview/pdf-extract-api/
+  baseURL: https://pdf-services.adobe.io
+  tags:
+  - SpacesFrameIO
+  properties:
+  - type: OpenAPI
+    url: openapi/adobe-spacesframeio-api-openapi.yml
+- aid: adobe:adobe-spacesnextframeio-api
+  name: Adobe Spaces Next Frame IO API
+  description: The SpacesNextFrameIO API from Adobe — 1 operation(s) for spacesnextframeio.
+  humanURL: https://developer.adobe.com/document-services/docs/overview/pdf-extract-api/
+  baseURL: https://pdf-services.adobe.io
+  tags:
+  - SpacesNextFrameIO
+  properties:
+  - type: OpenAPI
+    url: openapi/adobe-spacesnextframeio-api-openapi.yml
+- aid: adobe:adobe-spacesurl-api
+  name: Adobe Spaces URL API
+  description: The SpacesURL API from Adobe — 1 operation(s) for spacesurl.
+  humanURL: https://developer.adobe.com/document-services/docs/overview/pdf-extract-api/
+  baseURL: https://pdf-services.adobe.io
+  tags:
+  - SpacesURL
+  properties:
+  - type: OpenAPI
+    url: openapi/adobe-spacesurl-api-openapi.yml
 common:
 - type: Packages
   url: packages/adobe-packages.yml
