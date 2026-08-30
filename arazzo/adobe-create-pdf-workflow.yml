@@ -55,7 +55,7 @@ workflows:
     description: >-
       Request a pre-signed upload URI and asset ID for the source file. The
       file content itself is then PUT to the returned uploadUri out of band.
-    operationId: uploadAsset
+    operationId: asset.uploadpresignedurl
     parameters:
     - name: Authorization
       in: header
@@ -73,7 +73,7 @@ workflows:
     description: >-
       Submit an asynchronous createPDF job that converts the uploaded asset
       into a PDF. Returns 201 with an in-progress job status.
-    operationId: createPDF
+    operationId: pdfoperations.createpdf
     parameters:
     - name: Authorization
       in: header

@@ -54,7 +54,7 @@ workflows:
     description: >-
       Request a pre-signed upload URI and asset ID for the DOCX template, which
       is then PUT to the returned uploadUri out of band.
-    operationId: uploadAsset
+    operationId: asset.uploadpresignedurl
     parameters:
     - name: Authorization
       in: header
@@ -72,7 +72,7 @@ workflows:
     description: >-
       Submit an asynchronous generateDocument job that merges the JSON data
       into the uploaded template. Returns 201 with an in-progress job status.
-    operationId: generateDocument
+    operationId: pdfoperations.documentgeneration
     parameters:
     - name: Authorization
       in: header

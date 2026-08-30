@@ -46,7 +46,7 @@ workflows:
     description: >-
       Request a pre-signed upload URI and asset ID for the first source PDF,
       which is then PUT to the returned uploadUri out of band.
-    operationId: uploadAsset
+    operationId: asset.uploadpresignedurl
     parameters:
     - name: Authorization
       in: header
@@ -64,7 +64,7 @@ workflows:
     description: >-
       Request a pre-signed upload URI and asset ID for the second source PDF,
       which is then PUT to the returned uploadUri out of band.
-    operationId: uploadAsset
+    operationId: asset.uploadpresignedurl
     parameters:
     - name: Authorization
       in: header
@@ -82,7 +82,7 @@ workflows:
     description: >-
       Submit an asynchronous combinePDF job that merges the two uploaded PDFs
       in order. Returns 201 with an in-progress job status.
-    operationId: combinePDF
+    operationId: pdfoperations.combinepdf
     parameters:
     - name: Authorization
       in: header

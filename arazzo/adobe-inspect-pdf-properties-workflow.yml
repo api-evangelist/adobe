@@ -52,7 +52,7 @@ workflows:
     description: >-
       Request a pre-signed upload URI and asset ID for the source PDF, which is
       then PUT to the returned uploadUri out of band.
-    operationId: uploadAsset
+    operationId: asset.uploadpresignedurl
     parameters:
     - name: Authorization
       in: header
@@ -70,7 +70,7 @@ workflows:
     description: >-
       Submit an asynchronous getPDFProperties job that inspects the uploaded
       PDF's metadata. Returns 201 with an in-progress job status.
-    operationId: getPDFProperties
+    operationId: pdfoperations.pdfproperties
     parameters:
     - name: Authorization
       in: header

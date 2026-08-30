@@ -49,7 +49,7 @@ workflows:
     description: >-
       Request a pre-signed upload URI and asset ID for the source PDF, which is
       then PUT to the returned uploadUri out of band.
-    operationId: uploadAsset
+    operationId: asset.uploadpresignedurl
     parameters:
     - name: Authorization
       in: header
@@ -67,7 +67,7 @@ workflows:
     description: >-
       Submit an asynchronous compressPDF job that reduces the uploaded PDF's
       size. Returns 201 with an in-progress job status.
-    operationId: compressPDF
+    operationId: pdfoperations.compresspdf
     parameters:
     - name: Authorization
       in: header

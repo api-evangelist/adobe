@@ -58,7 +58,7 @@ workflows:
     description: >-
       Request a pre-signed upload URI and asset ID for the source PDF, which is
       then PUT to the returned uploadUri out of band.
-    operationId: uploadAsset
+    operationId: asset.uploadpresignedurl
     parameters:
     - name: Authorization
       in: header
@@ -76,7 +76,7 @@ workflows:
     description: >-
       Submit an asynchronous protectPDF job that password-protects the uploaded
       PDF. Returns 201 with an in-progress job status.
-    operationId: protectPDF
+    operationId: pdfoperations.protectpdf
     parameters:
     - name: Authorization
       in: header

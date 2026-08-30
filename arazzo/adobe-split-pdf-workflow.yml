@@ -51,7 +51,7 @@ workflows:
     description: >-
       Request a pre-signed upload URI and asset ID for the source PDF, which is
       then PUT to the returned uploadUri out of band.
-    operationId: uploadAsset
+    operationId: asset.uploadpresignedurl
     parameters:
     - name: Authorization
       in: header
@@ -70,7 +70,7 @@ workflows:
       Submit an asynchronous splitPDF job that divides the uploaded PDF into
       files of the requested page count. Returns 201 with an in-progress job
       status.
-    operationId: splitPDF
+    operationId: pdfoperations.splitpdf
     parameters:
     - name: Authorization
       in: header
