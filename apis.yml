@@ -944,6 +944,8 @@ apis:
   - type: OpenAPI
     url: openapi/adobe-spacesurl-api-openapi.yml
 common:
+- type: Website
+  url: https://www.adobe.com/
 - type: Packages
   url: packages/adobe-packages.yml
 - type: SDKs
