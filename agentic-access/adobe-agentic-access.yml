@@ -1,23 +1,39 @@
-generated: '2026-07-15'
+generated: '2026-09-16'
 method: generated
-source: openapi/adobe-pdf-services-api-openapi.yml
+source: openapi/adobe-accessibility-auto-tag-api-openapi.yml, openapi/adobe-assets-api-openapi.yml,
+  openapi/adobe-combine-pdf-api-openapi.yml, openapi/adobe-composites-api-openapi.yml, openapi/adobe-compress-pdf-api-openapi.yml,
+  openapi/adobe-create-pdf-api-openapi.yml, openapi/adobe-delete-pages-api-openapi.yml, openapi/adobe-document-generation-api-openapi.yml,
+  openapi/adobe-export-pdf-api-openapi.yml, openapi/adobe-export-pdf-form-data-api-openapi.yml,
+  openapi/adobe-extract-pdf-api-openapi.yml, openapi/adobe-generate-token-api-openapi.yml, openapi/adobe-html-to-pdf-api-openapi.yml,
+  openapi/adobe-import-pdf-form-data-api-openapi.yml, openapi/adobe-insert-pages-api-openapi.yml,
+  openapi/adobe-jobs-api-openapi.yml, openapi/adobe-library-service-api-openapi.yml, openapi/adobe-library-service-bookmarks-api-openapi.yml,
+  openapi/adobe-library-service-public-api-openapi.yml, openapi/adobe-linearize-pdf-api-openapi.yml,
+  openapi/adobe-ocr-api-openapi.yml, openapi/adobe-page-manipulation-api-openapi.yml, openapi/adobe-pdf-accessibility-auto-tag-api-openapi.yml,
+  openapi/adobe-pdf-accessibility-checker-api-openapi.yml, openapi/adobe-pdf-electronic-seal-api-openapi.yml,
+  openapi/adobe-pdf-properties-api-openapi.yml, openapi/adobe-pdf-to-images-api-openapi.yml,
+  openapi/adobe-pdf-to-markdown-api-openapi.yml, openapi/adobe-pdf-watermark-api-openapi.yml,
+  openapi/adobe-protect-pdf-api-openapi.yml, openapi/adobe-remove-protection-api-openapi.yml,
+  openapi/adobe-reorder-pages-api-openapi.yml, openapi/adobe-replace-pages-api-openapi.yml,
+  openapi/adobe-rotate-pages-api-openapi.yml, openapi/adobe-scenes-api-openapi.yml, openapi/adobe-spaces-api-openapi.yml,
+  openapi/adobe-spacesframeio-api-openapi.yml, openapi/adobe-spacesnextframeio-api-openapi.yml,
+  openapi/adobe-spacesurl-api-openapi.yml, openapi/adobe-split-pdf-api-openapi.yml
 description: Recommended x-agentic-access execution contracts, classified heuristically from
   the OpenAPI. A governance starting point for exposing this API to AI agents — review and bind
   audience per deployment. See research/curity/agentic-governance/.
 summary:
-  operations: 22
+  operations: 96
   by_action_class:
-    acting: 20
-    connected: 2
+    acting: 60
+    connected: 36
   by_consequence:
-    write: 19
-    read: 2
+    write: 59
+    read: 36
     physical: 1
   human_in_the_loop_required: 0
 operations:
-- path: /assets
+- path: /operation/accessibilitychecker
   method: post
-  operationId: uploadAsset
+  operationId: autoTagPDF
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -31,6 +47,58 @@ operations:
       - abnormal
       - high-value
     audit: required
+- path: /assets
+  method: post
+  operationId: asset.uploadpresignedurl
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /assets/{assetId}
+  method: get
+  operationId: asset.get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /assets/{assetId}
+  method: delete
+  operationId: asset.delete
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /assets/{assetId}/metadata
+  method: get
+  operationId: asset.metadata
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
 - path: /assets/{assetID}
   method: get
   operationId: getAsset
@@ -57,41 +125,9 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /operation/createpdf
-  method: post
-  operationId: createPDF
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /operation/exportpdf
-  method: post
-  operationId: exportPDF
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
 - path: /operation/combinepdf
   method: post
-  operationId: combinePDF
+  operationId: pdfoperations.combinepdf
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -105,25 +141,19 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /operation/splitpdf
-  method: post
-  operationId: splitPDF
+- path: /operation/combinepdf/{jobID}/status
+  method: get
+  operationId: pdfoperations.combinepdf.jobstatus
   x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
+    action-class: connected
+    consequence: read
+    subject: optional
     token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /operation/ocr
+      max-ttl: 3600
+    audit: none
+- path: /v1/composites/compose
   method: post
-  operationId: ocrPDF
+  operationId: v1/composites/compose
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -139,7 +169,7 @@ operations:
     audit: required
 - path: /operation/compresspdf
   method: post
-  operationId: compressPDF
+  operationId: pdfoperations.compresspdf
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -153,9 +183,19 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /operation/protectpdf
+- path: /operation/compresspdf/{jobID}/status
+  method: get
+  operationId: pdfoperations.compresspdf.jobstatus
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /operation/createpdf
   method: post
-  operationId: protectPDF
+  operationId: pdfoperations.createpdf
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -169,57 +209,19 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /operation/removeprotection
-  method: post
-  operationId: removeProtection
+- path: /operation/createpdf/{jobID}/status
+  method: get
+  operationId: pdfoperations.jobstatus
   x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
+    action-class: connected
+    consequence: read
+    subject: optional
     token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /operation/linearizepdf
+      max-ttl: 3600
+    audit: none
+- path: /operation/deletepages
   method: post
-  operationId: linearizePDF
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /operation/extractpdf
-  method: post
-  operationId: extractPDF
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /operation/accessibilitychecker
-  method: post
-  operationId: autoTagPDF
+  operationId: deletePages
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -235,7 +237,7 @@ operations:
     audit: required
 - path: /operation/documentgeneration
   method: post
-  operationId: generateDocument
+  operationId: pdfoperations.documentgeneration
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -249,9 +251,719 @@ operations:
       - abnormal
       - high-value
     audit: required
+- path: /operation/documentgeneration/{jobID}/status
+  method: get
+  operationId: pdfoperations.documentgeneration.jobstatus
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /operation/exportpdf
+  method: post
+  operationId: pdfoperations.exportpdf
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /operation/exportpdf/{jobID}/status
+  method: get
+  operationId: pdfoperations.exportpdf.jobstatus
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /operation/getformdata
+  method: post
+  operationId: pdfoperations.getformdata
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /operation/getformdata/{jobID}/status
+  method: get
+  operationId: pdfoperations.getformdata.jobstatus
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /operation/extractpdf
+  method: post
+  operationId: pdfoperations.extractpdf
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /operation/extractpdf/{jobID}/status
+  method: get
+  operationId: pdfoperations.extractpdf.jobstatus
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /token
+  method: post
+  operationId: authentication.generatetoken
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /operation/htmltopdf
+  method: post
+  operationId: pdfoperations.htmltopdf
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /operation/htmltopdf/{jobID}/status
+  method: get
+  operationId: pdfoperations.htmltopdf.jobstatus
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /operation/setformdata
+  method: post
+  operationId: pdfoperations.setformdata
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /operation/setformdata/{jobID}/status
+  method: get
+  operationId: pdfoperations.setformdata.jobstatus
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /operation/insertpages
+  method: post
+  operationId: insertPages
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /operation/{operationType}/status/{jobID}
+  method: get
+  operationId: getJobStatus
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/libraries
+  method: get
+  operationId: getLibraries
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/libraries
+  method: post
+  operationId: createLibraries
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/libraries/{libraryId}
+  method: get
+  operationId: getLibrary
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/libraries/{libraryId}
+  method: head
+  operationId: headLibrary
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/libraries/{libraryId}
+  method: delete
+  operationId: deleteLibrary
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/libraries/{libraryId}
+  method: patch
+  operationId: patchLibrary
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/libraries/{libraryId}/archive
+  method: post
+  operationId: unArchiveLibraryElements
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/libraries/{libraryId}/archive
+  method: delete
+  operationId: deleteLibraryElements
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/libraries/{libraryId}/archive/{elementId}
+  method: delete
+  operationId: deleteLibraryElement
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/libraries/{libraryId}/elements
+  method: get
+  operationId: getLibraryElements
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/libraries/{libraryId}/elements
+  method: post
+  operationId: postLibraryElements
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/libraries/{libraryId}/elements
+  method: delete
+  operationId: archiveLibraryElements
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/libraries/{libraryId}/elements/metadata
+  method: put
+  operationId: updateLibraryElements
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/libraries/{libraryId}/elements/{elementId}
+  method: get
+  operationId: getLibraryElement
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/libraries/{libraryId}/elements/{elementId}
+  method: delete
+  operationId: archiveLibraryElement
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/libraries/{libraryId}/elements/{elementId}/representations
+  method: put
+  operationId: putLibraryElementRepresentations
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/libraries/{libraryId}/metadata
+  method: put
+  operationId: updateLibrary
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/libraries/{libraryId}/representations/content
+  method: post
+  operationId: postLibraryComponent
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/search
+  method: post
+  operationId: search
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/libraries/bookmarks
+  method: get
+  operationId: getBookmarks
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/libraries/bookmarks
+  method: post
+  operationId: addLibraryBookmarks
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/libraries/bookmarks/{bookmarkId}
+  method: put
+  operationId: putLibraryBookmark
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/libraries/bookmarks/{bookmarkId}
+  method: delete
+  operationId: removeLibraryBookmark
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/public/libraries/{libraryId}
+  method: get
+  operationId: getPublicLibrary
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/public/libraries/{libraryId}
+  method: head
+  operationId: headPublicLibrary
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/public/libraries/{libraryId}/elements
+  method: get
+  operationId: getPublicLibraryElements
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/public/libraries/{libraryId}/elements/{elementId}
+  method: get
+  operationId: getPublicLibraryElement
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /operation/linearizepdf
+  method: post
+  operationId: pdfoperations.linearizepdf
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /operation/linearizepdf/{jobID}/status
+  method: get
+  operationId: pdfoperations.linearizepdf.jobstatus
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /operation/ocr
+  method: post
+  operationId: pdfoperations.ocr
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /operation/ocr/{jobID}/status
+  method: get
+  operationId: pdfoperations.ocr.jobstatus
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /operation/pagemanipulation
+  method: post
+  operationId: pdfoperations.pagemanipulation
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /operation/pagemanipulation/{jobID}/status
+  method: get
+  operationId: pdfoperations.pagemanipulation.jobstatus
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /operation/autotag
+  method: post
+  operationId: pdfoperations.autotag
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /operation/autotag/{jobID}/status
+  method: get
+  operationId: pdfoperations.autotag.jobstatus
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /operation/accessibilitychecker
+  method: post
+  operationId: pdfoperations.accessibilitychecker
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /operation/accessibilitychecker/{jobID}/status
+  method: get
+  operationId: pdfoperations.accessibilitychecker.jobstatus
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /operation/electronicseal
+  method: post
+  operationId: pdfoperations.electronicseal
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /operation/electronicseal/{jobID}/status
+  method: get
+  operationId: pdfoperations.electronicseal.jobstatus
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
 - path: /operation/pdfproperties
   method: post
-  operationId: getPDFProperties
+  operationId: pdfoperations.pdfproperties
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -265,6 +977,146 @@ operations:
       - abnormal
       - high-value
     audit: required
+- path: /operation/pdfproperties/{jobID}/status
+  method: get
+  operationId: pdfoperations.pdfproperties.jobstatus
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /operation/pdftoimages
+  method: post
+  operationId: pdfoperations.pdftoimages
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /operation/pdftoimages/{jobID}/status
+  method: get
+  operationId: pdfoperations.pdftoimages.jobstatus
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /operation/pdftomarkdown
+  method: post
+  operationId: pdfoperations.pdftomarkdown
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /operation/pdftomarkdown/{jobID}/status
+  method: get
+  operationId: pdfoperations.pdftomarkdown.jobstatus
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /operation/addwatermark
+  method: post
+  operationId: pdfoperations.addwatermark
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /operation/addwatermark/{jobID}/status
+  method: get
+  operationId: pdfoperations.addwatermark.jobstatus
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /operation/protectpdf
+  method: post
+  operationId: pdfoperations.protectpdf
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /operation/protectpdf/{jobID}/status
+  method: get
+  operationId: pdfoperations.protectpdf.jobstatus
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /operation/removeprotection
+  method: post
+  operationId: pdfoperations.removeprotection
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /operation/removeprotection/{jobID}/status
+  method: get
+  operationId: pdfoperations.removeprotection.jobstatus
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
 - path: /operation/reorderpages
   method: post
   operationId: reorderPages
@@ -283,9 +1135,9 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /operation/deletepages
+- path: /operation/replacepages
   method: post
-  operationId: deletePages
+  operationId: replacePages
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -315,9 +1167,9 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /operation/insertpages
+- path: /v1/scenes/assemble
   method: post
-  operationId: insertPages
+  operationId: v1/scenes/assemble
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -331,9 +1183,9 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /operation/replacepages
+- path: /v1/scenes/convert
   method: post
-  operationId: replacePages
+  operationId: v1/scenes/convert
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -347,9 +1199,153 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /operation/{operationType}/status/{jobID}
+- path: /v1/scenes/describe
+  method: post
+  operationId: v1/scenes/describe
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v1/scenes/render
+  method: post
+  operationId: v1/scenes/render
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v1/scenes/render-basic
+  method: post
+  operationId: v1/scenes/render-basic
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v1/spaces
+  method: post
+  operationId: createSpace_v1
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v2/spaces
+  method: post
+  operationId: createSpace_v2
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v2/spacesFrameIO
+  method: post
+  operationId: createSpaceFromFrameIO_v2
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v2/spacesNextFrameIO
+  method: post
+  operationId: createSpaceFromNextFrameIO_v2
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v2/spacesURL
+  method: post
+  operationId: createSpaceURL_v2
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /operation/splitpdf
+  method: post
+  operationId: pdfoperations.splitpdf
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /operation/splitpdf/{jobID}/status
   method: get
-  operationId: getJobStatus
+  operationId: pdfoperations.splitpdf.jobstatus
   x-agentic-access:
     action-class: connected
     consequence: read
