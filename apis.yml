@@ -35,13 +35,27 @@ tags:
 - Digital Asset Management
 - Document Services
 - E-Commerce
+- E-Signature
+- Experience Cloud
+- Generative AI
+- Marketing
+- PDF
+- Work Management
+tags_raw:
+- E-Signatures
+- Adobe
+- Fortune 1000
+- Analytics
+- Creative Cloud
+- Digital Asset Management
+- Document Services
+- E-Commerce
 - E-Signatures
 - Experience Cloud
 - Generative AI
 - Marketing
 - PDF
 - Work Management
-- Adobe
 description: Adobe provides APIs and developer resources for its creative, document, and experience cloud
   platforms. Developers can integrate with PDF services, Creative Cloud, generative AI (Firefly), analytics,
   e-commerce, e-signatures, and many other Adobe products and services.
@@ -73,6 +87,9 @@ apis:
 - aid: adobe:adobe-acrobat-sign-api
   name: Adobe Acrobat Sign API
   tags:
+  - Documents
+  - E-Signature
+  tags_raw:
   - Documents
   - E-Signatures
   humanURL: https://developer.adobe.com/document-services/apis/sign-api/
@@ -146,6 +163,9 @@ apis:
 - aid: adobe:adobe-stock-api
   name: Adobe Stock API
   tags:
+  - Assets
+  - Stocks
+  tags_raw:
   - Assets
   - Stock
   humanURL: https://developer.adobe.com/stock/
@@ -910,6 +930,8 @@ apis:
   humanURL: https://developer.adobe.com/document-services/docs/overview/pdf-extract-api/
   baseURL: https://pdf-services.adobe.io
   tags:
+  - Space
+  tags_raw:
   - Spaces
   properties:
   - type: OpenAPI
