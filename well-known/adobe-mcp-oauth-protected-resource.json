@@ -1,0 +1,6 @@
+{
+      "resource": "https://mcp.adobeaemcloud.com/adobe/mcp/content",
+      "authorization_servers": [
+        "https://oauth.adobeaemcloud.com"
+      ]
+    }

@@ -1,7 +1,7 @@
 openapi: 3.2.0
 info:
   title: Adobe PDF Services Rotate Pages API
-  description: The Adobe PDF Services API enables developers to create, convert, manipulate, and extract content from PDF documents programmatically. The API uses an asynchronous job-based model where you submit a job, poll for its status, and retrieve the result. Operations include creating PDFs from various formats, exporting PDFs to other formats, combining and splitting PDFs, compressing, OCR processing, protecting with passwords, extracting structured content, auto-tagging for accessibility, and generating documents from templates. Authentication uses OAuth 2.0 with client credentials (server-to-server).
+  description: The Adobe PDF Services API enables developers to create, convert, manipulate, and extract content from PDF documents programmatically.
   version: 4.0.0
   contact:
     name: Adobe Developer Support
@@ -86,7 +86,100 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
+  responses:
+    BadRequest:
+      description: The request was malformed or contained invalid parameters. Check the error message for details.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    TooManyRequests:
+      description: Rate limit exceeded. Wait before retrying. Check Retry-After header for guidance.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Authentication failed. The access token is missing, expired, or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   schemas:
+    ErrorResponse:
+      type: object
+      description: Error response returned when a request fails.
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+              description: A machine-readable error code.
+              examples:
+              - INVALID_ASSET_ID
+              - BAD_REQUEST
+              - UNAUTHORIZED
+              - RATE_LIMIT_EXCEEDED
+            message:
+              type: string
+              description: A human-readable error message.
+            status:
+              type: integer
+              description: The HTTP status code.
+              examples:
+              - 400
+              - 401
+              - 404
+              - 429
+          example: example_value
+    RotatePagesRequest:
+      type: object
+      required:
+      - assetID
+      - pageActions
+      properties:
+        assetID:
+          type: string
+          description: The asset ID of the PDF containing pages to rotate.
+          example: '500123'
+        pageActions:
+          type: array
+          description: Rotation actions to apply to page ranges.
+          items:
+            type: object
+            required:
+            - pageRanges
+            - rotation
+            properties:
+              pageRanges:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PageRange'
+              rotation:
+                type: integer
+                description: The rotation angle in degrees (clockwise).
+                enum:
+                - 90
+                - 180
+                - 270
+          example: []
+    PageRange:
+      type: object
+      description: Specifies a range of pages in a PDF document.
+      properties:
+        start:
+          type: integer
+          description: The starting page number (1-based).
+          minimum: 1
+          examples:
+          - 1
+        end:
+          type: integer
+          description: The ending page number (1-based, inclusive).
+          minimum: 1
+          examples:
+          - 5
     JobStatusResponse:
       type: object
       description: The status and result of an asynchronous PDF operation job.
@@ -135,99 +228,6 @@ components:
               type: integer
               description: The HTTP status code associated with the error.
           example: example_value
-    PageRange:
-      type: object
-      description: Specifies a range of pages in a PDF document.
-      properties:
-        start:
-          type: integer
-          description: The starting page number (1-based).
-          minimum: 1
-          examples:
-          - 1
-        end:
-          type: integer
-          description: The ending page number (1-based, inclusive).
-          minimum: 1
-          examples:
-          - 5
-    RotatePagesRequest:
-      type: object
-      required:
-      - assetID
-      - pageActions
-      properties:
-        assetID:
-          type: string
-          description: The asset ID of the PDF containing pages to rotate.
-          example: '500123'
-        pageActions:
-          type: array
-          description: Rotation actions to apply to page ranges.
-          items:
-            type: object
-            required:
-            - pageRanges
-            - rotation
-            properties:
-              pageRanges:
-                type: array
-                items:
-                  $ref: '#/components/schemas/PageRange'
-              rotation:
-                type: integer
-                description: The rotation angle in degrees (clockwise).
-                enum:
-                - 90
-                - 180
-                - 270
-          example: []
-    ErrorResponse:
-      type: object
-      description: Error response returned when a request fails.
-      properties:
-        error:
-          type: object
-          properties:
-            code:
-              type: string
-              description: A machine-readable error code.
-              examples:
-              - INVALID_ASSET_ID
-              - BAD_REQUEST
-              - UNAUTHORIZED
-              - RATE_LIMIT_EXCEEDED
-            message:
-              type: string
-              description: A human-readable error message.
-            status:
-              type: integer
-              description: The HTTP status code.
-              examples:
-              - 400
-              - 401
-              - 404
-              - 429
-          example: example_value
-  responses:
-    BadRequest:
-      description: The request was malformed or contained invalid parameters. Check the error message for details.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    TooManyRequests:
-      description: Rate limit exceeded. Wait before retrying. Check Retry-After header for guidance.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    Unauthorized:
-      description: Authentication failed. The access token is missing, expired, or invalid.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
   headers:
     x-request-id:
       description: A unique identifier for the request, useful for debugging and support.

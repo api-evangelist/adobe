@@ -16,7 +16,7 @@ paths:
     post:
       tags:
       - Extract PDF
-      summary: Extract content from PDF documents and output it in a structured JSON format, along with tables and figures
+      summary: Extract content from PDF documents and output it in a structured JSON format…
       description: 'Extract PDF Content, Tables content and Tables/Figures renditions from a PDF document. Various available options are: (mutually exclusive)
 
 
@@ -276,23 +276,7 @@ paths:
     - url: https://pdf-services-ew1.adobe.io
 components:
   schemas:
-    ExternalStorageOutputZip:
-      title: Output
-      description: Params representing output object
-      type: object
-      properties:
-        uri:
-          description: Output file Upload Signed URI. It should be of format zip only in case of external storage.
-          type: string
-        storage:
-          description: Specifies the type of the external storage
-          type: string
-          enum:
-          - S3
-          - SHAREPOINT
-          - DROPBOX
-          - BLOB
-    Satus404:
+    Satus500:
       properties:
         error:
           type: object
@@ -301,338 +285,12 @@ components:
               description: The string containing the code field. code is the Mnemonic returned by service in case of any failure. The below list is extendable and going forward the error codes can become more specific.
               type: string
             message:
-              description: "An English language string that contains more information about the error.  \n\n<table><tr><th>code</th><th>message</th></tr><tr><td>NOT_FOUND</td><td>Job not found.</td></tr></table>"
-              type: string
-      example:
-        error:
-          code: NOT_FOUND
-          message: Job not found.
-    '400':
-      properties:
-        error:
-          type: object
-          properties:
-            code:
-              description: The string containing the code field. code is the Mnemonic returned by service in case of any failure. The below list is extendable and going forward the error codes can become more specific.
-              type: string
-            message:
-              description: "An English language string that contains more information about the error. \n\n<table><tr><th>code</th><th>message</th></tr><tr><td>BAD_REQUEST</td><td>Bad Request.</td></tr></table>"
-              type: string
-      example:
-        error:
-          code: BAD_REQUEST
-          message: Bad Request.
-    '500':
-      properties:
-        error:
-          type: object
-          properties:
-            code:
-              description: The string containing the code field. code is the Mnemonic returned by service in case of any failure. The below list is extendable and going forward the error codes can become more specific.
-              type: string
-            message:
-              description: "An English language string that contains more information about the error.  \n\n<table><tr><th>code</th><th>message</th></tr><tr><td>INTERNAL_SERVER_ERROR</td><td>There was an error processing your request.</td></tr><tr><td>UNKNOWN</td><td>Unknown error.</td></tr></table>"
+              description: "An English language string that contains more information about the error. \n\n<table><tr><th>code</th><th>message</th></tr><tr><td>INTERNAL_SERVER_ERROR</td><td>There was an error processing your request.</td></tr><tr><td>UNKNOWN</td><td>Unknown error.</td></tr></table>"
               type: string
       example:
         error:
           code: INTERNAL_SERVER_ERROR
           message: There was an error processing your request.
-    '404':
-      properties:
-        error:
-          type: object
-          properties:
-            code:
-              description: The string containing the code field. code is the Mnemonic returned by service in case of any failure. The below list is extendable and going forward the error codes can become more specific.
-              type: string
-            message:
-              description: "An English language string that contains more information about the error. \n\n<table><tr><th>code</th><th>message</th></tr><tr><td>NOT_FOUND</td><td>Asset not found.</td></tr></table>"
-              type: string
-      example:
-        error:
-          code: NOT_FOUND
-          message: Asset not found.
-    ExternalStorageInput:
-      title: Input
-      description: Params representing input object.
-      type: object
-      properties:
-        uri:
-          description: Input file Download Signed URI.
-          type: string
-        storage:
-          description: Specifies the type of the external storage
-          type: string
-          enum:
-          - S3
-          - SHAREPOINT
-          - DROPBOX
-          - BLOB
-      required:
-      - uri
-    ExtractPDFDone:
-      title: done
-      oneOf:
-      - $ref: '#/components/schemas/ExtractPDFDoneInternal'
-      - $ref: '#/components/schemas/ExtractPDFDoneExternal'
-    failed:
-      description: Response in case of 'failed' status
-      type: object
-      properties:
-        status:
-          description: Job Status
-          type: string
-          enum:
-          - failed
-        error:
-          type: object
-          properties:
-            status:
-              description: Http status code returned by the service
-              type: integer
-            code:
-              description: The string containing the code field. code is the Mnemonic returned by service in case of any failure. The below list is extendable and going forward the error codes can become more specific.
-              type: string
-            message:
-              description: "An English language string that contains more information about the error. \n\n<table><tr><th>status</th><th>code</th><th>message</th></tr><tr><td>400</td><td>CORRUPT_DOCUMENT</td><td>For $(format) mime-type The input file appears to be corrupted and cannot be processed.</td></tr><tr><td>400</td><td>PASSWORD_PROTECTED</td><td>Source file is protected and cannot be processed.</td></tr><tr><td>500</td><td>INTERNAL_SERVER_ERROR</td><td>There was an error processing your request.</td></tr></table>"
-              type: string
-      example:
-        status: failed
-        error:
-          status: 500
-          code: INTERNAL_SERVER_ERROR
-          message: There was an error processing your request
-    ExtractPDFInternal:
-      title: Internal
-      description: Params for Extract PDF Operation
-      type: object
-      required:
-      - assetID
-      properties:
-        assetID:
-          description: A file assetID. For more details <a href = 'https://developer.adobe.com/document-services/docs/apis/#tag/Assets'> click here </a>.
-          type: string
-        getCharBounds:
-          description: Extract bounding boxes for characters present in text blocks(paragraphs, list, headings)
-          type: boolean
-          default: false
-        includeStyling:
-          description: Boolean specifying whether to add styling information to json output
-          type: boolean
-          default: false
-        elementsToExtract:
-          description: List of elements that should be extracted as json. Possible values are text and tables.
-          type: array
-          items:
-            type: string
-            enum:
-            - text
-            - tables
-          default:
-          - text
-        tableOutputFormat:
-          description: Specifies the format of table contents output. Possible values are csv and xlsx.
-          type: string
-          default: xlsx
-        renditionsToExtract:
-          description: List of elements whose renditions should be generated. Possible values are figures and tables.
-          type: array
-          items:
-            type: string
-            enum:
-            - tables
-            - figures
-        includeHeaderFooter:
-          description: If true, extract header and footer information as part of json.
-          type: boolean
-          default: false
-        tagEncapsulatedText:
-          description: List of elements from which to extract encapsulated text content.
-          type: array
-          items:
-            type: string
-            enum:
-            - Figure
-          default:
-          - Figure
-        notifiers:
-          $ref: '#/components/schemas/notifiers'
-      example:
-        assetID: urn:aaid:AS:UE1:23c30ee0-2c4d-46d6-87f2-087832fca718
-        getCharBounds: false
-        includeStyling: false
-        elementsToExtract:
-        - text
-        - tables
-        tableOutputFormat: xlsx
-        renditionsToExtract:
-        - tables
-        - figures
-        includeHeaderFooter: false
-        tagEncapsulatedText:
-        - Figure
-        notifiers:
-        - type: CALLBACK
-          data:
-            url: https://dummy.callback.org/
-            headers:
-              x-api-key: dummykey
-              access-token: dummytoken
-      additionalProperties: false
-    '429':
-      properties:
-        error:
-          type: object
-          properties:
-            code:
-              description: The string containing the code field. code is the Mnemonic returned by service in case of any failure. The below list is extendable and going forward the error codes can become more specific.
-              type: string
-            message:
-              description: "An English language string that contains more information about the error.  \n\n<table><tr><th>code</th><th>message</th></tr><tr><td>TOO_MANY_REQUESTS</td><td>Too Many Requests.</td></tr><tr><td>INSUFFICIENT_QUOTA</td><td>Either Quota for this operation is not available or Free trial quota is exhausted. Please visit (www.adobe.com/go/pdftoolsapi_home) to start using free trial quota or (www.adobe.com/go/pdftoolsapi_err_quota) to upgrade to paid credentials.</td></tr></table>"
-              type: string
-      example:
-        error:
-          code: TOO_MANY_REQUESTS
-          message: Too Many Requests.
-    ExtractPDFJobStatus:
-      oneOf:
-      - $ref: '#/components/schemas/inprogress'
-      - $ref: '#/components/schemas/ExtractPDFDone'
-      - $ref: '#/components/schemas/failed'
-    Status400:
-      properties:
-        error:
-          type: object
-          properties:
-            code:
-              description: The string containing the code field. code is the Mnemonic returned by service in case of any failure. The below list is extendable and going forward the error codes can become more specific.
-              type: string
-            message:
-              description: "An English language string that contains more information about the error.  \n\n<table><tr><th>code</th><th>message</th></tr><tr><td>INVALID_JOB_ID</td><td>Invalid job id present in path param.</td></tr></table>"
-              type: string
-      example:
-        error:
-          code: INVALID_JOB_ID
-          message: Invalid job id present in path param.
-    inprogress:
-      description: Response in case of 'in progress' status
-      type: object
-      properties:
-        status:
-          description: Job Status
-          type: string
-          enum:
-          - in progress
-      example:
-        status: in progress
-    Satus429:
-      properties:
-        error_code:
-          description: 'The string containing the code field. code is the Mnemonic returned by service in case of any failure. The below list is extendable and going forward the error codes can become more specific. '
-          type: string
-        message:
-          description: "An English language string that contains more information about the error. \n\n<table><tr><th>code</th><th>message</th></tr><tr><td>429001</td><td>Service usage limit reached</td></tr><tr><td>429002</td><td>Developer key usage limit reached</td></tr><tr><td>429050</td><td>Too many requests</td></tr></table>"
-          type: string
-      example:
-        error_code: '429050'
-        message: Too many requests
-    notifiers:
-      description: Specifies the notifiers to be invoked on the completion of job. To know more about notifiers, please see the <a href="https://developer.adobe.com/document-services/docs/overview/pdf-services-api/howtos/webhook-notification/">documentation</a>.
-      type: array
-      items:
-        properties:
-          type:
-            description: Specifies the notifier type. Currently supported value is "CALLBACK" only.
-            type: string
-          data:
-            description: Specifies the data needed to invoke the notifier.
-            type: object
-        required:
-        - type
-        - data
-    ExtractPDFDoneInternal:
-      title: Internal
-      description: Response in case of 'done' status
-      type: object
-      properties:
-        status:
-          description: Job Status
-          type: string
-          enum:
-          - done
-        content:
-          type: object
-          description: Asset of json file containig extracted content of pdf file. For more details <a href = 'https://developer.adobe.com/document-services/docs/apis/#tag/Assets'> click here </a>.
-          properties:
-            metadata:
-              type: object
-              description: metadata details of output asset.
-              properties:
-                size:
-                  description: The size of the Resource in bytes. This value helps in making range requests.
-                  type: integer
-                type:
-                  description: The media type of the Resource.
-                  type: string
-                  enum:
-                  - application/json
-            assetID:
-              description: An asset ID identifying an asset that is globally unique and never reused.
-              type: string
-            downloadUri:
-              description: The URL used to download the Resource directly to the cloud provider.
-              type: string
-        resource:
-          type: object
-          description: Asset of zip file containg generated resources from extract operation. For more details <a href = 'https://developer.adobe.com/document-services/docs/apis/#tag/Assets'> click here </a>.
-          properties:
-            metadata:
-              type: object
-              description: metadata details of output asset.
-              properties:
-                size:
-                  description: The size of the Resource in bytes. This value helps in making range requests.
-                  type: integer
-                type:
-                  description: The media type of the Resource.
-                  type: string
-                  enum:
-                  - application/json
-            assetID:
-              description: An asset ID identifying an asset that is globally unique and never reused.
-              type: string
-            downloadUri:
-              description: The URL used to download the Resource directly to the cloud provider.
-              type: string
-      example:
-        status: done
-        content:
-          metadata:
-            type: application/json
-            size: 200791
-          downloadUri: https://dcplatformstorageservice-dev-us-east-1.s3-accelerate.amazonaws.com/6bb12fd8-3233-4340-916b-4835917857be?X-Amz-Security-Token=FwoGZXIvYXdzEE0aDOLg7PFwVB1bjEMxQCLTAe3pjf%2Fgl2Pj%2FcjOaY%2BHfduju9SXTp1Pn8C4GapIXm%2F8tuR4cGPYGC0goU21qZxCq9R%2F8z2bOmB2EL%2BZrhbPLbaNcpzf5Vud%2B3Bmn61MEJiBdU%2BhZqasX5YhVxdnzhfpl5KfKeq2kwROVMqJcyHGdxw5h0%2Bi0sD2I8sqkbPmnBi0WOtYNwz7TQq42oe8W5KYHpq6WMya9OQgx0u7qg0inYwBnQu5UQ9NJJQY2MSU11IuZ0uE%2B%2FNAPuq3VfEIn3txK%2FFfIxGz9%2BInehhHroKjBFULzy0olY2rlwYyLQDwHHr2eyuy%2BaoGVaq%2BSUNH8T0OKIicbbZfQ5wjF0hK2FzVXwfebtDG4qq%2BiA%3D%3D&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20220803T190422Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=REDACTED_AWS_ACCESS_KEY_ID%2F20220803%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=5d8c3f421c68c009b4471919a319ba460495c72afe51674d23266bc124fe9a56
-          assetID: urn:aaid:AS:UE1:23c30ee0-2c4d-46d6-87f2-087832fca718
-        resource:
-          metadata:
-            type: application/zip
-            size: 200791
-          downloadUri: https://dcplatformstorageservice-dev-us-east-1.s3-accelerate.amazonaws.com/6bb12fd8-3233-4340-916b-4835917857be?X-Amz-Security-Token=FwoGZXIvYXdzEE0aDOLg7PFwVB1bjEMxQCLTAe3pjf%2Fgl2Pj%2FcjOaY%2BHfduju9SXTp1Pn8C4GapIXm%2F8tuR4cGPYGC0goU21qZxCq9R%2F8z2bOmB2EL%2BZrhbPLbaNcpzf5Vud%2B3Bmn61MEJiBdU%2BhZqasX5YhVxdnzhfpl5KfKeq2kwROVMqJcyHGdxw5h0%2Bi0sD2I8sqkbPmnBi0WOtYNwz7TQq42oe8W5KYHpq6WMya9OQgx0u7qg0inYwBnQu5UQ9NJJQY2MSU11IuZ0uE%2B%2FNAPuq3VfEIn3txK%2FFfIxGz9%2BInehhHroKjBFULzy0olY2rlwYyLQDwHHr2eyuy%2BaoGVaq%2BSUNH8T0OKIicbbZfQ5wjF0hK2FzVXwfebtDG4qq%2BiA%3D%3D&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20220803T190422Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=REDACTED_AWS_ACCESS_KEY_ID%2F20220803%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=5d8c3f421c68c009b4471919a319ba460495c72afe51674d23266bc124fe9a56
-          assetID: urn:aaid:AS:UE1:23c30ee0-32s3-46d6-87f2-087832fca718
-    Satus401:
-      properties:
-        error:
-          type: object
-          properties:
-            code:
-              description: The string containing the code field. code is the Mnemonic returned by service in case of any failure. The below list is extendable and going forward the error codes can become more specific.
-              type: string
-            message:
-              description: "An English language string that contains more information about the error.  \n\n<table><tr><th>code</th><th>message</th></tr><tr><td>UNAUTHORIZED</td><td>Not authorised to perform the operation.</td></tr></table>"
-              type: string
-      example:
-        error:
-          code: UNAUTHORIZED
-          message: Not authorised to perform the operation.
     ExtractPDFExternal:
       title: External
       description: Params for Extract PDF Operation using external storage.
@@ -721,6 +379,73 @@ components:
               x-api-key: dummykey
               access-token: dummytoken
       additionalProperties: false
+    Status400:
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              description: The string containing the code field. code is the Mnemonic returned by service in case of any failure. The below list is extendable and going forward the error codes can become more specific.
+              type: string
+            message:
+              description: "An English language string that contains more information about the error.  \n\n<table><tr><th>code</th><th>message</th></tr><tr><td>INVALID_JOB_ID</td><td>Invalid job id present in path param.</td></tr></table>"
+              type: string
+      example:
+        error:
+          code: INVALID_JOB_ID
+          message: Invalid job id present in path param.
+    '404':
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              description: The string containing the code field. code is the Mnemonic returned by service in case of any failure. The below list is extendable and going forward the error codes can become more specific.
+              type: string
+            message:
+              description: "An English language string that contains more information about the error. \n\n<table><tr><th>code</th><th>message</th></tr><tr><td>NOT_FOUND</td><td>Asset not found.</td></tr></table>"
+              type: string
+      example:
+        error:
+          code: NOT_FOUND
+          message: Asset not found.
+    ExternalStorageInput:
+      title: Input
+      description: Params representing input object.
+      type: object
+      properties:
+        uri:
+          description: Input file Download Signed URI.
+          type: string
+        storage:
+          description: Specifies the type of the external storage
+          type: string
+          enum:
+          - S3
+          - SHAREPOINT
+          - DROPBOX
+          - BLOB
+      required:
+      - uri
+    ExtractPDFDone:
+      title: done
+      oneOf:
+      - $ref: '#/components/schemas/ExtractPDFDoneInternal'
+      - $ref: '#/components/schemas/ExtractPDFDoneExternal'
+    notifiers:
+      description: Specifies the notifiers to be invoked on the completion of job. To know more about notifiers, please see the <a href="https://developer.adobe.com/document-services/docs/overview/pdf-services-api/howtos/webhook-notification/">documentation</a>.
+      type: array
+      items:
+        properties:
+          type:
+            description: Specifies the notifier type. Currently supported value is "CALLBACK" only.
+            type: string
+          data:
+            description: Specifies the data needed to invoke the notifier.
+            type: object
+        required:
+        - type
+        - data
     '401':
       properties:
         error:
@@ -736,7 +461,7 @@ components:
         error:
           code: UNAUTHORIZED
           message: Not authorised to perform the operation.
-    Satus500:
+    '429':
       properties:
         error:
           type: object
@@ -745,60 +470,287 @@ components:
               description: The string containing the code field. code is the Mnemonic returned by service in case of any failure. The below list is extendable and going forward the error codes can become more specific.
               type: string
             message:
-              description: "An English language string that contains more information about the error. \n\n<table><tr><th>code</th><th>message</th></tr><tr><td>INTERNAL_SERVER_ERROR</td><td>There was an error processing your request.</td></tr><tr><td>UNKNOWN</td><td>Unknown error.</td></tr></table>"
+              description: "An English language string that contains more information about the error.  \n\n<table><tr><th>code</th><th>message</th></tr><tr><td>TOO_MANY_REQUESTS</td><td>Too Many Requests.</td></tr><tr><td>INSUFFICIENT_QUOTA</td><td>Either Quota for this operation is not available or Free trial quota is exhausted. Please visit (www.adobe.com/go/pdftoolsapi_home) to start using free trial quota or (www.adobe.com/go/pdftoolsapi_err_quota) to upgrade to paid credentials.</td></tr></table>"
+              type: string
+      example:
+        error:
+          code: TOO_MANY_REQUESTS
+          message: Too Many Requests.
+    ExtractPDFJobStatus:
+      oneOf:
+      - $ref: '#/components/schemas/inprogress'
+      - $ref: '#/components/schemas/ExtractPDFDone'
+      - $ref: '#/components/schemas/failed'
+    failed:
+      description: Response in case of 'failed' status
+      type: object
+      properties:
+        status:
+          description: Job Status
+          type: string
+          enum:
+          - failed
+        error:
+          type: object
+          properties:
+            status:
+              description: Http status code returned by the service
+              type: integer
+            code:
+              description: The string containing the code field. code is the Mnemonic returned by service in case of any failure. The below list is extendable and going forward the error codes can become more specific.
+              type: string
+            message:
+              description: "An English language string that contains more information about the error. \n\n<table><tr><th>status</th><th>code</th><th>message</th></tr><tr><td>400</td><td>CORRUPT_DOCUMENT</td><td>For $(format) mime-type The input file appears to be corrupted and cannot be processed.</td></tr><tr><td>400</td><td>PASSWORD_PROTECTED</td><td>Source file is protected and cannot be processed.</td></tr><tr><td>500</td><td>INTERNAL_SERVER_ERROR</td><td>There was an error processing your request.</td></tr></table>"
+              type: string
+      example:
+        status: failed
+        error:
+          status: 500
+          code: INTERNAL_SERVER_ERROR
+          message: There was an error processing your request
+    ExtractPDFDoneInternal:
+      title: Internal
+      description: Response in case of 'done' status
+      type: object
+      properties:
+        status:
+          description: Job Status
+          type: string
+          enum:
+          - done
+        content:
+          type: object
+          description: Asset of json file containig extracted content of pdf file. For more details <a href = 'https://developer.adobe.com/document-services/docs/apis/#tag/Assets'> click here </a>.
+          properties:
+            metadata:
+              type: object
+              description: metadata details of output asset.
+              properties:
+                size:
+                  description: The size of the Resource in bytes. This value helps in making range requests.
+                  type: integer
+                type:
+                  description: The media type of the Resource.
+                  type: string
+                  enum:
+                  - application/json
+            assetID:
+              description: An asset ID identifying an asset that is globally unique and never reused.
+              type: string
+            downloadUri:
+              description: The URL used to download the Resource directly to the cloud provider.
+              type: string
+        resource:
+          type: object
+          description: Asset of zip file containg generated resources from extract operation. For more details <a href = 'https://developer.adobe.com/document-services/docs/apis/#tag/Assets'> click here </a>.
+          properties:
+            metadata:
+              type: object
+              description: metadata details of output asset.
+              properties:
+                size:
+                  description: The size of the Resource in bytes. This value helps in making range requests.
+                  type: integer
+                type:
+                  description: The media type of the Resource.
+                  type: string
+                  enum:
+                  - application/json
+            assetID:
+              description: An asset ID identifying an asset that is globally unique and never reused.
+              type: string
+            downloadUri:
+              description: The URL used to download the Resource directly to the cloud provider.
+              type: string
+      example:
+        status: done
+        content:
+          metadata:
+            type: application/json
+            size: 200791
+          downloadUri: https://dcplatformstorageservice-dev-us-east-1.s3-accelerate.amazonaws.com/6bb12fd8-3233-4340-916b-4835917857be?X-Amz-Security-Token=FwoGZXIvYXdzEE0aDOLg7PFwVB1bjEMxQCLTAe3pjf%2Fgl2Pj%2FcjOaY%2BHfduju9SXTp1Pn8C4GapIXm%2F8tuR4cGPYGC0goU21qZxCq9R%2F8z2bOmB2EL%2BZrhbPLbaNcpzf5Vud%2B3Bmn61MEJiBdU%2BhZqasX5YhVxdnzhfpl5KfKeq2kwROVMqJcyHGdxw5h0%2Bi0sD2I8sqkbPmnBi0WOtYNwz7TQq42oe8W5KYHpq6WMya9OQgx0u7qg0inYwBnQu5UQ9NJJQY2MSU11IuZ0uE%2B%2FNAPuq3VfEIn3txK%2FFfIxGz9%2BInehhHroKjBFULzy0olY2rlwYyLQDwHHr2eyuy%2BaoGVaq%2BSUNH8T0OKIicbbZfQ5wjF0hK2FzVXwfebtDG4qq%2BiA%3D%3D&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20220803T190422Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=REDACTED_AWS_ACCESS_KEY_ID%2F20220803%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=5d8c3f421c68c009b4471919a319ba460495c72afe51674d23266bc124fe9a56
+          assetID: urn:aaid:AS:UE1:23c30ee0-2c4d-46d6-87f2-087832fca718
+        resource:
+          metadata:
+            type: application/zip
+            size: 200791
+          downloadUri: https://dcplatformstorageservice-dev-us-east-1.s3-accelerate.amazonaws.com/6bb12fd8-3233-4340-916b-4835917857be?X-Amz-Security-Token=FwoGZXIvYXdzEE0aDOLg7PFwVB1bjEMxQCLTAe3pjf%2Fgl2Pj%2FcjOaY%2BHfduju9SXTp1Pn8C4GapIXm%2F8tuR4cGPYGC0goU21qZxCq9R%2F8z2bOmB2EL%2BZrhbPLbaNcpzf5Vud%2B3Bmn61MEJiBdU%2BhZqasX5YhVxdnzhfpl5KfKeq2kwROVMqJcyHGdxw5h0%2Bi0sD2I8sqkbPmnBi0WOtYNwz7TQq42oe8W5KYHpq6WMya9OQgx0u7qg0inYwBnQu5UQ9NJJQY2MSU11IuZ0uE%2B%2FNAPuq3VfEIn3txK%2FFfIxGz9%2BInehhHroKjBFULzy0olY2rlwYyLQDwHHr2eyuy%2BaoGVaq%2BSUNH8T0OKIicbbZfQ5wjF0hK2FzVXwfebtDG4qq%2BiA%3D%3D&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20220803T190422Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=REDACTED_AWS_ACCESS_KEY_ID%2F20220803%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=5d8c3f421c68c009b4471919a319ba460495c72afe51674d23266bc124fe9a56
+          assetID: urn:aaid:AS:UE1:23c30ee0-32s3-46d6-87f2-087832fca718
+    Satus401:
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              description: The string containing the code field. code is the Mnemonic returned by service in case of any failure. The below list is extendable and going forward the error codes can become more specific.
+              type: string
+            message:
+              description: "An English language string that contains more information about the error.  \n\n<table><tr><th>code</th><th>message</th></tr><tr><td>UNAUTHORIZED</td><td>Not authorised to perform the operation.</td></tr></table>"
+              type: string
+      example:
+        error:
+          code: UNAUTHORIZED
+          message: Not authorised to perform the operation.
+    Satus404:
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              description: The string containing the code field. code is the Mnemonic returned by service in case of any failure. The below list is extendable and going forward the error codes can become more specific.
+              type: string
+            message:
+              description: "An English language string that contains more information about the error.  \n\n<table><tr><th>code</th><th>message</th></tr><tr><td>NOT_FOUND</td><td>Job not found.</td></tr></table>"
+              type: string
+      example:
+        error:
+          code: NOT_FOUND
+          message: Job not found.
+    '400':
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              description: The string containing the code field. code is the Mnemonic returned by service in case of any failure. The below list is extendable and going forward the error codes can become more specific.
+              type: string
+            message:
+              description: "An English language string that contains more information about the error. \n\n<table><tr><th>code</th><th>message</th></tr><tr><td>BAD_REQUEST</td><td>Bad Request.</td></tr></table>"
+              type: string
+      example:
+        error:
+          code: BAD_REQUEST
+          message: Bad Request.
+    inprogress:
+      description: Response in case of 'in progress' status
+      type: object
+      properties:
+        status:
+          description: Job Status
+          type: string
+          enum:
+          - in progress
+      example:
+        status: in progress
+    '500':
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              description: The string containing the code field. code is the Mnemonic returned by service in case of any failure. The below list is extendable and going forward the error codes can become more specific.
+              type: string
+            message:
+              description: "An English language string that contains more information about the error.  \n\n<table><tr><th>code</th><th>message</th></tr><tr><td>INTERNAL_SERVER_ERROR</td><td>There was an error processing your request.</td></tr><tr><td>UNKNOWN</td><td>Unknown error.</td></tr></table>"
               type: string
       example:
         error:
           code: INTERNAL_SERVER_ERROR
           message: There was an error processing your request.
-    JobStatusResponse:
+    ExtractPDFInternal:
+      title: Internal
+      description: Params for Extract PDF Operation
       type: object
-      description: The status and result of an asynchronous PDF operation job.
+      required:
+      - assetID
       properties:
-        status:
+        assetID:
+          description: A file assetID. For more details <a href = 'https://developer.adobe.com/document-services/docs/apis/#tag/Assets'> click here </a>.
           type: string
-          description: The current status of the job.
+        getCharBounds:
+          description: Extract bounding boxes for characters present in text blocks(paragraphs, list, headings)
+          type: boolean
+          default: false
+        includeStyling:
+          description: Boolean specifying whether to add styling information to json output
+          type: boolean
+          default: false
+        elementsToExtract:
+          description: List of elements that should be extracted as json. Possible values are text and tables.
+          type: array
+          items:
+            type: string
+            enum:
+            - text
+            - tables
+          default:
+          - text
+        tableOutputFormat:
+          description: Specifies the format of table contents output. Possible values are csv and xlsx.
+          type: string
+          default: xlsx
+        renditionsToExtract:
+          description: List of elements whose renditions should be generated. Possible values are figures and tables.
+          type: array
+          items:
+            type: string
+            enum:
+            - tables
+            - figures
+        includeHeaderFooter:
+          description: If true, extract header and footer information as part of json.
+          type: boolean
+          default: false
+        tagEncapsulatedText:
+          description: List of elements from which to extract encapsulated text content.
+          type: array
+          items:
+            type: string
+            enum:
+            - Figure
+          default:
+          - Figure
+        notifiers:
+          $ref: '#/components/schemas/notifiers'
+      example:
+        assetID: urn:aaid:AS:UE1:23c30ee0-2c4d-46d6-87f2-087832fca718
+        getCharBounds: false
+        includeStyling: false
+        elementsToExtract:
+        - text
+        - tables
+        tableOutputFormat: xlsx
+        renditionsToExtract:
+        - tables
+        - figures
+        includeHeaderFooter: false
+        tagEncapsulatedText:
+        - Figure
+        notifiers:
+        - type: CALLBACK
+          data:
+            url: https://dummy.callback.org/
+            headers:
+              x-api-key: dummykey
+              access-token: dummytoken
+      additionalProperties: false
+    Satus429:
+      properties:
+        error_code:
+          description: 'The string containing the code field. code is the Mnemonic returned by service in case of any failure. The below list is extendable and going forward the error codes can become more specific. '
+          type: string
+        message:
+          description: "An English language string that contains more information about the error. \n\n<table><tr><th>code</th><th>message</th></tr><tr><td>429001</td><td>Service usage limit reached</td></tr><tr><td>429002</td><td>Developer key usage limit reached</td></tr><tr><td>429050</td><td>Too many requests</td></tr></table>"
+          type: string
+      example:
+        error_code: '429050'
+        message: Too many requests
+    ExternalStorageOutputZip:
+      title: Output
+      description: Params representing output object
+      type: object
+      properties:
+        uri:
+          description: Output file Upload Signed URI. It should be of format zip only in case of external storage.
+          type: string
+        storage:
+          description: Specifies the type of the external storage
+          type: string
           enum:
-          - in progress
-          - done
-          - failed
-          example: in progress
-        asset:
-          type: object
-          description: The output asset information, available when status is done.
-          properties:
-            assetID:
-              type: string
-              description: The asset ID of the output file.
-            downloadUri:
-              type: string
-              format: uri
-              description: The pre-signed download URI for the output file.
-            metadata:
-              type: object
-              description: Metadata about the output asset.
-              properties:
-                type:
-                  type: string
-                  description: The MIME type of the output file.
-                size:
-                  type: integer
-                  description: The size of the output file in bytes.
-          example: example_value
-        error:
-          type: object
-          description: Error information, available when status is failed.
-          properties:
-            code:
-              type: string
-              description: A machine-readable error code.
-            message:
-              type: string
-              description: A human-readable error message.
-            status:
-              type: integer
-              description: The HTTP status code associated with the error.
-          example: example_value
+          - S3
+          - SHAREPOINT
+          - DROPBOX
+          - BLOB
     ErrorResponse:
       type: object
       description: Error response returned when a request fails.
@@ -874,6 +826,54 @@ components:
           description: Whether to include character-level bounding box information.
           default: false
           example: true
+    JobStatusResponse:
+      type: object
+      description: The status and result of an asynchronous PDF operation job.
+      properties:
+        status:
+          type: string
+          description: The current status of the job.
+          enum:
+          - in progress
+          - done
+          - failed
+          example: in progress
+        asset:
+          type: object
+          description: The output asset information, available when status is done.
+          properties:
+            assetID:
+              type: string
+              description: The asset ID of the output file.
+            downloadUri:
+              type: string
+              format: uri
+              description: The pre-signed download URI for the output file.
+            metadata:
+              type: object
+              description: Metadata about the output asset.
+              properties:
+                type:
+                  type: string
+                  description: The MIME type of the output file.
+                size:
+                  type: integer
+                  description: The size of the output file in bytes.
+          example: example_value
+        error:
+          type: object
+          description: Error information, available when status is failed.
+          properties:
+            code:
+              type: string
+              description: A machine-readable error code.
+            message:
+              type: string
+              description: A human-readable error message.
+            status:
+              type: integer
+              description: The HTTP status code associated with the error.
+          example: example_value
   responses:
     BadRequest:
       description: The request was malformed or contained invalid parameters. Check the error message for details.

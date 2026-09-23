@@ -1,7 +1,9 @@
 ---
 title: Adobe (@Adobe) / Posts / X
 url: https://x.com/Adobe
-date: '2026-05-25'
+published: ''
+date_basis: harvested
+harvested: '2026-05-25'
 query: '"Adobe Systems" press release artificial intelligence'
 position: 4
 source: serpapi-google
