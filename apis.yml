@@ -126,10 +126,11 @@ apis:
   name: Adobe Firefly API
   tags:
   - Generative AI
-  - Image-Generation
+  - Image Generation
   tags_raw:
   - Generative AI
   - Image Generation
+  - Image-Generation
   humanURL: https://developer.adobe.com/firefly-services/docs/firefly-api/
   baseURL: https://firefly-api.adobe.io
   properties:
@@ -308,8 +309,6 @@ apis:
     url: json-schema/adobe-pdf-services-asset-upload-request-schema.json
   - type: JSONLD
     url: json-ld/adobe-pdf-services-context.jsonld
-  - type: GraphQL
-    url: graphql/adobe-graphql.md
 - aid: adobe:adobe-assets-api
   name: Adobe PDF Services Assets API
   description: Upload and manage assets (source files) for PDF operations.
@@ -331,8 +330,6 @@ apis:
     url: json-schema/adobe-pdf-services-asset-upload-request-schema.json
   - type: JSONLD
     url: json-ld/adobe-pdf-services-context.jsonld
-  - type: GraphQL
-    url: graphql/adobe-graphql.md
 - aid: adobe:adobe-combine-pdf-api
   name: Adobe PDF Services Combine PDF API
   description: Combine multiple PDF documents into a single PDF.
@@ -354,8 +351,6 @@ apis:
     url: json-schema/adobe-pdf-services-asset-upload-request-schema.json
   - type: JSONLD
     url: json-ld/adobe-pdf-services-context.jsonld
-  - type: GraphQL
-    url: graphql/adobe-graphql.md
 - aid: adobe:adobe-compress-pdf-api
   name: Adobe PDF Services Compress PDF API
   description: Reduce the file size of PDF documents while maintaining quality.
@@ -377,8 +372,6 @@ apis:
     url: json-schema/adobe-pdf-services-asset-upload-request-schema.json
   - type: JSONLD
     url: json-ld/adobe-pdf-services-context.jsonld
-  - type: GraphQL
-    url: graphql/adobe-graphql.md
 - aid: adobe:adobe-create-pdf-api
   name: Adobe PDF Services Create PDF API
   description: >-
@@ -401,8 +394,6 @@ apis:
     url: json-schema/adobe-pdf-services-asset-upload-request-schema.json
   - type: JSONLD
     url: json-ld/adobe-pdf-services-context.jsonld
-  - type: GraphQL
-    url: graphql/adobe-graphql.md
 - aid: adobe:adobe-delete-pages-api
   name: Adobe PDF Services Delete Pages API
   description: Delete specific pages from a PDF document.
@@ -424,8 +415,6 @@ apis:
     url: json-schema/adobe-pdf-services-asset-upload-request-schema.json
   - type: JSONLD
     url: json-ld/adobe-pdf-services-context.jsonld
-  - type: GraphQL
-    url: graphql/adobe-graphql.md
 - aid: adobe:adobe-document-generation-api
   name: Adobe PDF Services Document Generation API
   description: Generate PDF and Word documents from templates with dynamic JSON data.
@@ -447,8 +436,6 @@ apis:
     url: json-schema/adobe-pdf-services-asset-upload-request-schema.json
   - type: JSONLD
     url: json-ld/adobe-pdf-services-context.jsonld
-  - type: GraphQL
-    url: graphql/adobe-graphql.md
 - aid: adobe:adobe-export-pdf-api
   name: Adobe PDF Services Export PDF API
   description: >-
@@ -471,8 +458,6 @@ apis:
     url: json-schema/adobe-pdf-services-asset-upload-request-schema.json
   - type: JSONLD
     url: json-ld/adobe-pdf-services-context.jsonld
-  - type: GraphQL
-    url: graphql/adobe-graphql.md
 - aid: adobe:adobe-extract-pdf-api
   name: Adobe PDF Services Extract PDF API
   description: Extract text, tables, and figures from PDF documents into structured JSON output.
@@ -494,8 +479,6 @@ apis:
     url: json-schema/adobe-pdf-services-asset-upload-request-schema.json
   - type: JSONLD
     url: json-ld/adobe-pdf-services-context.jsonld
-  - type: GraphQL
-    url: graphql/adobe-graphql.md
 - aid: adobe:adobe-insert-pages-api
   name: Adobe PDF Services Insert Pages API
   description: Insert pages from one PDF into another.
@@ -517,8 +500,6 @@ apis:
     url: json-schema/adobe-pdf-services-asset-upload-request-schema.json
   - type: JSONLD
     url: json-ld/adobe-pdf-services-context.jsonld
-  - type: GraphQL
-    url: graphql/adobe-graphql.md
 - aid: adobe:adobe-jobs-api
   name: Adobe PDF Services Jobs API
   description: Poll for the status and results of asynchronous PDF operations.
@@ -542,8 +523,6 @@ apis:
     url: json-schema/adobe-pdf-services-asset-upload-request-schema.json
   - type: JSONLD
     url: json-ld/adobe-pdf-services-context.jsonld
-  - type: GraphQL
-    url: graphql/adobe-graphql.md
 - aid: adobe:adobe-linearize-pdf-api
   name: Adobe PDF Services Linearize PDF API
   description: Optimize PDFs for fast web viewing (linearization).
@@ -565,8 +544,6 @@ apis:
     url: json-schema/adobe-pdf-services-asset-upload-request-schema.json
   - type: JSONLD
     url: json-ld/adobe-pdf-services-context.jsonld
-  - type: GraphQL
-    url: graphql/adobe-graphql.md
 - aid: adobe:adobe-ocr-api
   name: Adobe PDF Services OCR API
   description: >-
@@ -589,8 +566,6 @@ apis:
     url: json-schema/adobe-pdf-services-asset-upload-request-schema.json
   - type: JSONLD
     url: json-ld/adobe-pdf-services-context.jsonld
-  - type: GraphQL
-    url: graphql/adobe-graphql.md
 - aid: adobe:adobe-pdf-properties-api
   name: Adobe PDF Services PDF Properties API
   description: Retrieve metadata and properties from PDF documents.
@@ -612,8 +587,6 @@ apis:
     url: json-schema/adobe-pdf-services-asset-upload-request-schema.json
   - type: JSONLD
     url: json-ld/adobe-pdf-services-context.jsonld
-  - type: GraphQL
-    url: graphql/adobe-graphql.md
 - aid: adobe:adobe-protect-pdf-api
   name: Adobe PDF Services Protect PDF API
   description: Add password protection and encryption to PDF documents.
@@ -635,8 +608,6 @@ apis:
     url: json-schema/adobe-pdf-services-asset-upload-request-schema.json
   - type: JSONLD
     url: json-ld/adobe-pdf-services-context.jsonld
-  - type: GraphQL
-    url: graphql/adobe-graphql.md
 - aid: adobe:adobe-remove-protection-api
   name: Adobe PDF Services Remove Protection API
   description: Remove password protection from PDF documents.
@@ -658,8 +629,6 @@ apis:
     url: json-schema/adobe-pdf-services-asset-upload-request-schema.json
   - type: JSONLD
     url: json-ld/adobe-pdf-services-context.jsonld
-  - type: GraphQL
-    url: graphql/adobe-graphql.md
 - aid: adobe:adobe-reorder-pages-api
   name: Adobe PDF Services Reorder Pages API
   description: Reorder pages within a PDF document.
@@ -681,8 +650,6 @@ apis:
     url: json-schema/adobe-pdf-services-asset-upload-request-schema.json
   - type: JSONLD
     url: json-ld/adobe-pdf-services-context.jsonld
-  - type: GraphQL
-    url: graphql/adobe-graphql.md
 - aid: adobe:adobe-replace-pages-api
   name: Adobe PDF Services Replace Pages API
   description: Replace pages in a PDF with pages from another PDF.
@@ -704,8 +671,6 @@ apis:
     url: json-schema/adobe-pdf-services-asset-upload-request-schema.json
   - type: JSONLD
     url: json-ld/adobe-pdf-services-context.jsonld
-  - type: GraphQL
-    url: graphql/adobe-graphql.md
 - aid: adobe:adobe-rotate-pages-api
   name: Adobe PDF Services Rotate Pages API
   description: Rotate pages within a PDF document.
@@ -727,8 +692,6 @@ apis:
     url: json-schema/adobe-pdf-services-asset-upload-request-schema.json
   - type: JSONLD
     url: json-ld/adobe-pdf-services-context.jsonld
-  - type: GraphQL
-    url: graphql/adobe-graphql.md
 - aid: adobe:adobe-split-pdf-api
   name: Adobe PDF Services Split PDF API
   description: Split a PDF document into multiple smaller PDFs.
@@ -750,8 +713,6 @@ apis:
     url: json-schema/adobe-pdf-services-asset-upload-request-schema.json
   - type: JSONLD
     url: json-ld/adobe-pdf-services-context.jsonld
-  - type: GraphQL
-    url: graphql/adobe-graphql.md
 - aid: adobe:adobe-composites-api
   name: Adobe Composites API
   description: The Composites API from Adobe — 1 operation(s) for composites.
