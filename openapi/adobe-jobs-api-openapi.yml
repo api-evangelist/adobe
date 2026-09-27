@@ -95,6 +95,33 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    ErrorResponse:
+      type: object
+      description: Error response returned when a request fails.
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+              description: A machine-readable error code.
+              examples:
+              - INVALID_ASSET_ID
+              - BAD_REQUEST
+              - UNAUTHORIZED
+              - RATE_LIMIT_EXCEEDED
+            message:
+              type: string
+              description: A human-readable error message.
+            status:
+              type: integer
+              description: The HTTP status code.
+              examples:
+              - 400
+              - 401
+              - 404
+              - 429
+          example: example_value
     JobStatusResponse:
       type: object
       description: The status and result of an asynchronous PDF operation job.
@@ -142,33 +169,6 @@ components:
             status:
               type: integer
               description: The HTTP status code associated with the error.
-          example: example_value
-    ErrorResponse:
-      type: object
-      description: Error response returned when a request fails.
-      properties:
-        error:
-          type: object
-          properties:
-            code:
-              type: string
-              description: A machine-readable error code.
-              examples:
-              - INVALID_ASSET_ID
-              - BAD_REQUEST
-              - UNAUTHORIZED
-              - RATE_LIMIT_EXCEEDED
-            message:
-              type: string
-              description: A human-readable error message.
-            status:
-              type: integer
-              description: The HTTP status code.
-              examples:
-              - 400
-              - 401
-              - 404
-              - 429
           example: example_value
   responses:
     NotFound:

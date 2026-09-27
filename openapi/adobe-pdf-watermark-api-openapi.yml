@@ -275,71 +275,57 @@ paths:
                 $ref: '#/components/schemas/Satus500'
 components:
   schemas:
-    Satus500:
-      properties:
-        error:
-          type: object
-          properties:
-            code:
-              description: The string containing the code field. code is the Mnemonic returned by service in case of any failure. The below list is extendable and going forward the error codes can become more specific.
-              type: string
-            message:
-              description: "An English language string that contains more information about the error. \n\n<table><tr><th>code</th><th>message</th></tr><tr><td>INTERNAL_SERVER_ERROR</td><td>There was an error processing your request.</td></tr><tr><td>UNKNOWN</td><td>Unknown error.</td></tr></table>"
-              type: string
-      example:
-        error:
-          code: INTERNAL_SERVER_ERROR
-          message: There was an error processing your request.
-    AddWatermarkJobStatus:
-      oneOf:
-      - $ref: '#/components/schemas/inprogress'
-      - $ref: '#/components/schemas/done'
-      - $ref: '#/components/schemas/failed'
-    responseAsset:
-      title: asset
-      description: Details of output asset document. For more details <a href = 'https://developer.adobe.com/document-services/docs/apis/#tag/Assets'> click here </a>.
+    external:
+      title: External with an output URI in the request
+      description: Response in case of 'done' status using signed urls
       type: object
       properties:
-        metadata:
-          type: object
-          description: metadata details of output asset.
-          properties:
-            size:
-              description: The size of the Resource in bytes. This value helps in making range requests.
-              type: integer
-            type:
-              description: The media type of the Resource.
-              type: string
-        assetID:
-          description: An asset ID identifying an asset that is globally unique and never reused.
+        status:
+          description: Job Status
           type: string
-          required: false
-        downloadUri:
-          description: The URL used to download the Resource directly to the cloud provider.
-          type: string
+          enum:
+          - done
       example:
         status: done
-        asset:
-          metadata:
-            type: application/pdf
-            size: 200791
-          downloadUri: https://dcplatformstorageservice-dev-us-east-1.s3-accelerate.amazonaws.com/6bb12fd8-3233-4340-916b-4835917857be?X-Amz-Security-Token=FwoGZXIvYXdzEE0aDOLg7PFwVB1bjEMxQCLTAe3pjf%2Fgl2Pj%2FcjOaY%2BHfduju9SXTp1Pn8C4GapIXm%2F8tuR4cGPYGC0goU21qZxCq9R%2F8z2bOmB2EL%2BZrhbPLbaNcpzf5Vud%2B3Bmn61MEJiBdU%2BhZqasX5YhVxdnzhfpl5KfKeq2kwROVMqJcyHGdxw5h0%2Bi0sD2I8sqkbPmnBi0WOtYNwz7TQq42oe8W5KYHpq6WMya9OQgx0u7qg0inYwBnQu5UQ9NJJQY2MSU11IuZ0uE%2B%2FNAPuq3VfEIn3txK%2FFfIxGz9%2BInehhHroKjBFULzy0olY2rlwYyLQDwHHr2eyuy%2BaoGVaq%2BSUNH8T0OKIicbbZfQ5wjF0hK2FzVXwfebtDG4qq%2BiA%3D%3D&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20220803T190422Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=REDACTED_AWS_ACCESS_KEY_ID%2F20220803%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=5d8c3f421c68c009b4471919a319ba460495c72afe51674d23266bc124fe9a56
-          assetID: urn:aaid:AS:UE1:23c30ee0-2c4d-46d6-87f2-087832fca718
-    Status400:
+    AddWatermarkInternal:
+      title: Internal
+      description: Params for Watermark Operation
+      type: object
+      required:
+      - inputDocumentAssetID
+      - watermarkDocumentAssetID
       properties:
-        error:
-          type: object
-          properties:
-            code:
-              description: The string containing the code field. code is the Mnemonic returned by service in case of any failure. The below list is extendable and going forward the error codes can become more specific.
-              type: string
-            message:
-              description: "An English language string that contains more information about the error.  \n\n<table><tr><th>code</th><th>message</th></tr><tr><td>INVALID_JOB_ID</td><td>Invalid job id present in path param.</td></tr></table>"
-              type: string
+        inputDocumentAssetID:
+          description: A file assetID of a PDF document on which watermark has to be applied. For more details <a href = 'https://developer.adobe.com/document-services/docs/apis/#tag/Assets'> click here </a>.
+          type: string
+        watermarkDocumentAssetID:
+          description: A file assetID of a PDF document whose first page will be used as watermark. The output generated will retain the content and watermark of the first page. For more details <a href = 'https://developer.adobe.com/document-services/docs/apis/#tag/Assets'> click here </a>.
+          type: string
+        pageRanges:
+          $ref: '#/components/schemas/pageRangesWatermark'
+        appearance:
+          $ref: '#/components/schemas/watermarkappearance'
+        notifiers:
+          $ref: '#/components/schemas/notifiers'
       example:
-        error:
-          code: INVALID_JOB_ID
-          message: Invalid job id present in path param.
+        inputDocumentAssetID: urn:aaid:AS:UE1:23c30ee0-2c4d-46d6-87f2-087832fca718
+        watermarkDocumentAssetID: urn:aaid:AS:UE1:23c30ee0-2c4d-46d6-87f2-087832fca718
+        pageRanges:
+        - start: 3
+          end: 7
+        - start: 9
+          end: 15
+        appearance:
+          appearOnForeground: true
+          opacity: 50
+        notifiers:
+        - type: CALLBACK
+          data:
+            url: https://dummy.callback.org/
+            headers:
+              x-api-key: dummykey
+              access-token: dummytoken
+      additionalProperties: false
     '404':
       properties:
         error:
@@ -355,26 +341,6 @@ components:
         error:
           code: NOT_FOUND
           message: Asset not found.
-    externaldonewithoutoutput:
-      title: External without an output URI in the request
-      description: Response in case of 'done' status
-      type: object
-      properties:
-        status:
-          description: Job Status
-          type: string
-          enum:
-          - done
-        asset:
-          $ref: '#/components/schemas/responseAsset'
-      example:
-        status: done
-        asset:
-          metadata:
-            type: application/pdf
-            size: 200791
-          downloadUri: https://dcplatformstorageservice-dev-us-east-1.s3-accelerate.amazonaws.com/6bb12fd8-3233-4340-916b-4835917857be?X-Amz-Security-Token=FwoGZXIvYXdzEE0aDOLg7PFwVB1bjEMxQCLTAe3pjf%2Fgl2Pj%2FcjOaY%2BHfduju9SXTp1Pn8C4GapIXm%2F8tuR4cGPYGC0goU21qZxCq9R%2F8z2bOmB2EL%2BZrhbPLbaNcpzf5Vud%2B3Bmn61MEJiBdU%2BhZqasX5YhVxdnzhfpl5KfKeq2kwROVMqJcyHGdxw5h0%2Bi0sD2I8sqkbPmnBi0WOtYNwz7TQq42oe8W5KYHpq6WMya9OQgx0u7qg0inYwBnQu5UQ9NJJQY2MSU11IuZ0uE%2B%2FNAPuq3VfEIn3txK%2FFfIxGz9%2BInehhHroKjBFULzy0olY2rlwYyLQDwHHr2eyuy%2BaoGVaq%2BSUNH8T0OKIicbbZfQ5wjF0hK2FzVXwfebtDG4qq%2BiA%3D%3D&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20220803T190422Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=REDACTED_AWS_ACCESS_KEY_ID%2F20220803%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=5d8c3f421c68c009b4471919a319ba460495c72afe51674d23266bc124fe9a56
-          assetID: urn:aaid:AS:UE1:23c30ee0-2c4d-46d6-87f2-087832fca718
     internal:
       title: Internal
       description: Response in case of 'done' status
@@ -395,6 +361,26 @@ components:
             size: 200791
           downloadUri: https://dcplatformstorageservice-dev-us-east-1.s3-accelerate.amazonaws.com/6bb12fd8-3233-4340-916b-4835917857be?X-Amz-Security-Token=FwoGZXIvYXdzEE0aDOLg7PFwVB1bjEMxQCLTAe3pjf%2Fgl2Pj%2FcjOaY%2BHfduju9SXTp1Pn8C4GapIXm%2F8tuR4cGPYGC0goU21qZxCq9R%2F8z2bOmB2EL%2BZrhbPLbaNcpzf5Vud%2B3Bmn61MEJiBdU%2BhZqasX5YhVxdnzhfpl5KfKeq2kwROVMqJcyHGdxw5h0%2Bi0sD2I8sqkbPmnBi0WOtYNwz7TQq42oe8W5KYHpq6WMya9OQgx0u7qg0inYwBnQu5UQ9NJJQY2MSU11IuZ0uE%2B%2FNAPuq3VfEIn3txK%2FFfIxGz9%2BInehhHroKjBFULzy0olY2rlwYyLQDwHHr2eyuy%2BaoGVaq%2BSUNH8T0OKIicbbZfQ5wjF0hK2FzVXwfebtDG4qq%2BiA%3D%3D&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20220803T190422Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=REDACTED_AWS_ACCESS_KEY_ID%2F20220803%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=5d8c3f421c68c009b4471919a319ba460495c72afe51674d23266bc124fe9a56
           assetID: urn:aaid:AS:UE1:23c30ee0-2c4d-46d6-87f2-087832fca718
+    Satus500:
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              description: The string containing the code field. code is the Mnemonic returned by service in case of any failure. The below list is extendable and going forward the error codes can become more specific.
+              type: string
+            message:
+              description: "An English language string that contains more information about the error. \n\n<table><tr><th>code</th><th>message</th></tr><tr><td>INTERNAL_SERVER_ERROR</td><td>There was an error processing your request.</td></tr><tr><td>UNKNOWN</td><td>Unknown error.</td></tr></table>"
+              type: string
+      example:
+        error:
+          code: INTERNAL_SERVER_ERROR
+          message: There was an error processing your request.
+    AddWatermarkJobStatus:
+      oneOf:
+      - $ref: '#/components/schemas/inprogress'
+      - $ref: '#/components/schemas/done'
+      - $ref: '#/components/schemas/failed'
     notifiers:
       description: Specifies the notifiers to be invoked on the completion of job. To know more about notifiers, please see the <a href="https://developer.adobe.com/document-services/docs/overview/pdf-services-api/howtos/webhook-notification/">documentation</a>.
       type: array
@@ -409,48 +395,6 @@ components:
         required:
         - type
         - data
-    '401':
-      properties:
-        error:
-          type: object
-          properties:
-            code:
-              description: The string containing the code field. code is the Mnemonic returned by service in case of any failure. The below list is extendable and going forward the error codes can become more specific.
-              type: string
-            message:
-              description: "An English language string that contains more information about the error.  \n\n<table><tr><th>code</th><th>message</th></tr><tr><td>UNAUTHORIZED</td><td>Not authorised to perform the operation.</td></tr></table>"
-              type: string
-      example:
-        error:
-          code: UNAUTHORIZED
-          message: Not authorised to perform the operation.
-    pageRangesWatermark:
-      title: pageRanges
-      description: Specifies the page ranges on which watermark has to be applied in the input PDF file.
-      type: array
-      items:
-        properties:
-          start:
-            description: Start page of this page range. Page numbers are indexed from 1 to N.
-            type: number
-          end:
-            description: End page of this page range. Page numbers are indexed from 1 to N.
-            type: number
-    '429':
-      properties:
-        error:
-          type: object
-          properties:
-            code:
-              description: The string containing the code field. code is the Mnemonic returned by service in case of any failure. The below list is extendable and going forward the error codes can become more specific.
-              type: string
-            message:
-              description: "An English language string that contains more information about the error.  \n\n<table><tr><th>code</th><th>message</th></tr><tr><td>TOO_MANY_REQUESTS</td><td>Too Many Requests.</td></tr><tr><td>INSUFFICIENT_QUOTA</td><td>Either Quota for this operation is not available or Free trial quota is exhausted. Please visit (www.adobe.com/go/pdftoolsapi_home) to start using free trial quota or (www.adobe.com/go/pdftoolsapi_err_quota) to upgrade to paid credentials.</td></tr></table>"
-              type: string
-      example:
-        error:
-          code: TOO_MANY_REQUESTS
-          message: Too Many Requests.
     failed:
       description: Response in case of 'failed' status
       type: object
@@ -491,6 +435,36 @@ components:
           description: Percentage value specifying watermark opacity. Specified as an Integer value from 0 to 100.
           type: number
           default: 100
+    Satus404:
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              description: The string containing the code field. code is the Mnemonic returned by service in case of any failure. The below list is extendable and going forward the error codes can become more specific.
+              type: string
+            message:
+              description: "An English language string that contains more information about the error.  \n\n<table><tr><th>code</th><th>message</th></tr><tr><td>NOT_FOUND</td><td>Job not found.</td></tr></table>"
+              type: string
+      example:
+        error:
+          code: NOT_FOUND
+          message: Job not found.
+    '500':
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              description: The string containing the code field. code is the Mnemonic returned by service in case of any failure. The below list is extendable and going forward the error codes can become more specific.
+              type: string
+            message:
+              description: "An English language string that contains more information about the error.  \n\n<table><tr><th>code</th><th>message</th></tr><tr><td>INTERNAL_SERVER_ERROR</td><td>There was an error processing your request.</td></tr><tr><td>UNKNOWN</td><td>Unknown error.</td></tr></table>"
+              type: string
+      example:
+        error:
+          code: INTERNAL_SERVER_ERROR
+          message: There was an error processing your request.
     ExternalStorageOutput:
       title: Output
       description: Params representing output object
@@ -507,38 +481,36 @@ components:
           - SHAREPOINT
           - DROPBOX
           - BLOB
-    externalstatus:
-      title: External
-      oneOf:
-      - $ref: '#/components/schemas/externaldonewithoutoutput'
-      - $ref: '#/components/schemas/external'
-    Satus401:
-      properties:
-        error:
-          type: object
-          properties:
-            code:
-              description: The string containing the code field. code is the Mnemonic returned by service in case of any failure. The below list is extendable and going forward the error codes can become more specific.
-              type: string
-            message:
-              description: "An English language string that contains more information about the error.  \n\n<table><tr><th>code</th><th>message</th></tr><tr><td>UNAUTHORIZED</td><td>Not authorised to perform the operation.</td></tr></table>"
-              type: string
-      example:
-        error:
-          code: UNAUTHORIZED
-          message: Not authorised to perform the operation.
-    external:
-      title: External with an output URI in the request
-      description: Response in case of 'done' status using signed urls
+    responseAsset:
+      title: asset
+      description: Details of output asset document. For more details <a href = 'https://developer.adobe.com/document-services/docs/apis/#tag/Assets'> click here </a>.
       type: object
       properties:
-        status:
-          description: Job Status
+        metadata:
+          type: object
+          description: metadata details of output asset.
+          properties:
+            size:
+              description: The size of the Resource in bytes. This value helps in making range requests.
+              type: integer
+            type:
+              description: The media type of the Resource.
+              type: string
+        assetID:
+          description: An asset ID identifying an asset that is globally unique and never reused.
           type: string
-          enum:
-          - done
+          required: false
+        downloadUri:
+          description: The URL used to download the Resource directly to the cloud provider.
+          type: string
       example:
         status: done
+        asset:
+          metadata:
+            type: application/pdf
+            size: 200791
+          downloadUri: https://dcplatformstorageservice-dev-us-east-1.s3-accelerate.amazonaws.com/6bb12fd8-3233-4340-916b-4835917857be?X-Amz-Security-Token=FwoGZXIvYXdzEE0aDOLg7PFwVB1bjEMxQCLTAe3pjf%2Fgl2Pj%2FcjOaY%2BHfduju9SXTp1Pn8C4GapIXm%2F8tuR4cGPYGC0goU21qZxCq9R%2F8z2bOmB2EL%2BZrhbPLbaNcpzf5Vud%2B3Bmn61MEJiBdU%2BhZqasX5YhVxdnzhfpl5KfKeq2kwROVMqJcyHGdxw5h0%2Bi0sD2I8sqkbPmnBi0WOtYNwz7TQq42oe8W5KYHpq6WMya9OQgx0u7qg0inYwBnQu5UQ9NJJQY2MSU11IuZ0uE%2B%2FNAPuq3VfEIn3txK%2FFfIxGz9%2BInehhHroKjBFULzy0olY2rlwYyLQDwHHr2eyuy%2BaoGVaq%2BSUNH8T0OKIicbbZfQ5wjF0hK2FzVXwfebtDG4qq%2BiA%3D%3D&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20220803T190422Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=REDACTED_AWS_ACCESS_KEY_ID%2F20220803%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=5d8c3f421c68c009b4471919a319ba460495c72afe51674d23266bc124fe9a56
+          assetID: urn:aaid:AS:UE1:23c30ee0-2c4d-46d6-87f2-087832fca718
     AddWatermarkExternal:
       title: External
       description: Params for Add Watermark Operation using external storage
@@ -630,7 +602,43 @@ components:
       required:
       - inputs
       additionalProperties: false
-    Satus404:
+    externalstatus:
+      title: External
+      oneOf:
+      - $ref: '#/components/schemas/externaldonewithoutoutput'
+      - $ref: '#/components/schemas/external'
+    Satus429:
+      properties:
+        error_code:
+          description: 'The string containing the code field. code is the Mnemonic returned by service in case of any failure. The below list is extendable and going forward the error codes can become more specific. '
+          type: string
+        message:
+          description: "An English language string that contains more information about the error. \n\n<table><tr><th>code</th><th>message</th></tr><tr><td>429001</td><td>Service usage limit reached</td></tr><tr><td>429002</td><td>Developer key usage limit reached</td></tr><tr><td>429050</td><td>Too many requests</td></tr></table>"
+          type: string
+      example:
+        error_code: '429050'
+        message: Too many requests
+    externaldonewithoutoutput:
+      title: External without an output URI in the request
+      description: Response in case of 'done' status
+      type: object
+      properties:
+        status:
+          description: Job Status
+          type: string
+          enum:
+          - done
+        asset:
+          $ref: '#/components/schemas/responseAsset'
+      example:
+        status: done
+        asset:
+          metadata:
+            type: application/pdf
+            size: 200791
+          downloadUri: https://dcplatformstorageservice-dev-us-east-1.s3-accelerate.amazonaws.com/6bb12fd8-3233-4340-916b-4835917857be?X-Amz-Security-Token=FwoGZXIvYXdzEE0aDOLg7PFwVB1bjEMxQCLTAe3pjf%2Fgl2Pj%2FcjOaY%2BHfduju9SXTp1Pn8C4GapIXm%2F8tuR4cGPYGC0goU21qZxCq9R%2F8z2bOmB2EL%2BZrhbPLbaNcpzf5Vud%2B3Bmn61MEJiBdU%2BhZqasX5YhVxdnzhfpl5KfKeq2kwROVMqJcyHGdxw5h0%2Bi0sD2I8sqkbPmnBi0WOtYNwz7TQq42oe8W5KYHpq6WMya9OQgx0u7qg0inYwBnQu5UQ9NJJQY2MSU11IuZ0uE%2B%2FNAPuq3VfEIn3txK%2FFfIxGz9%2BInehhHroKjBFULzy0olY2rlwYyLQDwHHr2eyuy%2BaoGVaq%2BSUNH8T0OKIicbbZfQ5wjF0hK2FzVXwfebtDG4qq%2BiA%3D%3D&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20220803T190422Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=REDACTED_AWS_ACCESS_KEY_ID%2F20220803%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=5d8c3f421c68c009b4471919a319ba460495c72afe51674d23266bc124fe9a56
+          assetID: urn:aaid:AS:UE1:23c30ee0-2c4d-46d6-87f2-087832fca718
+    Status400:
       properties:
         error:
           type: object
@@ -639,12 +647,65 @@ components:
               description: The string containing the code field. code is the Mnemonic returned by service in case of any failure. The below list is extendable and going forward the error codes can become more specific.
               type: string
             message:
-              description: "An English language string that contains more information about the error.  \n\n<table><tr><th>code</th><th>message</th></tr><tr><td>NOT_FOUND</td><td>Job not found.</td></tr></table>"
+              description: "An English language string that contains more information about the error.  \n\n<table><tr><th>code</th><th>message</th></tr><tr><td>INVALID_JOB_ID</td><td>Invalid job id present in path param.</td></tr></table>"
               type: string
       example:
         error:
-          code: NOT_FOUND
-          message: Job not found.
+          code: INVALID_JOB_ID
+          message: Invalid job id present in path param.
+    pageRangesWatermark:
+      title: pageRanges
+      description: Specifies the page ranges on which watermark has to be applied in the input PDF file.
+      type: array
+      items:
+        properties:
+          start:
+            description: Start page of this page range. Page numbers are indexed from 1 to N.
+            type: number
+          end:
+            description: End page of this page range. Page numbers are indexed from 1 to N.
+            type: number
+    inprogress:
+      description: Response in case of 'in progress' status
+      type: object
+      properties:
+        status:
+          description: Job Status
+          type: string
+          enum:
+          - in progress
+      example:
+        status: in progress
+    Satus401:
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              description: The string containing the code field. code is the Mnemonic returned by service in case of any failure. The below list is extendable and going forward the error codes can become more specific.
+              type: string
+            message:
+              description: "An English language string that contains more information about the error.  \n\n<table><tr><th>code</th><th>message</th></tr><tr><td>UNAUTHORIZED</td><td>Not authorised to perform the operation.</td></tr></table>"
+              type: string
+      example:
+        error:
+          code: UNAUTHORIZED
+          message: Not authorised to perform the operation.
+    '401':
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              description: The string containing the code field. code is the Mnemonic returned by service in case of any failure. The below list is extendable and going forward the error codes can become more specific.
+              type: string
+            message:
+              description: "An English language string that contains more information about the error.  \n\n<table><tr><th>code</th><th>message</th></tr><tr><td>UNAUTHORIZED</td><td>Not authorised to perform the operation.</td></tr></table>"
+              type: string
+      example:
+        error:
+          code: UNAUTHORIZED
+          message: Not authorised to perform the operation.
     '400':
       properties:
         error:
@@ -660,18 +721,7 @@ components:
         error:
           code: BAD_REQUEST
           message: Bad Request.
-    inprogress:
-      description: Response in case of 'in progress' status
-      type: object
-      properties:
-        status:
-          description: Job Status
-          type: string
-          enum:
-          - in progress
-      example:
-        status: in progress
-    '500':
+    '429':
       properties:
         error:
           type: object
@@ -680,67 +730,17 @@ components:
               description: The string containing the code field. code is the Mnemonic returned by service in case of any failure. The below list is extendable and going forward the error codes can become more specific.
               type: string
             message:
-              description: "An English language string that contains more information about the error.  \n\n<table><tr><th>code</th><th>message</th></tr><tr><td>INTERNAL_SERVER_ERROR</td><td>There was an error processing your request.</td></tr><tr><td>UNKNOWN</td><td>Unknown error.</td></tr></table>"
+              description: "An English language string that contains more information about the error.  \n\n<table><tr><th>code</th><th>message</th></tr><tr><td>TOO_MANY_REQUESTS</td><td>Too Many Requests.</td></tr><tr><td>INSUFFICIENT_QUOTA</td><td>Either Quota for this operation is not available or Free trial quota is exhausted. Please visit (www.adobe.com/go/pdftoolsapi_home) to start using free trial quota or (www.adobe.com/go/pdftoolsapi_err_quota) to upgrade to paid credentials.</td></tr></table>"
               type: string
       example:
         error:
-          code: INTERNAL_SERVER_ERROR
-          message: There was an error processing your request.
-    AddWatermarkInternal:
-      title: Internal
-      description: Params for Watermark Operation
-      type: object
-      required:
-      - inputDocumentAssetID
-      - watermarkDocumentAssetID
-      properties:
-        inputDocumentAssetID:
-          description: A file assetID of a PDF document on which watermark has to be applied. For more details <a href = 'https://developer.adobe.com/document-services/docs/apis/#tag/Assets'> click here </a>.
-          type: string
-        watermarkDocumentAssetID:
-          description: A file assetID of a PDF document whose first page will be used as watermark. The output generated will retain the content and watermark of the first page. For more details <a href = 'https://developer.adobe.com/document-services/docs/apis/#tag/Assets'> click here </a>.
-          type: string
-        pageRanges:
-          $ref: '#/components/schemas/pageRangesWatermark'
-        appearance:
-          $ref: '#/components/schemas/watermarkappearance'
-        notifiers:
-          $ref: '#/components/schemas/notifiers'
-      example:
-        inputDocumentAssetID: urn:aaid:AS:UE1:23c30ee0-2c4d-46d6-87f2-087832fca718
-        watermarkDocumentAssetID: urn:aaid:AS:UE1:23c30ee0-2c4d-46d6-87f2-087832fca718
-        pageRanges:
-        - start: 3
-          end: 7
-        - start: 9
-          end: 15
-        appearance:
-          appearOnForeground: true
-          opacity: 50
-        notifiers:
-        - type: CALLBACK
-          data:
-            url: https://dummy.callback.org/
-            headers:
-              x-api-key: dummykey
-              access-token: dummytoken
-      additionalProperties: false
+          code: TOO_MANY_REQUESTS
+          message: Too Many Requests.
     done:
       title: done
       oneOf:
       - $ref: '#/components/schemas/internal'
       - $ref: '#/components/schemas/externalstatus'
-    Satus429:
-      properties:
-        error_code:
-          description: 'The string containing the code field. code is the Mnemonic returned by service in case of any failure. The below list is extendable and going forward the error codes can become more specific. '
-          type: string
-        message:
-          description: "An English language string that contains more information about the error. \n\n<table><tr><th>code</th><th>message</th></tr><tr><td>429001</td><td>Service usage limit reached</td></tr><tr><td>429002</td><td>Developer key usage limit reached</td></tr><tr><td>429050</td><td>Too many requests</td></tr></table>"
-          type: string
-      example:
-        error_code: '429050'
-        message: Too many requests
 x-tagGroups:
 - name: Authentication
   tags:
