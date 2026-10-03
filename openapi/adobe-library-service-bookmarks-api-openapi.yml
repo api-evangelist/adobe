@@ -340,6 +340,15 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/DbLibraryBookmark'
+    DbLibraryBookmarks:
+      type: object
+      properties:
+        bookmarks:
+          type: array
+          items:
+            $ref: '#/components/schemas/DbLibraryBookmark'
+        _fc:
+          type: boolean
     DbLibraryBookmark:
       type: object
       required:
@@ -373,15 +382,6 @@ components:
           type: integer
           format: int64
           description: This parameter will be ignored, populated with the timestamp upon creation and immutable after
-        _fc:
-          type: boolean
-    DbLibraryBookmarks:
-      type: object
-      properties:
-        bookmarks:
-          type: array
-          items:
-            $ref: '#/components/schemas/DbLibraryBookmark'
         _fc:
           type: boolean
     ErrorResponse:

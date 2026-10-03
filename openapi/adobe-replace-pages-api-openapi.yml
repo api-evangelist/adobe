@@ -112,6 +112,22 @@ components:
               - 404
               - 429
           example: example_value
+    PageRange:
+      type: object
+      description: Specifies a range of pages in a PDF document.
+      properties:
+        start:
+          type: integer
+          description: The starting page number (1-based).
+          minimum: 1
+          examples:
+          - 1
+        end:
+          type: integer
+          description: The ending page number (1-based, inclusive).
+          minimum: 1
+          examples:
+          - 5
     ReplacePagesRequest:
       type: object
       required:
@@ -139,22 +155,6 @@ components:
               assetPagesRange:
                 $ref: '#/components/schemas/PageRange'
           example: []
-    PageRange:
-      type: object
-      description: Specifies a range of pages in a PDF document.
-      properties:
-        start:
-          type: integer
-          description: The starting page number (1-based).
-          minimum: 1
-          examples:
-          - 1
-        end:
-          type: integer
-          description: The ending page number (1-based, inclusive).
-          minimum: 1
-          examples:
-          - 5
     JobStatusResponse:
       type: object
       description: The status and result of an asynchronous PDF operation job.
@@ -204,6 +204,12 @@ components:
               description: The HTTP status code associated with the error.
           example: example_value
   responses:
+    Unauthorized:
+      description: Authentication failed. The access token is missing, expired, or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
     TooManyRequests:
       description: Rate limit exceeded. Wait before retrying. Check Retry-After header for guidance.
       content:
@@ -212,12 +218,6 @@ components:
             $ref: '#/components/schemas/ErrorResponse'
     BadRequest:
       description: The request was malformed or contained invalid parameters. Check the error message for details.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    Unauthorized:
-      description: Authentication failed. The access token is missing, expired, or invalid.
       content:
         application/json:
           schema:

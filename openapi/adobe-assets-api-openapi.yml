@@ -469,22 +469,6 @@ paths:
       description: Adobe PDF Services API - Default Production
 components:
   schemas:
-    GetPresignedUrl:
-      type: object
-      properties:
-        downloadUri:
-          description: The URL used to download the Resource directly from the storage provider.
-          type: string
-        size:
-          description: The size of the Resource in bytes. This value helps in making range requests.
-          type: integer
-        type:
-          description: The media type of the Resource.
-          type: string
-      example:
-        downloadUri: https://dcplatformstorageservice-dev-us-east-1.s3-accelerate.amazonaws.com/a059e98b-43bf-4e76-886b-e61a1a19c7bd?X-Amz-Security-Token=FwoGZXIvYXdzEOz%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaDJoRurLDIx1KmzjT9yLTAZwtCBavc2xtc6InMLLl2rS480ulHYpVTyWSAtCDj34blxS9sghuPqX%2FwTsvUOJZCvgL8kMqHm0khmO3Pnh1%2FOYU1MksBbAlZ47JExBGdzwIsnh8gMIEXBaty0nVmQjIVLUogOKTIyoBuJsnGDvjytpABIpIzbYH50aTS4yECx42ejL6Po%2F4LOroTO3bv98MuUh05hdiFeoCrTfu29%2FXL5%2FuHXo0R1TfgiNPeR6Riq4PL3v%2BSNzPflWlToGIPtWYMWKuEtIEtK0J2Ut3Bddpxevd%2BxsozM2%2BmAYyLblFR%2BVAADnVcQZDc0fW7A8g9iM9BpKQIgmBY9rJrKjj53%2BFHvDko8%2FbkUlGcA%3D%3D&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20220831T182204Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=REDACTED_AWS_ACCESS_KEY_ID%2F20220831%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=298a811048105d8093539c6fab4e8649f96af0fcbad17ee5a716e6175e6e166b
-        size: 13130
-        type: application/pdf
     '500':
       properties:
         error:
@@ -500,59 +484,6 @@ components:
         error:
           code: INTERNAL_SERVER_ERROR
           message: There was an error processing your request.
-    GetUploadPresignedUrlAsset:
-      type: object
-      properties:
-        assetID:
-          description: An asset ID identifying an asset that is globally unique and never reused.
-          type: string
-        uploadUri:
-          description: The URL used to upload the Resource directly to the cloud provider.
-          type: string
-      example:
-        assetID: urn:aaid:AS:UE1:23c30ee0-2c4d-46d6-87f2-087832fca718
-        uploadUri: https://dcplatformstorageservice-dev-us-east-1.s3-accelerate.amazonaws.com/aa8d8790-321a-4487-92da-0e90ba931239?X-Amz-Security-Token=FwoGZXIvYXdzEP7%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaDDvZayrA6JI2vhkxPiLTAVI%2Fy0F2v7Us5rBDlEd53dHuO2KAe5Bkbs2AmUHtscOPbsH%2Bzh1aFDnv%2BW2nHAiENSNbV2Auq6b5%2FatImE8hUs2wTwV%2BCSB%2FJb896AF905k%2B9ljhZDty2caFGQSHY2lC2OQ4Rr9%2FdS%2FNKwWgnHr4Ld5AtweavSyfhFMfz%2Fw7zLXvHupnLhOISBqqEOTMQim4YDLGzxIt9%2F4C1MKBUSSdGYBX14rfjTSiB%2FivjjjEdNrRRnkGoIg%2Fxe5b1dFDdgukwXWEBsKtZ2qpmZl2uW1boMTHonQoxMTCmAYyLS2FEiNOvaV7rvm8oy6MtGvv2JVY%2FPz%2FFPab%2BhjsCG60vS3kHih4Zy8rUUKv%2Fw%3D%3D&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20220901T121500Z&X-Amz-SignedHeaders=content-type%3Bhost&X-Amz-Expires=3599&X-Amz-Credential=REDACTED_AWS_ACCESS_KEY_ID%2F20220901%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=5424c781b8671fb1d7e068267af26e9de4d9a606f343c0bb8602d2a70ab52fcd
-    Asset429:
-      properties:
-        error_code:
-          description: 'The string containing the code field. code is the Mnemonic returned by service in case of any failure. The below list is extendable and going forward the error codes can become more specific. '
-          type: string
-        message:
-          description: "An English language string that contains more information about the error. \n\n<table><tr><th>code</th><th>message</th></tr><tr><td>429001</td><td>Service usage limit reached</td></tr><tr><td>429002</td><td>Developer key usage limit reached</td></tr><tr><td>429050</td><td>Too many requests</td></tr></table>"
-          type: string
-      example:
-        error_code: '429050'
-        message: Too many requests
-    '401':
-      properties:
-        error:
-          type: object
-          properties:
-            code:
-              description: The string containing the code field. code is the Mnemonic returned by service in case of any failure. The below list is extendable and going forward the error codes can become more specific.
-              type: string
-            message:
-              description: "An English language string that contains more information about the error.  \n\n<table><tr><th>code</th><th>message</th></tr><tr><td>UNAUTHORIZED</td><td>Not authorised to perform the operation.</td></tr></table>"
-              type: string
-      example:
-        error:
-          code: UNAUTHORIZED
-          message: Not authorised to perform the operation.
-    '400':
-      properties:
-        error:
-          type: object
-          properties:
-            code:
-              description: The string containing the code field. code is the Mnemonic returned by service in case of any failure. The below list is extendable and going forward the error codes can become more specific.
-              type: string
-            message:
-              description: "An English language string that contains more information about the error. \n\n<table><tr><th>code</th><th>message</th></tr><tr><td>BAD_REQUEST</td><td>Bad Request.</td></tr></table>"
-              type: string
-      example:
-        error:
-          code: BAD_REQUEST
-          message: Bad Request.
     GetUploadPresignedUrlRequest:
       type: object
       properties:
@@ -577,6 +508,87 @@ components:
         entity: 49505D56624424F00A49423A@techacct.adobe.com
         size: 13552
         type: application/pdf
+    GetUploadPresignedUrlAsset:
+      type: object
+      properties:
+        assetID:
+          description: An asset ID identifying an asset that is globally unique and never reused.
+          type: string
+        uploadUri:
+          description: The URL used to upload the Resource directly to the cloud provider.
+          type: string
+      example:
+        assetID: urn:aaid:AS:UE1:23c30ee0-2c4d-46d6-87f2-087832fca718
+        uploadUri: https://dcplatformstorageservice-dev-us-east-1.s3-accelerate.amazonaws.com/aa8d8790-321a-4487-92da-0e90ba931239?X-Amz-Security-Token=FwoGZXIvYXdzEP7%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaDDvZayrA6JI2vhkxPiLTAVI%2Fy0F2v7Us5rBDlEd53dHuO2KAe5Bkbs2AmUHtscOPbsH%2Bzh1aFDnv%2BW2nHAiENSNbV2Auq6b5%2FatImE8hUs2wTwV%2BCSB%2FJb896AF905k%2B9ljhZDty2caFGQSHY2lC2OQ4Rr9%2FdS%2FNKwWgnHr4Ld5AtweavSyfhFMfz%2Fw7zLXvHupnLhOISBqqEOTMQim4YDLGzxIt9%2F4C1MKBUSSdGYBX14rfjTSiB%2FivjjjEdNrRRnkGoIg%2Fxe5b1dFDdgukwXWEBsKtZ2qpmZl2uW1boMTHonQoxMTCmAYyLS2FEiNOvaV7rvm8oy6MtGvv2JVY%2FPz%2FFPab%2BhjsCG60vS3kHih4Zy8rUUKv%2Fw%3D%3D&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20220901T121500Z&X-Amz-SignedHeaders=content-type%3Bhost&X-Amz-Expires=3599&X-Amz-Credential=REDACTED_AWS_ACCESS_KEY_ID%2F20220901%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=5424c781b8671fb1d7e068267af26e9de4d9a606f343c0bb8602d2a70ab52fcd
+    Asset429:
+      properties:
+        error_code:
+          description: 'The string containing the code field. code is the Mnemonic returned by service in case of any failure. The below list is extendable and going forward the error codes can become more specific. '
+          type: string
+        message:
+          description: "An English language string that contains more information about the error. \n\n<table><tr><th>code</th><th>message</th></tr><tr><td>429001</td><td>Service usage limit reached</td></tr><tr><td>429002</td><td>Developer key usage limit reached</td></tr><tr><td>429050</td><td>Too many requests</td></tr></table>"
+          type: string
+      example:
+        error_code: '429050'
+        message: Too many requests
+    '400':
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              description: The string containing the code field. code is the Mnemonic returned by service in case of any failure. The below list is extendable and going forward the error codes can become more specific.
+              type: string
+            message:
+              description: "An English language string that contains more information about the error. \n\n<table><tr><th>code</th><th>message</th></tr><tr><td>BAD_REQUEST</td><td>Bad Request.</td></tr></table>"
+              type: string
+      example:
+        error:
+          code: BAD_REQUEST
+          message: Bad Request.
+    GetPresignedUrl:
+      type: object
+      properties:
+        downloadUri:
+          description: The URL used to download the Resource directly from the storage provider.
+          type: string
+        size:
+          description: The size of the Resource in bytes. This value helps in making range requests.
+          type: integer
+        type:
+          description: The media type of the Resource.
+          type: string
+      example:
+        downloadUri: https://dcplatformstorageservice-dev-us-east-1.s3-accelerate.amazonaws.com/a059e98b-43bf-4e76-886b-e61a1a19c7bd?X-Amz-Security-Token=FwoGZXIvYXdzEOz%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaDJoRurLDIx1KmzjT9yLTAZwtCBavc2xtc6InMLLl2rS480ulHYpVTyWSAtCDj34blxS9sghuPqX%2FwTsvUOJZCvgL8kMqHm0khmO3Pnh1%2FOYU1MksBbAlZ47JExBGdzwIsnh8gMIEXBaty0nVmQjIVLUogOKTIyoBuJsnGDvjytpABIpIzbYH50aTS4yECx42ejL6Po%2F4LOroTO3bv98MuUh05hdiFeoCrTfu29%2FXL5%2FuHXo0R1TfgiNPeR6Riq4PL3v%2BSNzPflWlToGIPtWYMWKuEtIEtK0J2Ut3Bddpxevd%2BxsozM2%2BmAYyLblFR%2BVAADnVcQZDc0fW7A8g9iM9BpKQIgmBY9rJrKjj53%2BFHvDko8%2FbkUlGcA%3D%3D&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20220831T182204Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=REDACTED_AWS_ACCESS_KEY_ID%2F20220831%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=298a811048105d8093539c6fab4e8649f96af0fcbad17ee5a716e6175e6e166b
+        size: 13130
+        type: application/pdf
+    '401':
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              description: The string containing the code field. code is the Mnemonic returned by service in case of any failure. The below list is extendable and going forward the error codes can become more specific.
+              type: string
+            message:
+              description: "An English language string that contains more information about the error.  \n\n<table><tr><th>code</th><th>message</th></tr><tr><td>UNAUTHORIZED</td><td>Not authorised to perform the operation.</td></tr></table>"
+              type: string
+      example:
+        error:
+          code: UNAUTHORIZED
+          message: Not authorised to perform the operation.
+    AssetUploadRequest:
+      type: object
+      required:
+      - mediaType
+      properties:
+        mediaType:
+          type: string
+          description: The MIME type of the file being uploaded.
+          examples:
+          - application/pdf
+          - application/vnd.openxmlformats-officedocument.wordprocessingml.document
+          - image/jpeg
     AssetDownloadResponse:
       type: object
       properties:
@@ -588,6 +600,19 @@ components:
           type: string
           format: uri
           description: The pre-signed URI to download the asset. Valid for a limited time.
+          example: https://www.example.com
+    AssetUploadResponse:
+      type: object
+      properties:
+        assetID:
+          type: string
+          description: The unique identifier for the uploaded asset.
+          examples:
+          - urn:aaid:AS:UE1:23456789-abcd-1234-efgh-567890abcdef
+        uploadUri:
+          type: string
+          format: uri
+          description: The pre-signed URI to upload the file content via HTTP PUT. Valid for a limited time.
           example: https://www.example.com
     ErrorResponse:
       type: object
@@ -616,32 +641,13 @@ components:
               - 404
               - 429
           example: example_value
-    AssetUploadRequest:
-      type: object
-      required:
-      - mediaType
-      properties:
-        mediaType:
-          type: string
-          description: The MIME type of the file being uploaded.
-          examples:
-          - application/pdf
-          - application/vnd.openxmlformats-officedocument.wordprocessingml.document
-          - image/jpeg
-    AssetUploadResponse:
-      type: object
-      properties:
-        assetID:
-          type: string
-          description: The unique identifier for the uploaded asset.
-          examples:
-          - urn:aaid:AS:UE1:23456789-abcd-1234-efgh-567890abcdef
-        uploadUri:
-          type: string
-          format: uri
-          description: The pre-signed URI to upload the file content via HTTP PUT. Valid for a limited time.
-          example: https://www.example.com
   responses:
+    Unauthorized:
+      description: Authentication failed. The access token is missing, expired, or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
     TooManyRequests:
       description: Rate limit exceeded. Wait before retrying. Check Retry-After header for guidance.
       content:
@@ -656,12 +662,6 @@ components:
             $ref: '#/components/schemas/ErrorResponse'
     NotFound:
       description: The requested resource was not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    Unauthorized:
-      description: Authentication failed. The access token is missing, expired, or invalid.
       content:
         application/json:
           schema:

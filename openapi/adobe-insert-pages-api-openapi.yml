@@ -88,6 +88,38 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    InsertPagesRequest:
+      type: object
+      required:
+      - baseAssetID
+      - assetsToInsert
+      properties:
+        baseAssetID:
+          type: string
+          description: The asset ID of the base PDF.
+          example: '500123'
+        assetsToInsert:
+          type: array
+          description: Assets and positions for insertion.
+          items:
+            type: object
+            required:
+            - assetID
+            - insertAt
+            properties:
+              assetID:
+                type: string
+                description: The asset ID of the PDF to insert.
+              insertAt:
+                type: integer
+                description: The page number in the base PDF after which to insert (1-based).
+                minimum: 1
+              pageRanges:
+                type: array
+                description: Optional page ranges to include from the insert asset.
+                items:
+                  $ref: '#/components/schemas/PageRange'
+          example: []
     ErrorResponse:
       type: object
       description: Error response returned when a request fails.
@@ -131,38 +163,6 @@ components:
           minimum: 1
           examples:
           - 5
-    InsertPagesRequest:
-      type: object
-      required:
-      - baseAssetID
-      - assetsToInsert
-      properties:
-        baseAssetID:
-          type: string
-          description: The asset ID of the base PDF.
-          example: '500123'
-        assetsToInsert:
-          type: array
-          description: Assets and positions for insertion.
-          items:
-            type: object
-            required:
-            - assetID
-            - insertAt
-            properties:
-              assetID:
-                type: string
-                description: The asset ID of the PDF to insert.
-              insertAt:
-                type: integer
-                description: The page number in the base PDF after which to insert (1-based).
-                minimum: 1
-              pageRanges:
-                type: array
-                description: Optional page ranges to include from the insert asset.
-                items:
-                  $ref: '#/components/schemas/PageRange'
-          example: []
     JobStatusResponse:
       type: object
       description: The status and result of an asynchronous PDF operation job.
@@ -212,8 +212,8 @@ components:
               description: The HTTP status code associated with the error.
           example: example_value
   responses:
-    TooManyRequests:
-      description: Rate limit exceeded. Wait before retrying. Check Retry-After header for guidance.
+    Unauthorized:
+      description: Authentication failed. The access token is missing, expired, or invalid.
       content:
         application/json:
           schema:
@@ -224,8 +224,8 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    Unauthorized:
-      description: Authentication failed. The access token is missing, expired, or invalid.
+    TooManyRequests:
+      description: Rate limit exceeded. Wait before retrying. Check Retry-After header for guidance.
       content:
         application/json:
           schema:
