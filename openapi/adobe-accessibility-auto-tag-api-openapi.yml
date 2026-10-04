@@ -84,6 +84,30 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
+  headers:
+    x-request-id:
+      description: A unique identifier for the request, useful for debugging and support.
+      schema:
+        type: string
+  responses:
+    Unauthorized:
+      description: Authentication failed. The access token is missing, expired, or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    BadRequest:
+      description: The request was malformed or contained invalid parameters. Check the error message for details.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    TooManyRequests:
+      description: Rate limit exceeded. Wait before retrying. Check Retry-After header for guidance.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   schemas:
     ErrorResponse:
       type: object
@@ -179,30 +203,6 @@ components:
               type: integer
               description: The HTTP status code associated with the error.
           example: example_value
-  responses:
-    Unauthorized:
-      description: Authentication failed. The access token is missing, expired, or invalid.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    TooManyRequests:
-      description: Rate limit exceeded. Wait before retrying. Check Retry-After header for guidance.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    BadRequest:
-      description: The request was malformed or contained invalid parameters. Check the error message for details.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-  headers:
-    x-request-id:
-      description: A unique identifier for the request, useful for debugging and support.
-      schema:
-        type: string
   securitySchemes:
     bearerAuth:
       type: http

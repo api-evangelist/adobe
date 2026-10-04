@@ -1911,141 +1911,6 @@ paths:
               $ref: '#/components/schemas/USSSearchPayload'
 components:
   schemas:
-    PageSpec:
-      type: object
-      properties:
-        orderBy:
-          type: string
-          description: List orderby
-        start:
-          type: string
-          description: List start position
-        next:
-          type: string
-          description: List next position
-        count:
-          type: integer
-          format: int32
-          description: List page size
-        type:
-          type: string
-          description: List page type
-        property:
-          type: string
-          description: List page property
-    DbLibraryCollaboratorData:
-      type: object
-      properties:
-        email:
-          type: string
-          readOnly: true
-        displayName:
-          type: string
-          readOnly: true
-        collaborator:
-          type: string
-          readOnly: true
-        role:
-          type: string
-          readOnly: true
-        canComment:
-          type: boolean
-          readOnly: true
-        canShare:
-          type: boolean
-          readOnly: true
-    Link:
-      type: object
-      properties:
-        href:
-          type: string
-        templated:
-          type: boolean
-        name:
-          type: string
-        type:
-          type: string
-        deprecation:
-          type: string
-        mode:
-          type: string
-        additionalFields:
-          type: object
-          additionalProperties:
-            type: object
-            properties: {}
-    ClientDeviceInfoPayload:
-      type: object
-      properties:
-        deviceId:
-          type: string
-        device:
-          type: string
-        app:
-          type: string
-    DbLibraryElementDetailData:
-      type: object
-      properties:
-        tags:
-          type: array
-          items:
-            type: string
-        created:
-          $ref: '#/components/schemas/DbLibraryElementDetailsCreatedModifiedData'
-        lastModified:
-          $ref: '#/components/schemas/DbLibraryElementDetailsCreatedModifiedData'
-        description:
-          type: string
-    PostLibraryElementsPayload:
-      type: object
-      required:
-      - client
-      - name
-      - type
-      properties:
-        id:
-          type: string
-          description: Ignored if submitted. The result will have a different ID.
-        description:
-          type: string
-          description: Description of new element
-        name:
-          type: string
-          description: Display name for new element
-        type:
-          type: string
-          description: Element type
-        client:
-          description: Client identification information
-          $ref: '#/components/schemas/ClientDeviceInfoPayload'
-        representations:
-          type: array
-          description: Add or associate existing content to the new element
-          items:
-            $ref: '#/components/schemas/DbLibraryElementRepresentationData'
-        sourceRef:
-          type: string
-          description: Reference other content as inspiration for this element
-        source:
-          description: Required if copying an element to this library.
-          $ref: '#/components/schemas/ElementListPayload'
-        self:
-          description: Required if moving an element to this library.
-          $ref: '#/components/schemas/ElementListPayload'
-    BatchResponse:
-      type: object
-      properties:
-        responses:
-          type: array
-          readOnly: true
-          items:
-            type: object
-            properties: {}
-        requests:
-          type: array
-          readOnly: true
-          items:
-            $ref: '#/components/schemas/BatchPayloadElement'
     AsyncResponsePayload:
       type: object
       properties:
@@ -2073,32 +1938,103 @@ components:
           - SERVICE_UNAVAILABLE
         message:
           type: string
-    DbLibraryDetail:
+    DbLibraryBookmark:
       type: object
+      required:
+      - id
       properties:
+        type:
+          type: string
+          description: '`public`, or `collab`, with separate required fields as identified below'
+          enum:
+          - PUBLIC
+          - COLLAB
+        id:
+          type: string
+          description: Required, must match the library's `id`. Submissions with an existing ID are discarded.
+        url:
+          type: string
+          description: Required if `type` is `public`
+        urn:
+          type: string
+          description: Required if `type` is `collab`
+        role:
+          type: string
+          description: '''viewer''/''editor'' role of user''s sharing status on library.'
+        can_share:
+          type: boolean
+          description: Sharing permission for user's sharing status on library
+        can_comment:
+          type: boolean
+          description: Commenting permission for user's sharing status on library
+        created:
+          type: integer
+          format: int64
+          description: This parameter will be ignored, populated with the timestamp upon creation and immutable after
         _fc:
           type: boolean
-        etag:
+    CreateLibraryPayload:
+      type: object
+      properties:
+        name:
           type: string
-        state:
+          description: Human-readable name for library. *Required* for creating a new library (not for move/copy)
+        source:
           type: string
-        manifest_format_version:
+          description: URN or public library ID of the source library. *Required* for copy.
+        self:
           type: string
-        num_elements:
+          description: URN or public library ID of the library to be moved. *Required* for move.
+    DbLibraryElementData:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        storage_used:
           type: integer
-          format: int32
-        num_archived_elements:
+          format: int64
+          description: Storage used
+        created_date:
           type: integer
-          format: int32
-        types:
+          format: int64
+        modified_date:
+          type: integer
+          format: int64
+        type:
+          type: string
+        source:
+          type: string
+        element_type:
           type: array
           items:
             type: string
-        element_type_counts:
-          type: object
-          additionalProperties:
-            type: integer
-            format: int32
+        thumbnail:
+          readOnly: true
+          $ref: '#/components/schemas/DbLibraryElementRenditionData'
+        groups:
+          type: array
+          items:
+            $ref: '#/components/schemas/DbLibraryGroup'
+        representations:
+          type: array
+          items:
+            $ref: '#/components/schemas/DbLibraryElementRepresentationData'
+        details:
+          $ref: '#/components/schemas/DbLibraryElementDetailData'
+        assetSubType:
+          type: string
+        _fc:
+          type: boolean
+        sourceRef:
+          type: string
+        _links:
+          $ref: '#/components/schemas/MelvilleHypermediaLibraryElementLinks'
+        parent_id:
+          type: string
+        manifest_etag:
+          type: string
     MelvilleHypermediaLink:
       type: object
       properties:
@@ -2109,6 +2045,121 @@ components:
         type:
           type: string
         templated:
+          type: boolean
+    DbLibraryCollaborationData:
+      type: object
+      properties:
+        rootURN:
+          type: string
+        ownerId:
+          type: string
+        state:
+          type: string
+        collaborators:
+          type: array
+          items:
+            $ref: '#/components/schemas/DbLibraryCollaboratorData'
+        invitations:
+          type: array
+          items:
+            $ref: '#/components/schemas/DbLibraryInvitationData'
+        public:
+          type: boolean
+        _fc:
+          type: boolean
+        directCollaborators:
+          type: array
+          items:
+            $ref: '#/components/schemas/DbLibraryCollaboratorData'
+        hasAdmin:
+          type: boolean
+          readOnly: true
+    DbLibraryGroup:
+      type: object
+      required:
+      - name
+      - order
+      properties:
+        id:
+          type: string
+          description: Group id.
+        name:
+          type: string
+          description: Group name.
+        classifier:
+          type: string
+          description: Group namespace. Currently defaults to $default. The default should be used unless there's a specific case to provide a custom classifiers. Non-default classifiers are presently not supported in any applications.
+        order:
+          type: string
+          description: Lexicographical string for setting the group's place in the group list, or for an element's place within a group.The client is responsible for providing and sorting using these strings.
+        created_date:
+          type: integer
+          format: int64
+          description: Group created date
+        modified_date:
+          type: integer
+          format: int64
+          description: Group modified date
+        parent_id:
+          type: string
+          description: Defines a relationship between nested groups.  If provided, and the specified parent group exists, this group will be the "child" of the parent group. If there is no group in the library that matches the supplied parentId the group will still be created or updated with an empty parentId.
+    ElementListPayloadElement:
+      type: object
+      required:
+      - id
+      properties:
+        id:
+          type: string
+          example: b8038ad3-c41e-4f9e-a7c3-96bb475ff8ef
+          description: Id of element
+        name:
+          type: string
+          example: new element
+          description: Name of element
+        description:
+          type: string
+          example: This is my favorite element.
+          description: Description of element. If this is set to an empty string, the current description will be deleted.
+    LinksSpec:
+      type: object
+      properties:
+        next:
+          description: Next Link
+          $ref: '#/components/schemas/JsonNode'
+        page:
+          description: Page Link
+          $ref: '#/components/schemas/JsonNode'
+    Link:
+      type: object
+      properties:
+        href:
+          type: string
+        templated:
+          type: boolean
+        name:
+          type: string
+        type:
+          type: string
+        deprecation:
+          type: string
+        mode:
+          type: string
+        additionalFields:
+          type: object
+          additionalProperties:
+            type: object
+            properties: {}
+    AsyncMonitorResponseDTO:
+      type: object
+      properties:
+        id:
+          type: string
+        href:
+          type: string
+        retryAfter:
+          type: integer
+          format: int64
+        _fc:
           type: boolean
     MelvilleHypermediaLibraryElementLinks:
       type: object
@@ -2173,34 +2224,33 @@ components:
         next:
           description: Next Link
           $ref: '#/components/schemas/MelvilleHypermediaLink'
-    DbLibraryCollaborationData:
+    DbLibraryElementDetailData:
       type: object
       properties:
-        rootURN:
-          type: string
-        ownerId:
-          type: string
-        state:
-          type: string
-        collaborators:
+        tags:
           type: array
           items:
-            $ref: '#/components/schemas/DbLibraryCollaboratorData'
-        invitations:
-          type: array
-          items:
-            $ref: '#/components/schemas/DbLibraryInvitationData'
-        public:
-          type: boolean
-        _fc:
-          type: boolean
-        directCollaborators:
-          type: array
-          items:
-            $ref: '#/components/schemas/DbLibraryCollaboratorData'
-        hasAdmin:
-          type: boolean
-          readOnly: true
+            type: string
+        created:
+          $ref: '#/components/schemas/DbLibraryElementDetailsCreatedModifiedData'
+        lastModified:
+          $ref: '#/components/schemas/DbLibraryElementDetailsCreatedModifiedData'
+        description:
+          type: string
+    ClientDeviceInfoPayload:
+      type: object
+      properties:
+        deviceId:
+          type: string
+        device:
+          type: string
+        app:
+          type: string
+    UpdateLibraryPayload:
+      type: object
+      properties:
+        name:
+          type: string
     USSSearchPayload:
       type: object
       properties:
@@ -2276,89 +2326,73 @@ components:
         source_ref:
           type: string
           description: Search for elements with a specific sourceRef.
-    DbLibraryRenditionData:
+    ErrorResponse:
       type: object
       properties:
-        _fc:
-          type: boolean
-        main:
-          $ref: '#/components/schemas/DbLibraryElementRenditionData'
-        tiles:
+        reason:
+          type: string
+        message:
+          type: string
+      xml:
+        name: error
+    LibrariesInfo:
+      type: object
+      properties:
+        total_count:
+          type: integer
+          format: int32
+          description: Total results for query
+        libraries:
           type: array
+          description: Libraries list
           items:
-            $ref: '#/components/schemas/DbLibraryElementRenditionData'
-    UpdateLibraryPayload:
+            $ref: '#/components/schemas/DbLibraryInfo'
+        _page:
+          description: List Page
+          $ref: '#/components/schemas/PageSpec'
+        _links:
+          description: List Links
+          $ref: '#/components/schemas/MelvilleHypermediaListLinks'
+    LibraryElementsInfo:
       type: object
       properties:
-        name:
-          type: string
-    JsonNode:
+        total_count:
+          type: integer
+          format: int32
+          description: Total results for query
+        elements:
+          type: array
+          description: Elements list
+          items:
+            $ref: '#/components/schemas/DbLibraryElementData'
+        _page:
+          description: List Page
+          $ref: '#/components/schemas/PageSpec'
+        _links:
+          description: List Links
+          $ref: '#/components/schemas/LinksSpec'
+    DbLibraryElementDetailsCreatedModifiedData:
       type: object
       properties:
-        array:
-          type: boolean
-        'null':
-          type: boolean
-        number:
-          type: boolean
-        int:
-          type: boolean
-        nodeType:
+        userId:
           type: string
-          enum:
-          - ARRAY
-          - BINARY
-          - BOOLEAN
-          - MISSING
-          - 'NULL'
-          - NUMBER
-          - OBJECT
-          - POJO
-          - STRING
-        float:
-          type: boolean
-        binary:
-          type: boolean
-        short:
-          type: boolean
-        valueNode:
-          type: boolean
-        containerNode:
-          type: boolean
-        missingNode:
-          type: boolean
-        object:
-          type: boolean
-        pojo:
-          type: boolean
-        integralNumber:
-          type: boolean
-        floatingPointNumber:
-          type: boolean
-        long:
-          type: boolean
-        double:
-          type: boolean
-        bigDecimal:
-          type: boolean
-        bigInteger:
-          type: boolean
-        textual:
-          type: boolean
-        boolean:
-          type: boolean
-    CreateLibraryPayload:
+        deviceId:
+          type: string
+        device:
+          type: string
+        app:
+          type: string
+        time:
+          type: integer
+          format: int64
+    ArchiveDeleteElementListPayload:
       type: object
       properties:
-        name:
-          type: string
-          description: Human-readable name for library. *Required* for creating a new library (not for move/copy)
-        source:
-          type: string
-          description: URN or public library ID of the source library. *Required* for copy.
-        self:
-          type: string
-          description: URN or public library ID of the library to be moved. *Required* for move.
+        elements:
+          type: array
+          readOnly: true
+          items:
+            type: string
     DbLibraryInfo:
       type: object
       properties:
@@ -2457,6 +2491,255 @@ components:
           description: Library is searchable
         manifest_etag:
           type: string
+    MelvilleHypermediaListLinks:
+      type: object
+      properties:
+        page:
+          description: Page Link
+          $ref: '#/components/schemas/MelvilleHypermediaLink'
+        next:
+          description: Next Link
+          $ref: '#/components/schemas/MelvilleHypermediaLink'
+    JsonNode:
+      type: object
+      properties:
+        array:
+          type: boolean
+        'null':
+          type: boolean
+        number:
+          type: boolean
+        int:
+          type: boolean
+        nodeType:
+          type: string
+          enum:
+          - ARRAY
+          - BINARY
+          - BOOLEAN
+          - MISSING
+          - 'NULL'
+          - NUMBER
+          - OBJECT
+          - POJO
+          - STRING
+        float:
+          type: boolean
+        binary:
+          type: boolean
+        short:
+          type: boolean
+        valueNode:
+          type: boolean
+        containerNode:
+          type: boolean
+        missingNode:
+          type: boolean
+        object:
+          type: boolean
+        pojo:
+          type: boolean
+        integralNumber:
+          type: boolean
+        floatingPointNumber:
+          type: boolean
+        long:
+          type: boolean
+        double:
+          type: boolean
+        bigDecimal:
+          type: boolean
+        bigInteger:
+          type: boolean
+        textual:
+          type: boolean
+        boolean:
+          type: boolean
+    USSSearchResponse:
+      type: object
+      properties:
+        total_items:
+          type: integer
+          format: int32
+          readOnly: true
+        libraries:
+          type: array
+          items:
+            $ref: '#/components/schemas/DbLibraryInfo'
+        elements:
+          type: array
+          items:
+            $ref: '#/components/schemas/DbLibraryElementData'
+    ElementListPayload:
+      type: object
+      required:
+      - elements
+      properties:
+        elements:
+          type: array
+          description: Array of elements to be copied to the targeted library
+          readOnly: true
+          items:
+            $ref: '#/components/schemas/ElementListPayloadElement'
+        id:
+          type: string
+          description: URN of the source library, not required if copying elements within the same library
+          readOnly: true
+        elementIds:
+          type: array
+          items:
+            type: string
+    DbLibraryRenditionData:
+      type: object
+      properties:
+        _fc:
+          type: boolean
+        main:
+          $ref: '#/components/schemas/DbLibraryElementRenditionData'
+        tiles:
+          type: array
+          items:
+            $ref: '#/components/schemas/DbLibraryElementRenditionData'
+    DbLibraryCollaboratorData:
+      type: object
+      properties:
+        email:
+          type: string
+          readOnly: true
+        displayName:
+          type: string
+          readOnly: true
+        collaborator:
+          type: string
+          readOnly: true
+        role:
+          type: string
+          readOnly: true
+        canComment:
+          type: boolean
+          readOnly: true
+        canShare:
+          type: boolean
+          readOnly: true
+    BatchResponse:
+      type: object
+      properties:
+        responses:
+          type: array
+          readOnly: true
+          items:
+            type: object
+            properties: {}
+        requests:
+          type: array
+          readOnly: true
+          items:
+            $ref: '#/components/schemas/BatchPayloadElement'
+    DbLibraryElementRepresentationData:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+        relationship:
+          type: string
+        path:
+          type: string
+        linkurl:
+          type: string
+        linktype:
+          type: string
+        is_full_size:
+          type: boolean
+        is_external_link:
+          type: boolean
+        width:
+          type: integer
+          format: int64
+        height:
+          type: integer
+          format: int64
+        content_length:
+          type: integer
+          format: int64
+        name:
+          type: string
+        asset_id:
+          type: string
+        version:
+          type: string
+        md5:
+          type: string
+        _links:
+          $ref: '#/components/schemas/MelvilleHypermediaRepresentationLinks'
+        etag:
+          type: string
+        storage_href:
+          type: string
+        representation_order:
+          type: integer
+          format: int32
+        is_preferred_thumbnail:
+          type: boolean
+        is_component:
+          type: boolean
+          readOnly: true
+    BatchPayload:
+      type: object
+      properties:
+        requests:
+          type: array
+          items:
+            $ref: '#/components/schemas/BatchPayloadElement'
+    PostLibraryElementsPayload:
+      type: object
+      required:
+      - client
+      - name
+      - type
+      properties:
+        id:
+          type: string
+          description: Ignored if submitted. The result will have a different ID.
+        description:
+          type: string
+          description: Description of new element
+        name:
+          type: string
+          description: Display name for new element
+        type:
+          type: string
+          description: Element type
+        client:
+          description: Client identification information
+          $ref: '#/components/schemas/ClientDeviceInfoPayload'
+        representations:
+          type: array
+          description: Add or associate existing content to the new element
+          items:
+            $ref: '#/components/schemas/DbLibraryElementRepresentationData'
+        sourceRef:
+          type: string
+          description: Reference other content as inspiration for this element
+        source:
+          description: Required if copying an element to this library.
+          $ref: '#/components/schemas/ElementListPayload'
+        self:
+          description: Required if moving an element to this library.
+          $ref: '#/components/schemas/ElementListPayload'
+    BatchPayloadElement:
+      type: object
+      properties:
+        method:
+          type: string
+        path:
+          type: string
+        body:
+          type: object
+          additionalProperties:
+            type: object
+            properties: {}
     MelvilleHypermediaLibraryLinks:
       type: object
       properties:
@@ -2520,56 +2803,6 @@ components:
         next:
           description: Next Link
           $ref: '#/components/schemas/MelvilleHypermediaLink'
-    DbLibraryElementDetailsCreatedModifiedData:
-      type: object
-      properties:
-        userId:
-          type: string
-        deviceId:
-          type: string
-        device:
-          type: string
-        app:
-          type: string
-        time:
-          type: integer
-          format: int64
-    DbLibraryGroup:
-      type: object
-      required:
-      - name
-      - order
-      properties:
-        id:
-          type: string
-          description: Group id.
-        name:
-          type: string
-          description: Group name.
-        classifier:
-          type: string
-          description: Group namespace. Currently defaults to $default. The default should be used unless there's a specific case to provide a custom classifiers. Non-default classifiers are presently not supported in any applications.
-        order:
-          type: string
-          description: Lexicographical string for setting the group's place in the group list, or for an element's place within a group.The client is responsible for providing and sorting using these strings.
-        created_date:
-          type: integer
-          format: int64
-          description: Group created date
-        modified_date:
-          type: integer
-          format: int64
-          description: Group modified date
-        parent_id:
-          type: string
-          description: Defines a relationship between nested groups.  If provided, and the specified parent group exists, this group will be the "child" of the parent group. If there is no group in the library that matches the supplied parentId the group will still be created or updated with an empty parentId.
-    BatchPayload:
-      type: object
-      properties:
-        requests:
-          type: array
-          items:
-            $ref: '#/components/schemas/BatchPayloadElement'
     AsyncAcceptedResponse:
       type: object
       properties:
@@ -2580,78 +2813,6 @@ components:
         retryAfter:
           type: integer
           format: int64
-    BatchPayloadElement:
-      type: object
-      properties:
-        method:
-          type: string
-        path:
-          type: string
-        body:
-          type: object
-          additionalProperties:
-            type: object
-            properties: {}
-    ElementListPayloadElement:
-      type: object
-      required:
-      - id
-      properties:
-        id:
-          type: string
-          example: b8038ad3-c41e-4f9e-a7c3-96bb475ff8ef
-          description: Id of element
-        name:
-          type: string
-          example: new element
-          description: Name of element
-        description:
-          type: string
-          example: This is my favorite element.
-          description: Description of element. If this is set to an empty string, the current description will be deleted.
-    DbLibraryBookmark:
-      type: object
-      required:
-      - id
-      properties:
-        type:
-          type: string
-          description: '`public`, or `collab`, with separate required fields as identified below'
-          enum:
-          - PUBLIC
-          - COLLAB
-        id:
-          type: string
-          description: Required, must match the library's `id`. Submissions with an existing ID are discarded.
-        url:
-          type: string
-          description: Required if `type` is `public`
-        urn:
-          type: string
-          description: Required if `type` is `collab`
-        role:
-          type: string
-          description: '''viewer''/''editor'' role of user''s sharing status on library.'
-        can_share:
-          type: boolean
-          description: Sharing permission for user's sharing status on library
-        can_comment:
-          type: boolean
-          description: Commenting permission for user's sharing status on library
-        created:
-          type: integer
-          format: int64
-          description: This parameter will be ignored, populated with the timestamp upon creation and immutable after
-        _fc:
-          type: boolean
-    DbLibraryElementRenditionData:
-      type: object
-      properties:
-        type:
-          type: string
-        rendition:
-          type: object
-          properties: {}
     MelvilleHypermediaRepresentationLinks:
       type: object
       properties:
@@ -2715,215 +2876,6 @@ components:
         next:
           description: Next Link
           $ref: '#/components/schemas/MelvilleHypermediaLink'
-    LinksSpec:
-      type: object
-      properties:
-        next:
-          description: Next Link
-          $ref: '#/components/schemas/JsonNode'
-        page:
-          description: Page Link
-          $ref: '#/components/schemas/JsonNode'
-    MelvilleHypermediaListLinks:
-      type: object
-      properties:
-        page:
-          description: Page Link
-          $ref: '#/components/schemas/MelvilleHypermediaLink'
-        next:
-          description: Next Link
-          $ref: '#/components/schemas/MelvilleHypermediaLink'
-    ErrorResponse:
-      type: object
-      properties:
-        reason:
-          type: string
-        message:
-          type: string
-      xml:
-        name: error
-    DbLibraryElementData:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        storage_used:
-          type: integer
-          format: int64
-          description: Storage used
-        created_date:
-          type: integer
-          format: int64
-        modified_date:
-          type: integer
-          format: int64
-        type:
-          type: string
-        source:
-          type: string
-        element_type:
-          type: array
-          items:
-            type: string
-        thumbnail:
-          readOnly: true
-          $ref: '#/components/schemas/DbLibraryElementRenditionData'
-        groups:
-          type: array
-          items:
-            $ref: '#/components/schemas/DbLibraryGroup'
-        representations:
-          type: array
-          items:
-            $ref: '#/components/schemas/DbLibraryElementRepresentationData'
-        details:
-          $ref: '#/components/schemas/DbLibraryElementDetailData'
-        assetSubType:
-          type: string
-        _fc:
-          type: boolean
-        sourceRef:
-          type: string
-        _links:
-          $ref: '#/components/schemas/MelvilleHypermediaLibraryElementLinks'
-        parent_id:
-          type: string
-        manifest_etag:
-          type: string
-    USSSearchResponse:
-      type: object
-      properties:
-        total_items:
-          type: integer
-          format: int32
-          readOnly: true
-        libraries:
-          type: array
-          items:
-            $ref: '#/components/schemas/DbLibraryInfo'
-        elements:
-          type: array
-          items:
-            $ref: '#/components/schemas/DbLibraryElementData'
-    ArchiveDeleteElementListPayload:
-      type: object
-      properties:
-        elements:
-          type: array
-          readOnly: true
-          items:
-            type: string
-    AsyncMonitorResponseDTO:
-      type: object
-      properties:
-        id:
-          type: string
-        href:
-          type: string
-        retryAfter:
-          type: integer
-          format: int64
-        _fc:
-          type: boolean
-    EffectiveACL:
-      type: object
-      properties:
-        _links:
-          type: object
-          additionalProperties:
-            type: array
-            items:
-              $ref: '#/components/schemas/Link'
-        _fc:
-          type: boolean
-    LibraryElementsInfo:
-      type: object
-      properties:
-        total_count:
-          type: integer
-          format: int32
-          description: Total results for query
-        elements:
-          type: array
-          description: Elements list
-          items:
-            $ref: '#/components/schemas/DbLibraryElementData'
-        _page:
-          description: List Page
-          $ref: '#/components/schemas/PageSpec'
-        _links:
-          description: List Links
-          $ref: '#/components/schemas/LinksSpec'
-    DbLibraryElementRepresentationData:
-      type: object
-      properties:
-        id:
-          type: string
-        type:
-          type: string
-        relationship:
-          type: string
-        path:
-          type: string
-        linkurl:
-          type: string
-        linktype:
-          type: string
-        is_full_size:
-          type: boolean
-        is_external_link:
-          type: boolean
-        width:
-          type: integer
-          format: int64
-        height:
-          type: integer
-          format: int64
-        content_length:
-          type: integer
-          format: int64
-        name:
-          type: string
-        asset_id:
-          type: string
-        version:
-          type: string
-        md5:
-          type: string
-        _links:
-          $ref: '#/components/schemas/MelvilleHypermediaRepresentationLinks'
-        etag:
-          type: string
-        storage_href:
-          type: string
-        representation_order:
-          type: integer
-          format: int32
-        is_preferred_thumbnail:
-          type: boolean
-        is_component:
-          type: boolean
-          readOnly: true
-    LibrariesInfo:
-      type: object
-      properties:
-        total_count:
-          type: integer
-          format: int32
-          description: Total results for query
-        libraries:
-          type: array
-          description: Libraries list
-          items:
-            $ref: '#/components/schemas/DbLibraryInfo'
-        _page:
-          description: List Page
-          $ref: '#/components/schemas/PageSpec'
-        _links:
-          description: List Links
-          $ref: '#/components/schemas/MelvilleHypermediaListLinks'
     DbLibraryInvitationData:
       type: object
       properties:
@@ -2948,22 +2900,70 @@ components:
         canShare:
           type: boolean
           readOnly: true
-    ElementListPayload:
+    DbLibraryDetail:
       type: object
-      required:
-      - elements
       properties:
-        elements:
-          type: array
-          description: Array of elements to be copied to the targeted library
-          readOnly: true
-          items:
-            $ref: '#/components/schemas/ElementListPayloadElement'
-        id:
+        _fc:
+          type: boolean
+        etag:
           type: string
-          description: URN of the source library, not required if copying elements within the same library
-          readOnly: true
-        elementIds:
+        state:
+          type: string
+        manifest_format_version:
+          type: string
+        num_elements:
+          type: integer
+          format: int32
+        num_archived_elements:
+          type: integer
+          format: int32
+        types:
           type: array
           items:
             type: string
+        element_type_counts:
+          type: object
+          additionalProperties:
+            type: integer
+            format: int32
+    EffectiveACL:
+      type: object
+      properties:
+        _links:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              $ref: '#/components/schemas/Link'
+        _fc:
+          type: boolean
+    PageSpec:
+      type: object
+      properties:
+        orderBy:
+          type: string
+          description: List orderby
+        start:
+          type: string
+          description: List start position
+        next:
+          type: string
+          description: List next position
+        count:
+          type: integer
+          format: int32
+          description: List page size
+        type:
+          type: string
+          description: List page type
+        property:
+          type: string
+          description: List page property
+    DbLibraryElementRenditionData:
+      type: object
+      properties:
+        type:
+          type: string
+        rendition:
+          type: object
+          properties: {}

@@ -257,7 +257,7 @@ paths:
     - url: https://pdf-services-ew1.adobe.io
 components:
   schemas:
-    Satus401:
+    '404':
       properties:
         error:
           type: object
@@ -266,61 +266,17 @@ components:
               description: The string containing the code field. code is the Mnemonic returned by service in case of any failure. The below list is extendable and going forward the error codes can become more specific.
               type: string
             message:
-              description: "An English language string that contains more information about the error.  \n\n<table><tr><th>code</th><th>message</th></tr><tr><td>UNAUTHORIZED</td><td>Not authorised to perform the operation.</td></tr></table>"
+              description: "An English language string that contains more information about the error. \n\n<table><tr><th>code</th><th>message</th></tr><tr><td>NOT_FOUND</td><td>Asset not found.</td></tr></table>"
               type: string
       example:
         error:
-          code: UNAUTHORIZED
-          message: Not authorised to perform the operation.
+          code: NOT_FOUND
+          message: Asset not found.
     PDFPropertiesJobStatus:
       oneOf:
       - $ref: '#/components/schemas/inprogress'
       - $ref: '#/components/schemas/PDFPropertiesDone'
       - $ref: '#/components/schemas/failed'
-    '500':
-      properties:
-        error:
-          type: object
-          properties:
-            code:
-              description: The string containing the code field. code is the Mnemonic returned by service in case of any failure. The below list is extendable and going forward the error codes can become more specific.
-              type: string
-            message:
-              description: "An English language string that contains more information about the error.  \n\n<table><tr><th>code</th><th>message</th></tr><tr><td>INTERNAL_SERVER_ERROR</td><td>There was an error processing your request.</td></tr><tr><td>UNKNOWN</td><td>Unknown error.</td></tr></table>"
-              type: string
-      example:
-        error:
-          code: INTERNAL_SERVER_ERROR
-          message: There was an error processing your request.
-    notifiers:
-      description: Specifies the notifiers to be invoked on the completion of job. To know more about notifiers, please see the <a href="https://developer.adobe.com/document-services/docs/overview/pdf-services-api/howtos/webhook-notification/">documentation</a>.
-      type: array
-      items:
-        properties:
-          type:
-            description: Specifies the notifier type. Currently supported value is "CALLBACK" only.
-            type: string
-          data:
-            description: Specifies the data needed to invoke the notifier.
-            type: object
-        required:
-        - type
-        - data
-    Status400:
-      properties:
-        error:
-          type: object
-          properties:
-            code:
-              description: The string containing the code field. code is the Mnemonic returned by service in case of any failure. The below list is extendable and going forward the error codes can become more specific.
-              type: string
-            message:
-              description: "An English language string that contains more information about the error.  \n\n<table><tr><th>code</th><th>message</th></tr><tr><td>INVALID_JOB_ID</td><td>Invalid job id present in path param.</td></tr></table>"
-              type: string
-      example:
-        error:
-          code: INVALID_JOB_ID
-          message: Invalid job id present in path param.
     PDFPropertiesDone:
       title: done
       description: Response in case of 'done' status
@@ -618,6 +574,81 @@ components:
                 trust_sources:
                 - UNKNOWN
           permissions: null
+    Satus500:
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              description: The string containing the code field. code is the Mnemonic returned by service in case of any failure. The below list is extendable and going forward the error codes can become more specific.
+              type: string
+            message:
+              description: "An English language string that contains more information about the error. \n\n<table><tr><th>code</th><th>message</th></tr><tr><td>INTERNAL_SERVER_ERROR</td><td>There was an error processing your request.</td></tr><tr><td>UNKNOWN</td><td>Unknown error.</td></tr></table>"
+              type: string
+      example:
+        error:
+          code: INTERNAL_SERVER_ERROR
+          message: There was an error processing your request.
+    Satus404:
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              description: The string containing the code field. code is the Mnemonic returned by service in case of any failure. The below list is extendable and going forward the error codes can become more specific.
+              type: string
+            message:
+              description: "An English language string that contains more information about the error.  \n\n<table><tr><th>code</th><th>message</th></tr><tr><td>NOT_FOUND</td><td>Job not found.</td></tr></table>"
+              type: string
+      example:
+        error:
+          code: NOT_FOUND
+          message: Job not found.
+    '400':
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              description: The string containing the code field. code is the Mnemonic returned by service in case of any failure. The below list is extendable and going forward the error codes can become more specific.
+              type: string
+            message:
+              description: "An English language string that contains more information about the error. \n\n<table><tr><th>code</th><th>message</th></tr><tr><td>BAD_REQUEST</td><td>Bad Request.</td></tr></table>"
+              type: string
+      example:
+        error:
+          code: BAD_REQUEST
+          message: Bad Request.
+    Status400:
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              description: The string containing the code field. code is the Mnemonic returned by service in case of any failure. The below list is extendable and going forward the error codes can become more specific.
+              type: string
+            message:
+              description: "An English language string that contains more information about the error.  \n\n<table><tr><th>code</th><th>message</th></tr><tr><td>INVALID_JOB_ID</td><td>Invalid job id present in path param.</td></tr></table>"
+              type: string
+      example:
+        error:
+          code: INVALID_JOB_ID
+          message: Invalid job id present in path param.
+    Satus401:
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              description: The string containing the code field. code is the Mnemonic returned by service in case of any failure. The below list is extendable and going forward the error codes can become more specific.
+              type: string
+            message:
+              description: "An English language string that contains more information about the error.  \n\n<table><tr><th>code</th><th>message</th></tr><tr><td>UNAUTHORIZED</td><td>Not authorised to perform the operation.</td></tr></table>"
+              type: string
+      example:
+        error:
+          code: UNAUTHORIZED
+          message: Not authorised to perform the operation.
     PDFPropertiesInternal:
       title: Internal
       description: Params for PDF Properties Operation
@@ -645,6 +676,33 @@ components:
       required:
       - assetID
       additionalProperties: false
+    failed:
+      description: Response in case of 'failed' status
+      type: object
+      properties:
+        status:
+          description: Job Status
+          type: string
+          enum:
+          - failed
+        error:
+          type: object
+          properties:
+            status:
+              description: Http status code returned by the service
+              type: integer
+            code:
+              description: The string containing the code field. code is the Mnemonic returned by service in case of any failure. The below list is extendable and going forward the error codes can become more specific.
+              type: string
+            message:
+              description: "An English language string that contains more information about the error. \n\n<table><tr><th>status</th><th>code</th><th>message</th></tr><tr><td>400</td><td>CORRUPT_DOCUMENT</td><td>For $(format) mime-type The input file appears to be corrupted and cannot be processed.</td></tr><tr><td>400</td><td>PASSWORD_PROTECTED</td><td>Source file is protected and cannot be processed.</td></tr><tr><td>500</td><td>INTERNAL_SERVER_ERROR</td><td>There was an error processing your request.</td></tr></table>"
+              type: string
+      example:
+        status: failed
+        error:
+          status: 500
+          code: INTERNAL_SERVER_ERROR
+          message: There was an error processing your request
     PDFPropertiesExternal:
       title: External
       description: Params for PDF Properties Operation
@@ -678,89 +736,6 @@ components:
       required:
       - input
       additionalProperties: false
-    Satus500:
-      properties:
-        error:
-          type: object
-          properties:
-            code:
-              description: The string containing the code field. code is the Mnemonic returned by service in case of any failure. The below list is extendable and going forward the error codes can become more specific.
-              type: string
-            message:
-              description: "An English language string that contains more information about the error. \n\n<table><tr><th>code</th><th>message</th></tr><tr><td>INTERNAL_SERVER_ERROR</td><td>There was an error processing your request.</td></tr><tr><td>UNKNOWN</td><td>Unknown error.</td></tr></table>"
-              type: string
-      example:
-        error:
-          code: INTERNAL_SERVER_ERROR
-          message: There was an error processing your request.
-    '400':
-      properties:
-        error:
-          type: object
-          properties:
-            code:
-              description: The string containing the code field. code is the Mnemonic returned by service in case of any failure. The below list is extendable and going forward the error codes can become more specific.
-              type: string
-            message:
-              description: "An English language string that contains more information about the error. \n\n<table><tr><th>code</th><th>message</th></tr><tr><td>BAD_REQUEST</td><td>Bad Request.</td></tr></table>"
-              type: string
-      example:
-        error:
-          code: BAD_REQUEST
-          message: Bad Request.
-    '404':
-      properties:
-        error:
-          type: object
-          properties:
-            code:
-              description: The string containing the code field. code is the Mnemonic returned by service in case of any failure. The below list is extendable and going forward the error codes can become more specific.
-              type: string
-            message:
-              description: "An English language string that contains more information about the error. \n\n<table><tr><th>code</th><th>message</th></tr><tr><td>NOT_FOUND</td><td>Asset not found.</td></tr></table>"
-              type: string
-      example:
-        error:
-          code: NOT_FOUND
-          message: Asset not found.
-    inprogress:
-      description: Response in case of 'in progress' status
-      type: object
-      properties:
-        status:
-          description: Job Status
-          type: string
-          enum:
-          - in progress
-      example:
-        status: in progress
-    failed:
-      description: Response in case of 'failed' status
-      type: object
-      properties:
-        status:
-          description: Job Status
-          type: string
-          enum:
-          - failed
-        error:
-          type: object
-          properties:
-            status:
-              description: Http status code returned by the service
-              type: integer
-            code:
-              description: The string containing the code field. code is the Mnemonic returned by service in case of any failure. The below list is extendable and going forward the error codes can become more specific.
-              type: string
-            message:
-              description: "An English language string that contains more information about the error. \n\n<table><tr><th>status</th><th>code</th><th>message</th></tr><tr><td>400</td><td>CORRUPT_DOCUMENT</td><td>For $(format) mime-type The input file appears to be corrupted and cannot be processed.</td></tr><tr><td>400</td><td>PASSWORD_PROTECTED</td><td>Source file is protected and cannot be processed.</td></tr><tr><td>500</td><td>INTERNAL_SERVER_ERROR</td><td>There was an error processing your request.</td></tr></table>"
-              type: string
-      example:
-        status: failed
-        error:
-          status: 500
-          code: INTERNAL_SERVER_ERROR
-          message: There was an error processing your request
     '429':
       properties:
         error:
@@ -776,7 +751,7 @@ components:
         error:
           code: TOO_MANY_REQUESTS
           message: Too Many Requests.
-    Satus404:
+    '500':
       properties:
         error:
           type: object
@@ -785,12 +760,41 @@ components:
               description: The string containing the code field. code is the Mnemonic returned by service in case of any failure. The below list is extendable and going forward the error codes can become more specific.
               type: string
             message:
-              description: "An English language string that contains more information about the error.  \n\n<table><tr><th>code</th><th>message</th></tr><tr><td>NOT_FOUND</td><td>Job not found.</td></tr></table>"
+              description: "An English language string that contains more information about the error.  \n\n<table><tr><th>code</th><th>message</th></tr><tr><td>INTERNAL_SERVER_ERROR</td><td>There was an error processing your request.</td></tr><tr><td>UNKNOWN</td><td>Unknown error.</td></tr></table>"
               type: string
       example:
         error:
-          code: NOT_FOUND
-          message: Job not found.
+          code: INTERNAL_SERVER_ERROR
+          message: There was an error processing your request.
+    notifiers:
+      description: Specifies the notifiers to be invoked on the completion of job. To know more about notifiers, please see the <a href="https://developer.adobe.com/document-services/docs/overview/pdf-services-api/howtos/webhook-notification/">documentation</a>.
+      type: array
+      items:
+        properties:
+          type:
+            description: Specifies the notifier type. Currently supported value is "CALLBACK" only.
+            type: string
+          data:
+            description: Specifies the data needed to invoke the notifier.
+            type: object
+        required:
+        - type
+        - data
+    '401':
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              description: The string containing the code field. code is the Mnemonic returned by service in case of any failure. The below list is extendable and going forward the error codes can become more specific.
+              type: string
+            message:
+              description: "An English language string that contains more information about the error.  \n\n<table><tr><th>code</th><th>message</th></tr><tr><td>UNAUTHORIZED</td><td>Not authorised to perform the operation.</td></tr></table>"
+              type: string
+      example:
+        error:
+          code: UNAUTHORIZED
+          message: Not authorised to perform the operation.
     Satus429:
       properties:
         error_code:
@@ -802,6 +806,17 @@ components:
       example:
         error_code: '429050'
         message: Too many requests
+    inprogress:
+      description: Response in case of 'in progress' status
+      type: object
+      properties:
+        status:
+          description: Job Status
+          type: string
+          enum:
+          - in progress
+      example:
+        status: in progress
     ExternalStorageInput:
       title: Input
       description: Params representing input object.
@@ -820,21 +835,20 @@ components:
           - BLOB
       required:
       - uri
-    '401':
+    PDFPropertiesRequest:
+      type: object
+      required:
+      - assetID
       properties:
-        error:
-          type: object
-          properties:
-            code:
-              description: The string containing the code field. code is the Mnemonic returned by service in case of any failure. The below list is extendable and going forward the error codes can become more specific.
-              type: string
-            message:
-              description: "An English language string that contains more information about the error.  \n\n<table><tr><th>code</th><th>message</th></tr><tr><td>UNAUTHORIZED</td><td>Not authorised to perform the operation.</td></tr></table>"
-              type: string
-      example:
-        error:
-          code: UNAUTHORIZED
-          message: Not authorised to perform the operation.
+        assetID:
+          type: string
+          description: The asset ID of the PDF to inspect.
+          example: '500123'
+        includePageLevelProperties:
+          type: boolean
+          description: Whether to include page-level property details.
+          default: false
+          example: true
     ErrorResponse:
       type: object
       description: Error response returned when a request fails.
@@ -862,20 +876,6 @@ components:
               - 404
               - 429
           example: example_value
-    PDFPropertiesRequest:
-      type: object
-      required:
-      - assetID
-      properties:
-        assetID:
-          type: string
-          description: The asset ID of the PDF to inspect.
-          example: '500123'
-        includePageLevelProperties:
-          type: boolean
-          description: Whether to include page-level property details.
-          default: false
-          example: true
     JobStatusResponse:
       type: object
       description: The status and result of an asynchronous PDF operation job.
@@ -924,6 +924,11 @@ components:
               type: integer
               description: The HTTP status code associated with the error.
           example: example_value
+  headers:
+    x-request-id:
+      description: A unique identifier for the request, useful for debugging and support.
+      schema:
+        type: string
   responses:
     Unauthorized:
       description: Authentication failed. The access token is missing, expired, or invalid.
@@ -943,11 +948,6 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-  headers:
-    x-request-id:
-      description: A unique identifier for the request, useful for debugging and support.
-      schema:
-        type: string
   securitySchemes:
     bearerAuth:
       type: http

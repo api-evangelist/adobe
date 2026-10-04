@@ -333,6 +333,15 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        reason:
+          type: string
+        message:
+          type: string
+      xml:
+        name: error
     BookmarksPayload:
       type: object
       properties:
@@ -340,15 +349,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/DbLibraryBookmark'
-    DbLibraryBookmarks:
-      type: object
-      properties:
-        bookmarks:
-          type: array
-          items:
-            $ref: '#/components/schemas/DbLibraryBookmark'
-        _fc:
-          type: boolean
     DbLibraryBookmark:
       type: object
       required:
@@ -384,12 +384,12 @@ components:
           description: This parameter will be ignored, populated with the timestamp upon creation and immutable after
         _fc:
           type: boolean
-    ErrorResponse:
+    DbLibraryBookmarks:
       type: object
       properties:
-        reason:
-          type: string
-        message:
-          type: string
-      xml:
-        name: error
+        bookmarks:
+          type: array
+          items:
+            $ref: '#/components/schemas/DbLibraryBookmark'
+        _fc:
+          type: boolean
