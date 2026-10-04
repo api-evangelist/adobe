@@ -42,6 +42,7 @@ tags:
 - Marketing
 - PDF
 - Work Management
+- Image Generation
 tags_raw:
 - E-Signatures
 - Adobe
@@ -57,6 +58,7 @@ tags_raw:
 - Marketing
 - PDF
 - Work Management
+- Image Generation
 description: Adobe provides APIs and developer resources for its creative, document, and experience cloud
   platforms. Developers can integrate with PDF services, Creative Cloud, generative AI (Firefly), analytics,
   e-commerce, e-signatures, and many other Adobe products and services.
