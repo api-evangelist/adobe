@@ -1,4 +1,4 @@
-generated: '2026-09-16'
+generated: '2026-09-23'
 method: generated
 source: openapi/adobe-accessibility-auto-tag-api-openapi.yml, openapi/adobe-assets-api-openapi.yml,
   openapi/adobe-combine-pdf-api-openapi.yml, openapi/adobe-composites-api-openapi.yml, openapi/adobe-compress-pdf-api-openapi.yml,
@@ -23,11 +23,11 @@ description: Recommended x-agentic-access execution contracts, classified heuris
 summary:
   operations: 96
   by_action_class:
-    acting: 60
-    connected: 36
+    acting: 59
+    connected: 37
   by_consequence:
-    write: 59
-    read: 36
+    write: 58
+    read: 37
     physical: 1
   human_in_the_loop_required: 0
 operations:
@@ -695,18 +695,12 @@ operations:
   method: post
   operationId: search
   x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
+    action-class: connected
+    consequence: read
+    subject: optional
     token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
+      max-ttl: 3600
+    audit: none
 - path: /api/v1/libraries/bookmarks
   method: get
   operationId: getBookmarks

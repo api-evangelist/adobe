@@ -183,3 +183,56 @@ plans:
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
+x-canonical:
+  generated: '2026-10-08'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models:
+  - free
+  - metered
+  - subscription
+  units:
+  - credit
+  - period
+  - seat
+  - transaction
+  plans:
+  - name: PDF Services API Free Tier
+    access: free
+    model: free
+    model_how: derived
+    units:
+    - transaction
+    periods:
+    - month
+  - name: Creative Cloud Subscription
+    access: other
+    model: subscription
+    model_how: stated
+    units:
+    - seat
+    periods:
+    - month
+  - name: Document Services API (PDF Services / Acrobat Sign)
+    access: other
+    model: metered
+    model_how: stated
+    units:
+    - transaction
+    periods:
+    - per-use
+  - name: Firefly Services
+    access: other
+    model: metered
+    model_how: stated
+    units:
+    - credit
+    periods:
+    - per-use
+  - name: Experience Cloud (Enterprise)
+    access: enterprise
+    model: subscription
+    model_how: derived
+    units:
+    - period
+    periods:
+    - month

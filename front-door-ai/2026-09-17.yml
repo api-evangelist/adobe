@@ -12,9 +12,12 @@ front_door_ai:
   shares_host_with:
   - adobe-analytics
   - adobe-campaign
+  - adobe-creative-cloud
   - adobe-creative-suite
   - adobe-experience-cloud
+  - adobe-illustrator
   - adobe-launch
+  - adobe-photoshop
   - adobe-premiere
   - adobe-sign
   - adobe-suite
@@ -23,8 +26,11 @@ front_door_ai:
   - mxml
   - photoshop
   inherited_from: null
+  alias_of: null
   verdict: scored
   score: 4
+  band: 3
+  band_label: light
   host_score: 4
   density: 4.15
   words: 963

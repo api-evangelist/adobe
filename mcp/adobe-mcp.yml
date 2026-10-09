@@ -147,3 +147,14 @@ related:
     bootstrap skill in adobe/skills writes it.
 - type: AgentSkill
   url: skills/_index.yml
+rfc9728:
+  endpoint: https://mcp.adobeaemcloud.com/adobe/mcp/content
+  metadata_url: https://mcp.adobeaemcloud.com/.well-known/oauth-protected-resource/adobe/mcp/content
+  discovered_via: WWW-Authenticate resource_metadata on an anonymous POST initialize
+  fetched: '2026-09-25'
+  http_status: 200
+  content_type: application/json
+  document:
+    resource: https://mcp.adobeaemcloud.com/adobe/mcp/content
+    authorization_servers:
+    - https://oauth.adobeaemcloud.com
