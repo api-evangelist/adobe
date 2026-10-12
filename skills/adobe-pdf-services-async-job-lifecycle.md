@@ -1,5 +1,5 @@
 ---
-name: Run an Adobe PDF Services job end to end
+name: adobe-pdf-services-async-job-lifecycle
 description: >-
   Authenticate against Adobe IMS, upload a source document to a presigned URL, submit an
   asynchronous PDF operation, poll the job to completion, download the result, and clean up the

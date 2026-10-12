@@ -1,0 +1,322 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/adobe/main/json-schema/adobe-electronic-seal-external-schema.json",
+  "title": "External",
+  "description": "Params to specify the options required for applying digital seal for external storage.",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/adobe-pdf-electronic-seal-api-openapi.yml#/components/schemas/ElectronicSealExternal",
+  "type": "object",
+  "required": [
+    "inputs",
+    "params"
+  ],
+  "properties": {
+    "inputs": {
+      "title": "inputs",
+      "description": "Electronic seal operation object containing input doc and seal image uris respectively.",
+      "type": "object",
+      "properties": {
+        "document": {
+          "title": "document",
+          "description": "Params representing input document object.",
+          "type": "object",
+          "properties": {
+            "uri": {
+              "description": "Input file Download Signed URI.",
+              "type": "string"
+            },
+            "storage": {
+              "description": "Specifies the type of the external storage",
+              "type": "string",
+              "enum": [
+                "S3",
+                "SHAREPOINT",
+                "DROPBOX",
+                "BLOB"
+              ]
+            }
+          },
+          "required": [
+            "uri"
+          ]
+        },
+        "sealImage": {
+          "title": "sealImage",
+          "description": "Params representing input seal image object.",
+          "type": "object",
+          "properties": {
+            "uri": {
+              "description": "Input file Download Signed URI.",
+              "type": "string"
+            },
+            "storage": {
+              "description": "Specifies the type of the external storage",
+              "type": "string",
+              "enum": [
+                "S3",
+                "SHAREPOINT",
+                "DROPBOX",
+                "BLOB"
+              ]
+            }
+          },
+          "required": [
+            "uri"
+          ]
+        }
+      },
+      "required": [
+        "document"
+      ]
+    },
+    "output": {
+      "$ref": "#/$defs/ExternalStorageOutput"
+    },
+    "params": {
+      "description": "Params for Electronic Seal processing",
+      "type": "object",
+      "properties": {
+        "sealOptions": {
+          "$ref": "#/$defs/sealOptions"
+        }
+      },
+      "required": [
+        "sealOptions"
+      ]
+    },
+    "notifiers": {
+      "$ref": "#/$defs/notifiers"
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "ExternalStorageOutput": {
+      "title": "Output",
+      "description": "Params representing output object",
+      "type": "object",
+      "properties": {
+        "uri": {
+          "description": "Output file Upload Signed URI.",
+          "type": "string"
+        },
+        "storage": {
+          "description": "Specifies the type of the external storage",
+          "type": "string",
+          "enum": [
+            "S3",
+            "SHAREPOINT",
+            "DROPBOX",
+            "BLOB"
+          ]
+        }
+      }
+    },
+    "notifiers": {
+      "description": "Specifies the notifiers to be invoked on the completion of job. To know more about notifiers, please see the <a href=\"https://developer.adobe.com/document-services/docs/overview/pdf-services-api/howtos/webhook-notification/\">documentation</a>.",
+      "type": "array",
+      "items": {
+        "properties": {
+          "type": {
+            "description": "Specifies the notifier type. Currently supported value is \"CALLBACK\" only.",
+            "type": "string"
+          },
+          "data": {
+            "description": "Specifies the data needed to invoke the notifier.",
+            "type": "object"
+          }
+        },
+        "required": [
+          "type",
+          "data"
+        ]
+      }
+    },
+    "sealOptions": {
+      "title": "sealOptions",
+      "description": "Specifies all the sealing parameters.",
+      "type": "object",
+      "required": [
+        "cscCredentialOptions",
+        "sealFieldOptions"
+      ],
+      "properties": {
+        "signatureFormat": {
+          "type": "string",
+          "default": "PKCS7",
+          "description": "Specifies a supported digital signature format. For supported signature formats, please refer <a href = \"https://developer.adobe.com/document-services/docs/overview/pdf-electronic-seal-api/howtos/electronic-seal-api/#signature-format-signatureformat\">documentation</a>.",
+          "enum": [
+            "PADES",
+            "PKCS7"
+          ]
+        },
+        "documentLevelPermission": {
+          "type": "string",
+          "default": "FORM_FILLING",
+          "description": "Specifies the document level permissions for changes allowed after sealing. For more details, please refer <a href = \"https://developer-stage.adobe.com/document-services/docs/overview/pdf-electronic-seal-api/howtos/electronic-seal-api/#document-level-permission-documentlevelpermission\">documentation</a>.",
+          "enum": [
+            "NO_CHANGES_ALLOWED",
+            "FORM_FILLING",
+            "FORM_FILLING_AND_ANNOTATIONS"
+          ]
+        },
+        "cscCredentialOptions": {
+          "type": "object",
+          "description": "Specifies the parameters that encapsulates the signer's certificate credential. For more information, please see the <a href=\"https://developer.adobe.com/document-services/docs/overview/pdf-electronic-seal-api/howtos/electronic-seal-api/#tsp-credential-information-csccredentialoptions--required\">documentation</a>.",
+          "required": [
+            "providerName",
+            "credentialId",
+            "authorizationContext",
+            "credentialAuthParameters"
+          ],
+          "properties": {
+            "providerName": {
+              "type": "string",
+              "description": "Specifies the name of the Trust Service Provider. For the list of supported TSPs, please refer <a href=\"https://developer.adobe.com/document-services/docs/overview/pdf-electronic-seal-api/#supported-trust-service-providers\">documentation</a>."
+            },
+            "credentialId": {
+              "type": "string",
+              "description": "Specifies the credential ID stored with the TSP."
+            },
+            "authorizationContext": {
+              "type": "object",
+              "description": "Specifies the service authorization data required to communicate with the TSP.",
+              "required": [
+                "accessToken"
+              ],
+              "properties": {
+                "tokenType": {
+                  "type": "string",
+                  "description": "Specifies the type of service access token used to authorize access to the CSC provider hosted APIs.",
+                  "default": "Bearer"
+                },
+                "accessToken": {
+                  "type": "string",
+                  "description": "Specifies the service access token used to authorize access to the CSC provider hosted APIs."
+                }
+              }
+            },
+            "credentialAuthParameters": {
+              "type": "object",
+              "description": "Specifies the credentials authorization information required to authorize the access to their certificate.",
+              "required": [
+                "pin"
+              ],
+              "properties": {
+                "pin": {
+                  "type": "string",
+                  "description": "Specifies the PIN associated with credential ID."
+                }
+              }
+            }
+          }
+        },
+        "tsaOptions": {
+          "type": "object",
+          "description": "Specifies the TSA details to be used for timestamping as per <a href=\"https://www.ietf.org/rfc/rfc3161.txt\">RFC3161</a> standards.",
+          "properties": {
+            "url": {
+              "type": "string",
+              "description": "Specifies the TSA URL to get timestamp token."
+            },
+            "credentialAuthParameters": {
+              "type": "object",
+              "required": [
+                "username",
+                "password"
+              ],
+              "properties": {
+                "username": {
+                  "type": "string",
+                  "description": "Specifies the username required to get the timestamp token."
+                },
+                "password": {
+                  "type": "string",
+                  "description": "Specifies the password required to get the timestamp token."
+                }
+              },
+              "description": "Specifies the credentials information required to get timestamp token using TSA URL."
+            }
+          },
+          "required": [
+            "url"
+          ]
+        },
+        "sealFieldOptions": {
+          "type": "object",
+          "description": "Specifies the parameters required to create a new signature field or use an existing field. For more details, please refer <a href= \"https://developer.adobe.com/document-services/docs/overview/pdf-electronic-seal-api/howtos/electronic-seal-api/#seal-field-parameters---sealfieldoptions--required\">documentation</a>.",
+          "required": [
+            "fieldName"
+          ],
+          "properties": {
+            "visible": {
+              "type": "boolean",
+              "description": "Specified whether the seal field is visible or not.",
+              "default": true
+            },
+            "location": {
+              "type": "object",
+              "description": "Specifies the coordinates of the signature appearance's bounding box in default PDF user space units. The location is only required for visible signatures if the signature field does not already exist in the PDF document.If location is provided along with the existing signature field then it is ignored.",
+              "required": [
+                "top",
+                "left",
+                "right",
+                "bottom"
+              ],
+              "properties": {
+                "top": {
+                  "type": "integer",
+                  "description": "Specifies the top-most y-coordinate of the seal appearance's bounding box in default PDF user space units."
+                },
+                "left": {
+                  "type": "integer",
+                  "description": "Specifies the left-most x-coordinate of the seal appearance's bounding box in default PDF user space units."
+                },
+                "right": {
+                  "type": "integer",
+                  "description": "Specifies the right-most x-coordinate of the seal appearance's bounding box in default PDF user space units."
+                },
+                "bottom": {
+                  "type": "integer",
+                  "description": "Specifies the bottom-most y-coordinate of the seal appearance's bounding box in default PDF user space units."
+                }
+              }
+            },
+            "fieldName": {
+              "type": "string",
+              "description": "The signature field's name. This must be a non-empty string. If signature field with this field name already exist, that field will be used. If it does not exist, a signature field with this field name will be created."
+            },
+            "pageNumber": {
+              "type": "integer",
+              "description": "Specifies the page number to which the signature field should be attached. Page numbers are 1-based. The page number is only required for visible signatures if the signature field does not already exist in the pdf document. If page number is provided along with the existing signature field then the page number should be same on which signature field is present in the document, else an error is thrown."
+            }
+          }
+        },
+        "sealAppearanceOptions": {
+          "type": "object",
+          "description": "Specifies signature field appearance parameters. For more details, please refer <a href= \"https://developer.adobe.com/document-services/docs/overview/pdf-electronic-seal-api/howtos/electronic-seal-api/#seal-appearance-parameters-sealappearanceoptions\">documentation</a>.",
+          "default": {
+            "displayOptions": [
+              "NAME",
+              "LABELS"
+            ]
+          },
+          "properties": {
+            "displayOptions": {
+              "type": "array",
+              "description": "Specifies the information to display in the signature. These are an enum set of display items: NAME, DATE, DISTINGUISHED_NAME, LABELS and SEAL_IMAGE.",
+              "items": {
+                "type": "string"
+              },
+              "default": [
+                "NAME",
+                "LABELS"
+              ]
+            }
+          }
+        }
+      }
+    }
+  }
+}

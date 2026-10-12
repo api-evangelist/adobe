@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/adobe/main/json-schema/adobe-set-form-data-internal-schema.json",
+  "title": "Internal",
+  "description": "Parameter for Import PDF Form Data operation.",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/adobe-import-pdf-form-data-api-openapi.yml#/components/schemas/SetFormDataInternal",
+  "type": "object",
+  "required": [
+    "assetID",
+    "jsonFormFieldsData"
+  ],
+  "properties": {
+    "assetID": {
+      "description": "A file assetID. For more details <a href = 'https://developer.adobe.com/document-services/docs/apis/#tag/Assets'> click here </a>.",
+      "type": "string"
+    },
+    "jsonFormFieldsData": {
+      "description": "A JSON object containing the form data for the PDF. Each key in this object should correspond to a field name in the PDF form (including nested or hierarchical field names), and the associated value should be the data to insert into that field. For example:\n\n```json\n{\n  \"name\": {\n    \"first\": \"John\",\n    \"last\": \"Doe\"\n  },\n  \"dob\": \"01/14/2025\",\n  \"address\": {\n    \"city\": \"Springfield\",\n    \"state\": \"IL\"\n  }\n}\n```\n\nThis JSON corresponds to the following PDF field names:\n\n- name.first\n- name.last\n- dob\n- address.city\n- address.state\n\nThe API will use these key-value pairs to populate the respective fields in the PDF form.",
+      "type": "object"
+    },
+    "notifiers": {
+      "$ref": "#/$defs/notifiers"
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "notifiers": {
+      "description": "Specifies the notifiers to be invoked on the completion of job. To know more about notifiers, please see the <a href=\"https://developer.adobe.com/document-services/docs/overview/pdf-services-api/howtos/webhook-notification/\">documentation</a>.",
+      "type": "array",
+      "items": {
+        "properties": {
+          "type": {
+            "description": "Specifies the notifier type. Currently supported value is \"CALLBACK\" only.",
+            "type": "string"
+          },
+          "data": {
+            "description": "Specifies the data needed to invoke the notifier.",
+            "type": "object"
+          }
+        },
+        "required": [
+          "type",
+          "data"
+        ]
+      }
+    }
+  }
+}

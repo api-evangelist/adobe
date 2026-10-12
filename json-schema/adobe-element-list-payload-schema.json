@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/adobe/main/json-schema/adobe-element-list-payload-schema.json",
+  "title": "ElementListPayload",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/adobe-library-service-api-openapi.yml#/components/schemas/ElementListPayload",
+  "type": "object",
+  "required": [
+    "elements"
+  ],
+  "properties": {
+    "elements": {
+      "type": "array",
+      "description": "Array of elements to be copied to the targeted library",
+      "readOnly": true,
+      "items": {
+        "$ref": "#/$defs/ElementListPayloadElement"
+      }
+    },
+    "id": {
+      "type": "string",
+      "description": "URN of the source library, not required if copying elements within the same library",
+      "readOnly": true
+    },
+    "elementIds": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "$defs": {
+    "ElementListPayloadElement": {
+      "type": "object",
+      "required": [
+        "id"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Id of element"
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of element"
+        },
+        "description": {
+          "type": "string",
+          "description": "Description of element. If this is set to an empty string, the current description will be deleted."
+        }
+      }
+    }
+  }
+}

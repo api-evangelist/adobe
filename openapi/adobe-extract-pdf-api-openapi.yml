@@ -2,7 +2,8 @@ openapi: 3.2.0
 info:
   title: Adobe Extract PDF API
   version: '1.0'
-  description: 'Operations tagged Extract PDF across 2 of this provider''s published API definitions: adobe-pdf-services-api-openapi-official.json, adobe-pdf-services-api-openapi.yml. Each path carries the servers of the definition it was published in.'
+  description: 'Operations tagged Extract PDF across 2 of this provider''s published API definitions: adobe-pdf-services-api-openapi-official.json,
+    adobe-pdf-services-api-openapi.yml. Each path carries the servers of the definition it was published in.'
 servers:
 - url: https://pdf-services-ue1.adobe.io
 - url: https://pdf-services-ew1.adobe.io
@@ -17,7 +18,8 @@ paths:
       tags:
       - Extract PDF
       summary: Extract content from PDF documents and output it in a structured JSON format…
-      description: 'Extract PDF Content, Tables content and Tables/Figures renditions from a PDF document. Various available options are: (mutually exclusive)
+      description: 'Extract PDF Content, Tables content and Tables/Figures renditions from a PDF document. Various available options are: (mutually
+        exclusive)
 
 
         1. Extract text with structure (headings, paragraphs, lists and footnotes)
@@ -37,7 +39,8 @@ paths:
       parameters:
       - name: Authorization
         in: header
-        description: Bearer + Token (<a href="https://developer.adobe.com/document-services/docs/overview/pdf-services-api/gettingstarted/#step-1--getting-the-access-token">Learn more</a> about getting the access token)
+        description: Bearer + Token (<a href="https://developer.adobe.com/document-services/docs/overview/pdf-services-api/gettingstarted/#step-1--getting-the-access-token">Learn
+          more</a> about getting the access token)
         required: true
         schema:
           type: string
@@ -65,7 +68,8 @@ paths:
               schema:
                 type: string
             x-request-id:
-              description: A unique value to identify this request. If x-request-id is specified in the POST request, this value will be the same as the input.
+              description: A unique value to identify this request. If x-request-id is specified in the POST request, this value will be the same
+                as the input.
               schema:
                 type: string
         '400':
@@ -76,7 +80,8 @@ paths:
               schema:
                 type: string
             x-request-id:
-              description: A unique value to identify this request. If x-request-id is specified in the POST request, this value will be the same as the input.
+              description: A unique value to identify this request. If x-request-id is specified in the POST request, this value will be the same
+                as the input.
               schema:
                 type: string
           content:
@@ -91,7 +96,8 @@ paths:
               schema:
                 type: string
             x-request-id:
-              description: A unique value to identify this request. If x-request-id is specified in the POST request, this value will be the same as the input.
+              description: A unique value to identify this request. If x-request-id is specified in the POST request, this value will be the same
+                as the input.
               schema:
                 type: string
           content:
@@ -110,7 +116,8 @@ paths:
               schema:
                 type: string
             x-request-id:
-              description: A unique value to identify this request. If x-request-id is specified in the POST request, this value will be the same as the input.
+              description: A unique value to identify this request. If x-request-id is specified in the POST request, this value will be the same
+                as the input.
               schema:
                 type: string
           content:
@@ -125,7 +132,8 @@ paths:
               schema:
                 type: string
             x-request-id:
-              description: A unique value to identify this request. If x-request-id is specified in the POST request, this value will be the same as the input.
+              description: A unique value to identify this request. If x-request-id is specified in the POST request, this value will be the same
+                as the input.
               schema:
                 type: string
           content:
@@ -140,7 +148,8 @@ paths:
               schema:
                 type: string
             x-request-id:
-              description: A unique value to identify this request. If x-request-id is specified in the POST request, this value will be the same as the input.
+              description: A unique value to identify this request. If x-request-id is specified in the POST request, this value will be the same
+                as the input.
               schema:
                 type: string
           content:
@@ -166,7 +175,8 @@ paths:
           type: string
       - name: Authorization
         in: header
-        description: Bearer + Token (<a href="https://developer.adobe.com/document-services/docs/overview/pdf-services-api/gettingstarted/#step-1--getting-the-access-token">Learn more</a> about getting the access token)
+        description: Bearer + Token (<a href="https://developer.adobe.com/document-services/docs/overview/pdf-services-api/gettingstarted/#step-1--getting-the-access-token">Learn
+          more</a> about getting the access token)
         required: true
         schema:
           type: string
@@ -185,7 +195,8 @@ paths:
               schema:
                 type: string
             x-request-id:
-              description: A unique value to identify this request. If x-request-id is specified in the POST request, this value will be the same as the input.
+              description: A unique value to identify this request. If x-request-id is specified in the POST request, this value will be the same
+                as the input.
               schema:
                 type: string
           content:
@@ -200,7 +211,8 @@ paths:
               schema:
                 type: string
             x-request-id:
-              description: A unique value to identify this request. If x-request-id is specified in the POST request, this value will be the same as the input.
+              description: A unique value to identify this request. If x-request-id is specified in the POST request, this value will be the same
+                as the input.
               schema:
                 type: string
           content:
@@ -215,7 +227,8 @@ paths:
               schema:
                 type: string
             x-request-id:
-              description: A unique value to identify this request. If x-request-id is specified in the POST request, this value will be the same as the input.
+              description: A unique value to identify this request. If x-request-id is specified in the POST request, this value will be the same
+                as the input.
               schema:
                 type: string
           content:
@@ -234,7 +247,8 @@ paths:
               schema:
                 type: string
             x-request-id:
-              description: A unique value to identify this request. If x-request-id is specified in the POST request, this value will be the same as the input.
+              description: A unique value to identify this request. If x-request-id is specified in the POST request, this value will be the same
+                as the input.
               schema:
                 type: string
           content:
@@ -249,7 +263,8 @@ paths:
               schema:
                 type: string
             x-request-id:
-              description: A unique value to identify this request. If x-request-id is specified in the POST request, this value will be the same as the input.
+              description: A unique value to identify this request. If x-request-id is specified in the POST request, this value will be the same
+                as the input.
               schema:
                 type: string
           content:
@@ -264,7 +279,8 @@ paths:
               schema:
                 type: string
             x-request-id:
-              description: A unique value to identify this request. If x-request-id is specified in the POST request, this value will be the same as the input.
+              description: A unique value to identify this request. If x-request-id is specified in the POST request, this value will be the same
+                as the input.
               schema:
                 type: string
           content:
@@ -282,10 +298,14 @@ components:
           type: object
           properties:
             code:
-              description: The string containing the code field. code is the Mnemonic returned by service in case of any failure. The below list is extendable and going forward the error codes can become more specific.
+              description: The string containing the code field. code is the Mnemonic returned by service in case of any failure. The below list
+                is extendable and going forward the error codes can become more specific.
               type: string
             message:
-              description: "An English language string that contains more information about the error.  \n\n<table><tr><th>code</th><th>message</th></tr><tr><td>TOO_MANY_REQUESTS</td><td>Too Many Requests.</td></tr><tr><td>INSUFFICIENT_QUOTA</td><td>Either Quota for this operation is not available or Free trial quota is exhausted. Please visit (www.adobe.com/go/pdftoolsapi_home) to start using free trial quota or (www.adobe.com/go/pdftoolsapi_err_quota) to upgrade to paid credentials.</td></tr></table>"
+              description: "An English language string that contains more information about the error.  \n\n<table><tr><th>code</th><th>message</th></tr><tr><td>TOO_MANY_REQUESTS</td><td>Too\
+                \ Many Requests.</td></tr><tr><td>INSUFFICIENT_QUOTA</td><td>Either Quota for this operation is not available or Free trial quota\
+                \ is exhausted. Please visit (www.adobe.com/go/pdftoolsapi_home) to start using free trial quota or (www.adobe.com/go/pdftoolsapi_err_quota)\
+                \ to upgrade to paid credentials.</td></tr></table>"
               type: string
       example:
         error:
@@ -342,10 +362,12 @@ components:
           type: object
           properties:
             code:
-              description: The string containing the code field. code is the Mnemonic returned by service in case of any failure. The below list is extendable and going forward the error codes can become more specific.
+              description: The string containing the code field. code is the Mnemonic returned by service in case of any failure. The below list
+                is extendable and going forward the error codes can become more specific.
               type: string
             message:
-              description: "An English language string that contains more information about the error. \n\n<table><tr><th>code</th><th>message</th></tr><tr><td>NOT_FOUND</td><td>Asset not found.</td></tr></table>"
+              description: "An English language string that contains more information about the error. \n\n<table><tr><th>code</th><th>message</th></tr><tr><td>NOT_FOUND</td><td>Asset\
+                \ not found.</td></tr></table>"
               type: string
       example:
         error:
@@ -357,10 +379,12 @@ components:
           type: object
           properties:
             code:
-              description: The string containing the code field. code is the Mnemonic returned by service in case of any failure. The below list is extendable and going forward the error codes can become more specific.
+              description: The string containing the code field. code is the Mnemonic returned by service in case of any failure. The below list
+                is extendable and going forward the error codes can become more specific.
               type: string
             message:
-              description: "An English language string that contains more information about the error.  \n\n<table><tr><th>code</th><th>message</th></tr><tr><td>NOT_FOUND</td><td>Job not found.</td></tr></table>"
+              description: "An English language string that contains more information about the error.  \n\n<table><tr><th>code</th><th>message</th></tr><tr><td>NOT_FOUND</td><td>Job\
+                \ not found.</td></tr></table>"
               type: string
       example:
         error:
@@ -372,10 +396,12 @@ components:
           type: object
           properties:
             code:
-              description: The string containing the code field. code is the Mnemonic returned by service in case of any failure. The below list is extendable and going forward the error codes can become more specific.
+              description: The string containing the code field. code is the Mnemonic returned by service in case of any failure. The below list
+                is extendable and going forward the error codes can become more specific.
               type: string
             message:
-              description: "An English language string that contains more information about the error. \n\n<table><tr><th>code</th><th>message</th></tr><tr><td>BAD_REQUEST</td><td>Bad Request.</td></tr></table>"
+              description: "An English language string that contains more information about the error. \n\n<table><tr><th>code</th><th>message</th></tr><tr><td>BAD_REQUEST</td><td>Bad\
+                \ Request.</td></tr></table>"
               type: string
       example:
         error:
@@ -387,10 +413,12 @@ components:
           type: object
           properties:
             code:
-              description: The string containing the code field. code is the Mnemonic returned by service in case of any failure. The below list is extendable and going forward the error codes can become more specific.
+              description: The string containing the code field. code is the Mnemonic returned by service in case of any failure. The below list
+                is extendable and going forward the error codes can become more specific.
               type: string
             message:
-              description: "An English language string that contains more information about the error.  \n\n<table><tr><th>code</th><th>message</th></tr><tr><td>UNAUTHORIZED</td><td>Not authorised to perform the operation.</td></tr></table>"
+              description: "An English language string that contains more information about the error.  \n\n<table><tr><th>code</th><th>message</th></tr><tr><td>UNAUTHORIZED</td><td>Not\
+                \ authorised to perform the operation.</td></tr></table>"
               type: string
       example:
         error:
@@ -412,10 +440,14 @@ components:
               description: Http status code returned by the service
               type: integer
             code:
-              description: The string containing the code field. code is the Mnemonic returned by service in case of any failure. The below list is extendable and going forward the error codes can become more specific.
+              description: The string containing the code field. code is the Mnemonic returned by service in case of any failure. The below list
+                is extendable and going forward the error codes can become more specific.
               type: string
             message:
-              description: "An English language string that contains more information about the error. \n\n<table><tr><th>status</th><th>code</th><th>message</th></tr><tr><td>400</td><td>CORRUPT_DOCUMENT</td><td>For $(format) mime-type The input file appears to be corrupted and cannot be processed.</td></tr><tr><td>400</td><td>PASSWORD_PROTECTED</td><td>Source file is protected and cannot be processed.</td></tr><tr><td>500</td><td>INTERNAL_SERVER_ERROR</td><td>There was an error processing your request.</td></tr></table>"
+              description: "An English language string that contains more information about the error. \n\n<table><tr><th>status</th><th>code</th><th>message</th></tr><tr><td>400</td><td>CORRUPT_DOCUMENT</td><td>For\
+                \ $(format) mime-type The input file appears to be corrupted and cannot be processed.</td></tr><tr><td>400</td><td>PASSWORD_PROTECTED</td><td>Source\
+                \ file is protected and cannot be processed.</td></tr><tr><td>500</td><td>INTERNAL_SERVER_ERROR</td><td>There was an error processing\
+                \ your request.</td></tr></table>"
               type: string
       example:
         status: failed
@@ -522,10 +554,12 @@ components:
           type: object
           properties:
             code:
-              description: The string containing the code field. code is the Mnemonic returned by service in case of any failure. The below list is extendable and going forward the error codes can become more specific.
+              description: The string containing the code field. code is the Mnemonic returned by service in case of any failure. The below list
+                is extendable and going forward the error codes can become more specific.
               type: string
             message:
-              description: "An English language string that contains more information about the error.  \n\n<table><tr><th>code</th><th>message</th></tr><tr><td>UNAUTHORIZED</td><td>Not authorised to perform the operation.</td></tr></table>"
+              description: "An English language string that contains more information about the error.  \n\n<table><tr><th>code</th><th>message</th></tr><tr><td>UNAUTHORIZED</td><td>Not\
+                \ authorised to perform the operation.</td></tr></table>"
               type: string
       example:
         error:
@@ -537,10 +571,12 @@ components:
           type: object
           properties:
             code:
-              description: The string containing the code field. code is the Mnemonic returned by service in case of any failure. The below list is extendable and going forward the error codes can become more specific.
+              description: The string containing the code field. code is the Mnemonic returned by service in case of any failure. The below list
+                is extendable and going forward the error codes can become more specific.
               type: string
             message:
-              description: "An English language string that contains more information about the error. \n\n<table><tr><th>code</th><th>message</th></tr><tr><td>INTERNAL_SERVER_ERROR</td><td>There was an error processing your request.</td></tr><tr><td>UNKNOWN</td><td>Unknown error.</td></tr></table>"
+              description: "An English language string that contains more information about the error. \n\n<table><tr><th>code</th><th>message</th></tr><tr><td>INTERNAL_SERVER_ERROR</td><td>There\
+                \ was an error processing your request.</td></tr><tr><td>UNKNOWN</td><td>Unknown error.</td></tr></table>"
               type: string
       example:
         error:
@@ -552,10 +588,12 @@ components:
           type: object
           properties:
             code:
-              description: The string containing the code field. code is the Mnemonic returned by service in case of any failure. The below list is extendable and going forward the error codes can become more specific.
+              description: The string containing the code field. code is the Mnemonic returned by service in case of any failure. The below list
+                is extendable and going forward the error codes can become more specific.
               type: string
             message:
-              description: "An English language string that contains more information about the error.  \n\n<table><tr><th>code</th><th>message</th></tr><tr><td>INVALID_JOB_ID</td><td>Invalid job id present in path param.</td></tr></table>"
+              description: "An English language string that contains more information about the error.  \n\n<table><tr><th>code</th><th>message</th></tr><tr><td>INVALID_JOB_ID</td><td>Invalid\
+                \ job id present in path param.</td></tr></table>"
               type: string
       example:
         error:
@@ -572,10 +610,12 @@ components:
           type: object
           properties:
             code:
-              description: The string containing the code field. code is the Mnemonic returned by service in case of any failure. The below list is extendable and going forward the error codes can become more specific.
+              description: The string containing the code field. code is the Mnemonic returned by service in case of any failure. The below list
+                is extendable and going forward the error codes can become more specific.
               type: string
             message:
-              description: "An English language string that contains more information about the error.  \n\n<table><tr><th>code</th><th>message</th></tr><tr><td>INTERNAL_SERVER_ERROR</td><td>There was an error processing your request.</td></tr><tr><td>UNKNOWN</td><td>Unknown error.</td></tr></table>"
+              description: "An English language string that contains more information about the error.  \n\n<table><tr><th>code</th><th>message</th></tr><tr><td>INTERNAL_SERVER_ERROR</td><td>There\
+                \ was an error processing your request.</td></tr><tr><td>UNKNOWN</td><td>Unknown error.</td></tr></table>"
               type: string
       example:
         error:
@@ -584,10 +624,12 @@ components:
     Satus429:
       properties:
         error_code:
-          description: 'The string containing the code field. code is the Mnemonic returned by service in case of any failure. The below list is extendable and going forward the error codes can become more specific. '
+          description: 'The string containing the code field. code is the Mnemonic returned by service in case of any failure. The below list
+            is extendable and going forward the error codes can become more specific. '
           type: string
         message:
-          description: "An English language string that contains more information about the error. \n\n<table><tr><th>code</th><th>message</th></tr><tr><td>429001</td><td>Service usage limit reached</td></tr><tr><td>429002</td><td>Developer key usage limit reached</td></tr><tr><td>429050</td><td>Too many requests</td></tr></table>"
+          description: "An English language string that contains more information about the error. \n\n<table><tr><th>code</th><th>message</th></tr><tr><td>429001</td><td>Service\
+            \ usage limit reached</td></tr><tr><td>429002</td><td>Developer key usage limit reached</td></tr><tr><td>429050</td><td>Too many requests</td></tr></table>"
           type: string
       example:
         error_code: '429050'
@@ -604,7 +646,8 @@ components:
           - done
         content:
           type: object
-          description: Asset of json file containig extracted content of pdf file. For more details <a href = 'https://developer.adobe.com/document-services/docs/apis/#tag/Assets'> click here </a>.
+          description: Asset of json file containig extracted content of pdf file. For more details <a href = 'https://developer.adobe.com/document-services/docs/apis/#tag/Assets'>
+            click here </a>.
           properties:
             metadata:
               type: object
@@ -626,7 +669,8 @@ components:
               type: string
         resource:
           type: object
-          description: Asset of zip file containg generated resources from extract operation. For more details <a href = 'https://developer.adobe.com/document-services/docs/apis/#tag/Assets'> click here </a>.
+          description: Asset of zip file containg generated resources from extract operation. For more details <a href = 'https://developer.adobe.com/document-services/docs/apis/#tag/Assets'>
+            click here </a>.
           properties:
             metadata:
               type: object
@@ -668,7 +712,8 @@ components:
       - assetID
       properties:
         assetID:
-          description: A file assetID. For more details <a href = 'https://developer.adobe.com/document-services/docs/apis/#tag/Assets'> click here </a>.
+          description: A file assetID. For more details <a href = 'https://developer.adobe.com/document-services/docs/apis/#tag/Assets'> click
+            here </a>.
           type: string
         getCharBounds:
           description: Extract bounding boxes for characters present in text blocks(paragraphs, list, headings)
@@ -874,6 +919,11 @@ components:
               type: integer
               description: The HTTP status code associated with the error.
           example: example_value
+    ExtractPDFDoneExternal:
+      type: object
+      description: Referenced by this document but never defined in it. API Evangelist added this empty placeholder so the document resolves;
+        the shape is unknown and is NOT a claim about the API.
+      x-ae-placeholder: true
   headers:
     x-request-id:
       description: A unique identifier for the request, useful for debugging and support.
@@ -903,7 +953,8 @@ components:
       type: http
       scheme: bearer
       bearerFormat: JWT
-      description: OAuth 2.0 access token obtained via client credentials grant from Adobe Identity Management Service (IMS). Generate credentials in the Adobe Developer Console and exchange them for an access token at https://ims-na1.adobelogin.com/ims/token/v3.
+      description: OAuth 2.0 access token obtained via client credentials grant from Adobe Identity Management Service (IMS). Generate credentials
+        in the Adobe Developer Console and exchange them for an access token at https://ims-na1.adobelogin.com/ims/token/v3.
 x-refined-from:
 - adobe-pdf-services-api-openapi-official.json
 - adobe-pdf-services-api-openapi.yml

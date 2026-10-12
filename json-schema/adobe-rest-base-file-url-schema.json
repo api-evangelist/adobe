@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/adobe/main/json-schema/adobe-rest-base-file-url-schema.json",
+  "title": "rest_base.FileURL",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/adobe-spacesurl-api-openapi.yml#/components/schemas/rest_base.FileURL",
+  "type": "object",
+  "properties": {
+    "filepath": {
+      "description": "The filename in the filepath overrides filename. If filepath is unset, will try to detect filename from content disposition header, then url itself. If a path is specified before the filename in the filepath, the file will be mounted at that location in the space.",
+      "type": "string"
+    },
+    "url": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "url"
+  ]
+}

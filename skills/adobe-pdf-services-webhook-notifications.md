@@ -1,5 +1,5 @@
 ---
-name: Receive Adobe PDF Services job completion by webhook
+name: adobe-pdf-services-webhook-notifications
 description: >-
   Replace status polling with a CALLBACK notifier so Adobe PDF Services POSTs the job result to
   your own HTTPS endpoint. Covers the notifiers request block, the success and failure payload

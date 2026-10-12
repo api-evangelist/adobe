@@ -1,0 +1,165 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/adobe/main/json-schema/adobe-electronic-seal-pdfjob-status-schema.json",
+  "title": "ElectronicSealPDFJobStatus",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/adobe-pdf-electronic-seal-api-openapi.yml#/components/schemas/ElectronicSealPDFJobStatus",
+  "oneOf": [
+    {
+      "$ref": "#/$defs/inprogress"
+    },
+    {
+      "$ref": "#/$defs/ElectronicSealPDFDone"
+    },
+    {
+      "$ref": "#/$defs/failed"
+    }
+  ],
+  "$defs": {
+    "ElectronicSealPDFDone": {
+      "title": "done",
+      "oneOf": [
+        {
+          "$ref": "#/$defs/ElectronicSealPDFDoneInternal"
+        },
+        {
+          "$ref": "#/$defs/ElectronicSealPDFDoneExternal"
+        }
+      ]
+    },
+    "ElectronicSealPDFDoneExternal": {
+      "title": "External",
+      "oneOf": [
+        {
+          "$ref": "#/$defs/ElectronicSealPDFDoneExternalWithoutOutput"
+        },
+        {
+          "$ref": "#/$defs/external"
+        }
+      ]
+    },
+    "ElectronicSealPDFDoneExternalWithoutOutput": {
+      "title": "External without an output URI in the request",
+      "description": "Response in case of 'done' status",
+      "type": "object",
+      "properties": {
+        "status": {
+          "description": "Job Status",
+          "type": "string",
+          "enum": [
+            "done"
+          ]
+        },
+        "asset": {
+          "$ref": "#/$defs/responseAsset"
+        }
+      }
+    },
+    "ElectronicSealPDFDoneInternal": {
+      "title": "Internal",
+      "description": "Response in case of 'done' status",
+      "type": "object",
+      "properties": {
+        "status": {
+          "description": "Job Status",
+          "type": "string",
+          "enum": [
+            "done"
+          ]
+        },
+        "asset": {
+          "$ref": "#/$defs/responseAsset"
+        }
+      }
+    },
+    "external": {
+      "title": "External with an output URI in the request",
+      "description": "Response in case of 'done' status using signed urls",
+      "type": "object",
+      "properties": {
+        "status": {
+          "description": "Job Status",
+          "type": "string",
+          "enum": [
+            "done"
+          ]
+        }
+      }
+    },
+    "failed": {
+      "description": "Response in case of 'failed' status",
+      "type": "object",
+      "properties": {
+        "status": {
+          "description": "Job Status",
+          "type": "string",
+          "enum": [
+            "failed"
+          ]
+        },
+        "error": {
+          "type": "object",
+          "properties": {
+            "status": {
+              "description": "Http status code returned by the service",
+              "type": "integer"
+            },
+            "code": {
+              "description": "The string containing the code field. code is the Mnemonic returned by service in case of any failure. The below list is extendable and going forward the error codes can become more specific.",
+              "type": "string"
+            },
+            "message": {
+              "description": "An English language string that contains more information about the error. \n\n<table><tr><th>status</th><th>code</th><th>message</th></tr><tr><td>400</td><td>CORRUPT_DOCUMENT</td><td>For $(format) mime-type The input file appears to be corrupted and cannot be processed.</td></tr><tr><td>400</td><td>PASSWORD_PROTECTED</td><td>Source file is protected and cannot be processed.</td></tr><tr><td>500</td><td>INTERNAL_SERVER_ERROR</td><td>There was an error processing your request.</td></tr></table>",
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "inprogress": {
+      "description": "Response in case of 'in progress' status",
+      "type": "object",
+      "properties": {
+        "status": {
+          "description": "Job Status",
+          "type": "string",
+          "enum": [
+            "in progress"
+          ]
+        }
+      }
+    },
+    "responseAsset": {
+      "title": "asset",
+      "description": "Details of output asset document. For more details <a href = 'https://developer.adobe.com/document-services/docs/apis/#tag/Assets'> click here </a>.",
+      "type": "object",
+      "properties": {
+        "metadata": {
+          "type": "object",
+          "description": "metadata details of output asset.",
+          "properties": {
+            "size": {
+              "description": "The size of the Resource in bytes. This value helps in making range requests.",
+              "type": "integer"
+            },
+            "type": {
+              "description": "The media type of the Resource.",
+              "type": "string"
+            }
+          }
+        },
+        "assetID": {
+          "description": "An asset ID identifying an asset that is globally unique and never reused.",
+          "type": "string",
+          "required": false
+        },
+        "downloadUri": {
+          "description": "The URL used to download the Resource directly to the cloud provider.",
+          "type": "string"
+        }
+      }
+    }
+  }
+}

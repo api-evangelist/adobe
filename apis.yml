@@ -1,7 +1,11 @@
 aid: adobe
+
 url: https://raw.githubusercontent.com/api-evangelist/adobe/refs/heads/main/apis.yml
+
 name: Adobe
+
 type: Index
+
 deliveryModel:
   model: saas
   open_source: false
@@ -14,6 +18,7 @@ deliveryModel:
   - pricing
   generated: '2026-08-28'
   method: derived
+
 accessModel:
   pricing: paid
   onboarding: self-serve
@@ -27,7 +32,9 @@ accessModel:
   - authentication
   generated: '2026-07-22'
   method: derived
+
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/adobe.png
+
 tags:
 - E-Signature
 - Adobe
@@ -43,6 +50,7 @@ tags:
 - PDF
 - Work Management
 - Image Generation
+
 tags_raw:
 - E-Signatures
 - Adobe
@@ -59,880 +67,35 @@ tags_raw:
 - PDF
 - Work Management
 - Image Generation
-description: Adobe provides APIs and developer resources for its creative, document, and experience cloud
-  platforms. Developers can integrate with PDF services, Creative Cloud, generative AI (Firefly), analytics,
-  e-commerce, e-signatures, and many other Adobe products and services.
+
+description: Adobe provides APIs and developer resources for its creative, document, and experience cloud platforms. Developers can integrate
+  with PDF services, Creative Cloud, generative AI (Firefly), analytics, e-commerce, e-signatures, and many other Adobe products and services.
+
 created: '2024-01-01'
+
 modified: '2026-08-13'
+
 specificationVersion: '0.23'
-apis:
-- aid: adobe:adobe-pdf-extract-api
-  name: Adobe PDF Extract API
-  tags:
-  - Artificial Intelligence
-  - Extraction
-  - PDF
-  tags_raw:
-  - AI
-  - Extraction
-  - PDF
-  humanURL: https://developer.adobe.com/document-services/docs/overview/pdf-extract-api/
-  baseURL: https://pdf-services.adobe.io
-  properties:
-  - type: Documentation
-    url: https://developer.adobe.com/document-services/docs/overview/pdf-extract-api/
-  - type: GettingStarted
-    url: >-
-      https://developer.adobe.com/document-services/docs/overview/pdf-extract-api/gettingstarted/
-  description: >-
-    Extract text, images, tables, and more from native and scanned PDFs into structured JSON using AI
-    technology.
-- aid: adobe:adobe-acrobat-sign-api
-  name: Adobe Acrobat Sign API
-  tags:
-  - Documents
-  - E-Signature
-  tags_raw:
-  - Documents
-  - E-Signatures
-  humanURL: https://developer.adobe.com/document-services/apis/sign-api/
-  baseURL: https://api.adobesign.com
-  properties:
-  - type: Documentation
-    url: https://opensource.adobe.com/acrobat-sign/developer_guide/index.html
-  - type: APIReference
-    url: https://opensource.adobe.com/acrobat-sign/developer_guide/apiusage.html
-  - type: GettingStarted
-    url: https://opensource.adobe.com/acrobat-sign/developer_guide/gstarted.html
-  - type: SDKs
-    url: https://developer.adobe.com/acrobat-sign/docs/overview/sdks/rest
-  - type: ChangeLog
-    url: https://opensource.adobe.com/acrobat-sign/releasenotes/acrobatsignreleasenotes.html
-  description: Embed e-signature workflows and manage signing agreements programmatically.
-- aid: adobe:adobe-analytics-api
-  name: Adobe Analytics API
-  tags:
-  - Analytics
-  - Metrics
-  humanURL: https://developer.adobe.com/analytics-apis/docs/2.0/
-  baseURL: https://analytics.adobe.io
-  properties:
-  - type: Documentation
-    url: https://developer.adobe.com/analytics-apis/docs/2.0/
-  - type: Authentication
-    url: https://developer.adobe.com/analytics-apis/docs/2.0/guides/authentication/
-  - type: GettingStarted
-    url: https://developer.adobe.com/analytics-apis/docs/2.0/guides/
-  description: Access and analyze digital marketing data and metrics.
-- aid: adobe:adobe-firefly-api
-  name: Adobe Firefly API
-  tags:
-  - Generative AI
-  - Image Generation
-  tags_raw:
-  - Generative AI
-  - Image Generation
-  - Image-Generation
-  humanURL: https://developer.adobe.com/firefly-services/docs/firefly-api/
-  baseURL: https://firefly-api.adobe.io
-  properties:
-  - type: Documentation
-    url: https://developer.adobe.com/firefly-services/docs/firefly-api/
-  - type: APIReference
-    url: https://developer.adobe.com/firefly-services/docs/firefly-api/api/
-  - type: GettingStarted
-    url: https://developer.adobe.com/firefly-services/docs/firefly-api/guides/
-  - type: SDKs
-    url: https://developer.adobe.com/firefly-services/docs/guides/sdks/
-  - type: ChangeLog
-    url: https://developer.adobe.com/firefly-services/docs/firefly-api/guides/changelog/
-  description: Generate and edit images using generative AI models through a RESTful API.
-- aid: adobe:adobe-experience-platform-api
-  name: Adobe Experience Platform API
-  tags:
-  - Customer Data
-  - Experience Platform
-  humanURL: https://developer.adobe.com/experience-platform-apis/
-  baseURL: https://platform.adobe.io
-  properties:
-  - type: Documentation
-    url: >-
-      https://experienceleague.adobe.com/docs/experience-platform/landing/platform-apis/api-guide.html
-  - type: APIReference
-    url: https://developer.adobe.com/experience-platform-apis/references/
-  - type: GettingStarted
-    url: >-
-      https://experienceleague.adobe.com/en/docs/experience-platform/landing/platform-apis/api-guide
-  description: Build and manage customer experience applications on Adobe Experience Platform.
-- aid: adobe:adobe-stock-api
-  name: Adobe Stock API
-  tags:
-  - Assets
-  - Stocks
-  tags_raw:
-  - Assets
-  - Stock
-  humanURL: https://developer.adobe.com/stock/
-  baseURL: https://stock.adobe.io
-  properties:
-  - type: Documentation
-    url: https://developer.adobe.com/stock/docs/getting-started/
-  - type: APIReference
-    url: https://developer.adobe.com/stock/docs/api/
-  - type: GettingStarted
-    url: https://developer.adobe.com/stock/docs/getting-started/
-  - type: SDKs
-    url: https://github.com/adobe/stock-api-sdk
-  description: >-
-    Search, license, and manage Adobe Stock assets including photos, vectors, videos, and templates.
-- aid: adobe:adobe-commerce-api
-  name: Adobe Commerce API
-  tags:
-  - E-Commerce
-  - REST
-  humanURL: https://developer.adobe.com/commerce/webapi/
-  properties:
-  - type: Documentation
-    url: https://developer.adobe.com/commerce/docs/
-  - type: APIReference
-    url: https://developer.adobe.com/commerce/webapi/rest/reference/
-  - type: GettingStarted
-    url: https://developer.adobe.com/commerce/webapi/get-started/
-  - type: Authentication
-    url: https://developer.adobe.com/commerce/webapi/get-started/authentication/
-  description: Build and integrate e-commerce applications with REST, GraphQL, and SOAP web APIs.
-- aid: adobe:adobe-marketo-engage-api
-  name: Adobe Marketo Engage API
-  tags:
-  - Leads
-  - Marketing Automation
-  humanURL: https://developer.adobe.com/marketo-apis/
-  properties:
-  - type: Documentation
-    url: https://experienceleague.adobe.com/en/docs/marketo-developer/marketo/rest/rest-api
-  - type: APIReference
-    url: >-
-      https://experienceleague.adobe.com/en/docs/marketo-developer/marketo/rest/endpoint-reference
-  - type: Authentication
-    url: https://experienceleague.adobe.com/en/docs/marketo-developer/marketo/rest/authentication
-  - type: GettingStarted
-    url: https://experienceleague.adobe.com/en/docs/marketo-developer/marketo/rest/rest-api
-  description: Automate marketing processes and manage leads, campaigns, and assets via REST APIs.
-- aid: adobe:adobe-workfront-api
-  name: Adobe Workfront API
-  tags:
-  - Project
-  - Work Management
-  tags_raw:
-  - Projects
-  - Work Management
-  humanURL: https://developer.adobe.com/workfront-apis/
-  properties:
-  - type: Documentation
-    url: >-
-      https://experienceleague.adobe.com/en/docs/workfront/using/adobe-workfront-api/workfront-api
-  - type: APIReference
-    url: https://developer.adobe.com/workfront/api-explorer/
-  - type: GettingStarted
-    url: >-
-      https://experienceleague.adobe.com/en/docs/workfront/using/adobe-workfront-api/api-general-information/api-basics
-  description: Manage work, projects, tasks, and resources programmatically with a REST API.
-- aid: adobe:adobe-user-management-api
-  name: Adobe User Management API
-  tags:
-  - Identity
-  - User Management
-  humanURL: https://developer.adobe.com/umapi/
-  baseURL: https://usermanagement.adobe.io
-  properties:
-  - type: Documentation
-    url: https://adobe-apiplatform.github.io/umapi-documentation/
-  - type: APIReference
-    url: https://adobe-apiplatform.github.io/umapi-documentation/en/RefOverview.html
-  - type: GettingStarted
-    url: https://adobe-apiplatform.github.io/umapi-documentation/en/getstarted.html
-  description: >-
-    Programmatically manage users, groups, and product entitlements for Adobe enterprise organizations.
-- aid: adobe:adobe-io-events-api
-  name: Adobe I/O Events API
-  tags:
-  - Event
-  - Webhook
-  tags_raw:
-  - Events
-  - Webhooks
-  humanURL: https://developer.adobe.com/events/
-  baseURL: https://platform.adobe.io
-  properties:
-  - type: Documentation
-    url: https://developer.adobe.com/events/docs/
-  - type: APIReference
-    url: https://developer.adobe.com/events/docs/guides/api/
-  - type: GettingStarted
-    url: https://developer.adobe.com/events/docs/
-  description: >-
-    Subscribe to and receive near real-time events from Adobe services for event-driven integrations.
-- aid: adobe:adobe-experience-manager-api
-  name: Adobe Experience Manager API
-  tags:
-  - Content Management
-  - Digital Asset Management
-  humanURL: https://developer.adobe.com/experience-cloud/experience-manager-apis
-  baseURL: https://platform.adobe.io
-  properties:
-  - type: Documentation
-    url: https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service
-  - type: APIReference
-    url: https://developer.adobe.com/experience-cloud/experience-manager-apis
-  - type: GettingStarted
-    url: >-
-      https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/implementing/developing/reference-materials
-  description: >-
-    Create, read, update, and delete content, assets, and forms in Adobe Experience Manager as a Cloud
-    Service.
-- aid: adobe:adobe-accessibility-auto-tag-api
-  name: Adobe PDF Services Accessibility Auto-Tag API
-  description: Automatically add accessibility tags to PDF documents using AI.
-  humanURL: https://developer.adobe.com/document-services/apis/pdf-services/
-  baseURL: https://pdf-services.adobe.io
-  tags:
-  - Accessibility Auto-Tag
-  properties:
-  - type: OpenAPI
-    url: openapi/adobe-accessibility-auto-tag-api-openapi.yml
-  - type: Documentation
-    url: https://developer.adobe.com/document-services/docs/overview/pdf-services-api/
-  - type: GettingStarted
-    url: >-
-      https://developer.adobe.com/document-services/docs/overview/pdf-services-api/gettingstarted/
-  - type: ChangeLog
-    url: https://developer.adobe.com/document-services/docs/overview/releasenotes/
-  - type: JSONSchema
-    url: json-schema/adobe-pdf-services-asset-upload-request-schema.json
-  - type: JSONLD
-    url: json-ld/adobe-pdf-services-context.jsonld
-- aid: adobe:adobe-assets-api
-  name: Adobe PDF Services Assets API
-  description: Upload and manage assets (source files) for PDF operations.
-  humanURL: https://developer.adobe.com/document-services/apis/pdf-services/
-  baseURL: https://pdf-services.adobe.io
-  tags:
-  - Assets
-  properties:
-  - type: OpenAPI
-    url: openapi/adobe-assets-api-openapi.yml
-  - type: Documentation
-    url: https://developer.adobe.com/document-services/docs/overview/pdf-services-api/
-  - type: GettingStarted
-    url: >-
-      https://developer.adobe.com/document-services/docs/overview/pdf-services-api/gettingstarted/
-  - type: ChangeLog
-    url: https://developer.adobe.com/document-services/docs/overview/releasenotes/
-  - type: JSONSchema
-    url: json-schema/adobe-pdf-services-asset-upload-request-schema.json
-  - type: JSONLD
-    url: json-ld/adobe-pdf-services-context.jsonld
-- aid: adobe:adobe-combine-pdf-api
-  name: Adobe PDF Services Combine PDF API
-  description: Combine multiple PDF documents into a single PDF.
-  humanURL: https://developer.adobe.com/document-services/apis/pdf-services/
-  baseURL: https://pdf-services.adobe.io
-  tags:
-  - Combine PDF
-  properties:
-  - type: OpenAPI
-    url: openapi/adobe-combine-pdf-api-openapi.yml
-  - type: Documentation
-    url: https://developer.adobe.com/document-services/docs/overview/pdf-services-api/
-  - type: GettingStarted
-    url: >-
-      https://developer.adobe.com/document-services/docs/overview/pdf-services-api/gettingstarted/
-  - type: ChangeLog
-    url: https://developer.adobe.com/document-services/docs/overview/releasenotes/
-  - type: JSONSchema
-    url: json-schema/adobe-pdf-services-asset-upload-request-schema.json
-  - type: JSONLD
-    url: json-ld/adobe-pdf-services-context.jsonld
-- aid: adobe:adobe-compress-pdf-api
-  name: Adobe PDF Services Compress PDF API
-  description: Reduce the file size of PDF documents while maintaining quality.
-  humanURL: https://developer.adobe.com/document-services/apis/pdf-services/
-  baseURL: https://pdf-services.adobe.io
-  tags:
-  - Compress PDF
-  properties:
-  - type: OpenAPI
-    url: openapi/adobe-compress-pdf-api-openapi.yml
-  - type: Documentation
-    url: https://developer.adobe.com/document-services/docs/overview/pdf-services-api/
-  - type: GettingStarted
-    url: >-
-      https://developer.adobe.com/document-services/docs/overview/pdf-services-api/gettingstarted/
-  - type: ChangeLog
-    url: https://developer.adobe.com/document-services/docs/overview/releasenotes/
-  - type: JSONSchema
-    url: json-schema/adobe-pdf-services-asset-upload-request-schema.json
-  - type: JSONLD
-    url: json-ld/adobe-pdf-services-context.jsonld
-- aid: adobe:adobe-create-pdf-api
-  name: Adobe PDF Services Create PDF API
-  description: >-
-    Create PDF documents from supported file formats including Microsoft Office, images, and HTML.
-  humanURL: https://developer.adobe.com/document-services/apis/pdf-services/
-  baseURL: https://pdf-services.adobe.io
-  tags:
-  - Create PDF
-  properties:
-  - type: OpenAPI
-    url: openapi/adobe-create-pdf-api-openapi.yml
-  - type: Documentation
-    url: https://developer.adobe.com/document-services/docs/overview/pdf-services-api/
-  - type: GettingStarted
-    url: >-
-      https://developer.adobe.com/document-services/docs/overview/pdf-services-api/gettingstarted/
-  - type: ChangeLog
-    url: https://developer.adobe.com/document-services/docs/overview/releasenotes/
-  - type: JSONSchema
-    url: json-schema/adobe-pdf-services-asset-upload-request-schema.json
-  - type: JSONLD
-    url: json-ld/adobe-pdf-services-context.jsonld
-- aid: adobe:adobe-delete-pages-api
-  name: Adobe PDF Services Delete Pages API
-  description: Delete specific pages from a PDF document.
-  humanURL: https://developer.adobe.com/document-services/apis/pdf-services/
-  baseURL: https://pdf-services.adobe.io
-  tags:
-  - Delete Pages
-  properties:
-  - type: OpenAPI
-    url: openapi/adobe-delete-pages-api-openapi.yml
-  - type: Documentation
-    url: https://developer.adobe.com/document-services/docs/overview/pdf-services-api/
-  - type: GettingStarted
-    url: >-
-      https://developer.adobe.com/document-services/docs/overview/pdf-services-api/gettingstarted/
-  - type: ChangeLog
-    url: https://developer.adobe.com/document-services/docs/overview/releasenotes/
-  - type: JSONSchema
-    url: json-schema/adobe-pdf-services-asset-upload-request-schema.json
-  - type: JSONLD
-    url: json-ld/adobe-pdf-services-context.jsonld
-- aid: adobe:adobe-document-generation-api
-  name: Adobe PDF Services Document Generation API
-  description: Generate PDF and Word documents from templates with dynamic JSON data.
-  humanURL: https://developer.adobe.com/document-services/apis/pdf-services/
-  baseURL: https://pdf-services.adobe.io
-  tags:
-  - Document Generation
-  properties:
-  - type: OpenAPI
-    url: openapi/adobe-document-generation-api-openapi.yml
-  - type: Documentation
-    url: https://developer.adobe.com/document-services/docs/overview/pdf-services-api/
-  - type: GettingStarted
-    url: >-
-      https://developer.adobe.com/document-services/docs/overview/pdf-services-api/gettingstarted/
-  - type: ChangeLog
-    url: https://developer.adobe.com/document-services/docs/overview/releasenotes/
-  - type: JSONSchema
-    url: json-schema/adobe-pdf-services-asset-upload-request-schema.json
-  - type: JSONLD
-    url: json-ld/adobe-pdf-services-context.jsonld
-- aid: adobe:adobe-export-pdf-api
-  name: Adobe PDF Services Export PDF API
-  description: >-
-    Export (convert) PDF documents to other formats such as DOCX, PPTX, XLSX, images, and RTF.
-  humanURL: https://developer.adobe.com/document-services/apis/pdf-services/
-  baseURL: https://pdf-services.adobe.io
-  tags:
-  - Export PDF
-  properties:
-  - type: OpenAPI
-    url: openapi/adobe-export-pdf-api-openapi.yml
-  - type: Documentation
-    url: https://developer.adobe.com/document-services/docs/overview/pdf-services-api/
-  - type: GettingStarted
-    url: >-
-      https://developer.adobe.com/document-services/docs/overview/pdf-services-api/gettingstarted/
-  - type: ChangeLog
-    url: https://developer.adobe.com/document-services/docs/overview/releasenotes/
-  - type: JSONSchema
-    url: json-schema/adobe-pdf-services-asset-upload-request-schema.json
-  - type: JSONLD
-    url: json-ld/adobe-pdf-services-context.jsonld
-- aid: adobe:adobe-extract-pdf-api
-  name: Adobe PDF Services Extract PDF API
-  description: Extract text, tables, and figures from PDF documents into structured JSON output.
-  humanURL: https://developer.adobe.com/document-services/apis/pdf-services/
-  baseURL: https://pdf-services.adobe.io
-  tags:
-  - Extract PDF
-  properties:
-  - type: OpenAPI
-    url: openapi/adobe-extract-pdf-api-openapi.yml
-  - type: Documentation
-    url: https://developer.adobe.com/document-services/docs/overview/pdf-services-api/
-  - type: GettingStarted
-    url: >-
-      https://developer.adobe.com/document-services/docs/overview/pdf-services-api/gettingstarted/
-  - type: ChangeLog
-    url: https://developer.adobe.com/document-services/docs/overview/releasenotes/
-  - type: JSONSchema
-    url: json-schema/adobe-pdf-services-asset-upload-request-schema.json
-  - type: JSONLD
-    url: json-ld/adobe-pdf-services-context.jsonld
-- aid: adobe:adobe-insert-pages-api
-  name: Adobe PDF Services Insert Pages API
-  description: Insert pages from one PDF into another.
-  humanURL: https://developer.adobe.com/document-services/apis/pdf-services/
-  baseURL: https://pdf-services.adobe.io
-  tags:
-  - Insert Pages
-  properties:
-  - type: OpenAPI
-    url: openapi/adobe-insert-pages-api-openapi.yml
-  - type: Documentation
-    url: https://developer.adobe.com/document-services/docs/overview/pdf-services-api/
-  - type: GettingStarted
-    url: >-
-      https://developer.adobe.com/document-services/docs/overview/pdf-services-api/gettingstarted/
-  - type: ChangeLog
-    url: https://developer.adobe.com/document-services/docs/overview/releasenotes/
-  - type: JSONSchema
-    url: json-schema/adobe-pdf-services-asset-upload-request-schema.json
-  - type: JSONLD
-    url: json-ld/adobe-pdf-services-context.jsonld
-- aid: adobe:adobe-jobs-api
-  name: Adobe PDF Services Jobs API
-  description: Poll for the status and results of asynchronous PDF operations.
-  humanURL: https://developer.adobe.com/document-services/apis/pdf-services/
-  baseURL: https://pdf-services.adobe.io
-  tags:
-  - Job
-  tags_raw:
-  - Jobs
-  properties:
-  - type: OpenAPI
-    url: openapi/adobe-jobs-api-openapi.yml
-  - type: Documentation
-    url: https://developer.adobe.com/document-services/docs/overview/pdf-services-api/
-  - type: GettingStarted
-    url: >-
-      https://developer.adobe.com/document-services/docs/overview/pdf-services-api/gettingstarted/
-  - type: ChangeLog
-    url: https://developer.adobe.com/document-services/docs/overview/releasenotes/
-  - type: JSONSchema
-    url: json-schema/adobe-pdf-services-asset-upload-request-schema.json
-  - type: JSONLD
-    url: json-ld/adobe-pdf-services-context.jsonld
-- aid: adobe:adobe-linearize-pdf-api
-  name: Adobe PDF Services Linearize PDF API
-  description: Optimize PDFs for fast web viewing (linearization).
-  humanURL: https://developer.adobe.com/document-services/apis/pdf-services/
-  baseURL: https://pdf-services.adobe.io
-  tags:
-  - Linearize PDF
-  properties:
-  - type: OpenAPI
-    url: openapi/adobe-linearize-pdf-api-openapi.yml
-  - type: Documentation
-    url: https://developer.adobe.com/document-services/docs/overview/pdf-services-api/
-  - type: GettingStarted
-    url: >-
-      https://developer.adobe.com/document-services/docs/overview/pdf-services-api/gettingstarted/
-  - type: ChangeLog
-    url: https://developer.adobe.com/document-services/docs/overview/releasenotes/
-  - type: JSONSchema
-    url: json-schema/adobe-pdf-services-asset-upload-request-schema.json
-  - type: JSONLD
-    url: json-ld/adobe-pdf-services-context.jsonld
-- aid: adobe:adobe-ocr-api
-  name: Adobe PDF Services OCR API
-  description: >-
-    Apply optical character recognition to scanned PDFs to make text searchable and selectable.
-  humanURL: https://developer.adobe.com/document-services/apis/pdf-services/
-  baseURL: https://pdf-services.adobe.io
-  tags:
-  - OCR
-  properties:
-  - type: OpenAPI
-    url: openapi/adobe-ocr-api-openapi.yml
-  - type: Documentation
-    url: https://developer.adobe.com/document-services/docs/overview/pdf-services-api/
-  - type: GettingStarted
-    url: >-
-      https://developer.adobe.com/document-services/docs/overview/pdf-services-api/gettingstarted/
-  - type: ChangeLog
-    url: https://developer.adobe.com/document-services/docs/overview/releasenotes/
-  - type: JSONSchema
-    url: json-schema/adobe-pdf-services-asset-upload-request-schema.json
-  - type: JSONLD
-    url: json-ld/adobe-pdf-services-context.jsonld
-- aid: adobe:adobe-pdf-properties-api
-  name: Adobe PDF Services PDF Properties API
-  description: Retrieve metadata and properties from PDF documents.
-  humanURL: https://developer.adobe.com/document-services/apis/pdf-services/
-  baseURL: https://pdf-services.adobe.io
-  tags:
-  - PDF Properties
-  properties:
-  - type: OpenAPI
-    url: openapi/adobe-pdf-properties-api-openapi.yml
-  - type: Documentation
-    url: https://developer.adobe.com/document-services/docs/overview/pdf-services-api/
-  - type: GettingStarted
-    url: >-
-      https://developer.adobe.com/document-services/docs/overview/pdf-services-api/gettingstarted/
-  - type: ChangeLog
-    url: https://developer.adobe.com/document-services/docs/overview/releasenotes/
-  - type: JSONSchema
-    url: json-schema/adobe-pdf-services-asset-upload-request-schema.json
-  - type: JSONLD
-    url: json-ld/adobe-pdf-services-context.jsonld
-- aid: adobe:adobe-protect-pdf-api
-  name: Adobe PDF Services Protect PDF API
-  description: Add password protection and encryption to PDF documents.
-  humanURL: https://developer.adobe.com/document-services/apis/pdf-services/
-  baseURL: https://pdf-services.adobe.io
-  tags:
-  - Protect PDF
-  properties:
-  - type: OpenAPI
-    url: openapi/adobe-protect-pdf-api-openapi.yml
-  - type: Documentation
-    url: https://developer.adobe.com/document-services/docs/overview/pdf-services-api/
-  - type: GettingStarted
-    url: >-
-      https://developer.adobe.com/document-services/docs/overview/pdf-services-api/gettingstarted/
-  - type: ChangeLog
-    url: https://developer.adobe.com/document-services/docs/overview/releasenotes/
-  - type: JSONSchema
-    url: json-schema/adobe-pdf-services-asset-upload-request-schema.json
-  - type: JSONLD
-    url: json-ld/adobe-pdf-services-context.jsonld
-- aid: adobe:adobe-remove-protection-api
-  name: Adobe PDF Services Remove Protection API
-  description: Remove password protection from PDF documents.
-  humanURL: https://developer.adobe.com/document-services/apis/pdf-services/
-  baseURL: https://pdf-services.adobe.io
-  tags:
-  - Remove Protection
-  properties:
-  - type: OpenAPI
-    url: openapi/adobe-remove-protection-api-openapi.yml
-  - type: Documentation
-    url: https://developer.adobe.com/document-services/docs/overview/pdf-services-api/
-  - type: GettingStarted
-    url: >-
-      https://developer.adobe.com/document-services/docs/overview/pdf-services-api/gettingstarted/
-  - type: ChangeLog
-    url: https://developer.adobe.com/document-services/docs/overview/releasenotes/
-  - type: JSONSchema
-    url: json-schema/adobe-pdf-services-asset-upload-request-schema.json
-  - type: JSONLD
-    url: json-ld/adobe-pdf-services-context.jsonld
-- aid: adobe:adobe-reorder-pages-api
-  name: Adobe PDF Services Reorder Pages API
-  description: Reorder pages within a PDF document.
-  humanURL: https://developer.adobe.com/document-services/apis/pdf-services/
-  baseURL: https://pdf-services.adobe.io
-  tags:
-  - Reorder Pages
-  properties:
-  - type: OpenAPI
-    url: openapi/adobe-reorder-pages-api-openapi.yml
-  - type: Documentation
-    url: https://developer.adobe.com/document-services/docs/overview/pdf-services-api/
-  - type: GettingStarted
-    url: >-
-      https://developer.adobe.com/document-services/docs/overview/pdf-services-api/gettingstarted/
-  - type: ChangeLog
-    url: https://developer.adobe.com/document-services/docs/overview/releasenotes/
-  - type: JSONSchema
-    url: json-schema/adobe-pdf-services-asset-upload-request-schema.json
-  - type: JSONLD
-    url: json-ld/adobe-pdf-services-context.jsonld
-- aid: adobe:adobe-replace-pages-api
-  name: Adobe PDF Services Replace Pages API
-  description: Replace pages in a PDF with pages from another PDF.
-  humanURL: https://developer.adobe.com/document-services/apis/pdf-services/
-  baseURL: https://pdf-services.adobe.io
-  tags:
-  - Replace Pages
-  properties:
-  - type: OpenAPI
-    url: openapi/adobe-replace-pages-api-openapi.yml
-  - type: Documentation
-    url: https://developer.adobe.com/document-services/docs/overview/pdf-services-api/
-  - type: GettingStarted
-    url: >-
-      https://developer.adobe.com/document-services/docs/overview/pdf-services-api/gettingstarted/
-  - type: ChangeLog
-    url: https://developer.adobe.com/document-services/docs/overview/releasenotes/
-  - type: JSONSchema
-    url: json-schema/adobe-pdf-services-asset-upload-request-schema.json
-  - type: JSONLD
-    url: json-ld/adobe-pdf-services-context.jsonld
-- aid: adobe:adobe-rotate-pages-api
-  name: Adobe PDF Services Rotate Pages API
-  description: Rotate pages within a PDF document.
-  humanURL: https://developer.adobe.com/document-services/apis/pdf-services/
-  baseURL: https://pdf-services.adobe.io
-  tags:
-  - Rotate Pages
-  properties:
-  - type: OpenAPI
-    url: openapi/adobe-rotate-pages-api-openapi.yml
-  - type: Documentation
-    url: https://developer.adobe.com/document-services/docs/overview/pdf-services-api/
-  - type: GettingStarted
-    url: >-
-      https://developer.adobe.com/document-services/docs/overview/pdf-services-api/gettingstarted/
-  - type: ChangeLog
-    url: https://developer.adobe.com/document-services/docs/overview/releasenotes/
-  - type: JSONSchema
-    url: json-schema/adobe-pdf-services-asset-upload-request-schema.json
-  - type: JSONLD
-    url: json-ld/adobe-pdf-services-context.jsonld
-- aid: adobe:adobe-split-pdf-api
-  name: Adobe PDF Services Split PDF API
-  description: Split a PDF document into multiple smaller PDFs.
-  humanURL: https://developer.adobe.com/document-services/apis/pdf-services/
-  baseURL: https://pdf-services.adobe.io
-  tags:
-  - Split PDF
-  properties:
-  - type: OpenAPI
-    url: openapi/adobe-split-pdf-api-openapi.yml
-  - type: Documentation
-    url: https://developer.adobe.com/document-services/docs/overview/pdf-services-api/
-  - type: GettingStarted
-    url: >-
-      https://developer.adobe.com/document-services/docs/overview/pdf-services-api/gettingstarted/
-  - type: ChangeLog
-    url: https://developer.adobe.com/document-services/docs/overview/releasenotes/
-  - type: JSONSchema
-    url: json-schema/adobe-pdf-services-asset-upload-request-schema.json
-  - type: JSONLD
-    url: json-ld/adobe-pdf-services-context.jsonld
-- aid: adobe:adobe-composites-api
-  name: Adobe Composites API
-  description: The Composites API from Adobe — 1 operation(s) for composites.
-  humanURL: https://developer.adobe.com/document-services/docs/overview/pdf-extract-api/
-  baseURL: https://pdf-services.adobe.io
-  tags:
-  - Composites
-  properties:
-  - type: OpenAPI
-    url: openapi/adobe-composites-api-openapi.yml
-- aid: adobe:adobe-export-pdf-form-data-api
-  name: Adobe Export PDF Form Data API
-  description: >-
-    The Export PDF Form Data API will retrieve the data from a PDF form and return it as a JSON file.
-  humanURL: https://developer.adobe.com/document-services/docs/overview/pdf-extract-api/
-  baseURL: https://pdf-services.adobe.io
-  tags:
-  - Export PDF Form Data
-  properties:
-  - type: OpenAPI
-    url: openapi/adobe-export-pdf-form-data-api-openapi.yml
-- aid: adobe:adobe-generate-token-api
-  name: Adobe Generate Token API
-  description: >-
-    Creates an access token using client id and client secret. Click <a href="https://developer.adobe.com/developer-console/docs/guides/authentication/ServerToServerAuthentication/IMS/">here</a>
-    to refer underlying IMS authentication APIs.
-  humanURL: https://developer.adobe.com/document-services/docs/overview/pdf-extract-api/
-  baseURL: https://pdf-services.adobe.io
-  tags:
-  - Generate Token
-  properties:
-  - type: OpenAPI
-    url: openapi/adobe-generate-token-api-openapi.yml
-- aid: adobe:adobe-html-to-pdf-api
-  name: Adobe Html to PDF API
-  description: Convert HTML Resources to a PDF File
-  humanURL: https://developer.adobe.com/document-services/docs/overview/pdf-extract-api/
-  baseURL: https://pdf-services.adobe.io
-  tags:
-  - HTML to PDF
-  tags_raw:
-  - Html to PDF
-  properties:
-  - type: OpenAPI
-    url: openapi/adobe-html-to-pdf-api-openapi.yml
-- aid: adobe:adobe-import-pdf-form-data-api
-  name: Adobe Import PDF Form Data API
-  description: >-
-    The Import PDF Form Data API will take the form data provided as a JSON, insert it into the PDF form,
-    and generate the resulting PDF.
-  humanURL: https://developer.adobe.com/document-services/docs/overview/pdf-extract-api/
-  baseURL: https://pdf-services.adobe.io
-  tags:
-  - Import PDF Form Data
-  properties:
-  - type: OpenAPI
-    url: openapi/adobe-import-pdf-form-data-api-openapi.yml
-- aid: adobe:adobe-library-service-api
-  name: Adobe Library Service API
-  description: App-facing APIs for Adobe CC Libraries.
-  humanURL: https://developer.adobe.com/document-services/docs/overview/pdf-extract-api/
-  baseURL: https://pdf-services.adobe.io
-  tags:
-  - Library Service
-  properties:
-  - type: OpenAPI
-    url: openapi/adobe-library-service-api-openapi.yml
-- aid: adobe:adobe-library-service-bookmarks-api
-  name: Adobe Library Service - Bookmarks API
-  description: App-facing APIs specifically for Adobe CC Library Bookmarks.
-  humanURL: https://developer.adobe.com/document-services/docs/overview/pdf-extract-api/
-  baseURL: https://pdf-services.adobe.io
-  tags:
-  - Library Service - Bookmarks
-  properties:
-  - type: OpenAPI
-    url: openapi/adobe-library-service-bookmarks-api-openapi.yml
-- aid: adobe:adobe-library-service-public-api
-  name: Adobe Library Service - Public API
-  description: App-facing APIs specifically for Adobe CC Public Libraries.
-  humanURL: https://developer.adobe.com/document-services/docs/overview/pdf-extract-api/
-  baseURL: https://pdf-services.adobe.io
-  tags:
-  - Library Service - Public
-  properties:
-  - type: OpenAPI
-    url: openapi/adobe-library-service-public-api-openapi.yml
-- aid: adobe:adobe-page-manipulation-api
-  name: Adobe Page Manipulation API
-  description: Rotate and delete pages of a PDF File
-  humanURL: https://developer.adobe.com/document-services/docs/overview/pdf-extract-api/
-  baseURL: https://pdf-services.adobe.io
-  tags:
-  - Page Manipulation
-  properties:
-  - type: OpenAPI
-    url: openapi/adobe-page-manipulation-api-openapi.yml
-- aid: adobe:adobe-pdf-accessibility-auto-tag-api
-  name: Adobe PDF Accessibility Auto-Tag API
-  description: Operation to create the tagged pdf and excel report for accessibility auto-tag use case.
-  humanURL: https://developer.adobe.com/document-services/docs/overview/pdf-extract-api/
-  baseURL: https://pdf-services.adobe.io
-  tags:
-  - PDF Accessibility Auto-Tag
-  properties:
-  - type: OpenAPI
-    url: openapi/adobe-pdf-accessibility-auto-tag-api-openapi.yml
-- aid: adobe:adobe-pdf-accessibility-checker-api
-  name: Adobe PDF Accessibility Checker API
-  description: >-
-    Accessibility Checker API will check PDF files to see if they meet the machine-verifiable requirements
-    of PDF/UA and WCAG.
-  humanURL: https://developer.adobe.com/document-services/docs/overview/pdf-extract-api/
-  baseURL: https://pdf-services.adobe.io
-  tags:
-  - PDF Accessibility Checker
-  properties:
-  - type: OpenAPI
-    url: openapi/adobe-pdf-accessibility-checker-api-openapi.yml
-- aid: adobe:adobe-pdf-electronic-seal-api
-  name: Adobe PDF Electronic Seal API
-  description: >-
-    Create electronic seal on PDF documents like invoices, agreements etc using the digital certificate
-    issued to the user by Trust Service Provider.
-  humanURL: https://developer.adobe.com/document-services/docs/overview/pdf-extract-api/
-  baseURL: https://pdf-services.adobe.io
-  tags:
-  - PDF Electronic Seal
-  properties:
-  - type: OpenAPI
-    url: openapi/adobe-pdf-electronic-seal-api-openapi.yml
-- aid: adobe:adobe-pdf-to-images-api
-  name: Adobe PDF To Images API
-  description: Convert a PDF File to image files
-  humanURL: https://developer.adobe.com/document-services/docs/overview/pdf-extract-api/
-  baseURL: https://pdf-services.adobe.io
-  tags:
-  - PDF To Images
-  properties:
-  - type: OpenAPI
-    url: openapi/adobe-pdf-to-images-api-openapi.yml
-- aid: adobe:adobe-pdf-to-markdown-api
-  name: Adobe PDF To Markdown API
-  description: >-
-    Extract content from PDF documents and output it in a well-formatted LLM-friendly Markdown text, along
-    with tables and figures
-  humanURL: https://developer.adobe.com/document-services/docs/overview/pdf-extract-api/
-  baseURL: https://pdf-services.adobe.io
-  tags:
-  - PDF To Markdown
-  properties:
-  - type: OpenAPI
-    url: openapi/adobe-pdf-to-markdown-api-openapi.yml
-- aid: adobe:adobe-pdf-watermark-api
-  name: Adobe PDF Watermark API
-  description: PDF Watermark API will add a watermark in PDF document.
-  humanURL: https://developer.adobe.com/document-services/docs/overview/pdf-extract-api/
-  baseURL: https://pdf-services.adobe.io
-  tags:
-  - PDF Watermark
-  properties:
-  - type: OpenAPI
-    url: openapi/adobe-pdf-watermark-api-openapi.yml
-- aid: adobe:adobe-scenes-api
-  name: Adobe Scenes API
-  description: The Scenes API from Adobe — 5 operation(s) for scenes.
-  humanURL: https://developer.adobe.com/document-services/docs/overview/pdf-extract-api/
-  baseURL: https://pdf-services.adobe.io
-  tags:
-  - Scenes
-  properties:
-  - type: OpenAPI
-    url: openapi/adobe-scenes-api-openapi.yml
-- aid: adobe:adobe-spaces-api
-  name: Adobe Spaces API
-  description: The Spaces API from Adobe — 2 operation(s) for spaces.
-  humanURL: https://developer.adobe.com/document-services/docs/overview/pdf-extract-api/
-  baseURL: https://pdf-services.adobe.io
-  tags:
-  - Spaces
-  - Space
-  tags_raw:
-  - Spaces
-  - Space
-  properties:
-  - type: OpenAPI
-    url: openapi/adobe-spaces-api-openapi.yml
-- aid: adobe:adobe-spacesframeio-api
-  name: Adobe Spaces Frame IO API
-  description: The SpacesFrameIO API from Adobe — 1 operation(s) for spacesframeio.
-  humanURL: https://developer.adobe.com/document-services/docs/overview/pdf-extract-api/
-  baseURL: https://pdf-services.adobe.io
-  tags:
-  - SpacesFrameIO
-  properties:
-  - type: OpenAPI
-    url: openapi/adobe-spacesframeio-api-openapi.yml
-- aid: adobe:adobe-spacesnextframeio-api
-  name: Adobe Spaces Next Frame IO API
-  description: The SpacesNextFrameIO API from Adobe — 1 operation(s) for spacesnextframeio.
-  humanURL: https://developer.adobe.com/document-services/docs/overview/pdf-extract-api/
-  baseURL: https://pdf-services.adobe.io
-  tags:
-  - SpacesNextFrameIO
-  properties:
-  - type: OpenAPI
-    url: openapi/adobe-spacesnextframeio-api-openapi.yml
-- aid: adobe:adobe-spacesurl-api
-  name: Adobe Spaces URL API
-  description: The SpacesURL API from Adobe — 1 operation(s) for spacesurl.
-  humanURL: https://developer.adobe.com/document-services/docs/overview/pdf-extract-api/
-  baseURL: https://pdf-services.adobe.io
-  tags:
-  - SpacesURL
-  properties:
-  - type: OpenAPI
-    url: openapi/adobe-spacesurl-api-openapi.yml
+
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
+
 common:
+- type: IntegrationEdges
+  url: integrations/adobe-integration-edges.yml
+- type: Spectral
+  url: rules/adobe-spectral-rules.yml
+- type: Spectral
+  url: rules/adobe-rules.yml
+- type: Spectral
+  url: rules/adobe-jsonschema-spectral-rules.yml
+- type: Vocabulary
+  url: vocabulary/adobe-vocabulary.yml
+- type: Hosts
+  url: hosts/adobe-hosts.yml
+- type: Vendors
+  url: vendors/adobe-vendors.yml
 - type: Website
   url: https://www.adobe.com/
 - type: Packages
@@ -944,8 +107,6 @@ common:
   url: well-known/adobe-well-known.yml
 - type: SecurityTxt
   url: well-known/adobe-security.txt
-- type: LLMsTxt
-  url: llms/adobe-llms.txt
   name: Adobe Experience League llms.txt (v1.8)
 - type: MCPServer
   url: mcp/adobe-mcp.yml
@@ -1157,11 +318,947 @@ common:
 - type: ChangeLog
   url: https://developer.adobe.com/firefly-services/docs/firefly-api/
   name: Adobe Firefly API changelog
-maintainers:
-- FN: Kin Lane
-  email: kin@apievangelist.com
+
+apis:
+- aid: adobe:adobe-pdf-extract-api
+  name: Adobe PDF Extract API
+  tags:
+  - Artificial Intelligence
+  - Extraction
+  - PDF
+  tags_raw:
+  - AI
+  - Extraction
+  - PDF
+  humanURL: https://developer.adobe.com/document-services/docs/overview/pdf-extract-api/
+  baseURL: https://pdf-services.adobe.io
+  properties:
+  - type: Documentation
+    url: https://developer.adobe.com/document-services/docs/overview/pdf-extract-api/
+  - type: GettingStarted
+    url: https://developer.adobe.com/document-services/docs/overview/pdf-extract-api/gettingstarted/
+  description: Extract text, images, tables, and more from native and scanned PDFs into structured JSON using AI technology.
+- aid: adobe:adobe-acrobat-sign-api
+  name: Adobe Acrobat Sign API
+  tags:
+  - Documents
+  - E-Signature
+  tags_raw:
+  - Documents
+  - E-Signatures
+  humanURL: https://developer.adobe.com/document-services/apis/sign-api/
+  baseURL: https://api.adobesign.com
+  properties:
+  - type: Documentation
+    url: https://opensource.adobe.com/acrobat-sign/developer_guide/index.html
+  - type: APIReference
+    url: https://opensource.adobe.com/acrobat-sign/developer_guide/apiusage.html
+  - type: GettingStarted
+    url: https://opensource.adobe.com/acrobat-sign/developer_guide/gstarted.html
+  - type: SDKs
+    url: https://developer.adobe.com/acrobat-sign/docs/overview/sdks/rest
+  - type: ChangeLog
+    url: https://opensource.adobe.com/acrobat-sign/releasenotes/acrobatsignreleasenotes.html
+  description: Embed e-signature workflows and manage signing agreements programmatically.
+- aid: adobe:adobe-analytics-api
+  name: Adobe Analytics API
+  tags:
+  - Analytics
+  - Metrics
+  humanURL: https://developer.adobe.com/analytics-apis/docs/2.0/
+  baseURL: https://analytics.adobe.io
+  properties:
+  - type: Documentation
+    url: https://developer.adobe.com/analytics-apis/docs/2.0/
+  - type: Authentication
+    url: https://developer.adobe.com/analytics-apis/docs/2.0/guides/authentication/
+  - type: GettingStarted
+    url: https://developer.adobe.com/analytics-apis/docs/2.0/guides/
+  description: Access and analyze digital marketing data and metrics.
+- aid: adobe:adobe-firefly-api
+  name: Adobe Firefly API
+  tags:
+  - Generative AI
+  - Image Generation
+  tags_raw:
+  - Generative AI
+  - Image Generation
+  - Image-Generation
+  humanURL: https://developer.adobe.com/firefly-services/docs/firefly-api/
+  baseURL: https://firefly-api.adobe.io
+  properties:
+  - type: Documentation
+    url: https://developer.adobe.com/firefly-services/docs/firefly-api/
+  - type: APIReference
+    url: https://developer.adobe.com/firefly-services/docs/firefly-api/api/
+  - type: GettingStarted
+    url: https://developer.adobe.com/firefly-services/docs/firefly-api/guides/
+  - type: SDKs
+    url: https://developer.adobe.com/firefly-services/docs/guides/sdks/
+  - type: ChangeLog
+    url: https://developer.adobe.com/firefly-services/docs/firefly-api/guides/changelog/
+  description: Generate and edit images using generative AI models through a RESTful API.
+- aid: adobe:adobe-experience-platform-api
+  name: Adobe Experience Platform API
+  tags:
+  - Customer Data
+  - Experience Platform
+  humanURL: https://developer.adobe.com/experience-platform-apis/
+  baseURL: https://platform.adobe.io
+  properties:
+  - type: Documentation
+    url: https://experienceleague.adobe.com/docs/experience-platform/landing/platform-apis/api-guide.html
+  - type: APIReference
+    url: https://developer.adobe.com/experience-platform-apis/references/
+  - type: GettingStarted
+    url: https://experienceleague.adobe.com/en/docs/experience-platform/landing/platform-apis/api-guide
+  description: Build and manage customer experience applications on Adobe Experience Platform.
+- aid: adobe:adobe-stock-api
+  name: Adobe Stock API
+  tags:
+  - Assets
+  - Stocks
+  tags_raw:
+  - Assets
+  - Stock
+  humanURL: https://developer.adobe.com/stock/
+  baseURL: https://stock.adobe.io
+  properties:
+  - type: Documentation
+    url: https://developer.adobe.com/stock/docs/getting-started/
+  - type: APIReference
+    url: https://developer.adobe.com/stock/docs/api/
+  - type: GettingStarted
+    url: https://developer.adobe.com/stock/docs/getting-started/
+  - type: SDKs
+    url: https://github.com/adobe/stock-api-sdk
+  description: Search, license, and manage Adobe Stock assets including photos, vectors, videos, and templates.
+- aid: adobe:adobe-commerce-api
+  name: Adobe Commerce API
+  tags:
+  - E-Commerce
+  - REST
+  humanURL: https://developer.adobe.com/commerce/webapi/
+  properties:
+  - type: Documentation
+    url: https://developer.adobe.com/commerce/docs/
+  - type: APIReference
+    url: https://developer.adobe.com/commerce/webapi/rest/reference/
+  - type: GettingStarted
+    url: https://developer.adobe.com/commerce/webapi/get-started/
+  - type: Authentication
+    url: https://developer.adobe.com/commerce/webapi/get-started/authentication/
+  description: Build and integrate e-commerce applications with REST, GraphQL, and SOAP web APIs.
+- aid: adobe:adobe-marketo-engage-api
+  name: Adobe Marketo Engage API
+  tags:
+  - Leads
+  - Marketing Automation
+  humanURL: https://developer.adobe.com/marketo-apis/
+  properties:
+  - type: Documentation
+    url: https://experienceleague.adobe.com/en/docs/marketo-developer/marketo/rest/rest-api
+  - type: APIReference
+    url: https://experienceleague.adobe.com/en/docs/marketo-developer/marketo/rest/endpoint-reference
+  - type: Authentication
+    url: https://experienceleague.adobe.com/en/docs/marketo-developer/marketo/rest/authentication
+  - type: GettingStarted
+    url: https://experienceleague.adobe.com/en/docs/marketo-developer/marketo/rest/rest-api
+  description: Automate marketing processes and manage leads, campaigns, and assets via REST APIs.
+- aid: adobe:adobe-workfront-api
+  name: Adobe Workfront API
+  tags:
+  - Project
+  - Work Management
+  tags_raw:
+  - Projects
+  - Work Management
+  humanURL: https://developer.adobe.com/workfront-apis/
+  properties:
+  - type: Documentation
+    url: https://experienceleague.adobe.com/en/docs/workfront/using/adobe-workfront-api/workfront-api
+  - type: APIReference
+    url: https://developer.adobe.com/workfront/api-explorer/
+  - type: GettingStarted
+    url: https://experienceleague.adobe.com/en/docs/workfront/using/adobe-workfront-api/api-general-information/api-basics
+  description: Manage work, projects, tasks, and resources programmatically with a REST API.
+- aid: adobe:adobe-user-management-api
+  name: Adobe User Management API
+  tags:
+  - Identity
+  - User Management
+  humanURL: https://developer.adobe.com/umapi/
+  baseURL: https://usermanagement.adobe.io
+  properties:
+  - type: Documentation
+    url: https://adobe-apiplatform.github.io/umapi-documentation/
+  - type: APIReference
+    url: https://adobe-apiplatform.github.io/umapi-documentation/en/RefOverview.html
+  - type: GettingStarted
+    url: https://adobe-apiplatform.github.io/umapi-documentation/en/getstarted.html
+  description: Programmatically manage users, groups, and product entitlements for Adobe enterprise organizations.
+- aid: adobe:adobe-io-events-api
+  name: Adobe I/O Events API
+  tags:
+  - Event
+  - Webhook
+  tags_raw:
+  - Events
+  - Webhooks
+  humanURL: https://developer.adobe.com/events/
+  baseURL: https://platform.adobe.io
+  properties:
+  - type: Documentation
+    url: https://developer.adobe.com/events/docs/
+  - type: APIReference
+    url: https://developer.adobe.com/events/docs/guides/api/
+  - type: GettingStarted
+    url: https://developer.adobe.com/events/docs/
+  description: Subscribe to and receive near real-time events from Adobe services for event-driven integrations.
+- aid: adobe:adobe-experience-manager-api
+  name: Adobe Experience Manager API
+  tags:
+  - Content Management
+  - Digital Asset Management
+  humanURL: https://developer.adobe.com/experience-cloud/experience-manager-apis
+  baseURL: https://platform.adobe.io
+  properties:
+  - type: Documentation
+    url: https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service
+  - type: APIReference
+    url: https://developer.adobe.com/experience-cloud/experience-manager-apis
+  - type: GettingStarted
+    url: https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/implementing/developing/reference-materials
+  description: Create, read, update, and delete content, assets, and forms in Adobe Experience Manager as a Cloud Service.
+- aid: adobe:adobe-accessibility-auto-tag-api
+  name: Adobe PDF Services Accessibility Auto-Tag API
+  description: Automatically add accessibility tags to PDF documents using AI.
+  humanURL: https://developer.adobe.com/document-services/apis/pdf-services/
+  baseURL: https://pdf-services.adobe.io
+  tags:
+  - Accessibility Auto-Tag
+  properties:
+  - type: OpenAPI
+    url: openapi/adobe-accessibility-auto-tag-api-openapi.yml
+  - type: Documentation
+    url: https://developer.adobe.com/document-services/docs/overview/pdf-services-api/
+  - type: GettingStarted
+    url: https://developer.adobe.com/document-services/docs/overview/pdf-services-api/gettingstarted/
+  - type: ChangeLog
+    url: https://developer.adobe.com/document-services/docs/overview/releasenotes/
+  - type: JSONSchema
+    url: json-schema/adobe-pdf-services-asset-upload-request-schema.json
+  - type: JSONLD
+    url: json-ld/adobe-pdf-services-context.jsonld
+- aid: adobe:adobe-assets-api
+  name: Adobe PDF Services Assets API
+  description: Upload and manage assets (source files) for PDF operations.
+  humanURL: https://developer.adobe.com/document-services/apis/pdf-services/
+  baseURL: https://pdf-services.adobe.io
+  tags:
+  - Assets
+  properties:
+  - type: OpenAPI
+    url: openapi/adobe-assets-api-openapi.yml
+  - type: Documentation
+    url: https://developer.adobe.com/document-services/docs/overview/pdf-services-api/
+  - type: GettingStarted
+    url: https://developer.adobe.com/document-services/docs/overview/pdf-services-api/gettingstarted/
+  - type: ChangeLog
+    url: https://developer.adobe.com/document-services/docs/overview/releasenotes/
+  - type: JSONSchema
+    url: json-schema/adobe-pdf-services-asset-upload-request-schema.json
+  - type: JSONLD
+    url: json-ld/adobe-pdf-services-context.jsonld
+- aid: adobe:adobe-combine-pdf-api
+  name: Adobe PDF Services Combine PDF API
+  description: Combine multiple PDF documents into a single PDF.
+  humanURL: https://developer.adobe.com/document-services/apis/pdf-services/
+  baseURL: https://pdf-services.adobe.io
+  tags:
+  - Combine PDF
+  properties:
+  - type: OpenAPI
+    url: openapi/adobe-combine-pdf-api-openapi.yml
+  - type: Documentation
+    url: https://developer.adobe.com/document-services/docs/overview/pdf-services-api/
+  - type: GettingStarted
+    url: https://developer.adobe.com/document-services/docs/overview/pdf-services-api/gettingstarted/
+  - type: ChangeLog
+    url: https://developer.adobe.com/document-services/docs/overview/releasenotes/
+  - type: JSONSchema
+    url: json-schema/adobe-pdf-services-asset-upload-request-schema.json
+  - type: JSONLD
+    url: json-ld/adobe-pdf-services-context.jsonld
+- aid: adobe:adobe-compress-pdf-api
+  name: Adobe PDF Services Compress PDF API
+  description: Reduce the file size of PDF documents while maintaining quality.
+  humanURL: https://developer.adobe.com/document-services/apis/pdf-services/
+  baseURL: https://pdf-services.adobe.io
+  tags:
+  - Compress PDF
+  properties:
+  - type: OpenAPI
+    url: openapi/adobe-compress-pdf-api-openapi.yml
+  - type: Documentation
+    url: https://developer.adobe.com/document-services/docs/overview/pdf-services-api/
+  - type: GettingStarted
+    url: https://developer.adobe.com/document-services/docs/overview/pdf-services-api/gettingstarted/
+  - type: ChangeLog
+    url: https://developer.adobe.com/document-services/docs/overview/releasenotes/
+  - type: JSONSchema
+    url: json-schema/adobe-pdf-services-asset-upload-request-schema.json
+  - type: JSONLD
+    url: json-ld/adobe-pdf-services-context.jsonld
+- aid: adobe:adobe-create-pdf-api
+  name: Adobe PDF Services Create PDF API
+  description: Create PDF documents from supported file formats including Microsoft Office, images, and HTML.
+  humanURL: https://developer.adobe.com/document-services/apis/pdf-services/
+  baseURL: https://pdf-services.adobe.io
+  tags:
+  - Create PDF
+  properties:
+  - type: OpenAPI
+    url: openapi/adobe-create-pdf-api-openapi.yml
+  - type: Documentation
+    url: https://developer.adobe.com/document-services/docs/overview/pdf-services-api/
+  - type: GettingStarted
+    url: https://developer.adobe.com/document-services/docs/overview/pdf-services-api/gettingstarted/
+  - type: ChangeLog
+    url: https://developer.adobe.com/document-services/docs/overview/releasenotes/
+  - type: JSONSchema
+    url: json-schema/adobe-pdf-services-asset-upload-request-schema.json
+  - type: JSONLD
+    url: json-ld/adobe-pdf-services-context.jsonld
+- aid: adobe:adobe-delete-pages-api
+  name: Adobe PDF Services Delete Pages API
+  description: Delete specific pages from a PDF document.
+  humanURL: https://developer.adobe.com/document-services/apis/pdf-services/
+  baseURL: https://pdf-services.adobe.io
+  tags:
+  - Delete Pages
+  properties:
+  - type: OpenAPI
+    url: openapi/adobe-delete-pages-api-openapi.yml
+  - type: Documentation
+    url: https://developer.adobe.com/document-services/docs/overview/pdf-services-api/
+  - type: GettingStarted
+    url: https://developer.adobe.com/document-services/docs/overview/pdf-services-api/gettingstarted/
+  - type: ChangeLog
+    url: https://developer.adobe.com/document-services/docs/overview/releasenotes/
+  - type: JSONSchema
+    url: json-schema/adobe-pdf-services-asset-upload-request-schema.json
+  - type: JSONLD
+    url: json-ld/adobe-pdf-services-context.jsonld
+- aid: adobe:adobe-document-generation-api
+  name: Adobe PDF Services Document Generation API
+  description: Generate PDF and Word documents from templates with dynamic JSON data.
+  humanURL: https://developer.adobe.com/document-services/apis/pdf-services/
+  baseURL: https://pdf-services.adobe.io
+  tags:
+  - Document Generation
+  properties:
+  - type: OpenAPI
+    url: openapi/adobe-document-generation-api-openapi.yml
+  - type: Documentation
+    url: https://developer.adobe.com/document-services/docs/overview/pdf-services-api/
+  - type: GettingStarted
+    url: https://developer.adobe.com/document-services/docs/overview/pdf-services-api/gettingstarted/
+  - type: ChangeLog
+    url: https://developer.adobe.com/document-services/docs/overview/releasenotes/
+  - type: JSONSchema
+    url: json-schema/adobe-pdf-services-asset-upload-request-schema.json
+  - type: JSONLD
+    url: json-ld/adobe-pdf-services-context.jsonld
+- aid: adobe:adobe-export-pdf-api
+  name: Adobe PDF Services Export PDF API
+  description: Export (convert) PDF documents to other formats such as DOCX, PPTX, XLSX, images, and RTF.
+  humanURL: https://developer.adobe.com/document-services/apis/pdf-services/
+  baseURL: https://pdf-services.adobe.io
+  tags:
+  - Export PDF
+  properties:
+  - type: OpenAPI
+    url: openapi/adobe-export-pdf-api-openapi.yml
+  - type: Documentation
+    url: https://developer.adobe.com/document-services/docs/overview/pdf-services-api/
+  - type: GettingStarted
+    url: https://developer.adobe.com/document-services/docs/overview/pdf-services-api/gettingstarted/
+  - type: ChangeLog
+    url: https://developer.adobe.com/document-services/docs/overview/releasenotes/
+  - type: JSONSchema
+    url: json-schema/adobe-pdf-services-asset-upload-request-schema.json
+  - type: JSONLD
+    url: json-ld/adobe-pdf-services-context.jsonld
+- aid: adobe:adobe-extract-pdf-api
+  name: Adobe PDF Services Extract PDF API
+  description: Extract text, tables, and figures from PDF documents into structured JSON output.
+  humanURL: https://developer.adobe.com/document-services/apis/pdf-services/
+  baseURL: https://pdf-services.adobe.io
+  tags:
+  - Extract PDF
+  properties:
+  - type: OpenAPI
+    url: openapi/adobe-extract-pdf-api-openapi.yml
+  - type: Documentation
+    url: https://developer.adobe.com/document-services/docs/overview/pdf-services-api/
+  - type: GettingStarted
+    url: https://developer.adobe.com/document-services/docs/overview/pdf-services-api/gettingstarted/
+  - type: ChangeLog
+    url: https://developer.adobe.com/document-services/docs/overview/releasenotes/
+  - type: JSONSchema
+    url: json-schema/adobe-pdf-services-asset-upload-request-schema.json
+  - type: JSONLD
+    url: json-ld/adobe-pdf-services-context.jsonld
+- aid: adobe:adobe-insert-pages-api
+  name: Adobe PDF Services Insert Pages API
+  description: Insert pages from one PDF into another.
+  humanURL: https://developer.adobe.com/document-services/apis/pdf-services/
+  baseURL: https://pdf-services.adobe.io
+  tags:
+  - Insert Pages
+  properties:
+  - type: OpenAPI
+    url: openapi/adobe-insert-pages-api-openapi.yml
+  - type: Documentation
+    url: https://developer.adobe.com/document-services/docs/overview/pdf-services-api/
+  - type: GettingStarted
+    url: https://developer.adobe.com/document-services/docs/overview/pdf-services-api/gettingstarted/
+  - type: ChangeLog
+    url: https://developer.adobe.com/document-services/docs/overview/releasenotes/
+  - type: JSONSchema
+    url: json-schema/adobe-pdf-services-asset-upload-request-schema.json
+  - type: JSONLD
+    url: json-ld/adobe-pdf-services-context.jsonld
+- aid: adobe:adobe-jobs-api
+  name: Adobe PDF Services Jobs API
+  description: Poll for the status and results of asynchronous PDF operations.
+  humanURL: https://developer.adobe.com/document-services/apis/pdf-services/
+  baseURL: https://pdf-services.adobe.io
+  tags:
+  - Job
+  tags_raw:
+  - Jobs
+  properties:
+  - type: OpenAPI
+    url: openapi/adobe-jobs-api-openapi.yml
+  - type: Documentation
+    url: https://developer.adobe.com/document-services/docs/overview/pdf-services-api/
+  - type: GettingStarted
+    url: https://developer.adobe.com/document-services/docs/overview/pdf-services-api/gettingstarted/
+  - type: ChangeLog
+    url: https://developer.adobe.com/document-services/docs/overview/releasenotes/
+  - type: JSONSchema
+    url: json-schema/adobe-pdf-services-asset-upload-request-schema.json
+  - type: JSONLD
+    url: json-ld/adobe-pdf-services-context.jsonld
+- aid: adobe:adobe-linearize-pdf-api
+  name: Adobe PDF Services Linearize PDF API
+  description: Optimize PDFs for fast web viewing (linearization).
+  humanURL: https://developer.adobe.com/document-services/apis/pdf-services/
+  baseURL: https://pdf-services.adobe.io
+  tags:
+  - Linearize PDF
+  properties:
+  - type: OpenAPI
+    url: openapi/adobe-linearize-pdf-api-openapi.yml
+  - type: Documentation
+    url: https://developer.adobe.com/document-services/docs/overview/pdf-services-api/
+  - type: GettingStarted
+    url: https://developer.adobe.com/document-services/docs/overview/pdf-services-api/gettingstarted/
+  - type: ChangeLog
+    url: https://developer.adobe.com/document-services/docs/overview/releasenotes/
+  - type: JSONSchema
+    url: json-schema/adobe-pdf-services-asset-upload-request-schema.json
+  - type: JSONLD
+    url: json-ld/adobe-pdf-services-context.jsonld
+- aid: adobe:adobe-ocr-api
+  name: Adobe PDF Services OCR API
+  description: Apply optical character recognition to scanned PDFs to make text searchable and selectable.
+  humanURL: https://developer.adobe.com/document-services/apis/pdf-services/
+  baseURL: https://pdf-services.adobe.io
+  tags:
+  - OCR
+  properties:
+  - type: OpenAPI
+    url: openapi/adobe-ocr-api-openapi.yml
+  - type: Documentation
+    url: https://developer.adobe.com/document-services/docs/overview/pdf-services-api/
+  - type: GettingStarted
+    url: https://developer.adobe.com/document-services/docs/overview/pdf-services-api/gettingstarted/
+  - type: ChangeLog
+    url: https://developer.adobe.com/document-services/docs/overview/releasenotes/
+  - type: JSONSchema
+    url: json-schema/adobe-pdf-services-asset-upload-request-schema.json
+  - type: JSONLD
+    url: json-ld/adobe-pdf-services-context.jsonld
+- aid: adobe:adobe-pdf-properties-api
+  name: Adobe PDF Services PDF Properties API
+  description: Retrieve metadata and properties from PDF documents.
+  humanURL: https://developer.adobe.com/document-services/apis/pdf-services/
+  baseURL: https://pdf-services.adobe.io
+  tags:
+  - PDF Properties
+  properties:
+  - type: OpenAPI
+    url: openapi/adobe-pdf-properties-api-openapi.yml
+  - type: Documentation
+    url: https://developer.adobe.com/document-services/docs/overview/pdf-services-api/
+  - type: GettingStarted
+    url: https://developer.adobe.com/document-services/docs/overview/pdf-services-api/gettingstarted/
+  - type: ChangeLog
+    url: https://developer.adobe.com/document-services/docs/overview/releasenotes/
+  - type: JSONSchema
+    url: json-schema/adobe-pdf-services-asset-upload-request-schema.json
+  - type: JSONLD
+    url: json-ld/adobe-pdf-services-context.jsonld
+- aid: adobe:adobe-protect-pdf-api
+  name: Adobe PDF Services Protect PDF API
+  description: Add password protection and encryption to PDF documents.
+  humanURL: https://developer.adobe.com/document-services/apis/pdf-services/
+  baseURL: https://pdf-services.adobe.io
+  tags:
+  - Protect PDF
+  properties:
+  - type: OpenAPI
+    url: openapi/adobe-protect-pdf-api-openapi.yml
+  - type: Documentation
+    url: https://developer.adobe.com/document-services/docs/overview/pdf-services-api/
+  - type: GettingStarted
+    url: https://developer.adobe.com/document-services/docs/overview/pdf-services-api/gettingstarted/
+  - type: ChangeLog
+    url: https://developer.adobe.com/document-services/docs/overview/releasenotes/
+  - type: JSONSchema
+    url: json-schema/adobe-pdf-services-asset-upload-request-schema.json
+  - type: JSONLD
+    url: json-ld/adobe-pdf-services-context.jsonld
+- aid: adobe:adobe-remove-protection-api
+  name: Adobe PDF Services Remove Protection API
+  description: Remove password protection from PDF documents.
+  humanURL: https://developer.adobe.com/document-services/apis/pdf-services/
+  baseURL: https://pdf-services.adobe.io
+  tags:
+  - Remove Protection
+  properties:
+  - type: OpenAPI
+    url: openapi/adobe-remove-protection-api-openapi.yml
+  - type: Documentation
+    url: https://developer.adobe.com/document-services/docs/overview/pdf-services-api/
+  - type: GettingStarted
+    url: https://developer.adobe.com/document-services/docs/overview/pdf-services-api/gettingstarted/
+  - type: ChangeLog
+    url: https://developer.adobe.com/document-services/docs/overview/releasenotes/
+  - type: JSONSchema
+    url: json-schema/adobe-pdf-services-asset-upload-request-schema.json
+  - type: JSONLD
+    url: json-ld/adobe-pdf-services-context.jsonld
+- aid: adobe:adobe-reorder-pages-api
+  name: Adobe PDF Services Reorder Pages API
+  description: Reorder pages within a PDF document.
+  humanURL: https://developer.adobe.com/document-services/apis/pdf-services/
+  baseURL: https://pdf-services.adobe.io
+  tags:
+  - Reorder Pages
+  properties:
+  - type: OpenAPI
+    url: openapi/adobe-reorder-pages-api-openapi.yml
+  - type: Documentation
+    url: https://developer.adobe.com/document-services/docs/overview/pdf-services-api/
+  - type: GettingStarted
+    url: https://developer.adobe.com/document-services/docs/overview/pdf-services-api/gettingstarted/
+  - type: ChangeLog
+    url: https://developer.adobe.com/document-services/docs/overview/releasenotes/
+  - type: JSONSchema
+    url: json-schema/adobe-pdf-services-asset-upload-request-schema.json
+  - type: JSONLD
+    url: json-ld/adobe-pdf-services-context.jsonld
+- aid: adobe:adobe-replace-pages-api
+  name: Adobe PDF Services Replace Pages API
+  description: Replace pages in a PDF with pages from another PDF.
+  humanURL: https://developer.adobe.com/document-services/apis/pdf-services/
+  baseURL: https://pdf-services.adobe.io
+  tags:
+  - Replace Pages
+  properties:
+  - type: OpenAPI
+    url: openapi/adobe-replace-pages-api-openapi.yml
+  - type: Documentation
+    url: https://developer.adobe.com/document-services/docs/overview/pdf-services-api/
+  - type: GettingStarted
+    url: https://developer.adobe.com/document-services/docs/overview/pdf-services-api/gettingstarted/
+  - type: ChangeLog
+    url: https://developer.adobe.com/document-services/docs/overview/releasenotes/
+  - type: JSONSchema
+    url: json-schema/adobe-pdf-services-asset-upload-request-schema.json
+  - type: JSONLD
+    url: json-ld/adobe-pdf-services-context.jsonld
+- aid: adobe:adobe-rotate-pages-api
+  name: Adobe PDF Services Rotate Pages API
+  description: Rotate pages within a PDF document.
+  humanURL: https://developer.adobe.com/document-services/apis/pdf-services/
+  baseURL: https://pdf-services.adobe.io
+  tags:
+  - Rotate Pages
+  properties:
+  - type: OpenAPI
+    url: openapi/adobe-rotate-pages-api-openapi.yml
+  - type: Documentation
+    url: https://developer.adobe.com/document-services/docs/overview/pdf-services-api/
+  - type: GettingStarted
+    url: https://developer.adobe.com/document-services/docs/overview/pdf-services-api/gettingstarted/
+  - type: ChangeLog
+    url: https://developer.adobe.com/document-services/docs/overview/releasenotes/
+  - type: JSONSchema
+    url: json-schema/adobe-pdf-services-asset-upload-request-schema.json
+  - type: JSONLD
+    url: json-ld/adobe-pdf-services-context.jsonld
+- aid: adobe:adobe-split-pdf-api
+  name: Adobe PDF Services Split PDF API
+  description: Split a PDF document into multiple smaller PDFs.
+  humanURL: https://developer.adobe.com/document-services/apis/pdf-services/
+  baseURL: https://pdf-services.adobe.io
+  tags:
+  - Split PDF
+  properties:
+  - type: OpenAPI
+    url: openapi/adobe-split-pdf-api-openapi.yml
+  - type: Documentation
+    url: https://developer.adobe.com/document-services/docs/overview/pdf-services-api/
+  - type: GettingStarted
+    url: https://developer.adobe.com/document-services/docs/overview/pdf-services-api/gettingstarted/
+  - type: ChangeLog
+    url: https://developer.adobe.com/document-services/docs/overview/releasenotes/
+  - type: JSONSchema
+    url: json-schema/adobe-pdf-services-asset-upload-request-schema.json
+  - type: JSONLD
+    url: json-ld/adobe-pdf-services-context.jsonld
+- aid: adobe:adobe-composites-api
+  name: Adobe Composites API
+  description: The Composites API from Adobe — 1 operation(s) for composites.
+  humanURL: https://developer.adobe.com/document-services/docs/overview/pdf-extract-api/
+  baseURL: https://pdf-services.adobe.io
+  tags:
+  - Composites
+  properties:
+  - type: OpenAPI
+    url: openapi/adobe-composites-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/adobe-restv1-compose-scene-request-schema.json
+  - type: JSONSchema
+    url: json-schema/adobe-restv1beta-compose-scene-response-schema.json
+- aid: adobe:adobe-export-pdf-form-data-api
+  name: Adobe Export PDF Form Data API
+  description: The Export PDF Form Data API will retrieve the data from a PDF form and return it as a JSON file.
+  humanURL: https://developer.adobe.com/document-services/docs/overview/pdf-extract-api/
+  baseURL: https://pdf-services.adobe.io
+  tags:
+  - Export PDF Form Data
+  properties:
+  - type: OpenAPI
+    url: openapi/adobe-export-pdf-form-data-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/adobe-get-form-data-external-schema.json
+  - type: JSONSchema
+    url: json-schema/adobe-get-form-data-internal-schema.json
+  - type: JSONSchema
+    url: json-schema/adobe-get-form-data-job-status-schema.json
+- aid: adobe:adobe-generate-token-api
+  name: Adobe Generate Token API
+  description: Creates an access token using client id and client secret. Click <a href="https://developer.adobe.com/developer-console/docs/guides/authentication/ServerToServerAuthentication/IMS/">here</a>
+    to refer underlying IMS authentication APIs.
+  humanURL: https://developer.adobe.com/document-services/docs/overview/pdf-extract-api/
+  baseURL: https://pdf-services.adobe.io
+  tags:
+  - Generate Token
+  properties:
+  - type: OpenAPI
+    url: openapi/adobe-generate-token-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/adobe-token-response-schema.json
+  - type: JSONSchema
+    url: json-schema/adobe-token-schema.json
+- aid: adobe:adobe-html-to-pdf-api
+  name: Adobe Html to PDF API
+  description: Convert HTML Resources to a PDF File
+  humanURL: https://developer.adobe.com/document-services/docs/overview/pdf-extract-api/
+  baseURL: https://pdf-services.adobe.io
+  tags:
+  - HTML to PDF
+  tags_raw:
+  - Html to PDF
+  properties:
+  - type: OpenAPI
+    url: openapi/adobe-html-to-pdf-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/adobe-html-to-pdf-external-schema.json
+  - type: JSONSchema
+    url: json-schema/adobe-html-to-pdf-internal-schema.json
+  - type: JSONSchema
+    url: json-schema/adobe-html-to-pdf-job-status-schema.json
+- aid: adobe:adobe-import-pdf-form-data-api
+  name: Adobe Import PDF Form Data API
+  description: The Import PDF Form Data API will take the form data provided as a JSON, insert it into the PDF form, and generate the resulting
+    PDF.
+  humanURL: https://developer.adobe.com/document-services/docs/overview/pdf-extract-api/
+  baseURL: https://pdf-services.adobe.io
+  tags:
+  - Import PDF Form Data
+  properties:
+  - type: OpenAPI
+    url: openapi/adobe-import-pdf-form-data-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/adobe-set-form-data-external-schema.json
+  - type: JSONSchema
+    url: json-schema/adobe-set-form-data-internal-schema.json
+  - type: JSONSchema
+    url: json-schema/adobe-set-form-data-job-status-schema.json
+- aid: adobe:adobe-library-service-api
+  name: Adobe Library Service API
+  description: App-facing APIs for Adobe CC Libraries.
+  humanURL: https://developer.adobe.com/document-services/docs/overview/pdf-extract-api/
+  baseURL: https://pdf-services.adobe.io
+  tags:
+  - Library Service
+  properties:
+  - type: OpenAPI
+    url: openapi/adobe-library-service-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/adobe-usssearch-payload-schema.json
+  - type: JSONSchema
+    url: json-schema/adobe-db-library-info-schema.json
+  - type: JSONSchema
+    url: json-schema/adobe-post-library-elements-payload-schema.json
+  - type: JSONSchema
+    url: json-schema/adobe-db-library-element-data-schema.json
+  - type: JSONSchema
+    url: json-schema/adobe-element-list-payload-schema.json
+  - type: JSONSchema
+    url: json-schema/adobe-libraries-info-schema.json
+- aid: adobe:adobe-library-service-bookmarks-api
+  name: Adobe Library Service - Bookmarks API
+  description: App-facing APIs specifically for Adobe CC Library Bookmarks.
+  humanURL: https://developer.adobe.com/document-services/docs/overview/pdf-extract-api/
+  baseURL: https://pdf-services.adobe.io
+  tags:
+  - Library Service - Bookmarks
+  properties:
+  - type: OpenAPI
+    url: openapi/adobe-library-service-bookmarks-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/adobe-db-library-bookmarks-schema.json
+  - type: JSONSchema
+    url: json-schema/adobe-bookmarks-payload-schema.json
+- aid: adobe:adobe-library-service-public-api
+  name: Adobe Library Service - Public API
+  description: App-facing APIs specifically for Adobe CC Public Libraries.
+  humanURL: https://developer.adobe.com/document-services/docs/overview/pdf-extract-api/
+  baseURL: https://pdf-services.adobe.io
+  tags:
+  - Library Service - Public
+  properties:
+  - type: OpenAPI
+    url: openapi/adobe-library-service-public-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/adobe-db-library-info-schema.json
+  - type: JSONSchema
+    url: json-schema/adobe-db-library-element-data-schema.json
+  - type: JSONSchema
+    url: json-schema/adobe-library-elements-info-schema.json
+- aid: adobe:adobe-page-manipulation-api
+  name: Adobe Page Manipulation API
+  description: Rotate and delete pages of a PDF File
+  humanURL: https://developer.adobe.com/document-services/docs/overview/pdf-extract-api/
+  baseURL: https://pdf-services.adobe.io
+  tags:
+  - Page Manipulation
+  properties:
+  - type: OpenAPI
+    url: openapi/adobe-page-manipulation-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/adobe-page-manipulation-external-schema.json
+  - type: JSONSchema
+    url: json-schema/adobe-page-manipulation-internal-schema.json
+  - type: JSONSchema
+    url: json-schema/adobe-page-manipulation-job-status-schema.json
+- aid: adobe:adobe-pdf-accessibility-auto-tag-api
+  name: Adobe PDF Accessibility Auto-Tag API
+  description: Operation to create the tagged pdf and excel report for accessibility auto-tag use case.
+  humanURL: https://developer.adobe.com/document-services/docs/overview/pdf-extract-api/
+  baseURL: https://pdf-services.adobe.io
+  tags:
+  - PDF Accessibility Auto-Tag
+  properties:
+  - type: OpenAPI
+    url: openapi/adobe-pdf-accessibility-auto-tag-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/adobe-auto-tag-pdfexternal-schema.json
+  - type: JSONSchema
+    url: json-schema/adobe-auto-tag-pdfinternal-schema.json
+  - type: JSONSchema
+    url: json-schema/adobe-auto-tag-pdfjob-status-schema.json
+- aid: adobe:adobe-pdf-accessibility-checker-api
+  name: Adobe PDF Accessibility Checker API
+  description: Accessibility Checker API will check PDF files to see if they meet the machine-verifiable requirements of PDF/UA and WCAG.
+  humanURL: https://developer.adobe.com/document-services/docs/overview/pdf-extract-api/
+  baseURL: https://pdf-services.adobe.io
+  tags:
+  - PDF Accessibility Checker
+  properties:
+  - type: OpenAPI
+    url: openapi/adobe-pdf-accessibility-checker-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/adobe-accessibility-checker-external-schema.json
+  - type: JSONSchema
+    url: json-schema/adobe-accessibility-checker-internal-schema.json
+  - type: JSONSchema
+    url: json-schema/adobe-accessibility-checker-job-status-schema.json
+- aid: adobe:adobe-pdf-electronic-seal-api
+  name: Adobe PDF Electronic Seal API
+  description: Create electronic seal on PDF documents like invoices, agreements etc using the digital certificate issued to the user by Trust
+    Service Provider.
+  humanURL: https://developer.adobe.com/document-services/docs/overview/pdf-extract-api/
+  baseURL: https://pdf-services.adobe.io
+  tags:
+  - PDF Electronic Seal
+  properties:
+  - type: OpenAPI
+    url: openapi/adobe-pdf-electronic-seal-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/adobe-electronic-seal-external-schema.json
+  - type: JSONSchema
+    url: json-schema/adobe-electronic-seal-internal-schema.json
+  - type: JSONSchema
+    url: json-schema/adobe-electronic-seal-pdfjob-status-schema.json
+- aid: adobe:adobe-pdf-to-images-api
+  name: Adobe PDF To Images API
+  description: Convert a PDF File to image files
+  humanURL: https://developer.adobe.com/document-services/docs/overview/pdf-extract-api/
+  baseURL: https://pdf-services.adobe.io
+  tags:
+  - PDF To Images
+  properties:
+  - type: OpenAPI
+    url: openapi/adobe-pdf-to-images-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/adobe-pdfto-image-external-schema.json
+  - type: JSONSchema
+    url: json-schema/adobe-pdfto-image-internal-schema.json
+  - type: JSONSchema
+    url: json-schema/adobe-pdftoimage-job-status-schema.json
+- aid: adobe:adobe-pdf-to-markdown-api
+  name: Adobe PDF To Markdown API
+  description: Extract content from PDF documents and output it in a well-formatted LLM-friendly Markdown text, along with tables and figures
+  humanURL: https://developer.adobe.com/document-services/docs/overview/pdf-extract-api/
+  baseURL: https://pdf-services.adobe.io
+  tags:
+  - PDF To Markdown
+  properties:
+  - type: OpenAPI
+    url: openapi/adobe-pdf-to-markdown-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/adobe-pdfto-markdown-external-schema.json
+  - type: JSONSchema
+    url: json-schema/adobe-pdfto-markdown-internal-schema.json
+  - type: JSONSchema
+    url: json-schema/adobe-pdfto-markdown-job-status-schema.json
+- aid: adobe:adobe-pdf-watermark-api
+  name: Adobe PDF Watermark API
+  description: PDF Watermark API will add a watermark in PDF document.
+  humanURL: https://developer.adobe.com/document-services/docs/overview/pdf-extract-api/
+  baseURL: https://pdf-services.adobe.io
+  tags:
+  - PDF Watermark
+  properties:
+  - type: OpenAPI
+    url: openapi/adobe-pdf-watermark-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/adobe-add-watermark-external-schema.json
+  - type: JSONSchema
+    url: json-schema/adobe-add-watermark-internal-schema.json
+  - type: JSONSchema
+    url: json-schema/adobe-add-watermark-job-status-schema.json
+- aid: adobe:adobe-scenes-api
+  name: Adobe Scenes API
+  description: The Scenes API from Adobe — 5 operation(s) for scenes.
+  humanURL: https://developer.adobe.com/document-services/docs/overview/pdf-extract-api/
+  baseURL: https://pdf-services.adobe.io
+  tags:
+  - Scenes
+  properties:
+  - type: OpenAPI
+    url: openapi/adobe-scenes-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/adobe-restv1beta-render-scene-request-schema.json
+  - type: JSONSchema
+    url: json-schema/adobe-restv1beta-render-model-request-schema.json
+  - type: JSONSchema
+    url: json-schema/adobe-restv1beta-create-scene-request-schema.json
+  - type: JSONSchema
+    url: json-schema/adobe-restv1beta-model-convert-request-schema.json
+  - type: JSONSchema
+    url: json-schema/adobe-restv1beta-model-convert-response-schema.json
+  - type: JSONSchema
+    url: json-schema/adobe-restv1beta-create-scene-response-schema.json
+- aid: adobe:adobe-spaces-api
+  name: Adobe Spaces API
+  description: The Spaces API from Adobe — 2 operation(s) for spaces.
+  humanURL: https://developer.adobe.com/document-services/docs/overview/pdf-extract-api/
+  baseURL: https://pdf-services.adobe.io
+  tags:
+  - Spaces
+  - Space
+  tags_raw:
+  - Spaces
+  - Space
+  properties:
+  - type: OpenAPI
+    url: openapi/adobe-spaces-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/adobe-rest-base-space-schema.json
+- aid: adobe:adobe-spacesframeio-api
+  name: Adobe Spaces Frame IO API
+  description: The SpacesFrameIO API from Adobe — 1 operation(s) for spacesframeio.
+  humanURL: https://developer.adobe.com/document-services/docs/overview/pdf-extract-api/
+  baseURL: https://pdf-services.adobe.io
+  tags:
+  - SpacesFrameIO
+  properties:
+  - type: OpenAPI
+    url: openapi/adobe-spacesframeio-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/adobe-rest-base-file-frame-io-schema.json
+  - type: JSONSchema
+    url: json-schema/adobe-rest-base-space-schema.json
+- aid: adobe:adobe-spacesnextframeio-api
+  name: Adobe Spaces Next Frame IO API
+  description: The SpacesNextFrameIO API from Adobe — 1 operation(s) for spacesnextframeio.
+  humanURL: https://developer.adobe.com/document-services/docs/overview/pdf-extract-api/
+  baseURL: https://pdf-services.adobe.io
+  tags:
+  - SpacesNextFrameIO
+  properties:
+  - type: OpenAPI
+    url: openapi/adobe-spacesnextframeio-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/adobe-rest-base-file-next-frame-io-schema.json
+  - type: JSONSchema
+    url: json-schema/adobe-rest-base-space-schema.json
+- aid: adobe:adobe-spacesurl-api
+  name: Adobe Spaces URL API
+  description: The SpacesURL API from Adobe — 1 operation(s) for spacesurl.
+  humanURL: https://developer.adobe.com/document-services/docs/overview/pdf-extract-api/
+  baseURL: https://pdf-services.adobe.io
+  tags:
+  - SpacesURL
+  properties:
+  - type: OpenAPI
+    url: openapi/adobe-spacesurl-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/adobe-rest-base-space-schema.json
+  - type: JSONSchema
+    url: json-schema/adobe-rest-base-file-url-schema.json
 x-enrichment:
-  date: '2026-08-13'
+  date: '2026-10-12'
   status: enriched
-  artifacts_added: 22
-  pass: local-v1
+  artifacts_added: 3
+  pass: local-v5

@@ -1,188 +1,93 @@
+name: Adobe API Plans
 specification: API Commons Plans
 specificationVersion: '0.1'
 schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
 provider: Adobe
 providerId: adobe
 created: '2026-05-04'
-# Provenance stamped 2026-08-11: this artifact was written by the API Evangelist
-# bulk sweep dated 2026-05-04, not harvested from the provider. See roadmap#35.
-# 2026-08-13 enrichment pass: the Adobe PDF Services FREE TIER was verified verbatim against
-# Adobe's own licensing and limits documentation and is now a first-class plan below with a
-# real quota. The other four entries remain archetypes with per-plan `method` markers — Adobe
-# publishes no machine-readable price for them and every Experience Cloud SKU is contact-sales.
 method: searched
 generated: '2026-08-13'
 source: https://developer.adobe.com/document-services/docs/overview/pdf-services-api/dcserviceslicensing/
 modified: '2026-08-13'
 reconciled: true
-plan_count: 5
+plan_count: 2
 tags:
-  - Analytics
-  - Creative Cloud
-  - Digital Asset Management
-  - Document Services
-  - E-Commerce
-  - E-Signatures
-  - Experience Cloud
-  - Generative AI
-  - Marketing
-  - PDF
-notes: >-
-  Adobe is a multi-product platform with no single unified pricing page. Each surface
-  (Creative Cloud, Document Services API, Firefly Services, Experience Cloud,
-  Acrobat Sign, Marketo, Workfront, Commerce) prices independently. Public list
-  pricing exists for Creative Cloud and Acrobat consumer SKUs; Experience Cloud
-  products (Analytics, Campaign, Experience Manager, Real-Time CDP, Target,
-  Marketo, Workfront) are contact-sales. WebFetch against adobe.com pricing
-  pages timed out repeatedly during reconciliation; per-product prices were
-  not retrieved and are deferred to per-product repos.
-description: >-
-  Adobe is a multi-product company spanning Creative Cloud (subscription SaaS),
-  Document Cloud (consumer + per-transaction PDF/Sign APIs), Firefly Services
-  (generative-credit-metered APIs), and Experience Cloud (enterprise contact-sales
-  SaaS). Pricing varies per product line; this artifact summarises the
-  archetypes only and points to per-product repos for exact prices.
+- Analytics
+- Creative Cloud
+- Digital Asset Management
+- Document Services
+- E-Commerce
+- E-Signatures
+- Experience Cloud
+- Generative AI
+- Marketing
+- PDF
+notes: Adobe is a multi-product platform with no single unified pricing page. Each surface (Creative Cloud, Document Services API, Firefly Services, Experience Cloud, Acrobat Sign, Marketo, Workfront, Commerce) prices independently. Public list pricing exists for Creative Cloud and Acrobat consumer SKUs; Experience Cloud products (Analytics, Campaign, Experience Manager, Real-Time CDP, Target, Marketo, Workfront) are contact-sales. WebFetch against adobe.com pricing pages timed out repeatedly during reconciliation; per-product prices were not retrieved and are deferred to per-product repos.
+description: Adobe is a multi-product company spanning Creative Cloud (subscription SaaS), Document Cloud (consumer + per-transaction PDF/Sign APIs), Firefly Services (generative-credit-metered APIs), and Experience Cloud (enterprise contact-sales SaaS). Pricing varies per product line; this artifact summarises the archetypes only and points to per-product repos for exact prices.
 sources:
-  - https://www.adobe.com/plans
-  - https://developer.adobe.com/document-services/pricing/
-  - https://developer.adobe.com/firefly-services/
-  - https://business.adobe.com/products/
+- https://www.adobe.com/plans
+- https://developer.adobe.com/document-services/pricing/
+- https://developer.adobe.com/firefly-services/
+- https://business.adobe.com/products/
 plans:
-  - id: adobe-pdf-services-free-tier
-    name: PDF Services API Free Tier
-    type: free
-    method: searched
-    source: https://developer.adobe.com/document-services/docs/overview/pdf-services-api/dcserviceslicensing/
+- id: adobe-pdf-services-free-tier
+  name: PDF Services API Free Tier
+  type: free
+  method: searched
+  source: https://developer.adobe.com/document-services/docs/overview/pdf-services-api/dcserviceslicensing/
+  price: 0
+  currency: USD
+  billingPeriod: month
+  description: '"The PDF Services API has a Free Tier so that you can take a deep dive into its cool features at zero cost. Free Tier users get free credentials that enable the processing of 500 Document Transactions per month." Quota resets on the first of each month. No credit card required; credentials are minted in the Adobe Developer Console.'
+  entries:
+  - label: Included Document Transactions
+    name: free_document_transactions
+    type: included
+    metric: Document Transaction
+    limit: 500
+    timeFrame: month
+    geo: global
+    unit: 1
     price: 0
-    currency: USD
-    billingPeriod: month
-    description: >-
-      "The PDF Services API has a Free Tier so that you can take a deep dive into its cool features
-      at zero cost. Free Tier users get free credentials that enable the processing of 500 Document
-      Transactions per month." Quota resets on the first of each month. No credit card required;
-      credentials are minted in the Adobe Developer Console.
-    entries:
-      - label: Included Document Transactions
-        name: free_document_transactions
-        type: included
-        metric: Document Transaction
-        limit: 500
-        timeFrame: month
-        geo: global
-        unit: 1
-        price: 0
-        userMultiplied: false
-    limits:
-      requests_per_minute: 25
-      document_transactions_per_month: 500
-      max_file_size: 100MB
-      region: United States only (region configuration requires a paid plan)
-    overage:
-      allowed: false
-      behaviour: >-
-        HTTP 429 with error code INSUFFICIENT_QUOTA. Not transient — the quota does not resume
-        until the monthly reset.
-    signup: https://acrobatservices.adobe.com/dc-integration-creation-app-cdn/main.html
-  - id: adobe-creative-cloud-subscription
-    name: Creative Cloud Subscription
-    type: subscription
-    method: generated
-    description: >-
-      Per-seat monthly/annual subscription to Creative Cloud apps. Tiers include
-      Photography, single-app, All Apps, Teams and Enterprise. See per-product
-      repos and adobe.com/plans for current list pricing.
-    entries:
-      - label: Creative Cloud subscription seat
-        name: cc_seat
-        type: subscription
-        metric: seat
-        limit: -1
-        timeFrame: month
-        geo: global
-        unit: 1
-        price: see https://www.adobe.com/plans
-        userMultiplied: true
-    elements:
-      - name: Creative Cloud applications (varies by plan)
-      - name: Cloud storage (varies by plan)
-      - name: Adobe Fonts
-      - name: Generative credits (varies by plan)
-  - id: adobe-document-services-api
-    name: Document Services API (PDF Services / Acrobat Sign)
-    type: usage-based
-    method: generated
-    description: >-
-      Per-document-transaction pricing for Adobe PDF Services API and Acrobat
-      Sign API. Includes a free tier; paid usage is metered per transaction.
-    entries:
-      - label: Document transaction
-        name: document_transaction
-        type: metered
-        metric: transaction
-        limit: -1
-        timeFrame: usage
-        geo: global
-        unit: 1
-        price: see https://developer.adobe.com/document-services/pricing/
-        userMultiplied: false
-    elements:
-      - name: PDF Services API
-      - name: PDF Extract API
-      - name: Acrobat Sign API
-  - id: adobe-firefly-services
-    name: Firefly Services
-    type: usage-based
-    method: generated
-    description: >-
-      Generative-credit-metered access to Adobe Firefly image, vector, and
-      design APIs. Credits are bundled with Creative Cloud plans and sold
-      separately for API consumers.
-    entries:
-      - label: Generative credit
-        name: generative_credit
-        type: metered
-        metric: credit
-        limit: -1
-        timeFrame: usage
-        geo: global
-        unit: 1
-        price: see https://www.adobe.com/products/firefly.html
-        userMultiplied: false
-    elements:
-      - name: Firefly text-to-image
-      - name: Firefly generative fill
-      - name: Firefly text-to-vector
-  - id: adobe-experience-cloud-enterprise
-    name: Experience Cloud (Enterprise)
-    type: enterprise
-    method: generated
-    description: >-
-      Adobe Experience Cloud products (Analytics, Campaign, Experience Manager,
-      Real-Time CDP, Target, Marketo Engage, Workfront, Commerce) are sold via
-      contract with custom pricing tied to volume, modules, and SKU bundles.
-    entries:
-      - label: Negotiated subscription
-        name: enterprise_subscription
-        type: subscription
-        metric: month
-        limit: -1
-        timeFrame: month
-        geo: global
-        unit: 1
-        price: contact sales
-        userMultiplied: false
-    elements:
-      - name: Adobe Analytics
-      - name: Adobe Campaign
-      - name: Adobe Experience Manager
-      - name: Adobe Real-Time CDP
-      - name: Adobe Target
-      - name: Adobe Marketo Engage
-      - name: Adobe Workfront
-      - name: Adobe Commerce
+    userMultiplied: false
+  limits:
+  - name: requests_per_minute
+    value: 25
+  - name: document_transactions_per_month
+    value: 500
+  - name: max_file_size
+    value: 100MB
+  - name: region
+    value: United States only (region configuration requires a paid plan)
+  overage:
+    allowed: false
+    behaviour: HTTP 429 with error code INSUFFICIENT_QUOTA. Not transient — the quota does not resume until the monthly reset.
+  signup: https://acrobatservices.adobe.com/dc-integration-creation-app-cdn/main.html
+  price_text: zero cost
+- id: adobe-document-services-api
+  name: Document Services API (PDF Services / Acrobat Sign)
+  type: usage-based
+  method: generated
+  description: Per-document-transaction pricing for Adobe PDF Services API and Acrobat Sign API. Includes a free tier; paid usage is metered per transaction.
+  entries:
+  - label: Document transaction
+    name: document_transaction
+    type: metered
+    metric: transaction
+    limit: -1
+    timeFrame: usage
+    geo: global
+    unit: 1
+    price: see https://developer.adobe.com/document-services/pricing/
+    userMultiplied: false
+  elements:
+  - name: PDF Services API
+  - name: PDF Extract API
+  - name: Acrobat Sign API
+  price_text: Paid credentials enable a greater processing quota and require entering into a separate written agreement.
 maintainers:
-  - FN: Kin Lane
-    email: kin@apievangelist.com
+- FN: Kin Lane
+  email: kin@apievangelist.com
 x-canonical:
   generated: '2026-10-08'
   vocabulary: all/0-working/economics/plans-canonical.yml
@@ -236,3 +141,76 @@ x-canonical:
     - period
     periods:
     - month
+other_products:
+- id: adobe-creative-cloud-subscription
+  name: Creative Cloud Subscription
+  type: subscription
+  method: generated
+  description: Per-seat monthly/annual subscription to Creative Cloud apps. Tiers include Photography, single-app, All Apps, Teams and Enterprise. See per-product repos and adobe.com/plans for current list pricing.
+  entries:
+  - label: Creative Cloud subscription seat
+    name: cc_seat
+    type: subscription
+    metric: seat
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: see https://www.adobe.com/plans
+    userMultiplied: true
+  elements:
+  - name: Creative Cloud applications (varies by plan)
+  - name: Cloud storage (varies by plan)
+  - name: Adobe Fonts
+  - name: Generative credits (varies by plan)
+- id: adobe-firefly-services
+  name: Firefly Services
+  type: usage-based
+  method: generated
+  description: Generative-credit-metered access to Adobe Firefly image, vector, and design APIs. Credits are bundled with Creative Cloud plans and sold separately for API consumers.
+  entries:
+  - label: Generative credit
+    name: generative_credit
+    type: metered
+    metric: credit
+    limit: -1
+    timeFrame: usage
+    geo: global
+    unit: 1
+    price: see https://www.adobe.com/products/firefly.html
+    userMultiplied: false
+  elements:
+  - name: Firefly text-to-image
+  - name: Firefly generative fill
+  - name: Firefly text-to-vector
+- id: adobe-experience-cloud-enterprise
+  name: Experience Cloud (Enterprise)
+  type: enterprise
+  method: generated
+  description: Adobe Experience Cloud products (Analytics, Campaign, Experience Manager, Real-Time CDP, Target, Marketo Engage, Workfront, Commerce) are sold via contract with custom pricing tied to volume, modules, and SKU bundles.
+  entries:
+  - label: Negotiated subscription
+    name: enterprise_subscription
+    type: subscription
+    metric: month
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: contact sales
+    userMultiplied: false
+  elements:
+  - name: Adobe Analytics
+  - name: Adobe Campaign
+  - name: Adobe Experience Manager
+  - name: Adobe Real-Time CDP
+  - name: Adobe Target
+  - name: Adobe Marketo Engage
+  - name: Adobe Workfront
+  - name: Adobe Commerce
+audience: developer-api
+pricing_basis: usage-other
+published: false
+delivery:
+  delivery: managed
+note: ' 2026-10-12: Creative Cloud, Firefly and Experience Cloud rows moved to other_products: the source page does not price them, so they carry no verbatim price_text.'

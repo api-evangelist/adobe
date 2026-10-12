@@ -1,0 +1,1264 @@
+generated: '2026-10-12'
+method: searched
+source:
+- https://zapier.com/apps/adobe/integrations
+- https://zapier.com/apps/adobe-acrobat-sign/integrations
+- https://n8n.io/integrations/adobe/
+checked:
+- https://composio.dev/toolkits/adobe
+- https://monid.ai/tools/adobe
+- https://n8n.io/integrations/adobe/
+- https://zapier.com/apps/adobe-acrobat-sign/integrations
+- https://zapier.com/apps/adobe-photoshop-lightroom/integrations
+- https://zapier.com/apps/adobe-workfront/integrations (Workfront has its own catalog repo, edges belong there)
+- https://zapier.com/apps/adobe/integrations
+summary: null
+marketplace_apps:
+- marketplace: zapier
+  channel: ipaas-listing
+  app: adobe
+  url: https://zapier.com/apps/adobe/integrations
+  external_url: https://www.adobe.com/
+  partner_tier: null
+  triggers: []
+  actions: []
+  searches: []
+- marketplace: zapier
+  channel: ipaas-listing
+  app: adobe-acrobat-sign
+  url: https://zapier.com/apps/adobe-acrobat-sign/integrations
+  external_url: https://www.adobe.com/sign.html
+  partner_tier: BRONZE
+  triggers:
+  - key: agreement_action_completed
+    label: Agreement Signed by a Participant
+  - key: agreement_created
+    label: Agreement Created
+  - key: agreement_email_viewed
+    label: Agreement Email Viewed
+  - key: agreement_event_occurred
+    label: Agreement Event Occurred
+  - key: agreement_expired
+    label: Agreement Expired
+  - key: agreement_recalled
+    label: Agreement Recalled
+  - key: agreement_rejected
+    label: Agreement Rejected
+  - key: agreement_reminder_sent
+    label: Agreement Reminder Sent
+  - key: agreement_state_changed
+    label: Agreement State Changed
+  - key: agreement_workflow_completed
+    label: Agreement Signed by All Participants
+  actions:
+  - key: create_agreement
+    label: Create an Agreement From Uploaded Document
+  - key: create_agreement_using_library_document
+    label: Create an Agreement From a Library Template
+  - key: create_combined_document
+    label: Create a PDF of Signed Agreement
+  - key: create_transient_document
+    label: Upload a Document to Get Document ID
+  - key: retrieve_audit_trail
+    label: Create a PDF of the Agreement's Audit Trail
+  - key: retrieve_file_stream_of_document
+    label: Create a Document From an Agreement
+  searches:
+  - key: retrieve_agreements_for_a_user
+    label: Find a List of All Agreements
+  - key: retrieve_agreement_current_status
+    label: Find the Agreement Status
+  - key: retrieve_all_documents_of_an_agreement
+    label: Find a List of All Document IDs of Agreement
+  - key: retrieve_data_from_form_fields
+    label: Find Form Field Data of Agreement in JSON Format
+  - key: retrieve_url
+    label: Find the Signing URL
+- marketplace: n8n
+  channel: open-source-node
+  app: adobe
+  url: https://n8n.io/integrations/adobe/
+  identity: title
+  pair_pages: 758
+  pairs:
+  - adroll
+  - affinity
+  - agile-crm
+  - airbrake
+  - airnow
+  - airtable
+  - airtop
+  - aitableai
+  - alchemy
+  - alerty
+  - alienvault
+  - alphamoon
+  - alttextai
+  - amazon
+  - amilia
+  - amqp-sender
+  - announcekit
+  - apiary
+  - apiflash
+  - apitemplateio
+  - apptivegrid
+  - asana
+  - auth0-management-api
+  - autom
+  - automizy
+  - autopilot
+  - aws-certificate-manager
+  - aws-cognito
+  - aws-comprehend
+  - aws-dynamodb
+  - aws-elb
+  - aws-iam
+  - aws-lambda
+  - aws-rekognition
+  - aws-s3
+  - aws-ses
+  - aws-sns
+  - aws-sqs
+  - aws-textract
+  - aws-transcribe
+  - azure-cosmos-db
+  - azure-storage
+  - badger-maps
+  - bamboohr
+  - bandwidth
+  - bannerbear
+  - baserow
+  - beeminder
+  - benchmark-email
+  - better-proposals
+  - big-cartel
+  - big-data-cloud
+  - bigml
+  - bitly
+  - bitrix24
+  - bitwarden
+  - blaze
+  - blockchain-exchange
+  - bloock
+  - bot9
+  - botbaba
+  - botifier
+  - botium-box
+  - botsonic
+  - botstar
+  - box
+  - brain-pod-ai
+  - brandblast
+  - brandfetch
+  - brandmentions
+  - breezy-hr
+  - brevo
+  - brex
+  - browse-ai
+  - browserstack
+  - bubble
+  - bugbug
+  - bugfender
+  - bugherd
+  - bugpilot
+  - bugreplay
+  - bugshot
+  - buildkite
+  - bunnycdn
+  - calendarhero
+  - calendly
+  - canvas
+  - capsule
+  - carbon-black
+  - chaindesk
+  - chargebee
+  - chargeover
+  - chargify
+  - chatbase
+  - chatling
+  - chatmasters
+  - chatrace
+  - chatsonic
+  - check-credential-status
+  - chekhub
+  - circleci
+  - cisco-meraki
+  - cisco-secure-endpoint
+  - cisco-umbrella
+  - cisco-webex
+  - citrix-adc
+  - clappia
+  - clarifai
+  - claude
+  - clearbit
+  - cleverreach
+  - clickup
+  - clockify
+  - cloozo
+  - cloud-66
+  - cloudboost
+  - cloudflare
+  - cloudlayer
+  - cloudshare
+  - cloze
+  - cockpit
+  - coda
+  - code-climate
+  - codefresh
+  - cody
+  - coingecko
+  - college-football-data
+  - configcat
+  - confluence
+  - confluent
+  - contentful
+  - convertapi
+  - convertkit
+  - convi
+  - copper
+  - copyai
+  - corsizio
+  - cortex
+  - craftdraft
+  - cratedb
+  - crisp
+  - cronly
+  - crossmint
+  - crowddev
+  - crowdin
+  - crowdpower
+  - crowdstrike
+  - cryptolens
+  - currents
+  - customer-datastore-n8n-training
+  - customer-messenger-n8n-training
+  - customerio
+  - customeriq
+  - daffy
+  - dante-ai
+  - darksky-api
+  - dasha
+  - data-soap
+  - databox
+  - databricks
+  - datadog
+  - datarobot
+  - datumbox
+  - dayschedule
+  - deepgram
+  - deepl
+  - deepseek-chat-model
+  - demio
+  - descript
+  - detrack
+  - devcycle
+  - dhl
+  - dialzara
+  - diddo-ai
+  - diffy
+  - digicert
+  - discord
+  - discourse
+  - disqus
+  - dock-certs
+  - docparser
+  - docsbot-ai
+  - docupilot
+  - docuwriter
+  - dokan
+  - domo
+  - draftable
+  - drift
+  - dropbox
+  - dropcontact
+  - droxy
+  - dynatrace
+  - e-goi
+  - easyship
+  - echowin
+  - ecwid
+  - elastic-security
+  - elasticsearch
+  - elmah
+  - embedai
+  - emelia
+  - empsing
+  - engati
+  - enormail
+  - enterpret
+  - envoy
+  - erpnext
+  - esendex
+  - evervault
+  - evolphin-zoom
+  - f5-big-ip
+  - facebook-graph-api
+  - faraday
+  - faros
+  - fastbots
+  - fathom
+  - filemaker
+  - filescan
+  - firmao
+  - fitbit
+  - flagship
+  - float
+  - flotiq
+  - flow
+  - fluent-support
+  - focuster
+  - formcarry
+  - formdesk
+  - forms-on-fire
+  - formsite
+  - formstack-documents
+  - fortinet-fortigate
+  - foursquare
+  - free-dictionary
+  - freshdesk
+  - freshping
+  - freshservice
+  - freshworks-crm
+  - fullcontact
+  - fusioo
+  - gali
+  - gatekeeper
+  - gender-api
+  - getresponse
+  - getscreenshot
+  - ghost
+  - giphy
+  - gitea
+  - github
+  - gitlab
+  - gleap
+  - gmail
+  - gocanvas
+  - godaddy
+  - gong
+  - google-ads
+  - google-ai-studio-gemini
+  - google-analytics
+  - google-bigquery
+  - google-books
+  - google-business-profile
+  - google-calendar
+  - google-chat
+  - google-cloud
+  - google-cloud-firestore
+  - google-cloud-natural-language
+  - google-cloud-realtime-database
+  - google-cloud-storage
+  - google-contacts
+  - google-docs
+  - google-drive
+  - google-forms
+  - google-gemini-chat-model
+  - google-perspective
+  - google-sheets
+  - google-slides
+  - google-tables
+  - google-tasks
+  - google-translate
+  - google-vertex-ai
+  - google-workspace-admin
+  - gotify
+  - gotowebinar
+  - gptea
+  - grafana
+  - grain
+  - graphql
+  - gravity-forms
+  - grid
+  - grist
+  - growbots
+  - gumroad
+  - gupshup
+  - guru
+  - hacker-news
+  - halopsa
+  - handwrytten
+  - hansei
+  - harry-potter-api
+  - harvest
+  - headless-testing
+  - helcim
+  - helpscout
+  - heysummit
+  - highlevel
+  - home-assistant
+  - http-request
+  - hub-planner
+  - hubspot
+  - hugging-face
+  - humantic-ai
+  - hunter
+  - hybrid-analysis
+  - iauditor-by-safetyculture
+  - idealpostcodes
+  - idealspot
+  - ideta
+  - imgbb
+  - imgur
+  - imperva-waf
+  - impira
+  - industryselect
+  - influxdb-cloud
+  - infolobby
+  - instabot
+  - instabug
+  - intakeq
+  - intercom
+  - invoice-ninja
+  - invoiced
+  - ip2location
+  - ipinfo
+  - ipregistry
+  - iris-dfir
+  - isn
+  - iterable
+  - jama
+  - jasper
+  - jenkins
+  - jina-ai
+  - jira-software
+  - jwt
+  - kadoa
+  - kafka
+  - kaggle
+  - kanban-tool
+  - karbon
+  - keap
+  - keygen
+  - keyzy
+  - kibana
+  - kitemaker
+  - klaviyo
+  - klazify
+  - knack
+  - knowbe4
+  - kobotoolbox
+  - kraftful
+  - lagrowthmachine
+  - lambdatest
+  - landbot
+  - laposta
+  - launch27
+  - launchdarkly
+  - ldap
+  - leadboxer
+  - leadpops
+  - lemlist
+  - lets-enhance
+  - libraria
+  - lighthouse
+  - lime-go
+  - line
+  - linear
+  - lingvanex
+  - linkedin
+  - linkish
+  - linode
+  - liveagent
+  - localazy
+  - loginradius
+  - lokalise
+  - lonescale
+  - lucidchart
+  - magento-2
+  - mailcheck
+  - mailchimp
+  - mailerlite
+  - mailersend
+  - mailgun
+  - mailify
+  - mailjet
+  - mailmodo
+  - malcore
+  - mandrill
+  - marcom-robot
+  - marketing-master-io
+  - marketplacer
+  - marketstack
+  - mastodon
+  - matrix
+  - mattermost
+  - mautic
+  - mav
+  - maverick
+  - medium
+  - mem
+  - messagebird
+  - metabase
+  - metatextai-inference-api
+  - mews
+  - microsoft-azure-monitor
+  - microsoft-dynamics-365-business-central-api
+  - microsoft-dynamics-crm
+  - microsoft-entra-id
+  - microsoft-entra-id-azure-active-directory
+  - microsoft-excel
+  - microsoft-graph-security
+  - microsoft-onedrive
+  - microsoft-outlook
+  - microsoft-sharepoint
+  - microsoft-sql
+  - microsoft-teams
+  - microsoft-teams-admin
+  - microsoft-to-do
+  - miestro
+  - mindee
+  - miro
+  - misp
+  - missive
+  - mist
+  - mistral-ai
+  - mixpanel
+  - mocean
+  - mondaycom
+  - mongodb
+  - monica-crm
+  - moonclerk
+  - moonmail
+  - morph
+  - mqtt
+  - msg91
+  - mux
+  - mx-toolbox
+  - my-askai
+  - myphoner
+  - mysql
+  - nanonets-ocr
+  - nasa
+  - ncscale
+  - netlify
+  - nextcloud
+  - nightfallai
+  - ninox
+  - nmkr
+  - nocodb
+  - notion
+  - nozbe-teams
+  - npm
+  - nuclia
+  - nusii-proposals
+  - nyckel
+  - nyota
+  - occasion
+  - ocrspace
+  - odoo
+  - offalerts
+  - okta
+  - omeda
+  - omniconvert
+  - omnimind
+  - on2air
+  - one-ai
+  - one-simple-api
+  - onfleet
+  - openai
+  - opencti
+  - openthesaurus
+  - openweathermap
+  - opn-formerly-omise
+  - oracle-database
+  - orbit
+  - order-desk
+  - ortto
+  - oura
+  - paddle
+  - pagerduty
+  - paperform
+  - papyrs
+  - parsehub
+  - parseprompt
+  - passcreator
+  - passslot
+  - patreon
+  - paymo
+  - paypal
+  - peekalink
+  - perplexity
+  - persio
+  - personal-ai
+  - phantombuster
+  - philips-hue
+  - phrase
+  - pinata
+  - pinboard
+  - pinterest
+  - pipedrive
+  - pipefy
+  - pirate-weather
+  - pitchly
+  - pivotal-tracker
+  - planview-leankit
+  - planyo-online-booking
+  - platformly
+  - plecto
+  - plivo
+  - postbin
+  - postgres
+  - posthog
+  - practitest
+  - predisai
+  - prodia
+  - product-hunt
+  - profitwell
+  - project-bubble-proprofs-project
+  - prompthub
+  - prospe-ai
+  - pushbullet
+  - pushcut
+  - pusher
+  - pushover
+  - qradar
+  - qualaroo
+  - qualys
+  - quentn
+  - questdb
+  - quick-base
+  - quickbooks-online
+  - quickchart
+  - quintadb
+  - rabbitmq
+  - radar
+  - raindrop
+  - rapid7-insightvm
+  - raven-tools
+  - rawg-video-games-database
+  - read-ai
+  - realphonevalidation
+  - recharge
+  - recorded-future
+  - redash
+  - reddit
+  - redis
+  - relevance-ai
+  - relink-url-shortener
+  - relysia
+  - replyio
+  - retable
+  - reverse-contact
+  - rewardful
+  - ritekit
+  - roboflow
+  - robolytix
+  - roboresponseai
+  - rocketchat
+  - rollbar
+  - rootly
+  - route4me
+  - rundeck
+  - s3
+  - sales-simplify
+  - salesforce
+  - salesmaa
+  - salesmate
+  - salesmsg
+  - salesrocks
+  - samsung-smartthings
+  - scrape-itcloud
+  - scrapeninja
+  - seamless-ai
+  - search-and-save
+  - seatable
+  - securityscorecard
+  - segment
+  - sekoia
+  - sellix
+  - sembly-ai
+  - sendgrid
+  - sendy
+  - sentryio
+  - servicenow
+  - sharly-ai
+  - shiphero
+  - shipstation
+  - shopify
+  - shortio
+  - shuffler
+  - sierra-interactive
+  - sifter
+  - signaturit
+  - signl4
+  - signrequest
+  - simpleem
+  - simplehash
+  - simplekpi
+  - simplelocalize
+  - simplero
+  - simpletexting
+  - sitecreatorio
+  - sitespeakai
+  - slack
+  - smaily
+  - smartreach
+  - smartsuite
+  - sms-it
+  - sms-magic
+  - sms77
+  - snapdocs
+  - snatchbot
+  - snipcart
+  - snowflake
+  - solve-data
+  - specter
+  - splunk
+  - spondyr
+  - spontit
+  - sportsdata
+  - spotify
+  - spydra
+  - sslmate-cert-spotter-api
+  - stackby
+  - stammerai
+  - starton
+  - statuscake
+  - storyblok
+  - strapi
+  - strava
+  - stripe
+  - studio-by-ai21-labs
+  - suitedash
+  - supabase
+  - supernormal
+  - superpowered
+  - supportivekoala
+  - survicate
+  - swagup
+  - switchboard
+  - syncly
+  - syncromsp
+  - synthesia
+  - taiga
+  - talentlms
+  - talknotes
+  - tapfiliate
+  - td-ameritrade
+  - teachable
+  - team-up
+  - teamdeck
+  - teamgate
+  - teknoir
+  - telegram
+  - testmonitor
+  - textcortex-ai
+  - textgain
+  - textkit
+  - textmagic
+  - thankster
+  - the-customer-factor
+  - the-leap
+  - thehive
+  - thehive-5
+  - thoughtfulgpt
+  - thrivecart
+  - tidb-cloud
+  - tierion
+  - tilda
+  - timescaledb
+  - timetonic
+  - tinyurl
+  - tisane-labs
+  - todoist
+  - token-metrics
+  - toket
+  - totango
+  - trackvia
+  - transifex
+  - travisci
+  - trellix-epo
+  - trello
+  - trengo
+  - trevorio
+  - turbohire
+  - tuskr
+  - tuulio
+  - twake
+  - twilio
+  - twist
+  - twitter
+  - unbounce
+  - unisender
+  - unleashed-software
+  - upkeep
+  - uplead
+  - uproc
+  - uptimerobot
+  - uptimetoolbox
+  - urlscanio
+  - uservoice
+  - venafi-tls-protect-cloud
+  - venafi-tls-protect-datacenter
+  - venly
+  - verifalia
+  - vero
+  - vimeo
+  - virustotal
+  - vivifyscrum
+  - voicit
+  - vonage
+  - vowel
+  - watchsignals
+  - waveline-extract
+  - webex-by-cisco
+  - webflow
+  - webscraperio
+  - wekan
+  - whal3s
+  - whatconverts
+  - whatsapp-business-cloud
+  - wise
+  - wizychat
+  - wonderchat
+  - wondercraft
+  - woocommerce
+  - woodpeckerco
+  - wordpress
+  - workast
+  - workboard
+  - woxo
+  - writesonic
+  - wubook-ratechecker
+  - xero
+  - xtractly
+  - ybug
+  - ycode
+  - yodiz
+  - yourls
+  - youtube
+  - zabbix
+  - zammad
+  - zendesk
+  - zenrows
+  - zoho-books
+  - zoho-crm
+  - zoho-desk
+  - zonka-feedback
+  - zoom
+  - zscaler-zia
+  - zulip
+edges:
+- partner_name: HubSpot
+  partner: hubspot
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/adobe-acrobat-sign/integrations/hubspot
+  direction: third-party
+  category: Marketing Automation
+  partner_url: http://www.hubspot.com/
+- partner_name: Airtable
+  partner: airtable
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/adobe-acrobat-sign/integrations/airtable
+  direction: third-party
+  category: Databases
+  partner_url: https://airtable.com/
+- partner_name: Google Drive
+  partner: google-drive
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/adobe-acrobat-sign/integrations/google-drive
+  direction: third-party
+  category: File Management & Storage
+  partner_url: https://www.google.com/drive/
+- partner_name: Gmail
+  partner: gmail
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/adobe-acrobat-sign/integrations/gmail
+  direction: third-party
+  category: Email
+  partner_url: https://mail.google.com/
+- partner_name: Google Sheets
+  partner: google-sheets
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/adobe-acrobat-sign/integrations/google-sheets
+  direction: third-party
+  category: Google
+  partner_url: http://sheets.google.com/
+- partner_name: monday.com
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/adobe-acrobat-sign/integrations/monday
+  direction: third-party
+  category: Project Management
+  partner_url: https://monday.com/
+- partner_name: ClickUp
+  partner: clickup
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/adobe-acrobat-sign/integrations/clickup
+  direction: third-party
+  category: Project Management
+  partner_url: https://clickup.com/zapier
+- partner_name: Pipedrive
+  partner: pipedrive
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/adobe-acrobat-sign/integrations/pipedrive
+  direction: third-party
+  category: CRM (Customer Relationship Management)
+  partner_url: https://pipedrive.com/
+- partner_name: Notion
+  partner: notion
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/adobe-acrobat-sign/integrations/notion
+  direction: third-party
+  category: Task Management
+  partner_url: https://www.notion.so/
+- partner_name: LeadConnector
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/adobe-acrobat-sign/integrations/leadconnector
+  direction: third-party
+  category: Marketing Automation
+  partner_url: https://www.leadconnectorhq.com/
+- partner_name: Slack
+  partner: slack
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/adobe-acrobat-sign/integrations/slack
+  direction: third-party
+  category: Team Chat
+  partner_url: https://slack.com/
+- partner_name: Typeform
+  partner: typeform
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/adobe-acrobat-sign/integrations/typeform
+  direction: third-party
+  category: Forms & Surveys
+  partner_url: https://www.typeform.com/signup?utm_medium=referral&utm_source=zapier&utm_campaign=zapier_integration&utm_content=marketplace
+- partner_name: Microsoft Excel
+  partner: null
+  partner_match: null
+  partner_candidate: zapier
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/adobe-acrobat-sign/integrations/excel
+  direction: third-party
+  category: Microsoft
+  partner_url: https://zapier.com/office.com
+- partner_name: Jotform
+  partner: jotform
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/adobe-acrobat-sign/integrations/jotform
+  direction: third-party
+  category: Forms & Surveys
+  partner_url: http://www.jotform.com/
+- partner_name: Adobe Creative Cloud Libraries
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/adobe-acrobat-sign/integrations/creative-cloud-libraries
+  direction: third-party
+  category: File Management & Storage
+  partner_url: https://www.adobe.com/creativecloud/libraries.html
+- partner_name: Zoho Forms
+  partner: zoho-forms
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/adobe-acrobat-sign/integrations/zoho-forms
+  direction: third-party
+  category: Forms & Surveys
+  partner_url: https://go.zoho.com/LL2
+- partner_name: Smartsheet
+  partner: smartsheet
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/adobe-acrobat-sign/integrations/smartsheet
+  direction: third-party
+  category: Spreadsheets
+  partner_url: https://www.smartsheet.com/
+- partner_name: Calendly
+  partner: calendly
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/adobe-acrobat-sign/integrations/calendly
+  direction: third-party
+  category: Scheduling & Booking
+  partner_url: https://calendly.com/?utm_medium=partner&utm_source=zapier&utm_campaign=main_partner_page&utm_content=main_inbound_link
+- partner_name: QuickBooks Online
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/adobe-acrobat-sign/integrations/quickbooks
+  direction: third-party
+  category: Accounting
+  partner_url: http://intuit.com/
+- partner_name: Keap
+  partner: keap
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/adobe-acrobat-sign/integrations/keap
+  direction: third-party
+  category: CRM (Customer Relationship Management)
+  partner_url: https://keap.com/
+- partner_name: Tally
+  partner: tally
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/adobe-acrobat-sign/integrations/tally
+  direction: third-party
+  category: Forms & Surveys
+  partner_url: https://try.tally.so/zapier
+- partner_name: Jobber
+  partner: jobber
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/adobe-acrobat-sign/integrations/jobber
+  direction: third-party
+  category: Scheduling & Booking
+  partner_url: https://www.getjobber.com/plp/zapier?utm_source=Zapier&utm_medium=PLP
+- partner_name: Fillout Forms
+  partner: fillout
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/adobe-acrobat-sign/integrations/fillout
+  direction: third-party
+  category: Forms & Surveys
+  partner_url: https://www.fillout.com/?ref=zapier
+- partner_name: Clio
+  partner: clio
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/adobe-acrobat-sign/integrations/clio
+  direction: third-party
+  category: CRM (Customer Relationship Management)
+  partner_url: http://www.goclio.com/
+- partner_name: Actionstep
+  partner: actionstep
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/adobe-acrobat-sign/integrations/actionstep
+  direction: third-party
+  category: CRM (Customer Relationship Management)
+  partner_url: https://www.actionstep.com/
+- partner_name: Wix
+  partner: wix
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/adobe-acrobat-sign/integrations/wix
+  direction: third-party
+  category: Website Builders
+  partner_url: https://www.wix.com/
+- partner_name: Teamtailor
+  partner: teamtailor
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/adobe-acrobat-sign/integrations/teamtailor
+  direction: third-party
+  category: HR Talent & Recruitment
+  partner_url: https://www.teamtailor.com/
+- partner_name: ActiveCampaign
+  partner: activecampaign
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/adobe-acrobat-sign/integrations/activecampaign
+  direction: third-party
+  category: Marketing Automation
+  partner_url: https://www.activecampaign.com/?utm_source=unpaid_syndication_website&utm_medium=referral&utm_campaign=zapier_listing
+- partner_name: Kajabi
+  partner: kajabi
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/adobe-acrobat-sign/integrations/kajabi
+  direction: third-party
+  category: eCommerce
+  partner_url: http://kajabi.com/
+- partner_name: Microsoft SharePoint
+  partner: sharepoint
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/adobe-acrobat-sign/integrations/sharepoint
+  direction: third-party
+  category: Microsoft
+  partner_url: https://www.microsoft.com/en-ca/microsoft-365/sharepoint/collaboration
+templates:
+- title: Create signature requests in Adobe Acrobat Sign for new rows in a Google Sheet
+  url: https://zapier.com/apps/adobe-acrobat-sign/integrations/google-sheets/255627206/create-signature-requests-in-adobe-acrobat-sign-for-new-rows-in-a-google-sheet
+  apps:
+  - google-sheets
+  - adobe-acrobat-sign
+- title: Create signature requests in Adobe Acrobat Sign when new Airtable records are added or updated
+  url: https://zapier.com/apps/adobe-acrobat-sign/integrations/airtable/255627265/create-signature-requests-in-adobe-acrobat-sign-when-new-airtable-records-are-added-or-updated
+  apps:
+  - airtable
+  - adobe-acrobat-sign
+- title: Create signature requests in Adobe Acrobat Sign from new Google Docs documents
+  url: https://zapier.com/apps/adobe-acrobat-sign/integrations/google-docs/255620148/create-signature-requests-in-adobe-acrobat-sign-from-new-google-docs-documents
+  apps:
+  - google-docs
+  - adobe-acrobat-sign
+- title: Create signature requests in Adobe Acrobat Sign for new files in Google Drive
+  url: https://zapier.com/apps/adobe-acrobat-sign/integrations/google-drive/255627207/create-signature-requests-in-adobe-acrobat-sign-for-new-files-in-google-drive
+  apps:
+  - google-drive
+  - adobe-acrobat-sign
+- title: Create signature requests in Adobe Acrobat Sign for new docs in Google Docs, fetch the Agreement Audit
+    Trail and upload it to Google Drive
+  url: https://zapier.com/apps/google-docs/integrations/google-drive/255627208/create-signature-requests-in-adobe-acrobat-sign-for-new-docs-in-google-docs-fetch-the-agreement-audit-trail-and-upload-it-to-goo
+  apps:
+  - google-docs
+  - adobe-acrobat-sign
+  - google-drive
+- title: Create signature requests in Adobe Acrobat Sign from new responses in Google Forms
+  url: https://zapier.com/apps/adobe-acrobat-sign/integrations/google-forms/255627210/create-signature-requests-in-adobe-acrobat-sign-from-new-responses-in-google-forms
+  apps:
+  - google-forms
+  - adobe-acrobat-sign
+- title: Create signature requests in Adobe Acrobat Sign from new Typeform entries
+  url: https://zapier.com/apps/adobe-acrobat-sign/integrations/typeform/255627211/create-signature-requests-in-adobe-acrobat-sign-from-new-typeform-entries
+  apps:
+  - typeform
+  - adobe-acrobat-sign
+- title: Create signature requests in Adobe Acrobat Sign for updated Salesforce records
+  url: https://zapier.com/apps/adobe-acrobat-sign/integrations/salesforce/255627264/create-signature-requests-in-adobe-acrobat-sign-for-updated-salesforce-records
+  apps:
+  - salesforce
+  - adobe-acrobat-sign
+- title: Create signature requests in Adobe Acrobat Sign for new Microsoft Excel rows
+  url: https://zapier.com/apps/adobe-acrobat-sign/integrations/excel/255627267/create-signature-requests-in-adobe-acrobat-sign-for-new-microsoft-excel-rows
+  apps:
+  - excel
+  - adobe-acrobat-sign
+- title: Create signature requests in Adobe Acrobat Sign from new files in OneDrive
+  url: https://zapier.com/apps/adobe-acrobat-sign/integrations/onedrive/255627269/create-signature-requests-in-adobe-acrobat-sign-from-new-files-in-onedrive
+  apps:
+  - onedrive
+  - adobe-acrobat-sign
+- title: Create signature requests in Adobe Acrobat Sign when new trigger phrases are spoken to Amazon Alexa
+  url: https://zapier.com/apps/adobe-acrobat-sign/integrations/amazon-alexa/255627270/create-signature-requests-in-adobe-acrobat-sign-when-new-trigger-phrases-are-spoken-to-amazon-alexa
+  apps:
+  - amazon-alexa
+  - adobe-acrobat-sign
+- title: Create signature requests in Adobe Acrobat Sign from new labeled Gmail emails
+  url: https://zapier.com/apps/adobe-acrobat-sign/integrations/gmail/255627298/create-signature-requests-in-adobe-acrobat-sign-from-new-labeled-gmail-emails
+  apps:
+  - gmail
+  - adobe-acrobat-sign
+skips:
+- label: Create signature requests in Adobe Acrobat Sign for new rows in a Google Sheet
+  cause: catalog
+  why: all/adobe holds no Acrobat Sign OpenAPI (its contracts are PDF Services, Firefly, Assets, Analytics and similar);
+    the Adobe end of this template has no operation to bind until that contract is harvested
+- label: Create signature requests in Adobe Acrobat Sign when new Airtable records are added or updated
+  cause: catalog
+  why: all/adobe holds no Acrobat Sign OpenAPI (its contracts are PDF Services, Firefly, Assets, Analytics and similar);
+    the Adobe end of this template has no operation to bind until that contract is harvested
+- label: Create signature requests in Adobe Acrobat Sign for new files in Google Drive
+  cause: catalog
+  why: all/adobe holds no Acrobat Sign OpenAPI (its contracts are PDF Services, Firefly, Assets, Analytics and similar);
+    the Adobe end of this template has no operation to bind until that contract is harvested
+- label: Create signature requests in Adobe Acrobat Sign for new docs in Google Docs, fetch the Agreement Audit
+    Trail and upload it to Google Drive
+  cause: catalog
+  why: all/adobe holds no Acrobat Sign OpenAPI (its contracts are PDF Services, Firefly, Assets, Analytics and similar);
+    the Adobe end of this template has no operation to bind until that contract is harvested
+- label: Create signature requests in Adobe Acrobat Sign from new Typeform entries
+  cause: catalog
+  why: all/adobe holds no Acrobat Sign OpenAPI (its contracts are PDF Services, Firefly, Assets, Analytics and similar);
+    the Adobe end of this template has no operation to bind until that contract is harvested
+- label: Create signature requests in Adobe Acrobat Sign for new Microsoft Excel rows
+  cause: catalog
+  why: all/adobe holds no Acrobat Sign OpenAPI (its contracts are PDF Services, Firefly, Assets, Analytics and similar);
+    the Adobe end of this template has no operation to bind until that contract is harvested
+note: 'Adobe lists on Zapier per product (x-zapier-apps in apis.yml): adobe-acrobat-sign passes the domain rule;
+  adobe-photoshop-lightroom''s externalUrl is adobe.io, outside the provider domains, so it is not counted. Workfront,
+  Magento and Marketo listings belong to their own catalog repos.'

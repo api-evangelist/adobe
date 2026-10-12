@@ -1,0 +1,185 @@
+generated: '2026-10-12'
+method: derived
+source: the pre-flight dossier, apis.yml pointers, spec servers, well-known, vendors -- nothing fetched here
+generator: derive-hosts.py
+summary:
+  hosts: 15
+  own: 5
+  other_domain: 7
+  platform: 3
+  roles:
+  - api
+  - collections
+  - marketing
+  - other
+  - portal
+  - security
+  - source
+  - status
+  - website
+hosts:
+- host: analytics.adobe.io
+  found_by:
+  - apis[]
+  types: []
+  serves:
+  - api
+  registrable_domain: adobe.io
+  role: other
+  relation: other-domain
+- host: api.adobesign.com
+  found_by:
+  - apis[]
+  types: []
+  serves:
+  - api
+  registrable_domain: adobesign.com
+  role: api
+  relation: other-domain
+- host: blog.developer.adobe.com
+  found_by:
+  - pointer
+  types:
+  - Blog
+  serves: []
+  registrable_domain: adobe.com
+  role: marketing
+  relation: own
+- host: developer.adobe.com
+  found_by:
+  - pointer
+  - apis[]
+  - vendor-detect
+  types:
+  - Deprecation
+  - Portal
+  - DeveloperPortal
+  - Documentation
+  - APIReference
+  - Pricing
+  - Console
+  - Authentication
+  - Support
+  - GettingStarted
+  - SDKs
+  - Signup
+  - Login
+  - MCPServer
+  - RateLimits
+  - ChangeLog
+  serves:
+  - docs
+  - cdn
+  vendor: fastly
+  registrable_domain: adobe.com
+  role: portal
+  relation: own
+- host: firefly-api.adobe.io
+  found_by:
+  - apis[]
+  types: []
+  serves:
+  - api
+  registrable_domain: adobe.io
+  role: other
+  relation: other-domain
+- host: github.com
+  found_by:
+  - pointer
+  types:
+  - GitHubOrganization
+  serves: []
+  registrable_domain: github.com
+  role: source
+  relation: platform
+- host: helpx.adobe.com
+  found_by:
+  - pointer
+  types:
+  - Security
+  serves: []
+  registrable_domain: adobe.com
+  role: security
+  relation: own
+- host: pdf-services.adobe.io
+  found_by:
+  - apis[]
+  types: []
+  serves:
+  - api
+  registrable_domain: adobe.io
+  role: other
+  relation: other-domain
+- host: platform.adobe.io
+  found_by:
+  - apis[]
+  types: []
+  serves:
+  - api
+  registrable_domain: adobe.io
+  role: other
+  relation: other-domain
+- host: status.adobe.com
+  found_by:
+  - pointer
+  types:
+  - StatusPage
+  serves: []
+  registrable_domain: adobe.com
+  role: status
+  relation: own
+- host: stock.adobe.io
+  found_by:
+  - apis[]
+  types: []
+  serves:
+  - api
+  registrable_domain: adobe.io
+  role: other
+  relation: other-domain
+- host: usermanagement.adobe.io
+  found_by:
+  - apis[]
+  types: []
+  serves:
+  - api
+  registrable_domain: adobe.io
+  role: other
+  relation: other-domain
+- host: www.adobe.com
+  found_by:
+  - pointer
+  - vendor-detect
+  types:
+  - Website
+  - Compliance
+  - TermsOfService
+  - PrivacyPolicy
+  serves:
+  - cdn
+  vendor: akamai
+  registrable_domain: adobe.com
+  role: website
+  relation: own
+- host: www.linkedin.com
+  found_by:
+  - pointer
+  types:
+  - LinkedIn
+  serves: []
+  registrable_domain: linkedin.com
+  role: other
+  relation: platform
+- host: www.postman.com
+  found_by:
+  - pointer
+  - vendor-detect
+  types:
+  - PostmanWorkspace
+  - Postman
+  serves:
+  - api-collections
+  vendor: postman
+  registrable_domain: postman.com
+  role: collections
+  relation: platform

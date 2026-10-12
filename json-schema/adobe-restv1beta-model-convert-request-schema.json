@@ -1,0 +1,150 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/adobe/main/json-schema/adobe-restv1beta-model-convert-request-schema.json",
+  "title": "restv1beta.ModelConvertRequest",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/adobe-scenes-api-openapi.yml#/components/schemas/restv1beta.ModelConvertRequest",
+  "type": "object",
+  "properties": {
+    "$schema": {
+      "description": "A URL to the JSON schema for this object.",
+      "type": "string",
+      "format": "uri",
+      "readOnly": true
+    },
+    "format": {
+      "description": "Output format.",
+      "type": "string",
+      "enum": [
+        "glb",
+        "gltf",
+        "fbx",
+        "usdz",
+        "usda",
+        "usdc",
+        "obj"
+      ]
+    },
+    "modelEntrypoint": {
+      "description": "Conversion usually takes the first file that's considered a valid 3D model. Define this entry point to disambiguate when there are multiple options.",
+      "type": "string"
+    },
+    "sources": {
+      "description": "List of sources to aggregate and run the job against.",
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/rest_base.MountedSource"
+      },
+      "maxItems": 16,
+      "minItems": 1
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "format",
+    "sources"
+  ],
+  "$defs": {
+    "rest_base.MountedSource": {
+      "type": "object",
+      "properties": {
+        "frame.io": {
+          "description": "Fetch content from a Frame.io folder. ⚠️ All sources are exclusive.",
+          "$ref": "#/$defs/rest_base.SourceFrameIO",
+          "deprecated": true
+        },
+        "mountPoint": {
+          "description": "Where to mount the content of the source in the virtual job working directory.",
+          "type": "string",
+          "default": "/"
+        },
+        "next.frame.io": {
+          "description": "Fetch content from a next.frame.io folder. ⚠️ All sources are exclusive.",
+          "$ref": "#/$defs/rest_base.SourceFrameIOV4"
+        },
+        "space": {
+          "description": "Read content from an existing space (can be another job's output, or uploaded manually with the space API). ⚠️ All sources are exclusive.'",
+          "$ref": "#/$defs/rest_base.SourceSpace"
+        },
+        "url": {
+          "description": "Fetch content from a URL. ⚠️ All sources are exclusive.",
+          "$ref": "#/$defs/rest_base.SourceURL"
+        }
+      },
+      "additionalProperties": false
+    },
+    "rest_base.SourceFrameIO": {
+      "type": "object",
+      "properties": {
+        "accessToken": {
+          "description": "Frame.io access token or Developer token. See https://developer.frame.io/docs/getting-started/authentication for obtaining a token.",
+          "type": "string"
+        },
+        "folderId": {
+          "description": "Frame.io folder ID containing the assets. This should be the ID of the folder (not an asset ID). For best performance and to avoid [size limitations](/#what-is-the-maximum-size-of-assets-i-can-process), use the folder ID closest to your target assets. The system will retrieve all content from the specified folder, so choosing a parent folder with many subfolders may exceed the maximum retrieval size limit",
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "folderId",
+        "accessToken"
+      ]
+    },
+    "rest_base.SourceFrameIOV4": {
+      "type": "object",
+      "properties": {
+        "accessToken": {
+          "description": "Frame.io access token. See https://developer.adobe.com/frameio/guides/Authentication/ for obtaining a token.",
+          "type": "string"
+        },
+        "accountId": {
+          "description": "Frame.io account ID. This is the account identifier for the next.frame.io account owner. To find your account ID, log in to next.frame.io, navigate to your inbox, and extract the UUID from the URL (e.g., in https://next.frame.io/inbox/abcdefgh-1234-1234-1234-abcdefghijk, the account ID is abcdefgh-1234-1234-1234-abcdefghijk)",
+          "type": "string"
+        },
+        "folderId": {
+          "description": "Frame.io folder ID containing the assets. This should be the ID of the folder (not an asset ID). For best performance and to avoid [size limitations](/#what-is-the-maximum-size-of-assets-i-can-process), use the folder ID closest to your target assets. The system will retrieve all content from the specified folder, so choosing a parent folder with many subfolders may exceed the maximum retrieval size limit",
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "folderId",
+        "accountId",
+        "accessToken"
+      ]
+    },
+    "rest_base.SourceSpace": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "A space ID.",
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "id"
+      ]
+    },
+    "rest_base.SourceURL": {
+      "type": "object",
+      "properties": {
+        "filename": {
+          "description": "Filename override. If unset, the service will try to detect the filename from the content disposition header, then the URL itself.",
+          "type": "string"
+        },
+        "url": {
+          "description": "URL to fetch content from.",
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "url"
+      ]
+    }
+  }
+}

@@ -1,0 +1,71 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/adobe/main/json-schema/adobe-db-library-bookmarks-schema.json",
+  "title": "DbLibraryBookmarks",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/adobe-library-service-bookmarks-api-openapi.yml#/components/schemas/DbLibraryBookmarks",
+  "type": "object",
+  "properties": {
+    "bookmarks": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/DbLibraryBookmark"
+      }
+    },
+    "_fc": {
+      "type": "boolean"
+    }
+  },
+  "$defs": {
+    "DbLibraryBookmark": {
+      "type": "object",
+      "required": [
+        "id"
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "`public`, or `collab`, with separate required fields as identified below",
+          "enum": [
+            "PUBLIC",
+            "COLLAB"
+          ]
+        },
+        "id": {
+          "type": "string",
+          "description": "Required, must match the library's `id`. Submissions with an existing ID are discarded."
+        },
+        "url": {
+          "type": "string",
+          "description": "Required if `type` is `public`"
+        },
+        "urn": {
+          "type": "string",
+          "description": "Required if `type` is `collab`"
+        },
+        "role": {
+          "type": "string",
+          "description": "'viewer'/'editor' role of user's sharing status on library."
+        },
+        "can_share": {
+          "type": "boolean",
+          "description": "Sharing permission for user's sharing status on library"
+        },
+        "can_comment": {
+          "type": "boolean",
+          "description": "Commenting permission for user's sharing status on library"
+        },
+        "created": {
+          "type": "integer",
+          "format": "int64",
+          "description": "This parameter will be ignored, populated with the timestamp upon creation and immutable after"
+        },
+        "_fc": {
+          "type": "boolean"
+        }
+      }
+    }
+  }
+}

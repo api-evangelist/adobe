@@ -1,0 +1,803 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/adobe/main/json-schema/adobe-restv1beta-create-scene-request-schema.json",
+  "title": "restv1beta.CreateSceneRequest",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/adobe-scenes-api-openapi.yml#/components/schemas/restv1beta.CreateSceneRequest",
+  "type": "object",
+  "properties": {
+    "$schema": {
+      "description": "A URL to the JSON schema for this object.",
+      "type": "string",
+      "format": "uri",
+      "readOnly": true
+    },
+    "encoding": {
+      "description": "Encoding output format.",
+      "type": "string",
+      "enum": [
+        "glb",
+        "gltf",
+        "fbx",
+        "usdz",
+        "usda",
+        "usdc",
+        "obj"
+      ]
+    },
+    "fileBaseName": {
+      "description": "Output filename.",
+      "type": "string",
+      "minLength": 1
+    },
+    "scene": {
+      "$ref": "#/$defs/types.SceneDescription"
+    },
+    "sources": {
+      "description": "List of sources to aggregate and run the job against.",
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/rest_base.MountedSource"
+      },
+      "maxItems": 16,
+      "minItems": 1
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "scene",
+    "sources",
+    "encoding",
+    "fileBaseName"
+  ],
+  "$defs": {
+    "rest_base.MountedSource": {
+      "type": "object",
+      "properties": {
+        "frame.io": {
+          "description": "Fetch content from a Frame.io folder. ⚠️ All sources are exclusive.",
+          "$ref": "#/$defs/rest_base.SourceFrameIO",
+          "deprecated": true
+        },
+        "mountPoint": {
+          "description": "Where to mount the content of the source in the virtual job working directory.",
+          "type": "string",
+          "default": "/"
+        },
+        "next.frame.io": {
+          "description": "Fetch content from a next.frame.io folder. ⚠️ All sources are exclusive.",
+          "$ref": "#/$defs/rest_base.SourceFrameIOV4"
+        },
+        "space": {
+          "description": "Read content from an existing space (can be another job's output, or uploaded manually with the space API). ⚠️ All sources are exclusive.'",
+          "$ref": "#/$defs/rest_base.SourceSpace"
+        },
+        "url": {
+          "description": "Fetch content from a URL. ⚠️ All sources are exclusive.",
+          "$ref": "#/$defs/rest_base.SourceURL"
+        }
+      },
+      "additionalProperties": false
+    },
+    "rest_base.SourceFrameIO": {
+      "type": "object",
+      "properties": {
+        "accessToken": {
+          "description": "Frame.io access token or Developer token. See https://developer.frame.io/docs/getting-started/authentication for obtaining a token.",
+          "type": "string"
+        },
+        "folderId": {
+          "description": "Frame.io folder ID containing the assets. This should be the ID of the folder (not an asset ID). For best performance and to avoid [size limitations](/#what-is-the-maximum-size-of-assets-i-can-process), use the folder ID closest to your target assets. The system will retrieve all content from the specified folder, so choosing a parent folder with many subfolders may exceed the maximum retrieval size limit",
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "folderId",
+        "accessToken"
+      ]
+    },
+    "rest_base.SourceFrameIOV4": {
+      "type": "object",
+      "properties": {
+        "accessToken": {
+          "description": "Frame.io access token. See https://developer.adobe.com/frameio/guides/Authentication/ for obtaining a token.",
+          "type": "string"
+        },
+        "accountId": {
+          "description": "Frame.io account ID. This is the account identifier for the next.frame.io account owner. To find your account ID, log in to next.frame.io, navigate to your inbox, and extract the UUID from the URL (e.g., in https://next.frame.io/inbox/abcdefgh-1234-1234-1234-abcdefghijk, the account ID is abcdefgh-1234-1234-1234-abcdefghijk)",
+          "type": "string"
+        },
+        "folderId": {
+          "description": "Frame.io folder ID containing the assets. This should be the ID of the folder (not an asset ID). For best performance and to avoid [size limitations](/#what-is-the-maximum-size-of-assets-i-can-process), use the folder ID closest to your target assets. The system will retrieve all content from the specified folder, so choosing a parent folder with many subfolders may exceed the maximum retrieval size limit",
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "folderId",
+        "accountId",
+        "accessToken"
+      ]
+    },
+    "rest_base.SourceSpace": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "A space ID.",
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "id"
+      ]
+    },
+    "rest_base.SourceURL": {
+      "type": "object",
+      "properties": {
+        "filename": {
+          "description": "Filename override. If unset, the service will try to detect the filename from the content disposition header, then the URL itself.",
+          "type": "string"
+        },
+        "url": {
+          "description": "URL to fetch content from.",
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "url"
+      ]
+    },
+    "types.AzimuthAltitude": {
+      "type": "object",
+      "properties": {
+        "altitude": {
+          "description": "Altitude, in degrees, from -90 to 90 degrees.",
+          "type": "number",
+          "format": "double",
+          "maximum": 90,
+          "minimum": -90
+        },
+        "azimuth": {
+          "description": "Rotation around the vertical axis, in degrees.",
+          "type": "number",
+          "format": "double"
+        },
+        "lookAt": {
+          "description": "Look at point coordinates.",
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "format": "double",
+            "type": "number"
+          },
+          "maxItems": 3,
+          "minItems": 3
+        },
+        "radius": {
+          "description": "Distance to the `lookAt` point.",
+          "type": "number",
+          "format": "double",
+          "minimum": 0
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "azimuth",
+        "altitude",
+        "lookAt",
+        "radius"
+      ]
+    },
+    "types.FormatOptions": {
+      "type": "object",
+      "properties": {
+        "usd": {
+          "description": "options specific to USD file format",
+          "$ref": "#/$defs/types.UsdOptions"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "usd"
+      ]
+    },
+    "types.Material": {
+      "type": "object",
+      "properties": {
+        "sbs": {
+          "description": "The PBR material definition.",
+          "$ref": "#/$defs/types.SbsMaterial"
+        },
+        "solidColor": {
+          "description": "The solid color material definition.",
+          "$ref": "#/$defs/types.SolidColorMaterial"
+        }
+      },
+      "additionalProperties": false
+    },
+    "types.MaterialAssign": {
+      "type": "object",
+      "properties": {
+        "material": {
+          "description": "The material definition.",
+          "$ref": "#/$defs/types.Material"
+        },
+        "materialName": {
+          "description": "Desired material name, it will be sanitized to make a valid USD prim name.",
+          "type": "string"
+        },
+        "nodeList": {
+          "description": "List of nodes under which geometric primitives will have this material assigned. Each entry can be a full node name or a glob expression.",
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "type": "string"
+          }
+        },
+        "assignByDefault": {
+          "description": "Set to true to assign this material by default to all geometric primitives."
+        },
+        "excludeFromDefault": {
+          "description": "List of nodes to exclude from default assignment."
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "materialName",
+        "material",
+        "nodeList"
+      ]
+    },
+    "types.MaterialOverride": {
+      "type": "object",
+      "properties": {
+        "absorptionColorFactor": {
+          "description": "RGB float color value, for example white is [1.0,1.0,1.0].",
+          "type": "array",
+          "items": {
+            "format": "double",
+            "type": "number"
+          },
+          "default": [
+            0,
+            0,
+            0
+          ],
+          "maxItems": 3,
+          "minItems": 3
+        },
+        "absorptionColorTexture": {
+          "type": "string"
+        },
+        "absorptionDistanceFactor": {
+          "type": "number",
+          "format": "double",
+          "minimum": 0
+        },
+        "absorptionDistanceTexture": {
+          "type": "string"
+        },
+        "baseColorFactor": {
+          "description": "RGB float color value, for example white is [1.0,1.0,1.0].",
+          "type": "array",
+          "items": {
+            "format": "double",
+            "type": "number"
+          },
+          "default": [
+            0,
+            0,
+            0
+          ],
+          "maxItems": 3,
+          "minItems": 3
+        },
+        "baseColorTexture": {
+          "type": "string"
+        },
+        "coatColorFactor": {
+          "description": "RGB float color value, for example white is [1.0,1.0,1.0].",
+          "type": "array",
+          "items": {
+            "format": "double",
+            "type": "number"
+          },
+          "default": [
+            0,
+            0,
+            0
+          ],
+          "maxItems": 3,
+          "minItems": 3
+        },
+        "coatColorTexture": {
+          "type": "string"
+        },
+        "coatOpacityFactor": {
+          "type": "number",
+          "format": "double",
+          "maximum": 1,
+          "minimum": 0
+        },
+        "coatOpacityTexture": {
+          "type": "string"
+        },
+        "coatRoughnessFactor": {
+          "type": "number",
+          "format": "double",
+          "maximum": 1,
+          "minimum": 0
+        },
+        "coatRoughnessTexture": {
+          "type": "string"
+        },
+        "materialName": {
+          "type": "string"
+        },
+        "metallicFactor": {
+          "type": "number",
+          "format": "double",
+          "maximum": 1,
+          "minimum": 0
+        },
+        "metallicTexture": {
+          "type": "string"
+        },
+        "normalFactor": {
+          "type": "array",
+          "items": {
+            "format": "double",
+            "type": "number"
+          },
+          "maxItems": 3,
+          "minItems": 3
+        },
+        "normalTexture": {
+          "type": "string"
+        },
+        "opacityFactor": {
+          "type": "number",
+          "format": "double",
+          "minimum": 0
+        },
+        "opacityTexture": {
+          "type": "string"
+        },
+        "pbrMaterial": {
+          "$ref": "#/$defs/types.SbsMaterial"
+        },
+        "roughnessFactor": {
+          "type": "number",
+          "format": "double",
+          "maximum": 1,
+          "minimum": 0
+        },
+        "roughnessTexture": {
+          "type": "string"
+        },
+        "translucencyFactor": {
+          "type": "number",
+          "format": "double",
+          "maximum": 1,
+          "minimum": 0
+        },
+        "translucencyTexture": {
+          "type": "string"
+        },
+        "volumeThicknessFactor": {
+          "type": "number",
+          "format": "double",
+          "minimum": 0
+        },
+        "volumeThicknessTexture": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "materialName"
+      ]
+    },
+    "types.Rotation": {
+      "type": "object",
+      "properties": {
+        "euler": {
+          "description": "Euler angles in degrees.",
+          "type": "array",
+          "items": {
+            "format": "double",
+            "type": "number"
+          },
+          "maxItems": 3,
+          "minItems": 3
+        },
+        "quaternion": {
+          "description": "In W,X,Y,Z order.",
+          "type": "array",
+          "items": {
+            "format": "double",
+            "type": "number"
+          },
+          "maxItems": 4,
+          "minItems": 4
+        }
+      },
+      "additionalProperties": false
+    },
+    "types.SbsMaterial": {
+      "type": "object",
+      "properties": {
+        "preset": {
+          "description": "Select a preset to be used for the substance material rendering.",
+          "type": "string"
+        },
+        "resolution": {
+          "description": "Substance material render resolution. This should be a power of two.",
+          "type": "integer",
+          "format": "int64",
+          "enum": [
+            16,
+            32,
+            64,
+            128,
+            256,
+            512,
+            1024,
+            2048,
+            4096
+          ],
+          "maximum": 4096,
+          "minimum": 16
+        },
+        "rotation": {
+          "description": "Texture space rotation.",
+          "type": "number",
+          "format": "double"
+        },
+        "sbsar": {
+          "description": "Path to a substance material; if not set, the first substance 3D material found in sources will be used.",
+          "type": "string"
+        },
+        "scale": {
+          "description": "Texture space scale.",
+          "type": "array",
+          "items": {
+            "format": "double",
+            "type": "number"
+          },
+          "maxItems": 2,
+          "minItems": 2
+        },
+        "translation": {
+          "description": "Texture space translation.",
+          "type": "array",
+          "items": {
+            "format": "double",
+            "type": "number"
+          },
+          "maxItems": 2,
+          "minItems": 2
+        }
+      },
+      "additionalProperties": false
+    },
+    "types.SceneBaseFile": {
+      "type": "object",
+      "properties": {
+        "file": {
+          "description": "Path to the scene file in `sources`.",
+          "type": "string"
+        },
+        "modelsRootNodeName": {
+          "description": "Define root node for models in scene graph. If not found, the node which is parent of all models in the scene will be used. If this node doesn't exist, a new node will be created under global root.",
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "file"
+      ]
+    },
+    "types.SceneCamera": {
+      "type": "object",
+      "properties": {
+        "focal": {
+          "description": "Camera focal length, in mm.",
+          "type": "number",
+          "format": "double",
+          "default": 50,
+          "maximum": 1000,
+          "minimum": 10
+        },
+        "sensorWidth": {
+          "description": "Camera sensor width, in mm.",
+          "type": "number",
+          "format": "double",
+          "default": 36,
+          "maximum": 100,
+          "minimum": 1
+        },
+        "transform": {
+          "description": "Controls the position and angle of the camera.",
+          "$ref": "#/$defs/types.Transform"
+        }
+      },
+      "additionalProperties": false
+    },
+    "types.SceneDescription": {
+      "type": "object",
+      "properties": {
+        "baseFile": {
+          "description": "Define a scene from a file. If value is `null`, an empty scene will be created.",
+          "$ref": "#/$defs/types.SceneBaseFile"
+        },
+        "camera": {
+          "description": "Define a new camera for the scene.",
+          "$ref": "#/$defs/types.SceneCamera"
+        },
+        "environment": {
+          "description": "Define the environment for the scene. Override the previous existing environment.",
+          "$ref": "#/$defs/types.SceneEnvironment"
+        },
+        "formatOptions": {
+          "description": "define options specific for model file format",
+          "$ref": "#/$defs/types.FormatOptions"
+        },
+        "materials": {
+          "description": "Assign new materials to geometric primitives.",
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "$ref": "#/$defs/types.MaterialAssign"
+          }
+        },
+        "metersPerUnit": {
+          "description": "Length of a scene unit, in meters. Defaults to `baseFile` meters per unit if any, or 0.01 (centimeters) otherwise.",
+          "type": "number",
+          "format": "double",
+          "exclusiveMinimum": 0
+        },
+        "models": {
+          "description": "Define additional models for the scene.",
+          "$ref": "#/$defs/types.SceneModels"
+        }
+      },
+      "additionalProperties": false
+    },
+    "types.SceneEnvironment": {
+      "type": "object",
+      "properties": {
+        "exposure": {
+          "description": "Exposure, in EV (0=neutral).",
+          "type": "number",
+          "format": "double",
+          "default": 0,
+          "maximum": 10,
+          "minimum": -10
+        },
+        "file": {
+          "description": "Path to the environment file in `sources`. If the value is `null`, the first found environment file will be used.",
+          "type": "string"
+        },
+        "preserveLights": {
+          "description": "A scene may contain 3D lights, like area lights or spot lights. By default, all those lights are removed when a new environment is set. Set this option to `true` to preserve the scene 3D lights.",
+          "type": "boolean",
+          "default": false
+        },
+        "rotation": {
+          "description": "Controls the orientation of the environment map.",
+          "$ref": "#/$defs/types.Rotation"
+        }
+      },
+      "additionalProperties": false
+    },
+    "types.SceneModel": {
+      "type": "object",
+      "properties": {
+        "anchorName": {
+          "description": "Node name in scene graph which used as parent for the model. If anchor is not found, a node with the anchor name will be generated under models root node. And If value is `null`, a node will be generated under models root node.",
+          "type": "string"
+        },
+        "file": {
+          "description": "Path to the model file in `sources`. If the value is `null`, the first found model file will be used.",
+          "type": "string"
+        },
+        "formatOptions": {
+          "description": "Define options specific for the model file format.",
+          "$ref": "#/$defs/types.FormatOptions"
+        },
+        "materialOverrides": {
+          "description": "Define material overrides.",
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "$ref": "#/$defs/types.MaterialOverride"
+          }
+        },
+        "transform": {
+          "description": "Transform applied on the anchor node. Overrides the previous value, if it exists.",
+          "$ref": "#/$defs/types.Transform"
+        }
+      },
+      "additionalProperties": false
+    },
+    "types.SceneModels": {
+      "type": "object",
+      "properties": {
+        "imports": {
+          "description": "List of model import definitions.",
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "$ref": "#/$defs/types.SceneModel"
+          }
+        },
+        "modelsRootNodeTransform": {
+          "description": "Global transformation applied on the models root node defined in the scene. Overrides the previous value, if it exists.",
+          "$ref": "#/$defs/types.Transform"
+        }
+      },
+      "additionalProperties": false
+    },
+    "types.SolidColorMaterial": {
+      "type": "object",
+      "properties": {
+        "color": {
+          "description": "RGB color of the solid material, each component has to be in the [0,1] range.",
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "format": "double",
+            "type": "number"
+          },
+          "default": [
+            0,
+            0,
+            0
+          ],
+          "maxItems": 3,
+          "minItems": 3
+        },
+        "metallicFactor": {
+          "description": "Metallic factor of the solid material, has to be in the [0,1] range.",
+          "type": "number",
+          "format": "double",
+          "maximum": 1,
+          "minimum": 0
+        },
+        "roughnessFactor": {
+          "description": "Roughness factor of the solid material, has to be in the [0,1] range.",
+          "type": "number",
+          "format": "double",
+          "maximum": 1,
+          "minimum": 0
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "color"
+      ]
+    },
+    "types.TRS": {
+      "type": "object",
+      "properties": {
+        "rotation": {
+          "$ref": "#/$defs/types.Rotation"
+        },
+        "scale": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "format": "double",
+            "type": "number"
+          },
+          "maxItems": 3,
+          "minItems": 3
+        },
+        "translation": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "format": "double",
+            "type": "number"
+          },
+          "maxItems": 3,
+          "minItems": 3
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "translation",
+        "rotation",
+        "scale"
+      ]
+    },
+    "types.Transform": {
+      "type": "object",
+      "properties": {
+        "azimuthAltitude": {
+          "description": "Transform is defined by azimuth, altitude and radius terms. If set, do not set `matrix` or `trs`.",
+          "$ref": "#/$defs/types.AzimuthAltitude"
+        },
+        "matrix": {
+          "description": "Transform is defined as a matrix. If set, do not set `trs` or `azimuthAltitude`.",
+          "type": "array",
+          "items": {
+            "format": "double",
+            "type": "number"
+          },
+          "maxItems": 16,
+          "minItems": 16
+        },
+        "trs": {
+          "description": "Transform is defined by translation, rotation and scale terms. If set, do not set `matrix` or `azimuthAltitude`.",
+          "$ref": "#/$defs/types.TRS"
+        }
+      },
+      "additionalProperties": false
+    },
+    "types.UsdOptions": {
+      "type": "object",
+      "properties": {
+        "variants": {
+          "description": "List of USD variants definition applied on USD primitives.",
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "$ref": "#/$defs/types.UsdVariant"
+          }
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "variants"
+      ]
+    },
+    "types.UsdVariant": {
+      "type": "object",
+      "properties": {
+        "primName": {
+          "description": "name of the USD prim on which the variant is defined",
+          "type": "string"
+        },
+        "variant": {
+          "description": "name of the variant option to apply from the variant set",
+          "type": "string"
+        },
+        "variantSet": {
+          "description": "name of the variant set to select from",
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "primName",
+        "variantSet",
+        "variant"
+      ]
+    }
+  }
+}

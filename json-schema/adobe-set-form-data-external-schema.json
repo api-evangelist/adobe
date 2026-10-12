@@ -1,0 +1,107 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/adobe/main/json-schema/adobe-set-form-data-external-schema.json",
+  "title": "External",
+  "description": "Params for Import PDF Form Data Operation using external storage.",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/adobe-import-pdf-form-data-api-openapi.yml#/components/schemas/SetFormDataExternal",
+  "type": "object",
+  "required": [
+    "input",
+    "params"
+  ],
+  "properties": {
+    "input": {
+      "$ref": "#/$defs/ExternalStorageInput"
+    },
+    "output": {
+      "$ref": "#/$defs/ExternalStorageOutput"
+    },
+    "params": {
+      "description": "Params for Import PDF Form Data Operation processing",
+      "type": "object",
+      "required": [
+        "jsonFormFieldsData"
+      ],
+      "properties": {
+        "jsonFormFieldsData": {
+          "description": "A JSON object containing the form data for the PDF. Each key in this object should correspond to a field name in the PDF form (including nested or hierarchical field names), and the associated value should be the data to insert into that field. For example:\n\n```json\n{\n  \"name\": {\n    \"first\": \"John\",\n    \"last\": \"Doe\"\n  },\n  \"dob\": \"01/14/2025\",\n  \"address\": {\n    \"city\": \"Springfield\",\n    \"state\": \"IL\"\n  }\n}\n```\n\nThis JSON corresponds to the following PDF field names:\n\n- name.first\n- name.last\n- dob\n- address.city\n- address.state\n\nThe API will use these key-value pairs to populate the respective fields in the PDF form.",
+          "type": "object"
+        }
+      }
+    },
+    "notifiers": {
+      "$ref": "#/$defs/notifiers"
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "ExternalStorageInput": {
+      "title": "Input",
+      "description": "Params representing input object.",
+      "type": "object",
+      "properties": {
+        "uri": {
+          "description": "Input file Download Signed URI.",
+          "type": "string"
+        },
+        "storage": {
+          "description": "Specifies the type of the external storage",
+          "type": "string",
+          "enum": [
+            "S3",
+            "SHAREPOINT",
+            "DROPBOX",
+            "BLOB"
+          ]
+        }
+      },
+      "required": [
+        "uri"
+      ]
+    },
+    "ExternalStorageOutput": {
+      "title": "Output",
+      "description": "Params representing output object",
+      "type": "object",
+      "properties": {
+        "uri": {
+          "description": "Output file Upload Signed URI.",
+          "type": "string"
+        },
+        "storage": {
+          "description": "Specifies the type of the external storage",
+          "type": "string",
+          "enum": [
+            "S3",
+            "SHAREPOINT",
+            "DROPBOX",
+            "BLOB"
+          ]
+        }
+      }
+    },
+    "notifiers": {
+      "description": "Specifies the notifiers to be invoked on the completion of job. To know more about notifiers, please see the <a href=\"https://developer.adobe.com/document-services/docs/overview/pdf-services-api/howtos/webhook-notification/\">documentation</a>.",
+      "type": "array",
+      "items": {
+        "properties": {
+          "type": {
+            "description": "Specifies the notifier type. Currently supported value is \"CALLBACK\" only.",
+            "type": "string"
+          },
+          "data": {
+            "description": "Specifies the data needed to invoke the notifier.",
+            "type": "object"
+          }
+        },
+        "required": [
+          "type",
+          "data"
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,134 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/adobe/main/json-schema/adobe-restv1beta-create-scene-response-schema.json",
+  "title": "restv1beta.CreateSceneResponse",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/adobe-scenes-api-openapi.yml#/components/schemas/restv1beta.CreateSceneResponse",
+  "type": "object",
+  "properties": {
+    "$schema": {
+      "description": "A URL to the JSON schema for this object.",
+      "type": "string",
+      "format": "uri",
+      "readOnly": true
+    },
+    "bugReportUrl": {
+      "description": "URL to report a bug about this job.",
+      "type": "string"
+    },
+    "error": {
+      "description": "Potential error that happened during the job processing.",
+      "type": "string"
+    },
+    "id": {
+      "description": "Unique identifier of the job.",
+      "type": "string"
+    },
+    "result": {
+      "description": "Result when the job is successfully finished.",
+      "$ref": "#/$defs/restv1beta.CreateSceneJobResult"
+    },
+    "status": {
+      "description": "Status of the job. Can be `not_started`, `running`, `succeeded`, or `failed`.",
+      "type": "string"
+    },
+    "url": {
+      "description": "URL to fetch/poll for the job result, in case the job is not finished yet.",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "url",
+    "id",
+    "status",
+    "bugReportUrl"
+  ],
+  "$defs": {
+    "rest_base.Space": {
+      "type": "object",
+      "properties": {
+        "$schema": {
+          "description": "A URL to the JSON schema for this object.",
+          "type": "string",
+          "format": "uri",
+          "readOnly": true
+        },
+        "expiry": {
+          "description": "time at which the space will be deleted",
+          "type": "string",
+          "format": "date-time"
+        },
+        "files": {
+          "description": "List of all files contained in Space, ordered by name.",
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "$ref": "#/$defs/rest_base.SpaceFile"
+          }
+        },
+        "id": {
+          "description": "Unique identifier of this Space.",
+          "type": "string"
+        },
+        "url": {
+          "description": "URL to the full description of this Space.",
+          "type": "string"
+        },
+        "archiveUrl": {
+          "description": "URL to fetch the whole space as an archive (usually a ZIP file)."
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "url",
+        "id",
+        "expiry",
+        "files"
+      ]
+    },
+    "rest_base.SpaceFile": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "size": {
+          "type": "integer",
+          "format": "int64",
+          "minimum": 0
+        },
+        "url": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "url",
+        "name",
+        "size"
+      ]
+    },
+    "restv1beta.CreateSceneJobResult": {
+      "type": "object",
+      "properties": {
+        "outputSpace": {
+          "$ref": "#/$defs/rest_base.Space"
+        },
+        "sceneUrl": {
+          "description": "URL for the created scene.",
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "sceneUrl",
+        "outputSpace"
+      ]
+    }
+  }
+}

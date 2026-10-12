@@ -1,0 +1,72 @@
+generated: '2026-10-12'
+method: probed
+source: pre-flight dossier (docs platform, portal detections) + CNAME chains and response headers of the hosts apis.yml names
+registry: all/0-working/vendors.yml
+areas_vocabulary:
+- documentation
+- developer-portal
+- api-gateway
+- cdn
+- hosting
+- sdk-generation
+- api-collections
+- status-page
+- support
+- community
+- identity
+- mcp-hosting
+vendors:
+- vendor: postman
+  name: Postman
+  area: api-collections
+  host: www.postman.com
+  evidence: https://www.postman.com/kinlaneapi/adobe/overview
+  signal: url:postman.com
+  confidence: high
+  kin_score:
+  - postman_collection
+- vendor: akamai
+  name: Akamai
+  area: cdn
+  host: www.adobe.com
+  evidence: cname:akamai.net
+  signal: cname
+  confidence: high
+  kin_score: []
+- vendor: fastly
+  name: Fastly
+  area: cdn
+  host: developer.adobe.com
+  evidence: header:x-served-by:cache-
+  signal: header
+  confidence: high
+  kin_score: []
+reliance:
+  areas_vendor_served:
+  - api-collections
+  - cdn
+  vendor_count: 3
+  areas_observed: 12
+  share_of_observable_areas: 0.167
+  note: areas where a third party was DETECTED serving this provider; an area absent here was either self-run or not observed, and this script
+    cannot tell those apart
+checked:
+- 'docs-platform: not probed'
+- www.adobe.com (Website)
+- developer.adobe.com (Portal)
+- developer.adobe.com (DeveloperPortal)
+- developer.adobe.com (Documentation)
+- developer.adobe.com (APIReference)
+- www.postman.com (Postman)
+- developer.adobe.com (Support)
+- status.adobe.com (StatusPage)
+- developer.adobe.com (GettingStarted)
+- developer.adobe.com (Login)
+- pdf-services.adobe.io (baseURL)
+- api.adobesign.com (baseURL)
+- analytics.adobe.io (baseURL)
+- firefly-api.adobe.io (baseURL)
+- platform.adobe.io (baseURL)
+- stock.adobe.io (baseURL)
+- usermanagement.adobe.io (baseURL)
+- mcp.adobeaemcloud.com (mcp)

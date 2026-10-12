@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/adobe/main/json-schema/adobe-rest-base-file-frame-io-schema.json",
+  "title": "rest_base.FileFrameIO",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/adobe-spacesframeio-api-openapi.yml#/components/schemas/rest_base.FileFrameIO",
+  "type": "object",
+  "properties": {
+    "$schema": {
+      "description": "A URL to the JSON Schema for this object.",
+      "type": "string",
+      "format": "uri",
+      "readOnly": true
+    },
+    "accessToken": {
+      "description": "Frame.io access token or Developer token. See https://developer.frame.io/docs/getting-started/authentication for obtaining a token.",
+      "type": "string"
+    },
+    "folderId": {
+      "description": "Frame.io folder ID containing the assets. This should be the ID of the folder (not an asset ID). For best performance and to avoid [size limitations](/#what-is-the-maximum-size-of-assets-i-can-process), use the folder ID closest to your target assets. The system will retrieve all content from the specified folder, so choosing a parent folder with many subfolders may exceed the maximum retrieval size limit",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "folderId",
+    "accessToken"
+  ]
+}

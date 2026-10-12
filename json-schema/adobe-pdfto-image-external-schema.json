@@ -1,0 +1,112 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/adobe/main/json-schema/adobe-pdfto-image-external-schema.json",
+  "title": "External",
+  "description": "Parameter for PDF to Image operation.",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/adobe-pdf-to-images-api-openapi.yml#/components/schemas/PDFToImageExternal",
+  "type": "object",
+  "required": [
+    "input",
+    "params"
+  ],
+  "properties": {
+    "input": {
+      "$ref": "#/$defs/ExternalStorageInput"
+    },
+    "output": {
+      "$ref": "#/$defs/ExternalStorageOutputZip"
+    },
+    "params": {
+      "description": "Params for PDF to Images processing",
+      "type": "object",
+      "properties": {
+        "targetFormat": {
+          "description": "Target exported image File Format",
+          "type": "string",
+          "enum": [
+            "jpeg",
+            "png",
+            "tiff"
+          ]
+        }
+      },
+      "required": [
+        "targetFormat"
+      ]
+    },
+    "notifiers": {
+      "$ref": "#/$defs/notifiers"
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "ExternalStorageInput": {
+      "title": "Input",
+      "description": "Params representing input object.",
+      "type": "object",
+      "properties": {
+        "uri": {
+          "description": "Input file Download Signed URI.",
+          "type": "string"
+        },
+        "storage": {
+          "description": "Specifies the type of the external storage",
+          "type": "string",
+          "enum": [
+            "S3",
+            "SHAREPOINT",
+            "DROPBOX",
+            "BLOB"
+          ]
+        }
+      },
+      "required": [
+        "uri"
+      ]
+    },
+    "ExternalStorageOutputZip": {
+      "title": "Output",
+      "description": "Params representing output object",
+      "type": "object",
+      "properties": {
+        "uri": {
+          "description": "Output file Upload Signed URI. It should be of format zip only in case of external storage.",
+          "type": "string"
+        },
+        "storage": {
+          "description": "Specifies the type of the external storage",
+          "type": "string",
+          "enum": [
+            "S3",
+            "SHAREPOINT",
+            "DROPBOX",
+            "BLOB"
+          ]
+        }
+      }
+    },
+    "notifiers": {
+      "description": "Specifies the notifiers to be invoked on the completion of job. To know more about notifiers, please see the <a href=\"https://developer.adobe.com/document-services/docs/overview/pdf-services-api/howtos/webhook-notification/\">documentation</a>.",
+      "type": "array",
+      "items": {
+        "properties": {
+          "type": {
+            "description": "Specifies the notifier type. Currently supported value is \"CALLBACK\" only.",
+            "type": "string"
+          },
+          "data": {
+            "description": "Specifies the data needed to invoke the notifier.",
+            "type": "object"
+          }
+        },
+        "required": [
+          "type",
+          "data"
+        ]
+      }
+    }
+  }
+}

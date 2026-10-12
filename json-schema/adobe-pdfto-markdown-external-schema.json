@@ -1,0 +1,104 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/adobe/main/json-schema/adobe-pdfto-markdown-external-schema.json",
+  "title": "External",
+  "description": "Params for PDF to Markdown Operation using external storage.",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/adobe-pdf-to-markdown-api-openapi.yml#/components/schemas/PDFToMarkdownExternal",
+  "type": "object",
+  "required": [
+    "input"
+  ],
+  "properties": {
+    "input": {
+      "$ref": "#/$defs/ExternalStorageInput"
+    },
+    "output": {
+      "$ref": "#/$defs/ExternalStorageOutput"
+    },
+    "params": {
+      "description": "Params for PDF to Markdown processing",
+      "type": "object",
+      "properties": {
+        "getFigures": {
+          "description": "Extract figures or images in base64 format",
+          "type": "boolean",
+          "default": "false"
+        }
+      }
+    },
+    "notifiers": {
+      "$ref": "#/$defs/notifiers"
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "ExternalStorageInput": {
+      "title": "Input",
+      "description": "Params representing input object.",
+      "type": "object",
+      "properties": {
+        "uri": {
+          "description": "Input file Download Signed URI.",
+          "type": "string"
+        },
+        "storage": {
+          "description": "Specifies the type of the external storage",
+          "type": "string",
+          "enum": [
+            "S3",
+            "SHAREPOINT",
+            "DROPBOX",
+            "BLOB"
+          ]
+        }
+      },
+      "required": [
+        "uri"
+      ]
+    },
+    "ExternalStorageOutput": {
+      "title": "Output",
+      "description": "Params representing output object",
+      "type": "object",
+      "properties": {
+        "uri": {
+          "description": "Output file Upload Signed URI.",
+          "type": "string"
+        },
+        "storage": {
+          "description": "Specifies the type of the external storage",
+          "type": "string",
+          "enum": [
+            "S3",
+            "SHAREPOINT",
+            "DROPBOX",
+            "BLOB"
+          ]
+        }
+      }
+    },
+    "notifiers": {
+      "description": "Specifies the notifiers to be invoked on the completion of job. To know more about notifiers, please see the <a href=\"https://developer.adobe.com/document-services/docs/overview/pdf-services-api/howtos/webhook-notification/\">documentation</a>.",
+      "type": "array",
+      "items": {
+        "properties": {
+          "type": {
+            "description": "Specifies the notifier type. Currently supported value is \"CALLBACK\" only.",
+            "type": "string"
+          },
+          "data": {
+            "description": "Specifies the data needed to invoke the notifier.",
+            "type": "object"
+          }
+        },
+        "required": [
+          "type",
+          "data"
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,436 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/adobe/main/json-schema/adobe-restv1-compose-scene-request-schema.json",
+  "title": "restv1.ComposeSceneRequest",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/adobe-composites-api-openapi.yml#/components/schemas/restv1.ComposeSceneRequest",
+  "type": "object",
+  "properties": {
+    "$schema": {
+      "description": "A URL to the JSON schema for this object.",
+      "type": "string",
+      "format": "uri",
+      "readOnly": true
+    },
+    "cameraName": {
+      "description": "Name of an existing camera in the source 3D scene. The camera has to be defined in the scene.",
+      "type": "string"
+    },
+    "contentClass": {
+      "description": "Class of content to generate.",
+      "type": "string",
+      "default": "photo",
+      "enum": [
+        "art",
+        "photo"
+      ]
+    },
+    "customModelId": {
+      "description": "ID of the custom model to be used for the generation. You can retrieve your custom model ID (assetId) with the Firefly retrieve custom model endpoint (https://developer.adobe.com/firefly-services/docs/firefly-api/api/#operation/getCustomModels).",
+      "type": "string"
+    },
+    "enableGroundPlane": {
+      "description": "Enable the auto-generated ground plane under the hero asset. This is useful if the 3D scene contains only a hero asset, without additional elements.",
+      "type": "boolean",
+      "default": false
+    },
+    "environment": {
+      "description": "Optional environment settings used for all variations. If omitted, an environment will be generated based on the background. If set, the `lightingSeeds` parameter will be ignored.",
+      "$ref": "#/$defs/types.ComposeEnvironment"
+    },
+    "environmentExposure": {
+      "description": "Exposure, in EV (0=neutral).",
+      "type": "number",
+      "format": "double",
+      "maximum": 10,
+      "minimum": -10
+    },
+    "heroAsset": {
+      "description": "Name of an existing 'hero asset' in the source 3D scene. The asset has to be defined in the scene.",
+      "type": "string",
+      "minLength": 1
+    },
+    "lightingSeeds": {
+      "description": "Optional seeds to be used to generate the lighting for the scene. The first seed will be used with the first seed of the background, the second one with the second seed of the background and so on. Background seeds must be defined and the number of lighting seeds should equal the number of background seeds. If not set, random seeds will be used. You will be able to retrieve the seeds used for the generation in the output details of the job.",
+      "type": "array",
+      "items": {
+        "format": "int64",
+        "type": "integer"
+      },
+      "maxItems": 4
+    },
+    "modelVersion": {
+      "description": "Model version to be used to generate the background image with Adobe Firefly.",
+      "type": "string",
+      "default": "image4_ultra",
+      "enum": [
+        "image3_fast",
+        "image4_standard",
+        "image4_ultra"
+      ]
+    },
+    "numVariations": {
+      "description": "The number of variations to generate. `numVariations` will default to the number of seeds, or to 1 if `seeds` is not specified.",
+      "type": "integer",
+      "format": "int64",
+      "maximum": 4,
+      "minimum": 1
+    },
+    "prompt": {
+      "description": "Prompt to be used to generate the background image with Adobe Firefly.",
+      "type": "string",
+      "minLength": 1
+    },
+    "scene": {
+      "description": "Optional scene-level details, such as a custom camera.",
+      "$ref": "#/$defs/types.ComposeSceneSceneDetails"
+    },
+    "sceneFile": {
+      "description": "The path of the scene file in `sources`. If value is null, the first found scene file will be used.",
+      "type": "string"
+    },
+    "seeds": {
+      "description": "Optional seed value to be used to generate the background image with Adobe Firefly. A seed ensures consistent background image generation. If `seed` is not set, a random seed will be used. Retrieve the seed used for the generation in the output details of the job. If specified with `numVariations`, the number of seeds must be the equal to `numVariations`.",
+      "type": "array",
+      "items": {
+        "format": "int64",
+        "type": "integer"
+      },
+      "maxItems": 4
+    },
+    "size": {
+      "description": "The size of the image generations. The supported dimensions for image generations are: \n  | Dimensions | Description | \n  | -----------| ----- |\n  | { \"width\": 2048, \"height\": 2048} | Square (1:1) |\n  | { \"width\": 2304, \"height\": 1792 } | Landscape (4:3) |\n  | { \"width\": 1792, \"height\": 2304 } | Portrait (3:4) | \n  | { \"width\": 2688, \"height\": 1536 } | Widescreen (16:9) |  \n  | { \"width\": 1344, \"height\": 768 } |(7:4) |  \n  |{ \"width\": 1152, \"height\": 896 } |(9:7) |  \n  |{ \"width\": 896, \"height\": 1152 } |(7:9) |  \n  | { \"width\": 1024, \"height\": 1024} | Square (1:1) |",
+      "$ref": "#/$defs/types.OutputSize"
+    },
+    "sources": {
+      "description": "List of sources to aggregate and run the job against.",
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/rest_base.MountedSource"
+      },
+      "maxItems": 16,
+      "minItems": 1
+    },
+    "styleImage": {
+      "description": "Optional 'style image' to be used to generate the background. The style image has to be present in `sources`.",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "sources",
+    "prompt",
+    "heroAsset"
+  ],
+  "$defs": {
+    "rest_base.MountedSource": {
+      "type": "object",
+      "properties": {
+        "frame.io": {
+          "description": "Fetch content from a Frame.io folder. ⚠️ All sources are exclusive.",
+          "$ref": "#/$defs/rest_base.SourceFrameIO",
+          "deprecated": true
+        },
+        "mountPoint": {
+          "description": "Where to mount the content of the source in the virtual job working directory.",
+          "type": "string",
+          "default": "/"
+        },
+        "next.frame.io": {
+          "description": "Fetch content from a next.frame.io folder. ⚠️ All sources are exclusive.",
+          "$ref": "#/$defs/rest_base.SourceFrameIOV4"
+        },
+        "space": {
+          "description": "Read content from an existing space (can be another job's output, or uploaded manually with the space API). ⚠️ All sources are exclusive.'",
+          "$ref": "#/$defs/rest_base.SourceSpace"
+        },
+        "url": {
+          "description": "Fetch content from a URL. ⚠️ All sources are exclusive.",
+          "$ref": "#/$defs/rest_base.SourceURL"
+        }
+      },
+      "additionalProperties": false
+    },
+    "rest_base.SourceFrameIO": {
+      "type": "object",
+      "properties": {
+        "accessToken": {
+          "description": "Frame.io access token or Developer token. See https://developer.frame.io/docs/getting-started/authentication for obtaining a token.",
+          "type": "string"
+        },
+        "folderId": {
+          "description": "Frame.io folder ID containing the assets. This should be the ID of the folder (not an asset ID). For best performance and to avoid [size limitations](/#what-is-the-maximum-size-of-assets-i-can-process), use the folder ID closest to your target assets. The system will retrieve all content from the specified folder, so choosing a parent folder with many subfolders may exceed the maximum retrieval size limit",
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "folderId",
+        "accessToken"
+      ]
+    },
+    "rest_base.SourceFrameIOV4": {
+      "type": "object",
+      "properties": {
+        "accessToken": {
+          "description": "Frame.io access token. See https://developer.adobe.com/frameio/guides/Authentication/ for obtaining a token.",
+          "type": "string"
+        },
+        "accountId": {
+          "description": "Frame.io account ID. This is the account identifier for the next.frame.io account owner. To find your account ID, log in to next.frame.io, navigate to your inbox, and extract the UUID from the URL (e.g., in https://next.frame.io/inbox/abcdefgh-1234-1234-1234-abcdefghijk, the account ID is abcdefgh-1234-1234-1234-abcdefghijk)",
+          "type": "string"
+        },
+        "folderId": {
+          "description": "Frame.io folder ID containing the assets. This should be the ID of the folder (not an asset ID). For best performance and to avoid [size limitations](/#what-is-the-maximum-size-of-assets-i-can-process), use the folder ID closest to your target assets. The system will retrieve all content from the specified folder, so choosing a parent folder with many subfolders may exceed the maximum retrieval size limit",
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "folderId",
+        "accountId",
+        "accessToken"
+      ]
+    },
+    "rest_base.SourceSpace": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "A space ID.",
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "id"
+      ]
+    },
+    "rest_base.SourceURL": {
+      "type": "object",
+      "properties": {
+        "filename": {
+          "description": "Filename override. If unset, the service will try to detect the filename from the content disposition header, then the URL itself.",
+          "type": "string"
+        },
+        "url": {
+          "description": "URL to fetch content from.",
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "url"
+      ]
+    },
+    "types.AzimuthAltitude": {
+      "type": "object",
+      "properties": {
+        "altitude": {
+          "description": "Altitude, in degrees, from -90 to 90 degrees.",
+          "type": "number",
+          "format": "double",
+          "maximum": 90,
+          "minimum": -90
+        },
+        "azimuth": {
+          "description": "Rotation around the vertical axis, in degrees.",
+          "type": "number",
+          "format": "double"
+        },
+        "lookAt": {
+          "description": "Look at point coordinates.",
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "format": "double",
+            "type": "number"
+          },
+          "maxItems": 3,
+          "minItems": 3
+        },
+        "radius": {
+          "description": "Distance to the `lookAt` point.",
+          "type": "number",
+          "format": "double",
+          "minimum": 0
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "azimuth",
+        "altitude",
+        "lookAt",
+        "radius"
+      ]
+    },
+    "types.ComposeEnvironment": {
+      "type": "object",
+      "properties": {
+        "file": {
+          "description": "Path of environment file in `sources`. If value is null, the environment file will be generated.",
+          "type": "string"
+        },
+        "rotation": {
+          "description": "Controls the orientation of the environment map.",
+          "$ref": "#/$defs/types.Rotation"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "file"
+      ]
+    },
+    "types.ComposeSceneSceneDetails": {
+      "type": "object",
+      "properties": {
+        "camera": {
+          "description": "Custom camera definition for the scene render. Mutually exclusive with 'cameraName' at the top level. Use this to define camera parameters programmatically instead of referencing a named camera from the 3D scene.",
+          "$ref": "#/$defs/types.SceneCamera"
+        }
+      },
+      "additionalProperties": false
+    },
+    "types.OutputSize": {
+      "type": "object",
+      "properties": {
+        "height": {
+          "type": "integer",
+          "format": "int64",
+          "default": 1536,
+          "maximum": 2688,
+          "minimum": 1
+        },
+        "width": {
+          "type": "integer",
+          "format": "int64",
+          "default": 2688,
+          "maximum": 2688,
+          "minimum": 1
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "width",
+        "height"
+      ]
+    },
+    "types.Rotation": {
+      "type": "object",
+      "properties": {
+        "euler": {
+          "description": "Euler angles in degrees.",
+          "type": "array",
+          "items": {
+            "format": "double",
+            "type": "number"
+          },
+          "maxItems": 3,
+          "minItems": 3
+        },
+        "quaternion": {
+          "description": "In W,X,Y,Z order.",
+          "type": "array",
+          "items": {
+            "format": "double",
+            "type": "number"
+          },
+          "maxItems": 4,
+          "minItems": 4
+        }
+      },
+      "additionalProperties": false
+    },
+    "types.SceneCamera": {
+      "type": "object",
+      "properties": {
+        "focal": {
+          "description": "Camera focal length, in mm.",
+          "type": "number",
+          "format": "double",
+          "default": 50,
+          "maximum": 1000,
+          "minimum": 10
+        },
+        "sensorWidth": {
+          "description": "Camera sensor width, in mm.",
+          "type": "number",
+          "format": "double",
+          "default": 36,
+          "maximum": 100,
+          "minimum": 1
+        },
+        "transform": {
+          "description": "Controls the position and angle of the camera.",
+          "$ref": "#/$defs/types.Transform"
+        }
+      },
+      "additionalProperties": false
+    },
+    "types.TRS": {
+      "type": "object",
+      "properties": {
+        "rotation": {
+          "$ref": "#/$defs/types.Rotation"
+        },
+        "scale": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "format": "double",
+            "type": "number"
+          },
+          "maxItems": 3,
+          "minItems": 3
+        },
+        "translation": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "format": "double",
+            "type": "number"
+          },
+          "maxItems": 3,
+          "minItems": 3
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "translation",
+        "rotation",
+        "scale"
+      ]
+    },
+    "types.Transform": {
+      "type": "object",
+      "properties": {
+        "azimuthAltitude": {
+          "description": "Transform is defined by azimuth, altitude and radius terms. If set, do not set `matrix` or `trs`.",
+          "$ref": "#/$defs/types.AzimuthAltitude"
+        },
+        "matrix": {
+          "description": "Transform is defined as a matrix. If set, do not set `trs` or `azimuthAltitude`.",
+          "type": "array",
+          "items": {
+            "format": "double",
+            "type": "number"
+          },
+          "maxItems": 16,
+          "minItems": 16
+        },
+        "trs": {
+          "description": "Transform is defined by translation, rotation and scale terms. If set, do not set `matrix` or `azimuthAltitude`.",
+          "$ref": "#/$defs/types.TRS"
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

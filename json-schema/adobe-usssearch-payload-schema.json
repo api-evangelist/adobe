@@ -1,0 +1,108 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/adobe/main/json-schema/adobe-usssearch-payload-schema.json",
+  "title": "USSSearchPayload",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/adobe-library-service-api-openapi.yml#/components/schemas/USSSearchPayload",
+  "type": "object",
+  "properties": {
+    "asset_type": {
+      "type": "array",
+      "description": "`library` and/or `element`. Leaving this out of the request will get both by default, though element-only parameters like `library_id` or `archived` will isolate the result to elements.",
+      "uniqueItems": true,
+      "items": {
+        "type": "string"
+      }
+    },
+    "library_id": {
+      "type": "string",
+      "description": "Library ID (URN) to constrain an elements search to a single library (like \"urn:aaid:sc:us:2f3268e9-039d-460f-8b07-8854f7677645\"). Invalid if submitted with `\"asset_type\": [\"library\"]`."
+    },
+    "group": {
+      "type": "string",
+      "description": "Isolate element results to a single group. Invalid if submitted with `\"asset_type\": [\"library\"]`."
+    },
+    "name": {
+      "type": "string",
+      "description": "A name string to identify by library/asset name. Requires an exact match."
+    },
+    "query_string": {
+      "type": "string",
+      "description": "A general query string to search for libraries/assets. Includes partial matches."
+    },
+    "created_date": {
+      "type": "array",
+      "description": "Start & end dates in epoch time (ms since epoch).",
+      "items": {
+        "type": "string",
+        "format": "date-time"
+      }
+    },
+    "modified_date": {
+      "type": "array",
+      "description": "Start & end dates in epoch time (ms since epoch).",
+      "items": {
+        "type": "string",
+        "format": "date-time"
+      }
+    },
+    "type": {
+      "type": "array",
+      "description": "One or more types for elements, invalid if submitted with `\"asset_type\": [\"library\"]`.",
+      "items": {
+        "type": "string"
+      }
+    },
+    "archived": {
+      "type": "boolean",
+      "description": "Search specifically for archived elements (boolean `true`/`false` to isolate results to archived or non-archived). Invalid if submitted with `\"asset_type\": [\"library\"]`."
+    },
+    "orderBy": {
+      "type": "string",
+      "description": "defaults to `-modified_date`, also accepts `name`. Use a minus sign prefix to note descending."
+    },
+    "start": {
+      "type": "string",
+      "description": "String value. For libraries lists, the requirement to integrate bookmarked responses requires us to use the field in a clever fashion beyond a simple positive integer."
+    },
+    "limit": {
+      "type": "integer",
+      "format": "int32",
+      "description": "Positive integer, defines the number of results to return for a paged response. Defaults to `10`. Max limit for library searches is `10`, max limit for element searches is `100`."
+    },
+    "owner": {
+      "type": "string",
+      "description": "`private` (default), `incoming`, `outgoing`, `public`, or `all`. `all` does not include `public` until bookmarks are integrated into the USS search results."
+    },
+    "selector": {
+      "type": "string",
+      "description": "Customize response for larger/smaller data sets. (`default` [base response], `rendition_grid`, `collaboration`, `details`, `full`)."
+    },
+    "has_stock_content": {
+      "type": "boolean",
+      "description": "Search for libraries that have stock content, or elements within a library that have stock content (boolean `true`/`false` to isolate results to stock content or all content)."
+    },
+    "stock_content_id": {
+      "type": "string",
+      "description": "Search for elements with a specific Stock Content ID. Invalid if submitted with `\"asset_type\": [\"library\"]` or `\"has_stock_content\": false`."
+    },
+    "spark_brand_urn": {
+      "type": "string",
+      "description": "Search for elements with a specific Spark tracking data brand_urn."
+    },
+    "spark_creator_id": {
+      "type": "string",
+      "description": "Search for elements with a specific Spark tracking data creator_id."
+    },
+    "spark_content_summary": {
+      "type": "string",
+      "description": "Search for elements with a partial match within the Spark tracking data content_summary."
+    },
+    "source_ref": {
+      "type": "string",
+      "description": "Search for elements with a specific sourceRef."
+    }
+  }
+}

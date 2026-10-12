@@ -1,0 +1,171 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/adobe/main/json-schema/adobe-add-watermark-external-schema.json",
+  "title": "External",
+  "description": "Params for Add Watermark Operation using external storage",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/adobe-pdf-watermark-api-openapi.yml#/components/schemas/AddWatermarkExternal",
+  "type": "object",
+  "properties": {
+    "inputs": {
+      "title": "inputs",
+      "description": "Add Watermark operation object containing input document and watermark document uris respectively.",
+      "type": "object",
+      "properties": {
+        "document": {
+          "title": "document",
+          "description": "Params representing input document object.",
+          "type": "object",
+          "properties": {
+            "uri": {
+              "description": "Input file Download Signed URI.",
+              "type": "string"
+            },
+            "storage": {
+              "description": "Specifies the type of the external storage",
+              "type": "string",
+              "enum": [
+                "S3",
+                "SHAREPOINT",
+                "DROPBOX",
+                "BLOB"
+              ]
+            }
+          },
+          "required": [
+            "uri"
+          ]
+        },
+        "watermarkDocument": {
+          "title": "watermarkDocument",
+          "description": "Params representing input watermark document object.",
+          "type": "object",
+          "properties": {
+            "uri": {
+              "description": "Input file Download Signed URI.",
+              "type": "string"
+            },
+            "storage": {
+              "description": "Specifies the type of the external storage",
+              "type": "string",
+              "enum": [
+                "S3",
+                "SHAREPOINT",
+                "DROPBOX",
+                "BLOB"
+              ]
+            }
+          },
+          "required": [
+            "uri"
+          ]
+        }
+      },
+      "required": [
+        "document",
+        "watermarkDocument"
+      ]
+    },
+    "output": {
+      "$ref": "#/$defs/ExternalStorageOutput"
+    },
+    "params": {
+      "description": "Params for Watermark processing",
+      "type": "object",
+      "properties": {
+        "pageRanges": {
+          "$ref": "#/$defs/pageRangesWatermark"
+        },
+        "appearance": {
+          "$ref": "#/$defs/watermarkappearance"
+        }
+      }
+    },
+    "notifiers": {
+      "$ref": "#/$defs/notifiers"
+    }
+  },
+  "required": [
+    "inputs"
+  ],
+  "additionalProperties": false,
+  "$defs": {
+    "ExternalStorageOutput": {
+      "title": "Output",
+      "description": "Params representing output object",
+      "type": "object",
+      "properties": {
+        "uri": {
+          "description": "Output file Upload Signed URI.",
+          "type": "string"
+        },
+        "storage": {
+          "description": "Specifies the type of the external storage",
+          "type": "string",
+          "enum": [
+            "S3",
+            "SHAREPOINT",
+            "DROPBOX",
+            "BLOB"
+          ]
+        }
+      }
+    },
+    "notifiers": {
+      "description": "Specifies the notifiers to be invoked on the completion of job. To know more about notifiers, please see the <a href=\"https://developer.adobe.com/document-services/docs/overview/pdf-services-api/howtos/webhook-notification/\">documentation</a>.",
+      "type": "array",
+      "items": {
+        "properties": {
+          "type": {
+            "description": "Specifies the notifier type. Currently supported value is \"CALLBACK\" only.",
+            "type": "string"
+          },
+          "data": {
+            "description": "Specifies the data needed to invoke the notifier.",
+            "type": "object"
+          }
+        },
+        "required": [
+          "type",
+          "data"
+        ]
+      }
+    },
+    "pageRangesWatermark": {
+      "title": "pageRanges",
+      "description": "Specifies the page ranges on which watermark has to be applied in the input PDF file.",
+      "type": "array",
+      "items": {
+        "properties": {
+          "start": {
+            "description": "Start page of this page range. Page numbers are indexed from 1 to N.",
+            "type": "number"
+          },
+          "end": {
+            "description": "End page of this page range. Page numbers are indexed from 1 to N.",
+            "type": "number"
+          }
+        }
+      }
+    },
+    "watermarkappearance": {
+      "title": "appearance",
+      "type": "object",
+      "description": "Specifies the appearance parameters for watermark.",
+      "properties": {
+        "appearOnForeground": {
+          "description": "Placement of watermark on the page. Watermark will be either foreground or background on the page. Default is foreground.",
+          "type": "boolean",
+          "default": true
+        },
+        "opacity": {
+          "description": "Percentage value specifying watermark opacity. Specified as an Integer value from 0 to 100.",
+          "type": "number",
+          "default": 100
+        }
+      }
+    }
+  }
+}

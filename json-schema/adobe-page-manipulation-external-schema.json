@@ -1,0 +1,170 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/adobe/main/json-schema/adobe-page-manipulation-external-schema.json",
+  "title": "External",
+  "description": "Params for Page Manipulation PDF Operation",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/adobe-page-manipulation-api-openapi.yml#/components/schemas/PageManipulationExternal",
+  "type": "object",
+  "properties": {
+    "input": {
+      "$ref": "#/$defs/ExternalStorageInput"
+    },
+    "output": {
+      "$ref": "#/$defs/ExternalStorageOutput"
+    },
+    "params": {
+      "description": "Params for Page Manipulation processing",
+      "type": "object",
+      "properties": {
+        "pageActions": {
+          "description": "A list of page actions to be performed on an input PDF document in a given order.",
+          "type": "array",
+          "items": [
+            {
+              "oneOf": [
+                {
+                  "$ref": "#/$defs/delete"
+                },
+                {
+                  "$ref": "#/$defs/rotate"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "required": [
+        "pageActions"
+      ]
+    },
+    "notifiers": {
+      "$ref": "#/$defs/notifiers"
+    }
+  },
+  "required": [
+    "input",
+    "params"
+  ],
+  "additionalProperties": false,
+  "$defs": {
+    "ExternalStorageInput": {
+      "title": "Input",
+      "description": "Params representing input object.",
+      "type": "object",
+      "properties": {
+        "uri": {
+          "description": "Input file Download Signed URI.",
+          "type": "string"
+        },
+        "storage": {
+          "description": "Specifies the type of the external storage",
+          "type": "string",
+          "enum": [
+            "S3",
+            "SHAREPOINT",
+            "DROPBOX",
+            "BLOB"
+          ]
+        }
+      },
+      "required": [
+        "uri"
+      ]
+    },
+    "ExternalStorageOutput": {
+      "title": "Output",
+      "description": "Params representing output object",
+      "type": "object",
+      "properties": {
+        "uri": {
+          "description": "Output file Upload Signed URI.",
+          "type": "string"
+        },
+        "storage": {
+          "description": "Specifies the type of the external storage",
+          "type": "string",
+          "enum": [
+            "S3",
+            "SHAREPOINT",
+            "DROPBOX",
+            "BLOB"
+          ]
+        }
+      }
+    },
+    "PageManipulationPageRanges": {
+      "title": "pageRanges",
+      "description": "Page ranges of a PDF file. Pages in a document can be can be referred in any order, either from the start or end. For e.g.: For a file containing 10 pages, page number 1 can be referred using 1 or -10, page number 10 can be referred using 10 or -1. For performing an operation on the last page, we can provide a range as -1:-1. A page range provided is relative to the input document.",
+      "type": "array",
+      "items": {
+        "anyOf": [
+          {
+            "title": "start",
+            "description": "Start page index of this page range.",
+            "type": "number"
+          },
+          {
+            "title": "end",
+            "description": "End page index of this page range.",
+            "type": "number"
+          }
+        ]
+      }
+    },
+    "delete": {
+      "type": "object",
+      "properties": {
+        "pageRanges": {
+          "$ref": "#/$defs/PageManipulationPageRanges"
+        }
+      },
+      "required": [
+        "pageRanges"
+      ]
+    },
+    "notifiers": {
+      "description": "Specifies the notifiers to be invoked on the completion of job. To know more about notifiers, please see the <a href=\"https://developer.adobe.com/document-services/docs/overview/pdf-services-api/howtos/webhook-notification/\">documentation</a>.",
+      "type": "array",
+      "items": {
+        "properties": {
+          "type": {
+            "description": "Specifies the notifier type. Currently supported value is \"CALLBACK\" only.",
+            "type": "string"
+          },
+          "data": {
+            "description": "Specifies the data needed to invoke the notifier.",
+            "type": "object"
+          }
+        },
+        "required": [
+          "type",
+          "data"
+        ]
+      }
+    },
+    "rotate": {
+      "type": "object",
+      "properties": {
+        "angle": {
+          "description": "Required for 'rotate' cmd. It specifies the clockwise rotation angle relative to the starting orientation of the page. e.g. if a page is already rotated 90 degrees (landscape), specifying a rotation of 90 degrees will rotate it a further 90 degrees. The valid rotation angles are: 90, 180, 270.",
+          "type": "number",
+          "enum": [
+            90,
+            180,
+            270
+          ]
+        },
+        "pageRanges": {
+          "$ref": "#/$defs/PageManipulationPageRanges"
+        }
+      },
+      "required": [
+        "angle",
+        "pageRanges"
+      ]
+    }
+  }
+}

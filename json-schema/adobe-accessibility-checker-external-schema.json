@@ -1,0 +1,107 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/adobe/main/json-schema/adobe-accessibility-checker-external-schema.json",
+  "title": "External",
+  "description": "Parameter for PDF Accessibility Checker API operation.",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/adobe-pdf-accessibility-checker-api-openapi.yml#/components/schemas/AccessibilityCheckerExternal",
+  "type": "object",
+  "required": [
+    "input"
+  ],
+  "properties": {
+    "input": {
+      "$ref": "#/$defs/ExternalStorageInput"
+    },
+    "output": {
+      "$ref": "#/$defs/ExternalStorageOutputZip"
+    },
+    "params": {
+      "description": "Params for Accessibility Checker processing",
+      "type": "object",
+      "properties": {
+        "pageStart": {
+          "description": "The parameter allows for the specification of the starting page for the accessibility check. If \"pageStart\" is not provided, the first page is considered the default startPage. It should be greater than equal to 1.",
+          "type": "number"
+        },
+        "pageEnd": {
+          "description": "The parameter allows for the specification of the ending page for the accessibility check. If \"pageEnd\" is not provided, the last page is considered the default pageEnd. It should be greater than equal to 1.",
+          "type": "number"
+        }
+      }
+    },
+    "notifiers": {
+      "$ref": "#/$defs/notifiers"
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "ExternalStorageInput": {
+      "title": "Input",
+      "description": "Params representing input object.",
+      "type": "object",
+      "properties": {
+        "uri": {
+          "description": "Input file Download Signed URI.",
+          "type": "string"
+        },
+        "storage": {
+          "description": "Specifies the type of the external storage",
+          "type": "string",
+          "enum": [
+            "S3",
+            "SHAREPOINT",
+            "DROPBOX",
+            "BLOB"
+          ]
+        }
+      },
+      "required": [
+        "uri"
+      ]
+    },
+    "ExternalStorageOutputZip": {
+      "title": "Output",
+      "description": "Params representing output object",
+      "type": "object",
+      "properties": {
+        "uri": {
+          "description": "Output file Upload Signed URI. It should be of format zip only in case of external storage.",
+          "type": "string"
+        },
+        "storage": {
+          "description": "Specifies the type of the external storage",
+          "type": "string",
+          "enum": [
+            "S3",
+            "SHAREPOINT",
+            "DROPBOX",
+            "BLOB"
+          ]
+        }
+      }
+    },
+    "notifiers": {
+      "description": "Specifies the notifiers to be invoked on the completion of job. To know more about notifiers, please see the <a href=\"https://developer.adobe.com/document-services/docs/overview/pdf-services-api/howtos/webhook-notification/\">documentation</a>.",
+      "type": "array",
+      "items": {
+        "properties": {
+          "type": {
+            "description": "Specifies the notifier type. Currently supported value is \"CALLBACK\" only.",
+            "type": "string"
+          },
+          "data": {
+            "description": "Specifies the data needed to invoke the notifier.",
+            "type": "object"
+          }
+        },
+        "required": [
+          "type",
+          "data"
+        ]
+      }
+    }
+  }
+}

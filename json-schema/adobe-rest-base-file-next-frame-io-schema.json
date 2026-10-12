@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/adobe/main/json-schema/adobe-rest-base-file-next-frame-io-schema.json",
+  "title": "rest_base.FileNextFrameIO",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/adobe-spacesnextframeio-api-openapi.yml#/components/schemas/rest_base.FileNextFrameIO",
+  "type": "object",
+  "properties": {
+    "$schema": {
+      "description": "A URL to the JSON Schema for this object.",
+      "type": "string",
+      "format": "uri",
+      "readOnly": true
+    },
+    "accessToken": {
+      "description": "Frame.io access token. See https://developer.adobe.com/frameio/guides/Authentication/ for obtaining a token.",
+      "type": "string"
+    },
+    "accountId": {
+      "description": "Frame.io account ID. This is the account identifier for the next.frame.io account owner. To find your account ID, log in to next.frame.io, navigate to your inbox, and extract the UUID from the URL (e.g., in https://next.frame.io/inbox/abcdefgh-1234-1234-1234-abcdefghijk, the account ID is abcdefgh-1234-1234-1234-abcdefghijk)",
+      "type": "string"
+    },
+    "folderId": {
+      "description": "Frame.io folder ID containing the assets. This should be the ID of the folder (not an asset ID). For best performance and to avoid [size limitations](/#what-is-the-maximum-size-of-assets-i-can-process), use the folder ID closest to your target assets. The system will retrieve all content from the specified folder, so choosing a parent folder with many subfolders may exceed the maximum retrieval size limit",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "folderId",
+    "accountId",
+    "accessToken"
+  ]
+}
