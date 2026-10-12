@@ -1206,7 +1206,8 @@ edges:
   direction: partner-built
   evidence: https://exchange.adobe.com/apps/ec/600128/webflow-optimize
   category: Marketo Engage
-  use_case: 'Webflow Optimize: maximize conversions with rapid insights, tailored visitor experiences, and AI-powered delivery'
+  use_case: 'Webflow Optimize: maximize conversions with rapid insights, tailored visitor experiences, and AI-powered
+    delivery'
 - partner_name: Sinch
   partner: sinch
   type: marketplace
@@ -1648,7 +1649,8 @@ templates:
   apps:
   - google-drive
   - adobe-acrobat-sign
-- title: Create signature requests in Adobe Acrobat Sign for new docs in Google Docs, fetch the Agreement Audit Trail and upload it to Google Drive
+- title: Create signature requests in Adobe Acrobat Sign for new docs in Google Docs, fetch the Agreement Audit
+    Trail and upload it to Google Drive
   url: https://zapier.com/apps/google-docs/integrations/google-drive/255627208/create-signature-requests-in-adobe-acrobat-sign-for-new-docs-in-google-docs-fetch-the-agreement-audit-trail-and-upload-it-to-goo
   apps:
   - google-docs
@@ -1692,20 +1694,29 @@ templates:
 skips:
 - label: Create signature requests in Adobe Acrobat Sign for new rows in a Google Sheet
   cause: catalog
-  why: all/adobe holds no Acrobat Sign OpenAPI (its contracts are PDF Services, Firefly, Assets, Analytics and similar); the Adobe end of this template has no operation to bind until that contract is harvested
+  why: all/adobe holds no Acrobat Sign OpenAPI (its contracts are PDF Services, Firefly, Assets, Analytics and similar);
+    the Adobe end of this template has no operation to bind until that contract is harvested
 - label: Create signature requests in Adobe Acrobat Sign when new Airtable records are added or updated
   cause: catalog
-  why: all/adobe holds no Acrobat Sign OpenAPI (its contracts are PDF Services, Firefly, Assets, Analytics and similar); the Adobe end of this template has no operation to bind until that contract is harvested
+  why: all/adobe holds no Acrobat Sign OpenAPI (its contracts are PDF Services, Firefly, Assets, Analytics and similar);
+    the Adobe end of this template has no operation to bind until that contract is harvested
 - label: Create signature requests in Adobe Acrobat Sign for new files in Google Drive
   cause: catalog
-  why: all/adobe holds no Acrobat Sign OpenAPI (its contracts are PDF Services, Firefly, Assets, Analytics and similar); the Adobe end of this template has no operation to bind until that contract is harvested
-- label: Create signature requests in Adobe Acrobat Sign for new docs in Google Docs, fetch the Agreement Audit Trail and upload it to Google Drive
+  why: all/adobe holds no Acrobat Sign OpenAPI (its contracts are PDF Services, Firefly, Assets, Analytics and similar);
+    the Adobe end of this template has no operation to bind until that contract is harvested
+- label: Create signature requests in Adobe Acrobat Sign for new docs in Google Docs, fetch the Agreement Audit
+    Trail and upload it to Google Drive
   cause: catalog
-  why: all/adobe holds no Acrobat Sign OpenAPI (its contracts are PDF Services, Firefly, Assets, Analytics and similar); the Adobe end of this template has no operation to bind until that contract is harvested
+  why: all/adobe holds no Acrobat Sign OpenAPI (its contracts are PDF Services, Firefly, Assets, Analytics and similar);
+    the Adobe end of this template has no operation to bind until that contract is harvested
 - label: Create signature requests in Adobe Acrobat Sign from new Typeform entries
   cause: catalog
-  why: all/adobe holds no Acrobat Sign OpenAPI (its contracts are PDF Services, Firefly, Assets, Analytics and similar); the Adobe end of this template has no operation to bind until that contract is harvested
+  why: all/adobe holds no Acrobat Sign OpenAPI (its contracts are PDF Services, Firefly, Assets, Analytics and similar);
+    the Adobe end of this template has no operation to bind until that contract is harvested
 - label: Create signature requests in Adobe Acrobat Sign for new Microsoft Excel rows
   cause: catalog
-  why: all/adobe holds no Acrobat Sign OpenAPI (its contracts are PDF Services, Firefly, Assets, Analytics and similar); the Adobe end of this template has no operation to bind until that contract is harvested
-note: 'Adobe lists on Zapier per product (x-zapier-apps in apis.yml): adobe-acrobat-sign passes the domain rule; adobe-photoshop-lightroom''s externalUrl is adobe.io, outside the provider domains, so it is not counted. Workfront, Magento and Marketo listings belong to their own catalog repos.'
+  why: all/adobe holds no Acrobat Sign OpenAPI (its contracts are PDF Services, Firefly, Assets, Analytics and similar);
+    the Adobe end of this template has no operation to bind until that contract is harvested
+note: 'Adobe lists on Zapier per product (x-zapier-apps in apis.yml): adobe-acrobat-sign passes the domain rule;
+  adobe-photoshop-lightroom''s externalUrl is adobe.io, outside the provider domains, so it is not counted. Workfront,
+  Magento and Marketo listings belong to their own catalog repos.'
