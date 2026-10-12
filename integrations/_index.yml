@@ -77,7 +77,6 @@
   arazzo: null
 - slug: adobe-create-signature-requests-in-adobe-acrobat-sign-for-new-microsoft-excel-rows
   label: Create signature requests in Adobe Acrobat Sign for new Microsoft Excel rows
-  partner: microsoft-excel
   partner_name: Microsoft Excel
   category: Microsoft
   use_case: Create signature requests in Adobe Acrobat Sign for new Microsoft Excel rows
@@ -87,7 +86,7 @@
   evidence: https://zapier.com/apps/adobe-acrobat-sign/integrations/excel/255627267/create-signature-requests-in-adobe-acrobat-sign-for-new-microsoft-excel-rows
   template: https://zapier.com/apps/adobe-acrobat-sign/integrations/excel/255627267/create-signature-requests-in-adobe-acrobat-sign-for-new-microsoft-excel-rows
   source: template
-  status: pending-generation
+  status: pending-partner-spec
   arazzo: null
 - slug: adobe-create-signature-requests-in-adobe-acrobat-sign-from-new-labeled-gmail-emails
   label: Create signature requests in Adobe Acrobat Sign from new labeled Gmail emails
@@ -117,7 +116,6 @@
   arazzo: null
 - slug: adobe-monday-com
   label: monday.com
-  partner: monday-com
   partner_name: monday.com
   category: Project Management
   type: marketplace
@@ -125,7 +123,7 @@
   channel: ipaas-usage
   evidence: https://zapier.com/apps/adobe-acrobat-sign/integrations/monday
   source: edge
-  status: pending-generation
+  status: pending-partner-spec
   arazzo: null
 - slug: adobe-clickup
   label: ClickUp
