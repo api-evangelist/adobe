@@ -12,6 +12,9 @@ checked:
 - https://zapier.com/apps/adobe-photoshop-lightroom/integrations
 - https://zapier.com/apps/adobe-workfront/integrations (Workfront has its own catalog repo, edges belong there)
 - https://zapier.com/apps/adobe/integrations
+- https://exchange.adobe.com/
+- https://exchange.adobe.com/apps/browse/cc?sort=POPULARITY (4606 results stated)
+- https://exchange.adobe.com/apps/browse/ec?product=All (466 results stated)
 summary: null
 marketplace_apps:
 - marketplace: zapier
@@ -839,6 +842,30 @@ marketplace_apps:
   - zoom
   - zscaler-zia
   - zulip
+- marketplace: own
+  channel: partner-built
+  app: adobe
+  url: https://exchange.adobe.com/
+  app_count: null
+  categories:
+  - Plugins
+  - Solutions
+  - Applications
+  - App Builder
+  - GenStudio
+  - Commerce
+  - Acrobat Sign
+  - Adobe Experience Platform
+  - Adobe Journey Optimizer
+  - Advertising Cloud
+  - Analytics
+  - Audience Manager
+  - Campaign
+  - Experience Manager
+  - Marketo Engage
+  - Real Time CDP
+  - Target
+  - Workfront
 edges:
 - partner_name: HubSpot
   partner: hubspot
@@ -1170,6 +1197,436 @@ edges:
   direction: third-party
   category: Microsoft
   partner_url: https://www.microsoft.com/en-ca/microsoft-365/sharepoint/collaboration
+- partner_name: Webflow
+  partner: webflow
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://exchange.adobe.com/apps/ec/600128/webflow-optimize
+  category: Marketo Engage
+  use_case: 'Webflow Optimize: maximize conversions with rapid insights, tailored visitor experiences, and AI-powered delivery'
+- partner_name: Sinch
+  partner: sinch
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://exchange.adobe.com/apps/ec/108589/sinch-sms-and-mms-for-adobe-journey-optimizer
+  category: Adobe Journey Optimizer
+  use_case: Sinch SMS and MMS for Adobe Journey Optimizer
+- partner_name: Sinch
+  partner: sinch
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://exchange.adobe.com/apps/ec/101791/sinch-sms-messaging-services-for-adobe-campaign
+  category: Campaign
+  use_case: Sinch SMS Messaging Services for Adobe Campaign
+- partner_name: Webkul Software Pvt. Ltd
+  partner: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://exchange.adobe.com/apps/ec/ab059ru199/egsma-multi-vendor
+  category: Commerce
+  use_case: EGSMA Multi Vendor marketplace for Adobe Commerce
+- partner_name: PayPal, Inc.
+  partner: paypal
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://exchange.adobe.com/apps/ec/ab0q8642p5/braintree-payments
+  category: Commerce
+  use_case: Braintree Payments for Adobe Commerce
+- partner_name: Vibes
+  partner: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://exchange.adobe.com/apps/ec/108203/vibes-sms-for-adobe-marketo-engage
+  category: Marketo Engage
+  use_case: Native integration within Marketo for delivering SMS messages to engage mobile consumers
+- partner_name: Vibes
+  partner: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://exchange.adobe.com/apps/ec/90050/vibes-mrm-connector-for-adobe-campaign
+  category: Campaign
+  use_case: Vibes mobile engagement platform connector for Adobe Campaign
+- partner_name: Acxiom Corporation
+  partner: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://exchange.adobe.com/apps/ec/600068/acxiom-digital-recognition-for-adobe-experience-platform
+  category: Adobe Experience Platform
+  use_case: Recognize unauthenticated website visitors to drive personalized marketing use cases
+- partner_name: OneTrust LLC
+  partner: onetrust
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://exchange.adobe.com/apps/ec/101610/onetrust-consent-collection
+  category: Adobe Experience Platform
+  use_case: Mobile extension that collects consent for your mobile users
+- partner_name: Platform.sh (Upsun)
+  partner: upsun
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://exchange.adobe.com/apps/ec/108486/upsun-formerly-platformsh
+  category: Commerce
+  use_case: PaaS / cloud application platform for Adobe Commerce
+- partner_name: AtAppStore Inc.
+  partner: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://exchange.adobe.com/apps/ec/abs2p15q40/atapp-afa-burn-report
+  category: Workfront
+  use_case: Track margins at the project, department, role and user level over time
+- partner_name: miniOrange Inc
+  partner: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://exchange.adobe.com/apps/ec/ab8vr293q3/headless-2fa-for-adobe-commerce
+  category: Commerce
+  use_case: Add a second layer of login security to your Adobe Commerce storefront
+- partner_name: Stornaway.io
+  partner: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://exchange.adobe.com/apps/ec/600263/stornaway-interactive-video
+  category: Adobe Experience Platform
+  use_case: Interactive video experiences with Adobe Experience Platform analytics and personalisation
+- partner_name: TechDivision GmbH
+  partner: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://exchange.adobe.com/apps/ec/ab5vp66ro8/agentic-commerce-protocol-feedgen
+  category: Commerce
+  use_case: Agentic Commerce Protocol feed generator for Adobe Commerce
+- partner_name: miniOrange Inc
+  partner: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://exchange.adobe.com/apps/ec/abv11tp3r9/social-login
+  category: Commerce
+  use_case: One-click social login with 20+ providers for Adobe Commerce
+- partner_name: IntelligenceBank
+  partner: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://exchange.adobe.com/apps/ec/101651/intelligencebank-assets
+  category: Experience Manager
+  use_case: Access approved DAM content directly from within Adobe Experience Manager
+- partner_name: DataGrail
+  partner: datagrail
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://exchange.adobe.com/apps/ec/105996/datagrail
+  category: Marketo Engage
+  use_case: Map personal data in Marketo Engage and automate access and deletion requests
+- partner_name: Amasty
+  partner: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://exchange.adobe.com/apps/ec/ab69qp6q59/abandoned-cart-recovery
+  category: Commerce
+  use_case: Recover lost sales with automated abandoned cart emails
+- partner_name: M2E Limited
+  partner: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://exchange.adobe.com/apps/ec/ab0v1qquu0/m2e-multichannel-for-commerce-cloud
+  category: Commerce
+  use_case: Connect Adobe Commerce Cloud to 600+ marketplaces and sync listings, inventory and prices
+- partner_name: Syncfeeds
+  partner: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://exchange.adobe.com/apps/ec/abv7qt5ut2/syncfeeds
+  category: Commerce
+  use_case: Syncfeeds listing for Adobe Commerce
+- partner_name: AtAppStore Inc.
+  partner: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://exchange.adobe.com/apps/ec/abo547vp49/atapp-swimlane-advanced
+  category: Workfront
+  use_case: AtApp Swimlane ADVANCED for Workfront
+- partner_name: CI HUB
+  partner: ci-hub
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://exchange.adobe.com/apps/cc/103590/ci-hub-connector
+  category: Creative Cloud plugin
+  use_case: Connect asset sources to Creative Cloud apps
+- partner_name: PageProof
+  partner: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://exchange.adobe.com/apps/cc/f4e1a940/pageproof-for-adobe-indesign
+  category: Creative Cloud plugin
+  use_case: PageProof proofing for Adobe InDesign
+- partner_name: Watermark 3
+  partner: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://exchange.adobe.com/apps/cc/6507d650/watermark-3
+  category: Creative Cloud plugin
+  use_case: Watermarking plugin for Creative Cloud
+- partner_name: Custom Metadata Panel
+  partner: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://exchange.adobe.com/apps/cc/103752/custom-metadata-panel
+  category: Creative Cloud plugin
+  use_case: Custom metadata panel for Creative Cloud
+- partner_name: iconik
+  partner: iconik
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://exchange.adobe.com/apps/cc/100304/iconik
+  category: Creative Cloud plugin
+  use_case: iconik media asset management panel for Creative Cloud
+- partner_name: Canto
+  partner: canto
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://exchange.adobe.com/apps/cc/103079/canto-connector-for-adobe
+  category: Creative Cloud plugin
+  use_case: Canto DAM connector for Adobe Creative Cloud
+- partner_name: Color Designer for Photoshop
+  partner: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://exchange.adobe.com/apps/cc/d7fa504e/color-designer-for-photoshop
+  category: Creative Cloud plugin
+  use_case: Color design plugin for Photoshop
+- partner_name: Retouch Ninja
+  partner: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://exchange.adobe.com/apps/cc/4b69c6fc/retouch-ninja
+  category: Creative Cloud plugin
+  use_case: Retouching plugin for Photoshop
+- partner_name: PiXimperfect Signature
+  partner: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://exchange.adobe.com/apps/cc/c53fea58/piximperfect-signature
+  category: Creative Cloud plugin
+  use_case: PiXimperfect Signature Photoshop panel
+- partner_name: in5 InDesign to HTML5
+  partner: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://exchange.adobe.com/apps/cc/100761/in5-indesign-to-html5
+  category: Creative Cloud plugin
+  use_case: Export InDesign documents to HTML5
+- partner_name: Michele Delsol
+  partner: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://exchange.adobe.com/apps/cc/003c9f59/postprocess
+  category: Creative Cloud plugin
+  use_case: 'PostProcess: finalize book processing'
+- partner_name: MesGaleries.com
+  partner: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://exchange.adobe.com/apps/cc/007f567c/mesgaleriescom
+  category: Creative Cloud plugin
+  use_case: One-click publish
+- partner_name: Paolo Biagini
+  partner: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://exchange.adobe.com/apps/cc/00c1868d/calendar
+  category: Creative Cloud plugin
+  use_case: Quickly create a calendar
+- partner_name: Relayter
+  partner: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://exchange.adobe.com/apps/cc/00e427e0/relayter-asset-manager
+  category: Creative Cloud plugin
+  use_case: Access your Relayter DAM
+- partner_name: NTB
+  partner: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://exchange.adobe.com/apps/cc/010de8cb/ntb-lens
+  category: Creative Cloud plugin
+  use_case: NTB Lens plugin for Adobe Photoshop
+- partner_name: Mockgo
+  partner: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://exchange.adobe.com/apps/cc/016f7e96/mockgopro
+  category: Creative Cloud plugin
+  use_case: New-gen batch mockup generator
+- partner_name: MrDesign
+  partner: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://exchange.adobe.com/apps/cc/0179c1c9/handle-layers
+  category: Creative Cloud plugin
+  use_case: Batch processing layers
+- partner_name: Moonbeem, Inc
+  partner: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://exchange.adobe.com/apps/cc/0186a42e/moonbeem
+  category: Creative Cloud plugin
+  use_case: Clip and remix cleared media
+- partner_name: ManicTime
+  partner: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://exchange.adobe.com/apps/cc/020aa2ed/manictime
+  category: Creative Cloud plugin
+  use_case: Sends file path to ManicTime
+- partner_name: Hasan Kazmi
+  partner: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://exchange.adobe.com/apps/cc/02b738ca/bullet
+  category: Creative Cloud plugin
+  use_case: Bullets and numbering plugin
+- partner_name: Bogdan Bogdanovic
+  partner: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://exchange.adobe.com/apps/cc/02c1e043/bbtools-shadow
+  category: Creative Cloud plugin
+  use_case: Shadows for standing objects
+- partner_name: Blunderworks
+  partner: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://exchange.adobe.com/apps/cc/02e3f9ff/supersync-timecode-sync-for-premiere-pro
+  category: Creative Cloud plugin
+  use_case: Synchronize clips in seconds in Premiere Pro
 templates:
 - title: Create signature requests in Adobe Acrobat Sign for new rows in a Google Sheet
   url: https://zapier.com/apps/adobe-acrobat-sign/integrations/google-sheets/255627206/create-signature-requests-in-adobe-acrobat-sign-for-new-rows-in-a-google-sheet
@@ -1191,8 +1648,7 @@ templates:
   apps:
   - google-drive
   - adobe-acrobat-sign
-- title: Create signature requests in Adobe Acrobat Sign for new docs in Google Docs, fetch the Agreement Audit
-    Trail and upload it to Google Drive
+- title: Create signature requests in Adobe Acrobat Sign for new docs in Google Docs, fetch the Agreement Audit Trail and upload it to Google Drive
   url: https://zapier.com/apps/google-docs/integrations/google-drive/255627208/create-signature-requests-in-adobe-acrobat-sign-for-new-docs-in-google-docs-fetch-the-agreement-audit-trail-and-upload-it-to-goo
   apps:
   - google-docs
@@ -1236,29 +1692,20 @@ templates:
 skips:
 - label: Create signature requests in Adobe Acrobat Sign for new rows in a Google Sheet
   cause: catalog
-  why: all/adobe holds no Acrobat Sign OpenAPI (its contracts are PDF Services, Firefly, Assets, Analytics and similar);
-    the Adobe end of this template has no operation to bind until that contract is harvested
+  why: all/adobe holds no Acrobat Sign OpenAPI (its contracts are PDF Services, Firefly, Assets, Analytics and similar); the Adobe end of this template has no operation to bind until that contract is harvested
 - label: Create signature requests in Adobe Acrobat Sign when new Airtable records are added or updated
   cause: catalog
-  why: all/adobe holds no Acrobat Sign OpenAPI (its contracts are PDF Services, Firefly, Assets, Analytics and similar);
-    the Adobe end of this template has no operation to bind until that contract is harvested
+  why: all/adobe holds no Acrobat Sign OpenAPI (its contracts are PDF Services, Firefly, Assets, Analytics and similar); the Adobe end of this template has no operation to bind until that contract is harvested
 - label: Create signature requests in Adobe Acrobat Sign for new files in Google Drive
   cause: catalog
-  why: all/adobe holds no Acrobat Sign OpenAPI (its contracts are PDF Services, Firefly, Assets, Analytics and similar);
-    the Adobe end of this template has no operation to bind until that contract is harvested
-- label: Create signature requests in Adobe Acrobat Sign for new docs in Google Docs, fetch the Agreement Audit
-    Trail and upload it to Google Drive
+  why: all/adobe holds no Acrobat Sign OpenAPI (its contracts are PDF Services, Firefly, Assets, Analytics and similar); the Adobe end of this template has no operation to bind until that contract is harvested
+- label: Create signature requests in Adobe Acrobat Sign for new docs in Google Docs, fetch the Agreement Audit Trail and upload it to Google Drive
   cause: catalog
-  why: all/adobe holds no Acrobat Sign OpenAPI (its contracts are PDF Services, Firefly, Assets, Analytics and similar);
-    the Adobe end of this template has no operation to bind until that contract is harvested
+  why: all/adobe holds no Acrobat Sign OpenAPI (its contracts are PDF Services, Firefly, Assets, Analytics and similar); the Adobe end of this template has no operation to bind until that contract is harvested
 - label: Create signature requests in Adobe Acrobat Sign from new Typeform entries
   cause: catalog
-  why: all/adobe holds no Acrobat Sign OpenAPI (its contracts are PDF Services, Firefly, Assets, Analytics and similar);
-    the Adobe end of this template has no operation to bind until that contract is harvested
+  why: all/adobe holds no Acrobat Sign OpenAPI (its contracts are PDF Services, Firefly, Assets, Analytics and similar); the Adobe end of this template has no operation to bind until that contract is harvested
 - label: Create signature requests in Adobe Acrobat Sign for new Microsoft Excel rows
   cause: catalog
-  why: all/adobe holds no Acrobat Sign OpenAPI (its contracts are PDF Services, Firefly, Assets, Analytics and similar);
-    the Adobe end of this template has no operation to bind until that contract is harvested
-note: 'Adobe lists on Zapier per product (x-zapier-apps in apis.yml): adobe-acrobat-sign passes the domain rule;
-  adobe-photoshop-lightroom''s externalUrl is adobe.io, outside the provider domains, so it is not counted. Workfront,
-  Magento and Marketo listings belong to their own catalog repos.'
+  why: all/adobe holds no Acrobat Sign OpenAPI (its contracts are PDF Services, Firefly, Assets, Analytics and similar); the Adobe end of this template has no operation to bind until that contract is harvested
+note: 'Adobe lists on Zapier per product (x-zapier-apps in apis.yml): adobe-acrobat-sign passes the domain rule; adobe-photoshop-lightroom''s externalUrl is adobe.io, outside the provider domains, so it is not counted. Workfront, Magento and Marketo listings belong to their own catalog repos.'

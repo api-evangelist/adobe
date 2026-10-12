@@ -388,3 +388,520 @@
   source: edge
   status: pending-generation
   arazzo: null
+- slug: adobe-webflow
+  label: Webflow
+  partner: webflow
+  partner_name: Webflow
+  category: Marketo Engage
+  use_case: 'Webflow Optimize: maximize conversions with rapid insights, tailored visitor experiences, and AI-powered
+    delivery'
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://exchange.adobe.com/apps/ec/600128/webflow-optimize
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: adobe-sinch
+  label: Sinch
+  partner: sinch
+  partner_name: Sinch
+  category: Adobe Journey Optimizer
+  use_case: Sinch SMS and MMS for Adobe Journey Optimizer
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://exchange.adobe.com/apps/ec/108589/sinch-sms-and-mms-for-adobe-journey-optimizer
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: adobe-webkul-software-pvt-ltd
+  label: Webkul Software Pvt. Ltd
+  partner_name: Webkul Software Pvt. Ltd
+  category: Commerce
+  use_case: EGSMA Multi Vendor marketplace for Adobe Commerce
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://exchange.adobe.com/apps/ec/ab059ru199/egsma-multi-vendor
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: adobe-paypal-inc
+  label: PayPal, Inc.
+  partner: paypal
+  partner_name: PayPal, Inc.
+  category: Commerce
+  use_case: Braintree Payments for Adobe Commerce
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://exchange.adobe.com/apps/ec/ab0q8642p5/braintree-payments
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: adobe-vibes
+  label: Vibes
+  partner_name: Vibes
+  category: Marketo Engage
+  use_case: Native integration within Marketo for delivering SMS messages to engage mobile consumers
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://exchange.adobe.com/apps/ec/108203/vibes-sms-for-adobe-marketo-engage
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: adobe-acxiom-corporation
+  label: Acxiom Corporation
+  partner_name: Acxiom Corporation
+  category: Adobe Experience Platform
+  use_case: Recognize unauthenticated website visitors to drive personalized marketing use cases
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://exchange.adobe.com/apps/ec/600068/acxiom-digital-recognition-for-adobe-experience-platform
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: adobe-onetrust-llc
+  label: OneTrust LLC
+  partner: onetrust
+  partner_name: OneTrust LLC
+  category: Adobe Experience Platform
+  use_case: Mobile extension that collects consent for your mobile users
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://exchange.adobe.com/apps/ec/101610/onetrust-consent-collection
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: adobe-platform-sh-upsun
+  label: Platform.sh (Upsun)
+  partner: upsun
+  partner_name: Platform.sh (Upsun)
+  category: Commerce
+  use_case: PaaS / cloud application platform for Adobe Commerce
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://exchange.adobe.com/apps/ec/108486/upsun-formerly-platformsh
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: adobe-atappstore-inc
+  label: AtAppStore Inc.
+  partner_name: AtAppStore Inc.
+  category: Workfront
+  use_case: Track margins at the project, department, role and user level over time
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://exchange.adobe.com/apps/ec/abs2p15q40/atapp-afa-burn-report
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: adobe-miniorange-inc
+  label: miniOrange Inc
+  partner_name: miniOrange Inc
+  category: Commerce
+  use_case: Add a second layer of login security to your Adobe Commerce storefront
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://exchange.adobe.com/apps/ec/ab8vr293q3/headless-2fa-for-adobe-commerce
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: adobe-stornaway-io
+  label: Stornaway.io
+  partner_name: Stornaway.io
+  category: Adobe Experience Platform
+  use_case: Interactive video experiences with Adobe Experience Platform analytics and personalisation
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://exchange.adobe.com/apps/ec/600263/stornaway-interactive-video
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: adobe-techdivision-gmbh
+  label: TechDivision GmbH
+  partner_name: TechDivision GmbH
+  category: Commerce
+  use_case: Agentic Commerce Protocol feed generator for Adobe Commerce
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://exchange.adobe.com/apps/ec/ab5vp66ro8/agentic-commerce-protocol-feedgen
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: adobe-intelligencebank
+  label: IntelligenceBank
+  partner_name: IntelligenceBank
+  category: Experience Manager
+  use_case: Access approved DAM content directly from within Adobe Experience Manager
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://exchange.adobe.com/apps/ec/101651/intelligencebank-assets
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: adobe-datagrail
+  label: DataGrail
+  partner: datagrail
+  partner_name: DataGrail
+  category: Marketo Engage
+  use_case: Map personal data in Marketo Engage and automate access and deletion requests
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://exchange.adobe.com/apps/ec/105996/datagrail
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: adobe-amasty
+  label: Amasty
+  partner_name: Amasty
+  category: Commerce
+  use_case: Recover lost sales with automated abandoned cart emails
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://exchange.adobe.com/apps/ec/ab69qp6q59/abandoned-cart-recovery
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: adobe-m2e-limited
+  label: M2E Limited
+  partner_name: M2E Limited
+  category: Commerce
+  use_case: Connect Adobe Commerce Cloud to 600+ marketplaces and sync listings, inventory and prices
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://exchange.adobe.com/apps/ec/ab0v1qquu0/m2e-multichannel-for-commerce-cloud
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: adobe-syncfeeds
+  label: Syncfeeds
+  partner_name: Syncfeeds
+  category: Commerce
+  use_case: Syncfeeds listing for Adobe Commerce
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://exchange.adobe.com/apps/ec/abv7qt5ut2/syncfeeds
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: adobe-ci-hub
+  label: CI HUB
+  partner: ci-hub
+  partner_name: CI HUB
+  category: Creative Cloud plugin
+  use_case: Connect asset sources to Creative Cloud apps
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://exchange.adobe.com/apps/cc/103590/ci-hub-connector
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: adobe-pageproof
+  label: PageProof
+  partner_name: PageProof
+  category: Creative Cloud plugin
+  use_case: PageProof proofing for Adobe InDesign
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://exchange.adobe.com/apps/cc/f4e1a940/pageproof-for-adobe-indesign
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: adobe-watermark-3
+  label: Watermark 3
+  partner_name: Watermark 3
+  category: Creative Cloud plugin
+  use_case: Watermarking plugin for Creative Cloud
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://exchange.adobe.com/apps/cc/6507d650/watermark-3
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: adobe-custom-metadata-panel
+  label: Custom Metadata Panel
+  partner_name: Custom Metadata Panel
+  category: Creative Cloud plugin
+  use_case: Custom metadata panel for Creative Cloud
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://exchange.adobe.com/apps/cc/103752/custom-metadata-panel
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: adobe-iconik
+  label: iconik
+  partner: iconik
+  partner_name: iconik
+  category: Creative Cloud plugin
+  use_case: iconik media asset management panel for Creative Cloud
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://exchange.adobe.com/apps/cc/100304/iconik
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: adobe-canto
+  label: Canto
+  partner: canto
+  partner_name: Canto
+  category: Creative Cloud plugin
+  use_case: Canto DAM connector for Adobe Creative Cloud
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://exchange.adobe.com/apps/cc/103079/canto-connector-for-adobe
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: adobe-color-designer-for-photoshop
+  label: Color Designer for Photoshop
+  partner_name: Color Designer for Photoshop
+  category: Creative Cloud plugin
+  use_case: Color design plugin for Photoshop
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://exchange.adobe.com/apps/cc/d7fa504e/color-designer-for-photoshop
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: adobe-retouch-ninja
+  label: Retouch Ninja
+  partner_name: Retouch Ninja
+  category: Creative Cloud plugin
+  use_case: Retouching plugin for Photoshop
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://exchange.adobe.com/apps/cc/4b69c6fc/retouch-ninja
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: adobe-piximperfect-signature
+  label: PiXimperfect Signature
+  partner_name: PiXimperfect Signature
+  category: Creative Cloud plugin
+  use_case: PiXimperfect Signature Photoshop panel
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://exchange.adobe.com/apps/cc/c53fea58/piximperfect-signature
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: adobe-in5-indesign-to-html5
+  label: in5 InDesign to HTML5
+  partner_name: in5 InDesign to HTML5
+  category: Creative Cloud plugin
+  use_case: Export InDesign documents to HTML5
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://exchange.adobe.com/apps/cc/100761/in5-indesign-to-html5
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: adobe-michele-delsol
+  label: Michele Delsol
+  partner_name: Michele Delsol
+  category: Creative Cloud plugin
+  use_case: 'PostProcess: finalize book processing'
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://exchange.adobe.com/apps/cc/003c9f59/postprocess
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: adobe-mesgaleries-com
+  label: MesGaleries.com
+  partner_name: MesGaleries.com
+  category: Creative Cloud plugin
+  use_case: One-click publish
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://exchange.adobe.com/apps/cc/007f567c/mesgaleriescom
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: adobe-paolo-biagini
+  label: Paolo Biagini
+  partner_name: Paolo Biagini
+  category: Creative Cloud plugin
+  use_case: Quickly create a calendar
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://exchange.adobe.com/apps/cc/00c1868d/calendar
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: adobe-relayter
+  label: Relayter
+  partner_name: Relayter
+  category: Creative Cloud plugin
+  use_case: Access your Relayter DAM
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://exchange.adobe.com/apps/cc/00e427e0/relayter-asset-manager
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: adobe-ntb
+  label: NTB
+  partner_name: NTB
+  category: Creative Cloud plugin
+  use_case: NTB Lens plugin for Adobe Photoshop
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://exchange.adobe.com/apps/cc/010de8cb/ntb-lens
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: adobe-mockgo
+  label: Mockgo
+  partner_name: Mockgo
+  category: Creative Cloud plugin
+  use_case: New-gen batch mockup generator
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://exchange.adobe.com/apps/cc/016f7e96/mockgopro
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: adobe-mrdesign
+  label: MrDesign
+  partner_name: MrDesign
+  category: Creative Cloud plugin
+  use_case: Batch processing layers
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://exchange.adobe.com/apps/cc/0179c1c9/handle-layers
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: adobe-moonbeem-inc
+  label: Moonbeem, Inc
+  partner_name: Moonbeem, Inc
+  category: Creative Cloud plugin
+  use_case: Clip and remix cleared media
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://exchange.adobe.com/apps/cc/0186a42e/moonbeem
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: adobe-manictime
+  label: ManicTime
+  partner_name: ManicTime
+  category: Creative Cloud plugin
+  use_case: Sends file path to ManicTime
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://exchange.adobe.com/apps/cc/020aa2ed/manictime
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: adobe-hasan-kazmi
+  label: Hasan Kazmi
+  partner_name: Hasan Kazmi
+  category: Creative Cloud plugin
+  use_case: Bullets and numbering plugin
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://exchange.adobe.com/apps/cc/02b738ca/bullet
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: adobe-bogdan-bogdanovic
+  label: Bogdan Bogdanovic
+  partner_name: Bogdan Bogdanovic
+  category: Creative Cloud plugin
+  use_case: Shadows for standing objects
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://exchange.adobe.com/apps/cc/02c1e043/bbtools-shadow
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: adobe-blunderworks
+  label: Blunderworks
+  partner_name: Blunderworks
+  category: Creative Cloud plugin
+  use_case: Synchronize clips in seconds in Premiere Pro
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://exchange.adobe.com/apps/cc/02e3f9ff/supersync-timecode-sync-for-premiere-pro
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
