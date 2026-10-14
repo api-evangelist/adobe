@@ -6,6 +6,7 @@ source:
 - https://n8n.io/integrations/adobe/
 - https://eidas.gov.ie/Irelandtslsignedv6.xml
 checked:
+- clever/integrations/clever-integration-edges.yml
 - https://composio.dev/toolkits/adobe
 - https://docs.mparticle.com/integrations/adobe-audience-manager/audience/
 - https://ec.europa.eu/tools/lotl/eu-lotl.xml
@@ -1660,6 +1661,40 @@ edges:
   source: eutl
   detected_by: sweep-legal.py
   first_seen: '2026-10-14'
+- partner_name: GitHub Marketplace (actions)
+  partner: github-actions
+  partner_match: aggregator
+  type: marketplace
+  marketplace: github-actions
+  channel: partner-built
+  relationship: platform-app
+  direction: third-party
+  evidence: https://github.com/marketplace/actions/aio-apps
+  listing_count: 3
+  apps:
+  - AIO Apps
+  - AIO CLI Setup
+  - Update your package.json with an npm pre-release version, and update dependencies with pre-release versions
+  publisher_name: Adobe, Inc.
+  badges:
+  - Verified creator
+  detected_by: sweep-devtools.py
+  detected: '2026-10-14'
+- partner_name: Atlassian Marketplace
+  partner: atlassian
+  partner_match: aggregator
+  type: marketplace
+  marketplace: atlassian
+  channel: partner-built
+  relationship: platform-app
+  direction: third-party
+  evidence: https://marketplace.atlassian.com/vendors/1216060/adobe-inc
+  listing_count: 1
+  apps:
+  - Adobe XD for Jira
+  publisher_name: Adobe Inc.
+  detected_by: sweep-devtools.py
+  detected: '2026-10-14'
 - partner_name: Twilio Segment
   partner: segment
   partner_match: aggregator
@@ -1737,40 +1772,25 @@ edges:
       - upsert
   detected_by: sweep-cdp.py
   first_seen: '2026-10-14'
-- partner_name: GitHub Marketplace (actions)
-  partner: github-actions
-  partner_match: aggregator
+- partner_name: Clever (clever-app-gallery)
+  partner: clever
+  partner_match: mirror
+  mirror_match: domain+name-among-holders
   type: marketplace
-  marketplace: github-actions
-  channel: partner-built
   relationship: platform-app
   direction: third-party
-  evidence: https://github.com/marketplace/actions/aio-apps
+  channel: partner-built
+  marketplace: clever-app-gallery
+  evidence: https://clever.com/app-gallery
+  mirror_of: clever/integrations/clever-integration-edges.yml
+  apps: []
   listing_count: 3
-  apps:
-  - AIO Apps
-  - AIO CLI Setup
-  - Update your package.json with an npm pre-release version, and update dependencies with pre-release versions
-  publisher_name: Adobe, Inc.
-  badges:
-  - Verified creator
-  detected_by: sweep-devtools.py
   detected: '2026-10-14'
-- partner_name: Atlassian Marketplace
-  partner: atlassian
-  partner_match: aggregator
-  type: marketplace
-  marketplace: atlassian
-  channel: partner-built
-  relationship: platform-app
-  direction: third-party
-  evidence: https://marketplace.atlassian.com/vendors/1216060/adobe-inc
-  listing_count: 1
-  apps:
-  - Adobe XD for Jira
-  publisher_name: Adobe Inc.
-  detected_by: sweep-devtools.py
-  detected: '2026-10-14'
+  detected_by: mirror-platform-listings.py
+  category: other, communication
+  features:
+  - instant_login
+  - secure_sync
 templates:
 - title: Create signature requests in Adobe Acrobat Sign for new rows in a Google Sheet
   url: https://zapier.com/apps/adobe-acrobat-sign/integrations/google-sheets/255627206/create-signature-requests-in-adobe-acrobat-sign-for-new-rows-in-a-google-sheet
