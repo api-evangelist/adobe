@@ -13,7 +13,9 @@ checked:
 - https://exchange.adobe.com/
 - https://exchange.adobe.com/apps/browse/cc?sort=POPULARITY (4606 results stated)
 - https://exchange.adobe.com/apps/browse/ec?product=All (466 results stated)
+- https://github.com/marketplace?type=actions
 - https://hightouch.com/docs/destinations/adobe-experience-platform
+- https://marketplace.atlassian.com/
 - https://monid.ai/tools/adobe
 - https://n8n.io/integrations/adobe/
 - https://www.twilio.com/docs/segment/connections/destinations/catalog/actions-adobe-target-cloud
@@ -1735,6 +1737,40 @@ edges:
       - upsert
   detected_by: sweep-cdp.py
   first_seen: '2026-10-14'
+- partner_name: GitHub Marketplace (actions)
+  partner: github-actions
+  partner_match: aggregator
+  type: marketplace
+  marketplace: github-actions
+  channel: partner-built
+  relationship: platform-app
+  direction: third-party
+  evidence: https://github.com/marketplace/actions/aio-apps
+  listing_count: 3
+  apps:
+  - AIO Apps
+  - AIO CLI Setup
+  - Update your package.json with an npm pre-release version, and update dependencies with pre-release versions
+  publisher_name: Adobe, Inc.
+  badges:
+  - Verified creator
+  detected_by: sweep-devtools.py
+  detected: '2026-10-14'
+- partner_name: Atlassian Marketplace
+  partner: atlassian
+  partner_match: aggregator
+  type: marketplace
+  marketplace: atlassian
+  channel: partner-built
+  relationship: platform-app
+  direction: third-party
+  evidence: https://marketplace.atlassian.com/vendors/1216060/adobe-inc
+  listing_count: 1
+  apps:
+  - Adobe XD for Jira
+  publisher_name: Adobe Inc.
+  detected_by: sweep-devtools.py
+  detected: '2026-10-14'
 templates:
 - title: Create signature requests in Adobe Acrobat Sign for new rows in a Google Sheet
   url: https://zapier.com/apps/adobe-acrobat-sign/integrations/google-sheets/255627206/create-signature-requests-in-adobe-acrobat-sign-for-new-rows-in-a-google-sheet
