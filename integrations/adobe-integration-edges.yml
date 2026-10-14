@@ -4,17 +4,20 @@ source:
 - https://zapier.com/apps/adobe/integrations
 - https://zapier.com/apps/adobe-acrobat-sign/integrations
 - https://n8n.io/integrations/adobe/
+- https://eidas.gov.ie/Irelandtslsignedv6.xml
 checked:
 - https://composio.dev/toolkits/adobe
+- https://ec.europa.eu/tools/lotl/eu-lotl.xml
+- https://eidas.gov.ie/Irelandtslsignedv6.xml
+- https://exchange.adobe.com/
+- https://exchange.adobe.com/apps/browse/cc?sort=POPULARITY (4606 results stated)
+- https://exchange.adobe.com/apps/browse/ec?product=All (466 results stated)
 - https://monid.ai/tools/adobe
 - https://n8n.io/integrations/adobe/
 - https://zapier.com/apps/adobe-acrobat-sign/integrations
 - https://zapier.com/apps/adobe-photoshop-lightroom/integrations
 - https://zapier.com/apps/adobe-workfront/integrations (Workfront has its own catalog repo, edges belong there)
 - https://zapier.com/apps/adobe/integrations
-- https://exchange.adobe.com/
-- https://exchange.adobe.com/apps/browse/cc?sort=POPULARITY (4606 results stated)
-- https://exchange.adobe.com/apps/browse/ec?product=All (466 results stated)
 summary: null
 marketplace_apps:
 - marketplace: zapier
@@ -1628,6 +1631,30 @@ edges:
   evidence: https://exchange.adobe.com/apps/cc/02e3f9ff/supersync-timecode-sync-for-premiere-pro
   category: Creative Cloud plugin
   use_case: Synchronize clips in seconds in Premiere Pro
+- partner_name: EU Trusted List (eIDAS)
+  partner: null
+  partner_match: register
+  type: contract
+  channel: regulator-register
+  relationship: standard-participant
+  direction: partner-built
+  evidence: https://eidas.gov.ie/Irelandtslsignedv6.xml
+  contract_reference:
+    register: EU List of Trusted Lists (eIDAS qualified trust service providers)
+    spec_file: null
+    role: qualified-trust-service-provider
+    registered_name: Adobe Systems Software Ireland Ltd.
+    member_state: IE
+    trusted_list: https://eidas.gov.ie/Irelandtslsignedv6.xml
+    services:
+    - qualified-timestamp
+    lotl: https://ec.europa.eu/tools/lotl/eu-lotl.xml
+    matched_domain: adobe.com
+    detected_by: sweep-legal.py
+    detected: '2026-10-14'
+  source: eutl
+  detected_by: sweep-legal.py
+  first_seen: '2026-10-14'
 templates:
 - title: Create signature requests in Adobe Acrobat Sign for new rows in a Google Sheet
   url: https://zapier.com/apps/adobe-acrobat-sign/integrations/google-sheets/255627206/create-signature-requests-in-adobe-acrobat-sign-for-new-rows-in-a-google-sheet

@@ -903,3 +903,26 @@
   relationship: platform-app
   status: not-a-workflow
   arazzo: null
+- slug: adobe-eu-trusted-list-eidas
+  label: EU Trusted List (eIDAS)
+  partner_name: EU Trusted List (eIDAS)
+  type: contract
+  channel: regulator-register
+  evidence: https://eidas.gov.ie/Irelandtslsignedv6.xml
+  source: edge
+  relationship: standard-participant
+  contract_reference:
+    register: EU List of Trusted Lists (eIDAS qualified trust service providers)
+    spec_file: null
+    role: qualified-trust-service-provider
+    registered_name: Adobe Systems Software Ireland Ltd.
+    member_state: IE
+    trusted_list: https://eidas.gov.ie/Irelandtslsignedv6.xml
+    services:
+    - qualified-timestamp
+    lotl: https://ec.europa.eu/tools/lotl/eu-lotl.xml
+    matched_domain: adobe.com
+    detected_by: sweep-legal.py
+    detected: '2026-10-14'
+  status: not-a-workflow
+  arazzo: null
