@@ -986,19 +986,6 @@
   relationship: connector-coverage
   status: not-a-workflow
   arazzo: null
-- slug: adobe-clever-clever-app-gallery
-  label: Clever (clever-app-gallery)
-  partner: clever
-  partner_name: Clever (clever-app-gallery)
-  category: other, communication
-  type: marketplace
-  marketplace: clever-app-gallery
-  channel: partner-built
-  evidence: https://clever.com/app-gallery
-  source: edge
-  relationship: platform-app
-  status: not-a-workflow
-  arazzo: null
 - slug: adobe-c2pa-content-credentials-conformance-programme
   label: C2PA (Content Credentials conformance programme)
   partner_name: C2PA (Content Credentials conformance programme)
@@ -1050,5 +1037,18 @@
     identity: wikidata Q11463 'Adobe' P856 https://www.adobe.com/
     detected_by: sweep-media.py
     detected: '2026-10-15'
+  status: not-a-workflow
+  arazzo: null
+- slug: adobe-clever-clever-app-gallery
+  label: Clever (clever-app-gallery)
+  partner: clever
+  partner_name: Clever (clever-app-gallery)
+  category: other, communication
+  type: marketplace
+  marketplace: clever-app-gallery
+  channel: partner-built
+  evidence: https://clever.com/app-gallery
+  source: edge
+  relationship: platform-app
   status: not-a-workflow
   arazzo: null
