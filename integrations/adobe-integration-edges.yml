@@ -8,6 +8,7 @@ source:
 checked:
 - clever/integrations/clever-integration-edges.yml
 - https://composio.dev/toolkits/adobe
+- https://ddex.net/membership/current-members/
 - https://docs.mparticle.com/integrations/adobe-audience-manager/audience/
 - https://ec.europa.eu/tools/lotl/eu-lotl.xml
 - https://eidas.gov.ie/Irelandtslsignedv6.xml
@@ -19,6 +20,7 @@ checked:
 - https://marketplace.atlassian.com/
 - https://monid.ai/tools/adobe
 - https://n8n.io/integrations/adobe/
+- https://raw.githubusercontent.com/c2pa-org/conformance-public/main/conforming-products/conforming-products-list.json
 - https://www.twilio.com/docs/segment/connections/destinations/catalog/actions-adobe-target-cloud
 - https://zapier.com/apps/adobe-acrobat-sign/integrations
 - https://zapier.com/apps/adobe-photoshop-lightroom/integrations
@@ -1791,6 +1793,59 @@ edges:
   features:
   - instant_login
   - secure_sync
+- partner_name: C2PA (Content Credentials conformance programme)
+  partner: null
+  partner_match: register
+  type: register
+  direction: partner-built
+  channel: standard-directory
+  relationship: standard-participant
+  evidence: https://github.com/c2pa-org/conformance-public/blob/main/conforming-products/conforming-products-list.json
+  category: content provenance (Content Credentials) conformance
+  contract_reference:
+    register: C2PA conforming products list (c2pa-org/conformance-public)
+    spec_file: null
+    role: c2pa-conformant-applicant
+    registered_name: Adobe Inc.
+    register_id: Adobe Inc.
+    product_types:
+    - generatorProduct
+    - validatorProduct
+    assurance_levels:
+    - 1
+    spec_versions:
+    - '2.2'
+    media_types:
+    - audio/mp4
+    - audio/mpeg
+    - audio/wav
+    - image/avif
+    - image/gif
+    - image/heic
+    - image/heif
+    - image/jpeg
+    - image/png
+    - image/svg+xml
+    - image/tiff
+    - image/webp
+    - image/x-adobe-dng
+    - video/mp4
+    - video/quicktime
+    - video/x-msvideo
+    products:
+    - product: Adobe Content Authenticity Inspect
+      record_id: 01987b59-4920-7391-a63f-bdd53ced9547
+      conformance_date: '2025-08-05'
+    - product: Adobe Content Authenticity
+      record_id: 01a0117d-1ebb-7b42-a850-b68101b487e1
+      conformance_date: '2026-10-05'
+    matched_domain: adobe.com
+    matched_by: domain+name-among-holders
+    identity: wikidata Q11463 'Adobe' P856 https://www.adobe.com/
+    detected_by: sweep-media.py
+    detected: '2026-10-15'
+  detected_by: sweep-media.py
+  first_seen: '2026-10-15'
 templates:
 - title: Create signature requests in Adobe Acrobat Sign for new rows in a Google Sheet
   url: https://zapier.com/apps/adobe-acrobat-sign/integrations/google-sheets/255627206/create-signature-requests-in-adobe-acrobat-sign-for-new-rows-in-a-google-sheet

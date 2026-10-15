@@ -999,3 +999,56 @@
   relationship: platform-app
   status: not-a-workflow
   arazzo: null
+- slug: adobe-c2pa-content-credentials-conformance-programme
+  label: C2PA (Content Credentials conformance programme)
+  partner_name: C2PA (Content Credentials conformance programme)
+  category: content provenance (Content Credentials) conformance
+  type: register
+  channel: standard-directory
+  evidence: https://github.com/c2pa-org/conformance-public/blob/main/conforming-products/conforming-products-list.json
+  source: edge
+  relationship: standard-participant
+  contract_reference:
+    register: C2PA conforming products list (c2pa-org/conformance-public)
+    spec_file: null
+    role: c2pa-conformant-applicant
+    registered_name: Adobe Inc.
+    register_id: Adobe Inc.
+    product_types:
+    - generatorProduct
+    - validatorProduct
+    assurance_levels:
+    - 1
+    spec_versions:
+    - '2.2'
+    media_types:
+    - audio/mp4
+    - audio/mpeg
+    - audio/wav
+    - image/avif
+    - image/gif
+    - image/heic
+    - image/heif
+    - image/jpeg
+    - image/png
+    - image/svg+xml
+    - image/tiff
+    - image/webp
+    - image/x-adobe-dng
+    - video/mp4
+    - video/quicktime
+    - video/x-msvideo
+    products:
+    - product: Adobe Content Authenticity Inspect
+      record_id: 01987b59-4920-7391-a63f-bdd53ced9547
+      conformance_date: '2025-08-05'
+    - product: Adobe Content Authenticity
+      record_id: 01a0117d-1ebb-7b42-a850-b68101b487e1
+      conformance_date: '2026-10-05'
+    matched_domain: adobe.com
+    matched_by: domain+name-among-holders
+    identity: wikidata Q11463 'Adobe' P856 https://www.adobe.com/
+    detected_by: sweep-media.py
+    detected: '2026-10-15'
+  status: not-a-workflow
+  arazzo: null
