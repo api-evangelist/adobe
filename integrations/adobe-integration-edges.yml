@@ -11,12 +11,14 @@ checked:
 - clever/integrations/clever-integration-edges.yml
 - google-workspace/integrations/google-workspace-integration-edges.yml
 - https://api.nuget.org/v3
+- https://cloudsecurityalliance.org/star/registry
 - https://composio.dev/toolkits/adobe
 - https://crates.io/api/v1
 - https://ddex.net/membership/current-members/
 - https://docs.mparticle.com/integrations/adobe-audience-manager/audience/
 - https://ec.europa.eu/tools/lotl/eu-lotl.xml
 - https://eidas.gov.ie/Irelandtslsignedv6.xml
+- https://eucoc.cloud/en/public-register/list-of-adherent-services
 - https://exchange.adobe.com/
 - https://exchange.adobe.com/apps/browse/cc?sort=POPULARITY (4606 results stated)
 - https://exchange.adobe.com/apps/browse/ec?product=All (466 results stated)
@@ -2110,6 +2112,40 @@ edges:
     builder: Pipedream repo (component)
   detected_by: sweep-workflow-automation.py
   first_seen: '2026-10-15'
+- partner_name: Cloud Security Alliance STAR Registry
+  partner: null
+  partner_match: register
+  type: register
+  channel: standard-directory
+  relationship: standard-participant
+  direction: partner-built
+  evidence: https://cloudsecurityalliance.org/star/registry/adobe/services/adobe-creative-cloud-for-enterprise
+  category: Cloud security assurance
+  contract_reference:
+    register: CSA STAR Registry (cloudsecurityalliance.org/star/registry)
+    spec_file: null
+    standard: CSA STAR
+    role: star-level-2
+    registered_name: Adobe
+    registry_id: adobe
+    service_url: https://www.adobe.com/creativecloud/business/enterprise/features.html
+    matched_domain: adobe.com
+    matched_by: domain+name-among-holders
+    identity_source: the service URL the organisation filed on its STAR listing (no lookup)
+    levels:
+    - STAR Level 1
+    - STAR Level 2
+    certified_products:
+    - product: STAR Certification
+      lapsed: false
+      latest: '2026-02-05'
+    signal_note: STAR Level 1 (CAIQ self-assessment) = participation; certified_products = one entry per STAR Level
+      2 / STAR for AI Level 2 assessment TYPE (third-party certification, attestation, C-STAR, ValidAIted); lapsed
+      = every instance marked (Deprecated) by the registry; service counts never recorded
+    detected_by: sweep-compliance-assurance.py
+    detected: '2026-10-20'
+  detected_by: sweep-compliance-assurance.py
+  first_seen: '2026-10-20'
 templates:
 - title: Create signature requests in Adobe Acrobat Sign for new rows in a Google Sheet
   url: https://zapier.com/apps/adobe-acrobat-sign/integrations/google-sheets/255627206/create-signature-requests-in-adobe-acrobat-sign-for-new-rows-in-a-google-sheet
