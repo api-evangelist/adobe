@@ -903,29 +903,6 @@
   relationship: platform-app
   status: not-a-workflow
   arazzo: null
-- slug: adobe-eu-trusted-list-eidas
-  label: EU Trusted List (eIDAS)
-  partner_name: EU Trusted List (eIDAS)
-  type: contract
-  channel: regulator-register
-  evidence: https://eidas.gov.ie/Irelandtslsignedv6.xml
-  source: edge
-  relationship: standard-participant
-  contract_reference:
-    register: EU List of Trusted Lists (eIDAS qualified trust service providers)
-    spec_file: null
-    role: qualified-trust-service-provider
-    registered_name: Adobe Systems Software Ireland Ltd.
-    member_state: IE
-    trusted_list: https://eidas.gov.ie/Irelandtslsignedv6.xml
-    services:
-    - qualified-timestamp
-    lotl: https://ec.europa.eu/tools/lotl/eu-lotl.xml
-    matched_domain: adobe.com
-    detected_by: sweep-legal.py
-    detected: '2026-10-14'
-  status: not-a-workflow
-  arazzo: null
 - slug: adobe-github-marketplace-actions
   label: GitHub Marketplace (actions)
   partner: github-actions
@@ -950,95 +927,6 @@
   relationship: platform-app
   status: not-a-workflow
   arazzo: null
-- slug: adobe-twilio-segment
-  label: Twilio Segment
-  partner: segment
-  partner_name: Twilio Segment
-  type: coverage
-  marketplace: coverage
-  channel: partner-built
-  evidence: https://www.twilio.com/docs/segment/connections/destinations/catalog/actions-adobe-target-cloud
-  source: edge
-  relationship: connector-coverage
-  status: not-a-workflow
-  arazzo: null
-- slug: adobe-mparticle
-  label: mParticle
-  partner: mparticle
-  partner_name: mParticle
-  type: coverage
-  marketplace: coverage
-  channel: partner-built
-  evidence: https://docs.mparticle.com/integrations/adobe-audience-manager/audience/
-  source: edge
-  relationship: connector-coverage
-  status: not-a-workflow
-  arazzo: null
-- slug: adobe-hightouch
-  label: Hightouch
-  partner: hightouch
-  partner_name: Hightouch
-  type: coverage
-  marketplace: coverage
-  channel: partner-built
-  evidence: https://hightouch.com/docs/destinations/adobe-experience-platform
-  source: edge
-  relationship: connector-coverage
-  status: not-a-workflow
-  arazzo: null
-- slug: adobe-c2pa-content-credentials-conformance-programme
-  label: C2PA (Content Credentials conformance programme)
-  partner_name: C2PA (Content Credentials conformance programme)
-  category: content provenance (Content Credentials) conformance
-  type: register
-  channel: standard-directory
-  evidence: https://github.com/c2pa-org/conformance-public/blob/main/conforming-products/conforming-products-list.json
-  source: edge
-  relationship: standard-participant
-  contract_reference:
-    register: C2PA conforming products list (c2pa-org/conformance-public)
-    spec_file: null
-    role: c2pa-conformant-applicant
-    registered_name: Adobe Inc.
-    register_id: Adobe Inc.
-    product_types:
-    - generatorProduct
-    - validatorProduct
-    assurance_levels:
-    - 1
-    spec_versions:
-    - '2.2'
-    media_types:
-    - audio/mp4
-    - audio/mpeg
-    - audio/wav
-    - image/avif
-    - image/gif
-    - image/heic
-    - image/heif
-    - image/jpeg
-    - image/png
-    - image/svg+xml
-    - image/tiff
-    - image/webp
-    - image/x-adobe-dng
-    - video/mp4
-    - video/quicktime
-    - video/x-msvideo
-    products:
-    - product: Adobe Content Authenticity Inspect
-      record_id: 01987b59-4920-7391-a63f-bdd53ced9547
-      conformance_date: '2025-08-05'
-    - product: Adobe Content Authenticity
-      record_id: 01a0117d-1ebb-7b42-a850-b68101b487e1
-      conformance_date: '2026-10-05'
-    matched_domain: adobe.com
-    matched_by: domain+name-among-holders
-    identity: wikidata Q11463 'Adobe' P856 https://www.adobe.com/
-    detected_by: sweep-media.py
-    detected: '2026-10-15'
-  status: not-a-workflow
-  arazzo: null
 - slug: adobe-clever-clever-app-gallery
   label: Clever (clever-app-gallery)
   partner: clever
@@ -1050,108 +938,6 @@
   evidence: https://clever.com/app-gallery
   source: edge
   relationship: platform-app
-  status: not-a-workflow
-  arazzo: null
-- slug: adobe-zapier
-  label: Zapier
-  partner: zapier
-  partner_name: Zapier
-  type: marketplace
-  marketplace: zapier-directory
-  channel: ipaas-listing
-  evidence: https://zapier.com/apps/adobe/integrations
-  source: edge
-  relationship: ipaas-bridge
-  contract_reference:
-    register: Zapier app directory (zapier.com/api/v4/apps)
-    spec_file: null
-    role: ipaas-connector:zapier
-    registered_name: Adobe
-    matched_domain: adobe.com
-    matched_by: domain+name-among-holders
-    detected_by: sweep-workflow-automation.py
-    detected: '2026-10-15'
-    signal_note: one edge per (provider, platform); actions, triggers and usage counts are context, never read
-    app_slug: adobe
-    beta: false
-    builder: unknown (not in the directory record)
-  status: not-a-workflow
-  arazzo: null
-- slug: adobe-pipedream
-  label: Pipedream
-  partner: pipedream
-  partner_name: Pipedream
-  type: marketplace
-  marketplace: pipedream-components
-  channel: open-source-node
-  evidence: https://github.com/PipedreamHQ/pipedream/tree/94800dd6de6640b942c65ea7ee655f71ac56d438/components/adobe_pdf_services
-  source: edge
-  relationship: ipaas-bridge
-  contract_reference:
-    register: Pipedream components (PipedreamHQ/pipedream components/)
-    spec_file: null
-    role: ipaas-connector:pipedream
-    registered_name: adobe pdf services
-    matched_domain: adobe.com
-    matched_by: domain+name-among-holders
-    detected_by: sweep-workflow-automation.py
-    detected: '2026-10-15'
-    signal_note: one edge per (provider, platform); actions, triggers and usage counts are context, never read
-    app_slug: adobe_pdf_services
-    actions: true
-    sources: false
-    builder: Pipedream repo (component)
-  status: not-a-workflow
-  arazzo: null
-- slug: adobe-fedramp
-  label: FedRAMP
-  partner_name: FedRAMP
-  category: FedRAMP authorization
-  type: contract
-  channel: regulator-register
-  evidence: https://marketplace.fedramp.gov/products/FR1832870021
-  source: edge
-  relationship: standard-participant
-  contract_reference:
-    register: FedRAMP Marketplace data (github.com/18F/fedramp-data data/data.json @4b73d9247f)
-    standard: FedRAMP
-    spec_file: null
-    role: fedramp-authorized
-    registered_name: Adobe
-    register_id: FR1832870021
-    matched_domain: adobe.com
-    matched_by: domain+name-among-holders
-    domain_source: website
-    designations:
-    - Compliant
-    packages:
-    - Adobe Acrobat Sign for Government
-    - Adobe Analytics
-    - Adobe Campaign
-    - Adobe Connect Managed Services (ACMS-GC)
-    - Adobe Creative Cloud for Enterprise
-    - Adobe Document Cloud (PDF Services & Adobe Sign)
-    - Adobe Experience Manager Managed Services (AEMMS-GC)
-    - Adobe Learning Manager
-    service_models:
-    - SaaS
-    paths:
-    - Agency
-    - JAB
-    signal_note: certified_products = one entry per AUTHORIZED impact level, never per package; packages, service
-      models, paths and leveraging agencies are context, never counted. The register lists current designations
-      only (revoked / expired are removed), so lapsed is always false
-    detected_by: sweep-gov-cloud.py
-    detected: '2026-10-15'
-    certified_products:
-    - product: FedRAMP LI-SaaS
-      impact_level: LI-SaaS
-      lapsed: false
-      latest_authorization: '2022-08-31'
-    - product: FedRAMP Moderate
-      impact_level: Moderate
-      lapsed: false
-      latest_authorization: '2022-03-09'
   status: not-a-workflow
   arazzo: null
 - slug: adobe-google-workspace-own
@@ -1284,5 +1070,219 @@
       24 months'
     detected_by: sweep-official-sdks.py
     detected: '2026-10-18'
+  status: not-a-workflow
+  arazzo: null
+- slug: adobe-fedramp
+  label: FedRAMP
+  partner_name: FedRAMP
+  category: FedRAMP authorization
+  type: contract
+  channel: regulator-register
+  evidence: https://marketplace.fedramp.gov/products/FR1832870021
+  source: edge
+  relationship: standard-participant
+  contract_reference:
+    register: FedRAMP Marketplace data (github.com/18F/fedramp-data data/data.json @4b73d9247f)
+    standard: FedRAMP
+    spec_file: null
+    role: fedramp-authorized
+    registered_name: Adobe
+    register_id: FR1832870021
+    matched_domain: adobe.com
+    matched_by: domain+name-among-holders
+    domain_source: website
+    designations:
+    - Compliant
+    packages:
+    - Adobe Acrobat Sign for Government
+    - Adobe Analytics
+    - Adobe Campaign
+    - Adobe Connect Managed Services (ACMS-GC)
+    - Adobe Creative Cloud for Enterprise
+    - Adobe Document Cloud (PDF Services & Adobe Sign)
+    - Adobe Experience Manager Managed Services (AEMMS-GC)
+    - Adobe Learning Manager
+    service_models:
+    - SaaS
+    paths:
+    - Agency
+    - JAB
+    signal_note: certified_products = one entry per AUTHORIZED impact level, never per package; packages, service
+      models, paths and leveraging agencies are context, never counted. The register lists current designations
+      only (revoked / expired are removed), so lapsed is always false
+    detected_by: sweep-gov-cloud.py
+    detected: '2026-10-15'
+    certified_products:
+    - product: FedRAMP LI-SaaS
+      impact_level: LI-SaaS
+      lapsed: false
+      latest_authorization: '2022-08-31'
+    - product: FedRAMP Moderate
+      impact_level: Moderate
+      lapsed: false
+      latest_authorization: '2022-03-09'
+  status: not-a-workflow
+  arazzo: null
+- slug: adobe-eu-trusted-list-eidas
+  label: EU Trusted List (eIDAS)
+  partner_name: EU Trusted List (eIDAS)
+  type: contract
+  channel: regulator-register
+  evidence: https://eidas.gov.ie/Irelandtslsignedv6.xml
+  source: edge
+  relationship: standard-participant
+  contract_reference:
+    register: EU List of Trusted Lists (eIDAS qualified trust service providers)
+    spec_file: null
+    role: qualified-trust-service-provider
+    registered_name: Adobe Systems Software Ireland Ltd.
+    member_state: IE
+    trusted_list: https://eidas.gov.ie/Irelandtslsignedv6.xml
+    services:
+    - qualified-timestamp
+    lotl: https://ec.europa.eu/tools/lotl/eu-lotl.xml
+    matched_domain: adobe.com
+    detected_by: sweep-legal.py
+    detected: '2026-10-19'
+  status: not-a-workflow
+  arazzo: null
+- slug: adobe-c2pa-content-credentials-conformance-programme
+  label: C2PA (Content Credentials conformance programme)
+  partner_name: C2PA (Content Credentials conformance programme)
+  category: content provenance (Content Credentials) conformance
+  type: register
+  channel: standard-directory
+  evidence: https://github.com/c2pa-org/conformance-public/blob/main/conforming-products/conforming-products-list.json
+  source: edge
+  relationship: standard-participant
+  contract_reference:
+    register: C2PA conforming products list (c2pa-org/conformance-public)
+    spec_file: null
+    role: c2pa-conformant-applicant
+    registered_name: Adobe Inc.
+    register_id: Adobe Inc.
+    product_types:
+    - generatorProduct
+    - validatorProduct
+    assurance_levels:
+    - 1
+    spec_versions:
+    - '2.2'
+    media_types:
+    - audio/mp4
+    - audio/mpeg
+    - audio/wav
+    - image/avif
+    - image/gif
+    - image/heic
+    - image/heif
+    - image/jpeg
+    - image/png
+    - image/svg+xml
+    - image/tiff
+    - image/webp
+    - image/x-adobe-dng
+    - video/mp4
+    - video/quicktime
+    - video/x-msvideo
+    products:
+    - product: Adobe Content Authenticity Inspect
+      record_id: 01987b59-4920-7391-a63f-bdd53ced9547
+      conformance_date: '2025-08-05'
+    - product: Adobe Content Authenticity
+      record_id: 01a0117d-1ebb-7b42-a850-b68101b487e1
+      conformance_date: '2026-10-05'
+    matched_domain: adobe.com
+    matched_by: domain+name-among-holders
+    identity: wikidata Q11463 'Adobe' P856 https://www.adobe.com/
+    detected_by: sweep-media.py
+    detected: '2026-10-19'
+  status: not-a-workflow
+  arazzo: null
+- slug: adobe-twilio-segment
+  label: Twilio Segment
+  partner: segment
+  partner_name: Twilio Segment
+  type: coverage
+  marketplace: coverage
+  channel: partner-built
+  evidence: https://www.twilio.com/docs/segment/connections/destinations/catalog/actions-adobe-target-cloud
+  source: edge
+  relationship: connector-coverage
+  status: not-a-workflow
+  arazzo: null
+- slug: adobe-mparticle
+  label: mParticle
+  partner: mparticle
+  partner_name: mParticle
+  type: coverage
+  marketplace: coverage
+  channel: partner-built
+  evidence: https://docs.mparticle.com/integrations/adobe-audience-manager/audience/
+  source: edge
+  relationship: connector-coverage
+  status: not-a-workflow
+  arazzo: null
+- slug: adobe-hightouch
+  label: Hightouch
+  partner: hightouch
+  partner_name: Hightouch
+  type: coverage
+  marketplace: coverage
+  channel: partner-built
+  evidence: https://hightouch.com/docs/destinations/adobe-experience-platform
+  source: edge
+  relationship: connector-coverage
+  status: not-a-workflow
+  arazzo: null
+- slug: adobe-zapier
+  label: Zapier
+  partner: zapier
+  partner_name: Zapier
+  type: marketplace
+  marketplace: zapier-directory
+  channel: ipaas-listing
+  evidence: https://zapier.com/apps/adobe/integrations
+  source: edge
+  relationship: ipaas-bridge
+  contract_reference:
+    register: Zapier app directory (zapier.com/api/v4/apps)
+    spec_file: null
+    role: ipaas-connector:zapier
+    registered_name: Adobe
+    matched_domain: adobe.com
+    matched_by: domain+name-among-holders
+    detected_by: sweep-workflow-automation.py
+    detected: '2026-10-15'
+    signal_note: one edge per (provider, platform); actions, triggers and usage counts are context, never read
+    app_slug: adobe
+    beta: false
+    builder: unknown (not in the directory record)
+  status: not-a-workflow
+  arazzo: null
+- slug: adobe-pipedream
+  label: Pipedream
+  partner: pipedream
+  partner_name: Pipedream
+  type: marketplace
+  marketplace: pipedream-components
+  channel: open-source-node
+  evidence: https://github.com/PipedreamHQ/pipedream/tree/d5872355ef27b4efa769f05352f2820c299a456e/components/adobe_pdf_services
+  source: edge
+  relationship: ipaas-bridge
+  contract_reference:
+    register: Pipedream components (PipedreamHQ/pipedream components/)
+    spec_file: null
+    role: ipaas-connector:pipedream
+    registered_name: adobe pdf services
+    matched_domain: adobe.com
+    matched_by: domain+name-among-holders
+    detected_by: sweep-workflow-automation.py
+    detected: '2026-10-15'
+    signal_note: one edge per (provider, platform); actions, triggers and usage counts are context, never read
+    app_slug: adobe_pdf_services
+    actions: true
+    sources: false
+    builder: Pipedream repo (component)
   status: not-a-workflow
   arazzo: null

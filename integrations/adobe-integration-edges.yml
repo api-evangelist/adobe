@@ -5,6 +5,8 @@ source:
 - https://zapier.com/apps/adobe-acrobat-sign/integrations
 - https://n8n.io/integrations/adobe/
 - https://eidas.gov.ie/Irelandtslsignedv6.xml
+- https://eidas.gov.ie/Irelandtslsignedv6.xml
+- https://eidas.gov.ie/Irelandtslsignedv6.xml
 checked:
 - clever/integrations/clever-integration-edges.yml
 - google-workspace/integrations/google-workspace-integration-edges.yml
@@ -19,6 +21,7 @@ checked:
 - https://exchange.adobe.com/apps/browse/cc?sort=POPULARITY (4606 results stated)
 - https://exchange.adobe.com/apps/browse/ec?product=All (466 results stated)
 - https://github.com/PipedreamHQ/pipedream/tree/94800dd6de6640b942c65ea7ee655f71ac56d438/components/
+- https://github.com/PipedreamHQ/pipedream/tree/d5872355ef27b4efa769f05352f2820c299a456e/components/
 - https://github.com/marketplace?type=actions
 - https://govramp.org/program-participants
 - https://hightouch.com/docs/destinations/adobe-experience-platform
@@ -1654,30 +1657,6 @@ edges:
   evidence: https://exchange.adobe.com/apps/cc/02e3f9ff/supersync-timecode-sync-for-premiere-pro
   category: Creative Cloud plugin
   use_case: Synchronize clips in seconds in Premiere Pro
-- partner_name: EU Trusted List (eIDAS)
-  partner: null
-  partner_match: register
-  type: contract
-  channel: regulator-register
-  relationship: standard-participant
-  direction: partner-built
-  evidence: https://eidas.gov.ie/Irelandtslsignedv6.xml
-  contract_reference:
-    register: EU List of Trusted Lists (eIDAS qualified trust service providers)
-    spec_file: null
-    role: qualified-trust-service-provider
-    registered_name: Adobe Systems Software Ireland Ltd.
-    member_state: IE
-    trusted_list: https://eidas.gov.ie/Irelandtslsignedv6.xml
-    services:
-    - qualified-timestamp
-    lotl: https://ec.europa.eu/tools/lotl/eu-lotl.xml
-    matched_domain: adobe.com
-    detected_by: sweep-legal.py
-    detected: '2026-10-14'
-  source: eutl
-  detected_by: sweep-legal.py
-  first_seen: '2026-10-14'
 - partner_name: GitHub Marketplace (actions)
   partner: github-actions
   partner_match: aggregator
@@ -1712,136 +1691,6 @@ edges:
   publisher_name: Adobe Inc.
   detected_by: sweep-devtools.py
   detected: '2026-10-14'
-- partner_name: Twilio Segment
-  partner: segment
-  partner_match: aggregator
-  marketplace: coverage
-  channel: partner-built
-  direction: partner-built
-  type: coverage
-  relationship: connector-coverage
-  evidence: https://www.twilio.com/docs/segment/connections/destinations/catalog/actions-adobe-target-cloud
-  coverage_role:
-  - destination
-  cdp_signals:
-    destination:
-      catalog_entries:
-      - actions-adobe-target-cloud
-      status: PUBLIC
-      partner_owned: false
-      connection_modes:
-      - cloud:server
-      - cloud:web
-      accepted_methods:
-      - Alias
-      - Group
-      - Identify
-      - Page
-      - Track
-  detected_by: sweep-cdp.py
-  first_seen: '2026-10-14'
-- partner_name: mParticle
-  partner: mparticle
-  partner_match: aggregator
-  marketplace: coverage
-  channel: partner-built
-  direction: partner-built
-  type: coverage
-  relationship: connector-coverage
-  evidence: https://docs.mparticle.com/integrations/adobe-audience-manager/audience/
-  coverage_role:
-  - destination
-  cdp_signals:
-    destination:
-      catalog_entries:
-      - adobe-audience-manager
-      - adobe-experience-platform
-      - adobe-target
-      integration_types:
-      - audience
-      - event
-  detected_by: sweep-cdp.py
-  first_seen: '2026-10-14'
-- partner_name: Hightouch
-  partner: hightouch
-  partner_match: aggregator
-  marketplace: coverage
-  channel: partner-built
-  direction: partner-built
-  type: coverage
-  relationship: connector-coverage
-  evidence: https://hightouch.com/docs/destinations/adobe-experience-platform
-  coverage_role:
-  - destination
-  cdp_signals:
-    destination:
-      catalog_entries:
-      - adobe-experience-platform
-      - adobe-target
-      status: released
-      sync_types:
-      - Adobe Journey Optimizer campaign trigger
-      - Datasets
-      - Profiles
-      sync_modes:
-      - --
-      - insert
-      - upsert
-  detected_by: sweep-cdp.py
-  first_seen: '2026-10-14'
-- partner_name: C2PA (Content Credentials conformance programme)
-  partner: null
-  partner_match: register
-  type: register
-  direction: partner-built
-  channel: standard-directory
-  relationship: standard-participant
-  evidence: https://github.com/c2pa-org/conformance-public/blob/main/conforming-products/conforming-products-list.json
-  category: content provenance (Content Credentials) conformance
-  contract_reference:
-    register: C2PA conforming products list (c2pa-org/conformance-public)
-    spec_file: null
-    role: c2pa-conformant-applicant
-    registered_name: Adobe Inc.
-    register_id: Adobe Inc.
-    product_types:
-    - generatorProduct
-    - validatorProduct
-    assurance_levels:
-    - 1
-    spec_versions:
-    - '2.2'
-    media_types:
-    - audio/mp4
-    - audio/mpeg
-    - audio/wav
-    - image/avif
-    - image/gif
-    - image/heic
-    - image/heif
-    - image/jpeg
-    - image/png
-    - image/svg+xml
-    - image/tiff
-    - image/webp
-    - image/x-adobe-dng
-    - video/mp4
-    - video/quicktime
-    - video/x-msvideo
-    products:
-    - product: Adobe Content Authenticity Inspect
-      record_id: 01987b59-4920-7391-a63f-bdd53ced9547
-      conformance_date: '2025-08-05'
-    - product: Adobe Content Authenticity
-      record_id: 01a0117d-1ebb-7b42-a850-b68101b487e1
-      conformance_date: '2026-10-05'
-    matched_domain: adobe.com
-    matched_by: domain+name-among-holders
-    identity: wikidata Q11463 'Adobe' P856 https://www.adobe.com/
-    detected_by: sweep-media.py
-    detected: '2026-10-15'
-  detected_by: sweep-media.py
-  first_seen: '2026-10-15'
 - partner_name: Clever (clever-app-gallery)
   partner: clever
   partner_match: mirror
@@ -1861,108 +1710,6 @@ edges:
   features:
   - instant_login
   - secure_sync
-- partner_name: Zapier
-  partner: zapier
-  partner_match: aggregator
-  type: marketplace
-  marketplace: zapier-directory
-  channel: ipaas-listing
-  relationship: ipaas-bridge
-  direction: third-party
-  evidence: https://zapier.com/apps/adobe/integrations
-  category: null
-  contract_reference:
-    register: Zapier app directory (zapier.com/api/v4/apps)
-    spec_file: null
-    role: ipaas-connector:zapier
-    registered_name: Adobe
-    matched_domain: adobe.com
-    matched_by: domain+name-among-holders
-    detected_by: sweep-workflow-automation.py
-    detected: '2026-10-15'
-    signal_note: one edge per (provider, platform); actions, triggers and usage counts are context, never read
-    app_slug: adobe
-    beta: false
-    builder: unknown (not in the directory record)
-  detected_by: sweep-workflow-automation.py
-  first_seen: '2026-10-15'
-- partner_name: Pipedream
-  partner: pipedream
-  partner_match: aggregator
-  type: marketplace
-  marketplace: pipedream-components
-  channel: open-source-node
-  relationship: ipaas-bridge
-  direction: third-party
-  evidence: https://github.com/PipedreamHQ/pipedream/tree/94800dd6de6640b942c65ea7ee655f71ac56d438/components/adobe_pdf_services
-  category: null
-  contract_reference:
-    register: Pipedream components (PipedreamHQ/pipedream components/)
-    spec_file: null
-    role: ipaas-connector:pipedream
-    registered_name: adobe pdf services
-    matched_domain: adobe.com
-    matched_by: domain+name-among-holders
-    detected_by: sweep-workflow-automation.py
-    detected: '2026-10-15'
-    signal_note: one edge per (provider, platform); actions, triggers and usage counts are context, never read
-    app_slug: adobe_pdf_services
-    actions: true
-    sources: false
-    builder: Pipedream repo (component)
-  detected_by: sweep-workflow-automation.py
-  first_seen: '2026-10-15'
-- partner_name: FedRAMP
-  partner: null
-  partner_match: register
-  type: contract
-  channel: regulator-register
-  relationship: standard-participant
-  direction: partner-built
-  evidence: https://marketplace.fedramp.gov/products/FR1832870021
-  category: FedRAMP authorization
-  contract_reference:
-    register: FedRAMP Marketplace data (github.com/18F/fedramp-data data/data.json @4b73d9247f)
-    standard: FedRAMP
-    spec_file: null
-    role: fedramp-authorized
-    registered_name: Adobe
-    register_id: FR1832870021
-    matched_domain: adobe.com
-    matched_by: domain+name-among-holders
-    domain_source: website
-    designations:
-    - Compliant
-    packages:
-    - Adobe Acrobat Sign for Government
-    - Adobe Analytics
-    - Adobe Campaign
-    - Adobe Connect Managed Services (ACMS-GC)
-    - Adobe Creative Cloud for Enterprise
-    - Adobe Document Cloud (PDF Services & Adobe Sign)
-    - Adobe Experience Manager Managed Services (AEMMS-GC)
-    - Adobe Learning Manager
-    service_models:
-    - SaaS
-    paths:
-    - Agency
-    - JAB
-    signal_note: certified_products = one entry per AUTHORIZED impact level, never per package; packages, service
-      models, paths and leveraging agencies are context, never counted. The register lists current designations
-      only (revoked / expired are removed), so lapsed is always false
-    detected_by: sweep-gov-cloud.py
-    detected: '2026-10-15'
-    certified_products:
-    - product: FedRAMP LI-SaaS
-      impact_level: LI-SaaS
-      lapsed: false
-      latest_authorization: '2022-08-31'
-    - product: FedRAMP Moderate
-      impact_level: Moderate
-      lapsed: false
-      latest_authorization: '2022-03-09'
-  detected_by: sweep-gov-cloud.py
-  first_seen: '2026-10-15'
 - partner_name: Google Workspace (own)
   partner: google-workspace
   partner_match: mirror
@@ -2107,6 +1854,262 @@ edges:
     detected: '2026-10-18'
   detected_by: sweep-official-sdks.py
   first_seen: '2026-10-18'
+- partner_name: FedRAMP
+  partner: null
+  partner_match: register
+  type: contract
+  channel: regulator-register
+  relationship: standard-participant
+  direction: partner-built
+  evidence: https://marketplace.fedramp.gov/products/FR1832870021
+  category: FedRAMP authorization
+  contract_reference:
+    register: FedRAMP Marketplace data (github.com/18F/fedramp-data data/data.json @4b73d9247f)
+    standard: FedRAMP
+    spec_file: null
+    role: fedramp-authorized
+    registered_name: Adobe
+    register_id: FR1832870021
+    matched_domain: adobe.com
+    matched_by: domain+name-among-holders
+    domain_source: website
+    designations:
+    - Compliant
+    packages:
+    - Adobe Acrobat Sign for Government
+    - Adobe Analytics
+    - Adobe Campaign
+    - Adobe Connect Managed Services (ACMS-GC)
+    - Adobe Creative Cloud for Enterprise
+    - Adobe Document Cloud (PDF Services & Adobe Sign)
+    - Adobe Experience Manager Managed Services (AEMMS-GC)
+    - Adobe Learning Manager
+    service_models:
+    - SaaS
+    paths:
+    - Agency
+    - JAB
+    signal_note: certified_products = one entry per AUTHORIZED impact level, never per package; packages, service
+      models, paths and leveraging agencies are context, never counted. The register lists current designations
+      only (revoked / expired are removed), so lapsed is always false
+    detected_by: sweep-gov-cloud.py
+    detected: '2026-10-15'
+    certified_products:
+    - product: FedRAMP LI-SaaS
+      impact_level: LI-SaaS
+      lapsed: false
+      latest_authorization: '2022-08-31'
+    - product: FedRAMP Moderate
+      impact_level: Moderate
+      lapsed: false
+      latest_authorization: '2022-03-09'
+  detected_by: sweep-gov-cloud.py
+  first_seen: '2026-10-15'
+- partner_name: EU Trusted List (eIDAS)
+  partner: null
+  partner_match: register
+  type: contract
+  channel: regulator-register
+  relationship: standard-participant
+  direction: partner-built
+  evidence: https://eidas.gov.ie/Irelandtslsignedv6.xml
+  contract_reference:
+    register: EU List of Trusted Lists (eIDAS qualified trust service providers)
+    spec_file: null
+    role: qualified-trust-service-provider
+    registered_name: Adobe Systems Software Ireland Ltd.
+    member_state: IE
+    trusted_list: https://eidas.gov.ie/Irelandtslsignedv6.xml
+    services:
+    - qualified-timestamp
+    lotl: https://ec.europa.eu/tools/lotl/eu-lotl.xml
+    matched_domain: adobe.com
+    detected_by: sweep-legal.py
+    detected: '2026-10-19'
+  source: eutl
+  detected_by: sweep-legal.py
+  first_seen: '2026-10-19'
+- partner_name: C2PA (Content Credentials conformance programme)
+  partner: null
+  partner_match: register
+  type: register
+  direction: partner-built
+  channel: standard-directory
+  relationship: standard-participant
+  evidence: https://github.com/c2pa-org/conformance-public/blob/main/conforming-products/conforming-products-list.json
+  category: content provenance (Content Credentials) conformance
+  contract_reference:
+    register: C2PA conforming products list (c2pa-org/conformance-public)
+    spec_file: null
+    role: c2pa-conformant-applicant
+    registered_name: Adobe Inc.
+    register_id: Adobe Inc.
+    product_types:
+    - generatorProduct
+    - validatorProduct
+    assurance_levels:
+    - 1
+    spec_versions:
+    - '2.2'
+    media_types:
+    - audio/mp4
+    - audio/mpeg
+    - audio/wav
+    - image/avif
+    - image/gif
+    - image/heic
+    - image/heif
+    - image/jpeg
+    - image/png
+    - image/svg+xml
+    - image/tiff
+    - image/webp
+    - image/x-adobe-dng
+    - video/mp4
+    - video/quicktime
+    - video/x-msvideo
+    products:
+    - product: Adobe Content Authenticity Inspect
+      record_id: 01987b59-4920-7391-a63f-bdd53ced9547
+      conformance_date: '2025-08-05'
+    - product: Adobe Content Authenticity
+      record_id: 01a0117d-1ebb-7b42-a850-b68101b487e1
+      conformance_date: '2026-10-05'
+    matched_domain: adobe.com
+    matched_by: domain+name-among-holders
+    identity: wikidata Q11463 'Adobe' P856 https://www.adobe.com/
+    detected_by: sweep-media.py
+    detected: '2026-10-19'
+  detected_by: sweep-media.py
+  first_seen: '2026-10-15'
+- partner_name: Twilio Segment
+  partner: segment
+  partner_match: aggregator
+  marketplace: coverage
+  channel: partner-built
+  direction: partner-built
+  type: coverage
+  relationship: connector-coverage
+  evidence: https://www.twilio.com/docs/segment/connections/destinations/catalog/actions-adobe-target-cloud
+  coverage_role:
+  - destination
+  cdp_signals:
+    destination:
+      catalog_entries:
+      - actions-adobe-target-cloud
+      status: PUBLIC
+      partner_owned: false
+      connection_modes:
+      - cloud:server
+      - cloud:web
+      accepted_methods:
+      - Alias
+      - Group
+      - Identify
+      - Page
+      - Track
+  detected_by: sweep-cdp.py
+  first_seen: '2026-10-14'
+- partner_name: mParticle
+  partner: mparticle
+  partner_match: aggregator
+  marketplace: coverage
+  channel: partner-built
+  direction: partner-built
+  type: coverage
+  relationship: connector-coverage
+  evidence: https://docs.mparticle.com/integrations/adobe-audience-manager/audience/
+  coverage_role:
+  - destination
+  cdp_signals:
+    destination:
+      catalog_entries:
+      - adobe-audience-manager
+      - adobe-target
+      - adobe-experience-platform
+      integration_types:
+      - audience
+      - event
+  detected_by: sweep-cdp.py
+  first_seen: '2026-10-14'
+- partner_name: Hightouch
+  partner: hightouch
+  partner_match: aggregator
+  marketplace: coverage
+  channel: partner-built
+  direction: partner-built
+  type: coverage
+  relationship: connector-coverage
+  evidence: https://hightouch.com/docs/destinations/adobe-experience-platform
+  coverage_role:
+  - destination
+  cdp_signals:
+    destination:
+      catalog_entries:
+      - adobe-experience-platform
+      - adobe-target
+      status: released
+      sync_types:
+      - Adobe Journey Optimizer campaign trigger
+      - Datasets
+      - Profiles
+      sync_modes:
+      - --
+      - insert
+      - upsert
+  detected_by: sweep-cdp.py
+  first_seen: '2026-10-14'
+- partner_name: Zapier
+  partner: zapier
+  partner_match: aggregator
+  type: marketplace
+  marketplace: zapier-directory
+  channel: ipaas-listing
+  relationship: ipaas-bridge
+  direction: third-party
+  evidence: https://zapier.com/apps/adobe/integrations
+  category: null
+  contract_reference:
+    register: Zapier app directory (zapier.com/api/v4/apps)
+    spec_file: null
+    role: ipaas-connector:zapier
+    registered_name: Adobe
+    matched_domain: adobe.com
+    matched_by: domain+name-among-holders
+    detected_by: sweep-workflow-automation.py
+    detected: '2026-10-15'
+    signal_note: one edge per (provider, platform); actions, triggers and usage counts are context, never read
+    app_slug: adobe
+    beta: false
+    builder: unknown (not in the directory record)
+  detected_by: sweep-workflow-automation.py
+  first_seen: '2026-10-15'
+- partner_name: Pipedream
+  partner: pipedream
+  partner_match: aggregator
+  type: marketplace
+  marketplace: pipedream-components
+  channel: open-source-node
+  relationship: ipaas-bridge
+  direction: third-party
+  evidence: https://github.com/PipedreamHQ/pipedream/tree/d5872355ef27b4efa769f05352f2820c299a456e/components/adobe_pdf_services
+  category: null
+  contract_reference:
+    register: Pipedream components (PipedreamHQ/pipedream components/)
+    spec_file: null
+    role: ipaas-connector:pipedream
+    registered_name: adobe pdf services
+    matched_domain: adobe.com
+    matched_by: domain+name-among-holders
+    detected_by: sweep-workflow-automation.py
+    detected: '2026-10-15'
+    signal_note: one edge per (provider, platform); actions, triggers and usage counts are context, never read
+    app_slug: adobe_pdf_services
+    actions: true
+    sources: false
+    builder: Pipedream repo (component)
+  detected_by: sweep-workflow-automation.py
+  first_seen: '2026-10-15'
 templates:
 - title: Create signature requests in Adobe Acrobat Sign for new rows in a Google Sheet
   url: https://zapier.com/apps/adobe-acrobat-sign/integrations/google-sheets/255627206/create-signature-requests-in-adobe-acrobat-sign-for-new-rows-in-a-google-sheet
