@@ -1257,6 +1257,8 @@ apis:
     url: json-schema/adobe-rest-base-space-schema.json
   - type: JSONSchema
     url: json-schema/adobe-rest-base-file-url-schema.json
+x-zapier-apps:
+- adobe-acrobat-sign
 x-enrichment:
   date: '2026-10-12'
   status: enriched
