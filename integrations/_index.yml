@@ -650,58 +650,6 @@
   relationship: platform-app
   status: not-a-workflow
   arazzo: null
-- slug: adobe-clever-clever-app-gallery
-  label: Clever (clever-app-gallery)
-  partner: clever
-  partner_name: Clever (clever-app-gallery)
-  category: other, communication
-  type: marketplace
-  marketplace: clever-app-gallery
-  channel: partner-built
-  evidence: https://clever.com/app-gallery
-  source: edge
-  relationship: platform-app
-  status: not-a-workflow
-  arazzo: null
-- slug: adobe-google-workspace-own
-  label: Google Workspace (own)
-  partner: google-workspace
-  partner_name: Google Workspace (own)
-  category: Google Workspace app
-  type: marketplace
-  marketplace: own
-  channel: partner-built
-  evidence: https://workspace.google.com/marketplace/app/adobe_stock/477057038292
-  source: edge
-  relationship: platform-app
-  status: not-a-workflow
-  arazzo: null
-- slug: adobe-microsoft-teams-own
-  label: Microsoft Teams (own)
-  partner: microsoft-teams
-  partner_name: Microsoft Teams (own)
-  category: Microsoft Teams app
-  type: marketplace
-  marketplace: own
-  channel: partner-built
-  evidence: https://appsource.microsoft.com/en-us/product/office/WA200009370
-  source: edge
-  relationship: platform-app
-  status: not-a-workflow
-  arazzo: null
-- slug: adobe-slack-own
-  label: Slack (own)
-  partner: slack
-  partner_name: Slack (own)
-  category: Slack app
-  type: marketplace
-  marketplace: own
-  channel: partner-built
-  evidence: https://slack.com/marketplace/A017MMN0TF0-adobe-status
-  source: edge
-  relationship: platform-app
-  status: not-a-workflow
-  arazzo: null
 - slug: adobe-maven-central
   label: Maven Central
   partner: maven-central
@@ -1390,5 +1338,136 @@
     requirement: https://developer.salesforce.com/docs/atlas.en-us.packagingGuide.meta/packagingGuide/security_review_overview.htm
     detected_by: sweep-salesforce-appexchange.py
     detected: '2026-10-21'
+  status: not-a-workflow
+  arazzo: null
+- slug: adobe-cocoapods-trunk
+  label: CocoaPods trunk
+  partner_name: CocoaPods trunk
+  category: iOS SDK (CocoaPods)
+  type: register
+  channel: package-registry
+  evidence: https://cocoapods.org/pods/AdobeCreativeSDKAppLibraryUX
+  source: edge
+  relationship: distribution-channel
+  contract_reference:
+    register: CocoaPods trunk (cdn.cocoapods.org Specs; github.com/CocoaPods/Specs)
+    spec_file: null
+    role: cocoapods-publisher
+    registered_name: Adobe Systems
+    matched_domain: adobe.com
+    matched_by: domain+name-among-holders
+    pods:
+    - pod: AdobeCreativeSDKAppLibraryUX
+      version: 0.3.2160.1
+      homepage: https://creativesdk.adobe.com/
+      deprecated: false
+    - pod: AdobeCreativeSDKAssetModel
+      version: 0.3.2160.1
+      homepage: https://creativesdk.adobe.com/
+      deprecated: false
+    - pod: AdobeCreativeSDKAssetUX
+      version: 0.3.2160.1
+      homepage: https://creativesdk.adobe.com/
+      deprecated: false
+    - pod: AdobeCreativeSDKBehance
+      version: 0.3.2160.1
+      homepage: https://creativesdk.adobe.com/
+      deprecated: false
+    - pod: AdobeCreativeSDKColor
+      version: 0.3.2160.1
+      homepage: https://creativesdk.adobe.com/
+      deprecated: false
+    - pod: AdobeCreativeSDKCommonUX
+      version: 0.3.2160.1
+      homepage: https://creativesdk.adobe.com/
+      deprecated: false
+    - pod: AdobeCreativeSDKCore
+      version: 0.3.2160.1
+      homepage: https://creativesdk.adobe.com/
+      deprecated: false
+    - pod: AdobeCreativeSDKImage
+      version: 0.3.2160.1
+      homepage: https://creativesdk.adobe.com/
+      deprecated: false
+    - pod: AdobeCreativeSDKLabs
+      version: 0.3.2160.1
+      homepage: https://creativesdk.adobe.com/
+      deprecated: false
+    - pod: AdobeCreativeSDKMarketUX
+      version: 0.3.2160.1
+      homepage: https://creativesdk.adobe.com/
+      deprecated: false
+    - pod: AdobeCreativeSDKTypekit
+      version: 0.3.2160.1
+      homepage: https://creativesdk.adobe.com/
+      deprecated: false
+    signal_note: latest podspec homepage (domain) + authors (name); pods, versions and counts are context
+    detected_by: sweep-mobile-sdk-index.py
+    detected: '2026-10-21'
+  status: not-a-workflow
+  arazzo: null
+- slug: adobe-clever-clever-app-gallery
+  label: Clever (clever-app-gallery)
+  partner: clever
+  partner_name: Clever (clever-app-gallery)
+  category: other, communication
+  type: marketplace
+  marketplace: clever-app-gallery
+  channel: partner-built
+  evidence: https://clever.com/app-gallery
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: adobe-google-workspace-own
+  label: Google Workspace (own)
+  partner: google-workspace
+  partner_name: Google Workspace (own)
+  category: Google Workspace app
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://workspace.google.com/marketplace/app/adobe_stock/477057038292
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: adobe-microsoft-teams-own
+  label: Microsoft Teams (own)
+  partner: microsoft-teams
+  partner_name: Microsoft Teams (own)
+  category: Microsoft Teams app
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://appsource.microsoft.com/en-us/product/office/WA200009370
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: adobe-slack-own
+  label: Slack (own)
+  partner: slack
+  partner_name: Slack (own)
+  category: Slack app
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://slack.com/marketplace/A017MMN0TF0-adobe-status
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: adobe-google-play-developer-google-play-sdk-index
+  label: Google Play Developer (Google Play SDK Index)
+  partner: google-play
+  partner_name: Google Play Developer (Google Play SDK Index)
+  category: mobile SDK (analytics, marketing-and-engagement)
+  type: marketplace
+  marketplace: Google Play SDK Index
+  channel: partner-built
+  evidence: https://play.google.com/sdks/details/com-adobe-marketing-mobile-core
+  source: edge
+  relationship: platform-app
   status: not-a-workflow
   arazzo: null

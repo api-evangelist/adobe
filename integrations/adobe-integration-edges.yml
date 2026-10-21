@@ -51,6 +51,11 @@ checked:
 - https://appexchange.salesforce.com/consulting
 - https://developer.salesforce.com/docs/atlas.en-us.packagingGuide.meta/packagingGuide/security_review_overview.htm
 - https://slack.com/marketplace
+- https://cdn.cocoapods.org/all_pods.txt
+- https://cert.appdefensealliance.org/certifications
+- https://play.google.com/sdks
+- https://search.maven.org/solrsearch/select
+- google-play/integrations/google-play-integration-edges.yml
 summary: null
 marketplace_apps:
 - marketplace: own
@@ -626,79 +631,6 @@ edges:
   publisher_name: Adobe Inc.
   detected_by: sweep-devtools.py
   detected: '2026-10-14'
-- partner_name: Clever (clever-app-gallery)
-  partner: clever
-  partner_match: mirror
-  mirror_match: domain+name-among-holders
-  type: marketplace
-  relationship: platform-app
-  direction: third-party
-  channel: partner-built
-  marketplace: clever-app-gallery
-  evidence: https://clever.com/app-gallery
-  mirror_of: clever/integrations/clever-integration-edges.yml
-  apps: []
-  listing_count: 3
-  detected: '2026-10-14'
-  detected_by: mirror-platform-listings.py
-  category: other, communication
-  features:
-  - instant_login
-  - secure_sync
-- partner_name: Google Workspace (own)
-  partner: google-workspace
-  partner_match: mirror
-  mirror_match: domain+name-among-holders
-  type: marketplace
-  relationship: platform-app
-  direction: third-party
-  channel: partner-built
-  marketplace: own
-  evidence: https://workspace.google.com/marketplace/app/adobe_stock/477057038292
-  mirror_of: google-workspace/integrations/google-workspace-integration-edges.yml
-  apps:
-  - Adobe Stock
-  listing_count: 1
-  detected: '2026-10-18'
-  detected_by: mirror-platform-listings.py
-  category: Google Workspace app
-- partner_name: Microsoft Teams (own)
-  partner: microsoft-teams
-  partner_match: mirror
-  mirror_match: domain+name-among-holders
-  type: marketplace
-  relationship: platform-app
-  direction: third-party
-  channel: partner-built
-  marketplace: own
-  evidence: https://appsource.microsoft.com/en-us/product/office/WA200009370
-  mirror_of: microsoft-teams/integrations/microsoft-teams-integration-edges.yml
-  apps:
-  - Adobe Express
-  listing_count: 1
-  detected: '2026-10-18'
-  detected_by: mirror-platform-listings.py
-  category: Microsoft Teams app
-  publisher_verified:
-  - Microsoft 365 Certified
-  - Microsoft 365 Publisher Attestation
-- partner_name: Slack (own)
-  partner: slack
-  partner_match: mirror
-  mirror_match: domain+name-among-holders
-  type: marketplace
-  relationship: platform-app
-  direction: third-party
-  channel: partner-built
-  marketplace: own
-  evidence: https://slack.com/marketplace/A017MMN0TF0-adobe-status
-  mirror_of: slack/integrations/slack-integration-edges.yml
-  apps:
-  - Adobe Status
-  listing_count: 1
-  detected: '2026-10-18'
-  detected_by: mirror-platform-listings.py
-  category: Slack app
 - partner_name: Maven Central
   partner: maven-central
   partner_match: register
@@ -1476,6 +1408,164 @@ edges:
     detected: '2026-10-21'
   detected_by: sweep-salesforce-appexchange.py
   first_seen: '2026-10-21'
+- partner_name: CocoaPods trunk
+  partner: null
+  partner_match: register
+  type: register
+  channel: package-registry
+  relationship: distribution-channel
+  direction: provider-built
+  evidence: https://cocoapods.org/pods/AdobeCreativeSDKAppLibraryUX
+  category: iOS SDK (CocoaPods)
+  contract_reference:
+    register: CocoaPods trunk (cdn.cocoapods.org Specs; github.com/CocoaPods/Specs)
+    spec_file: null
+    role: cocoapods-publisher
+    registered_name: Adobe Systems
+    matched_domain: adobe.com
+    matched_by: domain+name-among-holders
+    pods:
+    - pod: AdobeCreativeSDKAppLibraryUX
+      version: 0.3.2160.1
+      homepage: https://creativesdk.adobe.com/
+      deprecated: false
+    - pod: AdobeCreativeSDKAssetModel
+      version: 0.3.2160.1
+      homepage: https://creativesdk.adobe.com/
+      deprecated: false
+    - pod: AdobeCreativeSDKAssetUX
+      version: 0.3.2160.1
+      homepage: https://creativesdk.adobe.com/
+      deprecated: false
+    - pod: AdobeCreativeSDKBehance
+      version: 0.3.2160.1
+      homepage: https://creativesdk.adobe.com/
+      deprecated: false
+    - pod: AdobeCreativeSDKColor
+      version: 0.3.2160.1
+      homepage: https://creativesdk.adobe.com/
+      deprecated: false
+    - pod: AdobeCreativeSDKCommonUX
+      version: 0.3.2160.1
+      homepage: https://creativesdk.adobe.com/
+      deprecated: false
+    - pod: AdobeCreativeSDKCore
+      version: 0.3.2160.1
+      homepage: https://creativesdk.adobe.com/
+      deprecated: false
+    - pod: AdobeCreativeSDKImage
+      version: 0.3.2160.1
+      homepage: https://creativesdk.adobe.com/
+      deprecated: false
+    - pod: AdobeCreativeSDKLabs
+      version: 0.3.2160.1
+      homepage: https://creativesdk.adobe.com/
+      deprecated: false
+    - pod: AdobeCreativeSDKMarketUX
+      version: 0.3.2160.1
+      homepage: https://creativesdk.adobe.com/
+      deprecated: false
+    - pod: AdobeCreativeSDKTypekit
+      version: 0.3.2160.1
+      homepage: https://creativesdk.adobe.com/
+      deprecated: false
+    signal_note: latest podspec homepage (domain) + authors (name); pods, versions and counts are context
+    detected_by: sweep-mobile-sdk-index.py
+    detected: '2026-10-21'
+  detected_by: sweep-mobile-sdk-index.py
+  first_seen: '2026-10-21'
+- partner_name: Clever (clever-app-gallery)
+  partner: clever
+  partner_match: mirror
+  mirror_match: domain+name-among-holders
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: clever-app-gallery
+  evidence: https://clever.com/app-gallery
+  mirror_of: clever/integrations/clever-integration-edges.yml
+  apps: []
+  listing_count: 3
+  detected: '2026-10-14'
+  detected_by: mirror-platform-listings.py
+  category: other, communication
+  features:
+  - instant_login
+  - secure_sync
+- partner_name: Google Workspace (own)
+  partner: google-workspace
+  partner_match: mirror
+  mirror_match: domain+name-among-holders
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://workspace.google.com/marketplace/app/adobe_stock/477057038292
+  mirror_of: google-workspace/integrations/google-workspace-integration-edges.yml
+  apps:
+  - Adobe Stock
+  listing_count: 1
+  detected: '2026-10-18'
+  detected_by: mirror-platform-listings.py
+  category: Google Workspace app
+- partner_name: Microsoft Teams (own)
+  partner: microsoft-teams
+  partner_match: mirror
+  mirror_match: domain+name-among-holders
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://appsource.microsoft.com/en-us/product/office/WA200009370
+  mirror_of: microsoft-teams/integrations/microsoft-teams-integration-edges.yml
+  apps:
+  - Adobe Express
+  listing_count: 1
+  detected: '2026-10-18'
+  detected_by: mirror-platform-listings.py
+  category: Microsoft Teams app
+  publisher_verified:
+  - Microsoft 365 Certified
+  - Microsoft 365 Publisher Attestation
+- partner_name: Slack (own)
+  partner: slack
+  partner_match: mirror
+  mirror_match: domain+name-among-holders
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://slack.com/marketplace/A017MMN0TF0-adobe-status
+  mirror_of: slack/integrations/slack-integration-edges.yml
+  apps:
+  - Adobe Status
+  listing_count: 1
+  detected: '2026-10-18'
+  detected_by: mirror-platform-listings.py
+  category: Slack app
+- partner_name: Google Play Developer (Google Play SDK Index)
+  partner: google-play
+  partner_match: mirror
+  mirror_match: domain+name-among-holders
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: Google Play SDK Index
+  evidence: https://play.google.com/sdks/details/com-adobe-marketing-mobile-core
+  mirror_of: google-play/integrations/google-play-integration-edges.yml
+  apps:
+  - Core - Experience Platform SDK
+  listing_count: 1
+  detected: '2026-10-21'
+  detected_by: mirror-platform-listings.py
+  category: mobile SDK (analytics, marketing-and-engagement)
+  publisher_verified:
+  - Registered in Google Play SDK Console
 templates:
 - title: Create signature requests in Adobe Acrobat Sign for new rows in a Google Sheet
   url: https://zapier.com/apps/adobe-acrobat-sign/integrations/google-sheets/255627206/create-signature-requests-in-adobe-acrobat-sign-for-new-rows-in-a-google-sheet
