@@ -1812,3 +1812,34 @@
     detected: '2026-10-23'
   status: not-a-workflow
   arazzo: null
+- slug: adobe-tag-registry-trustworthy-accountability-group
+  label: TAG Registry (Trustworthy Accountability Group)
+  partner_name: TAG Registry (Trustworthy Accountability Group)
+  category: Ad fraud / brand safety certification (TAG)
+  type: register
+  channel: standard-directory
+  evidence: https://www.tagtoday.net/registry
+  source: edge
+  relationship: standard-participant
+  contract_reference:
+    register: TAG Registry (tagtoday.net/registry; registry-search public endpoint)
+    spec_file: null
+    standard: TAG certification programs (Trustworthy Accountability Group)
+    role: tag-registered
+    registrations:
+    - registered_name: Adobe
+      register_id: https://hubgloo.opxar.com/company/52706906415
+      verified_by_tag: true
+      seals: []
+      matched_domain: adobe.com
+      matched_by: domain+name-among-holders
+      identity: wikidata Q11463 'Adobe' P856 https://www.adobe.com/
+    signal_note: certified_products = one entry per TAG seal held (CAF, BSC, CAM, CAP, CFT), never per registration;
+      validation route (third-party auditor / TAG Validation / self-attestation) and category are context. The registry
+      shows current seals only and marks none expired, so lapsed is false. Verified by TAG with no seal = listing
+      only (participation)
+    detected_by: sweep-tag-certified-ad-fraud.py
+    detected: '2026-10-23'
+    identity_source: wikidata P856 (labelled provenance step; Kin 2026-10-15 decision 1)
+  status: not-a-workflow
+  arazzo: null
