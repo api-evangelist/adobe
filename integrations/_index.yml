@@ -1731,3 +1731,43 @@
     detected: '2026-10-22'
   status: not-a-workflow
   arazzo: null
+- slug: adobe-pub-dev
+  label: pub.dev
+  partner: pub-dev
+  partner_name: pub.dev
+  category: official SDK (Dart/Flutter)
+  type: register
+  channel: package-registry
+  evidence: https://pub.dev/packages/adobe_xd
+  source: edge
+  relationship: distribution-channel
+  contract_reference:
+    register: pub.dev (public registry JSON)
+    spec_file: null
+    language: Dart/Flutter
+    packages:
+    - name: adobe_xd
+      version: 2.0.1
+      released: '2022-01-28'
+      released_field: published
+      lapsed: true
+      page: https://pub.dev/packages/adobe_xd
+      repo_leg: not required (verified publisher)
+      publisher_leg: verified-publisher:adobe.com
+      matched_by: domain+name-among-holders
+    - name: flutter_aepedgebridge
+      version: 5.0.0
+      released: '2025-03-05'
+      released_field: published
+      lapsed: false
+      page: https://pub.dev/packages/flutter_aepedgebridge
+      repo_leg: not required (verified publisher)
+      publisher_leg: verified-publisher:adobe.com
+      matched_by: domain+name-among-holders
+    current: true
+    signal_note: 'an official package on the registry: distribution, not an integration; lapsed = no release in
+      24 months'
+    detected_by: sweep-php-dart-elixir-package-registries.py
+    detected: '2026-10-22'
+  status: not-a-workflow
+  arazzo: null

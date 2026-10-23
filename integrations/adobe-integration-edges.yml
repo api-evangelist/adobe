@@ -67,6 +67,9 @@ checked:
 - https://api.apis.guru/v2/list.json
 - https://api.apis.guru/v2/providers.json
 - https://dir.texas.gov/resource-library-item/tx-ramp-certified-cloud-products
+- https://hex.pm/api
+- https://packagist.org/packages
+- https://pub.dev/api
 summary: null
 marketplace_apps:
 - marketplace: own
@@ -1839,6 +1842,45 @@ edges:
     detected_by: sweep-tx-ramp-certified-cloud.py
     detected: '2026-10-22'
   detected_by: sweep-tx-ramp-certified-cloud.py
+  first_seen: '2026-10-22'
+- partner_name: pub.dev
+  partner: pub-dev
+  partner_match: register
+  type: register
+  direction: provider-built
+  category: official SDK (Dart/Flutter)
+  evidence: https://pub.dev/packages/adobe_xd
+  channel: package-registry
+  relationship: distribution-channel
+  contract_reference:
+    register: pub.dev (public registry JSON)
+    spec_file: null
+    language: Dart/Flutter
+    packages:
+    - name: adobe_xd
+      version: 2.0.1
+      released: '2022-01-28'
+      released_field: published
+      lapsed: true
+      page: https://pub.dev/packages/adobe_xd
+      repo_leg: not required (verified publisher)
+      publisher_leg: verified-publisher:adobe.com
+      matched_by: domain+name-among-holders
+    - name: flutter_aepedgebridge
+      version: 5.0.0
+      released: '2025-03-05'
+      released_field: published
+      lapsed: false
+      page: https://pub.dev/packages/flutter_aepedgebridge
+      repo_leg: not required (verified publisher)
+      publisher_leg: verified-publisher:adobe.com
+      matched_by: domain+name-among-holders
+    current: true
+    signal_note: 'an official package on the registry: distribution, not an integration; lapsed = no release in
+      24 months'
+    detected_by: sweep-php-dart-elixir-package-registries.py
+    detected: '2026-10-22'
+  detected_by: sweep-php-dart-elixir-package-registries.py
   first_seen: '2026-10-22'
 templates:
 - title: Create signature requests in Adobe Acrobat Sign for new rows in a Google Sheet
