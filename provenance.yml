@@ -7,50 +7,50 @@ artifacts:
     method: generated
     evidence: declared in the artifact
   arazzo/adobe-auto-tag-pdf-workflow.yml:
-    method: unknown
-    evidence: no authorship recorded
+    method: derived
+    evidence: Arazzo whose sourceDescriptions are our split specs (../openapi/)
   arazzo/adobe-combine-pdfs-workflow.yml:
-    method: unknown
-    evidence: no authorship recorded
+    method: derived
+    evidence: Arazzo whose sourceDescriptions are our split specs (../openapi/)
   arazzo/adobe-compress-pdf-workflow.yml:
-    method: unknown
-    evidence: no authorship recorded
+    method: derived
+    evidence: Arazzo whose sourceDescriptions are our split specs (../openapi/)
   arazzo/adobe-create-pdf-workflow.yml:
-    method: unknown
-    evidence: no authorship recorded
+    method: derived
+    evidence: Arazzo whose sourceDescriptions are our split specs (../openapi/)
   arazzo/adobe-delete-pages-workflow.yml:
-    method: unknown
-    evidence: no authorship recorded
+    method: derived
+    evidence: Arazzo whose sourceDescriptions are our split specs (../openapi/)
   arazzo/adobe-download-and-cleanup-asset-workflow.yml:
-    method: unknown
-    evidence: no authorship recorded
+    method: derived
+    evidence: Arazzo whose sourceDescriptions are our split specs (../openapi/)
   arazzo/adobe-export-pdf-workflow.yml:
-    method: unknown
-    evidence: no authorship recorded
+    method: derived
+    evidence: Arazzo whose sourceDescriptions are our split specs (../openapi/)
   arazzo/adobe-extract-pdf-workflow.yml:
-    method: unknown
-    evidence: no authorship recorded
+    method: derived
+    evidence: Arazzo whose sourceDescriptions are our split specs (../openapi/)
   arazzo/adobe-generate-document-workflow.yml:
-    method: unknown
-    evidence: no authorship recorded
+    method: derived
+    evidence: Arazzo whose sourceDescriptions are our split specs (../openapi/)
   arazzo/adobe-inspect-pdf-properties-workflow.yml:
-    method: unknown
-    evidence: no authorship recorded
+    method: derived
+    evidence: Arazzo whose sourceDescriptions are our split specs (../openapi/)
   arazzo/adobe-ocr-pdf-workflow.yml:
-    method: unknown
-    evidence: no authorship recorded
+    method: derived
+    evidence: Arazzo whose sourceDescriptions are our split specs (../openapi/)
   arazzo/adobe-protect-pdf-workflow.yml:
-    method: unknown
-    evidence: no authorship recorded
+    method: derived
+    evidence: Arazzo whose sourceDescriptions are our split specs (../openapi/)
   arazzo/adobe-remove-protection-workflow.yml:
-    method: unknown
-    evidence: no authorship recorded
+    method: derived
+    evidence: Arazzo whose sourceDescriptions are our split specs (../openapi/)
   arazzo/adobe-rotate-pages-workflow.yml:
-    method: unknown
-    evidence: no authorship recorded
+    method: derived
+    evidence: Arazzo whose sourceDescriptions are our split specs (../openapi/)
   arazzo/adobe-split-pdf-workflow.yml:
-    method: unknown
-    evidence: no authorship recorded
+    method: derived
+    evidence: Arazzo whose sourceDescriptions are our split specs (../openapi/)
   asyncapi/adobe-pdf-services-webhooks.yml:
     method: searched
     evidence: declared in the artifact
@@ -348,10 +348,37 @@ artifacts:
   front-door-ai/2026-09-17.yml:
     method: unknown
     evidence: no authorship recorded
+  hosts/adobe-hosts.yml:
+    method: derived
+    evidence: declared in the artifact
+  integrations/_index.yml:
+    method: generated
+    evidence: carries an API Evangelist house phrase
+  integrations/adobe-integration-edges.yml:
+    method: searched
+    evidence: declared in the artifact
   json-ld/adobe-context.jsonld:
     method: unknown
     evidence: no authorship recorded
   json-ld/adobe-pdf-services-context.jsonld:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/adobe-accessibility-checker-external-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/adobe-accessibility-checker-internal-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/adobe-accessibility-checker-job-status-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/adobe-add-watermark-external-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/adobe-add-watermark-internal-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/adobe-add-watermark-job-status-schema.json:
     method: unknown
     evidence: no authorship recorded
   json-schema/adobe-assetdownloadresponse-schema.json:
@@ -366,7 +393,19 @@ artifacts:
   json-schema/adobe-assetuploadresponse-schema.json:
     method: unknown
     evidence: no authorship recorded
+  json-schema/adobe-auto-tag-pdfexternal-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/adobe-auto-tag-pdfinternal-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/adobe-auto-tag-pdfjob-status-schema.json:
+    method: unknown
+    evidence: no authorship recorded
   json-schema/adobe-autotagrequest-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/adobe-bookmarks-payload-schema.json:
     method: unknown
     evidence: no authorship recorded
   json-schema/adobe-combinepdfrequest-schema.json:
@@ -378,10 +417,31 @@ artifacts:
   json-schema/adobe-createpdfrequest-schema.json:
     method: unknown
     evidence: no authorship recorded
+  json-schema/adobe-db-library-bookmarks-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/adobe-db-library-element-data-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/adobe-db-library-info-schema.json:
+    method: unknown
+    evidence: no authorship recorded
   json-schema/adobe-deletepagesrequest-schema.json:
     method: unknown
     evidence: no authorship recorded
   json-schema/adobe-documentgenerationrequest-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/adobe-electronic-seal-external-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/adobe-electronic-seal-internal-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/adobe-electronic-seal-pdfjob-status-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/adobe-element-list-payload-schema.json:
     method: unknown
     evidence: no authorship recorded
   json-schema/adobe-errorresponse-schema.json:
@@ -393,16 +453,49 @@ artifacts:
   json-schema/adobe-extractpdfrequest-schema.json:
     method: unknown
     evidence: no authorship recorded
+  json-schema/adobe-get-form-data-external-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/adobe-get-form-data-internal-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/adobe-get-form-data-job-status-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/adobe-html-to-pdf-external-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/adobe-html-to-pdf-internal-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/adobe-html-to-pdf-job-status-schema.json:
+    method: unknown
+    evidence: no authorship recorded
   json-schema/adobe-insertpagesrequest-schema.json:
     method: unknown
     evidence: no authorship recorded
   json-schema/adobe-jobstatusresponse-schema.json:
     method: unknown
     evidence: no authorship recorded
+  json-schema/adobe-libraries-info-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/adobe-library-elements-info-schema.json:
+    method: unknown
+    evidence: no authorship recorded
   json-schema/adobe-linearizepdfrequest-schema.json:
     method: unknown
     evidence: no authorship recorded
   json-schema/adobe-ocrrequest-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/adobe-page-manipulation-external-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/adobe-page-manipulation-internal-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/adobe-page-manipulation-job-status-schema.json:
     method: unknown
     evidence: no authorship recorded
   json-schema/adobe-pagerange-schema.json:
@@ -489,6 +582,27 @@ artifacts:
   json-schema/adobe-pdfpropertiesrequest-schema.json:
     method: unknown
     evidence: no authorship recorded
+  json-schema/adobe-pdfto-image-external-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/adobe-pdfto-image-internal-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/adobe-pdfto-markdown-external-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/adobe-pdfto-markdown-internal-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/adobe-pdfto-markdown-job-status-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/adobe-pdftoimage-job-status-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/adobe-post-library-elements-payload-schema.json:
+    method: unknown
+    evidence: no authorship recorded
   json-schema/adobe-protectpdfrequest-schema.json:
     method: unknown
     evidence: no authorship recorded
@@ -501,10 +615,64 @@ artifacts:
   json-schema/adobe-replacepagesrequest-schema.json:
     method: unknown
     evidence: no authorship recorded
+  json-schema/adobe-rest-base-file-frame-io-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/adobe-rest-base-file-next-frame-io-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/adobe-rest-base-file-url-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/adobe-rest-base-space-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/adobe-restv1-compose-scene-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/adobe-restv1beta-compose-scene-response-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/adobe-restv1beta-create-scene-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/adobe-restv1beta-create-scene-response-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/adobe-restv1beta-model-convert-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/adobe-restv1beta-model-convert-response-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/adobe-restv1beta-render-model-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/adobe-restv1beta-render-scene-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
   json-schema/adobe-rotatepagesrequest-schema.json:
     method: unknown
     evidence: no authorship recorded
+  json-schema/adobe-set-form-data-external-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/adobe-set-form-data-internal-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/adobe-set-form-data-job-status-schema.json:
+    method: unknown
+    evidence: no authorship recorded
   json-schema/adobe-splitpdfrequest-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/adobe-token-response-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/adobe-token-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/adobe-usssearch-payload-schema.json:
     method: unknown
     evidence: no authorship recorded
   json-structure/adobe-pdf-services-asset-download-response-structure.json:
@@ -585,127 +753,7 @@ artifacts:
   json-structure/adobe-structure.json:
     method: unknown
     evidence: no authorship recorded
-  kin/checks-2026-09-24T161608.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-25T125852.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-25T133943.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-25T143147.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-25T154045.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-26T215308.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-27T094438.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-27T103455.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-27T123021.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-27T132314.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-27T140727.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-28T221322.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-29T213958.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-29T230545.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-30T203505.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-30T220315.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-31T223420.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-01T063623.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-01T210448.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-01T222808.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-02T211804.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-02T224043.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-03T161828.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-03T174231.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-04T062714.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-04T212454.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-04T224856.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-05T055819.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-05T072335.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-05T144739.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-05T195450.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-05T211839.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-06T011047.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-06T211804.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-06T224210.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-07T200636.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-07T213054.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-08T214843.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-08T232836.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-10T204815.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-10T222408.yml:
+  kin/checks-2026-10-11T110117.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
   kin/score-2026-09-12T062655.yml:
@@ -789,12 +837,24 @@ artifacts:
   kin/score-2026-09-24T161608.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-25T210408.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-25T232841.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-10-03T000835.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-10-03T024842.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-10-11T110117.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
   lifecycle/adobe-lifecycle.yml:
     method: searched
     evidence: declared in the artifact
-  llms/adobe-llms.txt:
-    method: searched
-    evidence: 'derive-llms-provenance.py: harvested'
   mcp/adobe-mcp.yml:
     method: searched
     evidence: declared in the artifact
@@ -937,7 +997,127 @@ artifacts:
   openapi/adobe-split-pdf-api-openapi.yml:
     method: derived
     evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  overlays/adobe-accessibility-auto-tag-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/adobe-assets-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/adobe-combine-pdf-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/adobe-composites-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/adobe-compress-pdf-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/adobe-create-pdf-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/adobe-delete-pages-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/adobe-document-generation-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/adobe-export-pdf-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/adobe-export-pdf-form-data-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/adobe-extract-pdf-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/adobe-generate-token-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/adobe-html-to-pdf-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/adobe-import-pdf-form-data-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/adobe-insert-pages-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/adobe-jobs-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/adobe-library-service-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/adobe-library-service-bookmarks-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/adobe-library-service-public-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/adobe-linearize-pdf-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/adobe-ocr-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/adobe-page-manipulation-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/adobe-pdf-accessibility-auto-tag-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/adobe-pdf-accessibility-checker-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/adobe-pdf-electronic-seal-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/adobe-pdf-properties-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
   overlays/adobe-pdf-services-overlay.yaml:
+    method: derived
+    evidence: an API Evangelist overlay (title) over the provider's contract
+  overlays/adobe-pdf-to-images-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/adobe-pdf-to-markdown-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/adobe-pdf-watermark-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/adobe-protect-pdf-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/adobe-remove-protection-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/adobe-reorder-pages-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/adobe-replace-pages-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/adobe-rotate-pages-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/adobe-scenes-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/adobe-spaces-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/adobe-spacesframeio-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/adobe-spacesnextframeio-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/adobe-spacesurl-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/adobe-split-pdf-api-phrasing-overlay.yaml:
     method: generated
     evidence: declared in the artifact
   packages/adobe-packages.yml:
@@ -968,6 +1148,9 @@ artifacts:
     method: searched
     evidence: declared in the artifact
   rules/adobe-jsonschema-spectral-rules.yml:
+    method: generated
+    evidence: declared in the artifact
+  rules/adobe-rules.yml:
     method: generated
     evidence: declared in the artifact
   rules/adobe-spectral-rules.yml:
@@ -1024,12 +1207,15 @@ artifacts:
   subway/build-map.py:
     method: unknown
     evidence: no authorship recorded
+  vendors/adobe-vendors.yml:
+    method: unknown
+    evidence: no authorship recorded
   vocabulary/adobe-vocabulary.yaml:
     method: unknown
     evidence: no authorship recorded
   vocabulary/adobe-vocabulary.yml:
-    method: unknown
-    evidence: no authorship recorded
+    method: derived
+    evidence: declared in the artifact
   well-known/adobe-mcp-oauth-protected-resource.json:
     method: unknown
     evidence: no authorship recorded
