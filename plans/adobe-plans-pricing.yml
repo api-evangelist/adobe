@@ -162,7 +162,7 @@ delivery:
   delivery: managed
 note: ' 2026-10-12: Creative Cloud, Firefly and Experience Cloud rows moved to other_products: the source page does not price them, so they carry no verbatim price_text.'
 x-canonical:
-  generated: '2026-11-01'
+  generated: '2026-11-02'
   vocabulary: engine/economics/plans-canonical.yml
   models:
   - free
