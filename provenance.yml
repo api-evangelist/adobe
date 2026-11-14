@@ -56,6 +56,12 @@ artifacts:
   authentication/adobe-authentication.yml:
     method: searched
     evidence: declared in the artifact
+  certification/observations-2026-11-11.jsonl:
+    method: unknown
+    evidence: no authorship recorded
+  certification/status.yml:
+    method: unknown
+    evidence: no authorship recorded
   changelog/adobe-changelog.yml:
     method: searched
     evidence: declared in the artifact
@@ -199,6 +205,9 @@ artifacts:
     evidence: declared in the artifact
   data-model/adobe-data-model.yml:
     method: derived
+    evidence: declared in the artifact
+  deprecation/adobe-deprecation-policy.yml:
+    method: harvested
     evidence: declared in the artifact
   errors/adobe-problem-types.yml:
     method: derived
@@ -347,7 +356,16 @@ artifacts:
   front-door-ai/2026-09-17.yml:
     method: unknown
     evidence: no authorship recorded
+  graphql/adobe-commerce-graphql-introspection.json:
+    method: unknown
+    evidence: no authorship recorded
   heartbeat/2026-11-02.yml:
+    method: unknown
+    evidence: no authorship recorded
+  heartbeat/2026-11-06.yml:
+    method: unknown
+    evidence: no authorship recorded
+  heartbeat/2026-11-13.yml:
     method: unknown
     evidence: no authorship recorded
   hosts/adobe-hosts.yml:
@@ -365,6 +383,12 @@ artifacts:
   json-ld/adobe-pdf-services-context.jsonld:
     method: unknown
     evidence: no authorship recorded
+  json-schema/adobe-abactivity-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/adobe-abtactivity-schema.json:
+    method: unknown
+    evidence: no authorship recorded
   json-schema/adobe-accessibility-checker-external-schema.json:
     method: unknown
     evidence: no authorship recorded
@@ -374,6 +398,12 @@ artifacts:
   json-schema/adobe-accessibility-checker-job-status-schema.json:
     method: unknown
     evidence: no authorship recorded
+  json-schema/adobe-acquisition-run-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/adobe-actions-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
   json-schema/adobe-add-watermark-external-schema.json:
     method: unknown
     evidence: no authorship recorded
@@ -381,6 +411,36 @@ artifacts:
     method: unknown
     evidence: no authorship recorded
   json-schema/adobe-add-watermark-job-status-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/adobe-agreement-creation-info-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/adobe-agreement-info-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/adobe-album-payload-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/adobe-analytics-date-range-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/adobe-analytics-project-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/adobe-apply-auto-tone-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/adobe-apply-edits-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/adobe-apply-preset-from-xmp-content-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/adobe-apply-preset-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/adobe-archive-status-schema.json:
     method: unknown
     evidence: no authorship recorded
   json-schema/adobe-assetdownloadresponse-schema.json:
@@ -395,6 +455,18 @@ artifacts:
   json-schema/adobe-assetuploadresponse-schema.json:
     method: unknown
     evidence: no authorship recorded
+  json-schema/adobe-audience-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/adobe-auto-allocate-activity-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/adobe-auto-crop-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/adobe-auto-straighten-image-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
   json-schema/adobe-auto-tag-pdfexternal-schema.json:
     method: unknown
     evidence: no authorship recorded
@@ -404,10 +476,46 @@ artifacts:
   json-schema/adobe-auto-tag-pdfjob-status-schema.json:
     method: unknown
     evidence: no authorship recorded
+  json-schema/adobe-auto-target-activity-schema.json:
+    method: unknown
+    evidence: no authorship recorded
   json-schema/adobe-autotagrequest-schema.json:
     method: unknown
     evidence: no authorship recorded
+  json-schema/adobe-batch-patch-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/adobe-batch-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/adobe-batch-response-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/adobe-blocked-features-dto-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/adobe-blocked-features-schema.json:
+    method: unknown
+    evidence: no authorship recorded
   json-schema/adobe-bookmarks-payload-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/adobe-calculated-metrics-save-request-data-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/adobe-callback-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/adobe-classifications-create-export-request-data-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/adobe-client-features-dto-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/adobe-client-self-service-settings-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/adobe-collection-job-status-schema.json:
     method: unknown
     evidence: no authorship recorded
   json-schema/adobe-combinepdfrequest-schema.json:
@@ -416,7 +524,94 @@ artifacts:
   json-schema/adobe-compresspdfrequest-schema.json:
     method: unknown
     evidence: no authorship recorded
+  json-schema/adobe-connection-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/adobe-content-fragment-list-result-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/adobe-content-fragment-model-list-result-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/adobe-content-fragment-model-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/adobe-content-fragment-publish-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/adobe-content-fragment-references-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/adobe-content-fragment-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/adobe-content-fragment-tree-result-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/adobe-content-fragment-variation-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/adobe-content-source-search-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/adobe-content-source-search-response-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/adobe-create-acquisition-content-source-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/adobe-create-archive-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/adobe-create-artboard-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/adobe-create-composite-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/adobe-create-folders-command-result-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/adobe-create-rendition-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/adobe-create-variation-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/adobe-create-variation-status-response-schema.json:
+    method: unknown
+    evidence: no authorship recorded
   json-schema/adobe-createpdfrequest-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/adobe-criteria-cart-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/adobe-criteria-category-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/adobe-criteria-custom-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/adobe-criteria-item-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/adobe-criteria-popularity-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/adobe-criteria-profile-attribute-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/adobe-custom-script-details-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/adobe-data-set-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/adobe-data-set-response-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/adobe-dataset-patch-request-v2-schema.json:
     method: unknown
     evidence: no authorship recorded
   json-schema/adobe-db-library-bookmarks-schema.json:
@@ -428,7 +623,19 @@ artifacts:
   json-schema/adobe-db-library-info-schema.json:
     method: unknown
     evidence: no authorship recorded
+  json-schema/adobe-delete-folders-by-path-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/adobe-delete-folders-command-result-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/adobe-delete-program-members-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
   json-schema/adobe-deletepagesrequest-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/adobe-document-info-request-schema.json:
     method: unknown
     evidence: no authorship recorded
   json-schema/adobe-documentgenerationrequest-schema.json:
@@ -449,10 +656,52 @@ artifacts:
   json-schema/adobe-errorresponse-schema.json:
     method: unknown
     evidence: no authorship recorded
+  json-schema/adobe-expand-image-request-v3-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/adobe-export-rendition-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
   json-schema/adobe-exportpdfrequest-schema.json:
     method: unknown
     evidence: no authorship recorded
   json-schema/adobe-extractpdfrequest-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/adobe-fetched-agreement-info-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/adobe-fetched-mega-sign-info-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/adobe-fill-image-request-v3-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/adobe-find-and-replace-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/adobe-folder-job-status-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/adobe-folder-listing-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/adobe-generate-images-request-v3-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/adobe-generate-manifest-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/adobe-generate-object-composite-request-v3-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/adobe-generate-similar-images-request-v3-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/adobe-generate-variation-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/adobe-generate-variation-response-schema.json:
     method: unknown
     evidence: no authorship recorded
   json-schema/adobe-get-form-data-external-schema.json:
@@ -473,10 +722,34 @@ artifacts:
   json-schema/adobe-html-to-pdf-job-status-schema.json:
     method: unknown
     evidence: no authorship recorded
+  json-schema/adobe-image-generate-request-v3-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/adobe-import-from-url-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/adobe-import-job-accepted-status-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/adobe-import-job-result-schema.json:
+    method: unknown
+    evidence: no authorship recorded
   json-schema/adobe-insertpagesrequest-schema.json:
     method: unknown
     evidence: no authorship recorded
+  json-schema/adobe-iso8601-date-time-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/adobe-job-result-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/adobe-job-status-failed-schema.json:
+    method: unknown
+    evidence: no authorship recorded
   json-schema/adobe-jobstatusresponse-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/adobe-json-schema-schema.json:
     method: unknown
     evidence: no authorship recorded
   json-schema/adobe-libraries-info-schema.json:
@@ -488,7 +761,37 @@ artifacts:
   json-schema/adobe-linearizepdfrequest-schema.json:
     method: unknown
     evidence: no authorship recorded
+  json-schema/adobe-list-operation-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/adobe-lr-job-api-response-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/adobe-mask-body-parts-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/adobe-mega-sign-info-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/adobe-merge-data-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/adobe-merge-data-request-v4-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/adobe-metadata-jsonpatch-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/adobe-metadata-schema.json:
+    method: unknown
+    evidence: no authorship recorded
   json-schema/adobe-ocrrequest-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/adobe-page-connection-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/adobe-page-ims-user-schema.json:
     method: unknown
     evidence: no authorship recorded
   json-schema/adobe-page-manipulation-external-schema.json:
@@ -501,6 +804,15 @@ artifacts:
     method: unknown
     evidence: no authorship recorded
   json-schema/adobe-pagerange-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/adobe-parent-references-list-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/adobe-partial-success-event-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/adobe-patch-acquisition-content-source-request-schema.json:
     method: unknown
     evidence: no authorship recorded
   json-schema/adobe-pdf-job-schema.json:
@@ -608,6 +920,12 @@ artifacts:
   json-schema/adobe-protectpdfrequest-schema.json:
     method: unknown
     evidence: no authorship recorded
+  json-schema/adobe-refine-mask-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/adobe-remove-background-v2-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
   json-schema/adobe-removeprotectionrequest-schema.json:
     method: unknown
     evidence: no authorship recorded
@@ -615,6 +933,15 @@ artifacts:
     method: unknown
     evidence: no authorship recorded
   json-schema/adobe-replacepagesrequest-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/adobe-report-suite-create-request-data-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/adobe-report-suite-save-marketing-channel-cost-request-data-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/adobe-report-suite-save-video-settings-request-data-schema.json:
     method: unknown
     evidence: no authorship recorded
   json-schema/adobe-rest-base-file-frame-io-schema.json:
@@ -656,6 +983,12 @@ artifacts:
   json-schema/adobe-rotatepagesrequest-schema.json:
     method: unknown
     evidence: no authorship recorded
+  json-schema/adobe-search-operation-response-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/adobe-segments-save-request-data-schema.json:
+    method: unknown
+    evidence: no authorship recorded
   json-schema/adobe-set-form-data-external-schema.json:
     method: unknown
     evidence: no authorship recorded
@@ -668,13 +1001,55 @@ artifacts:
   json-schema/adobe-splitpdfrequest-schema.json:
     method: unknown
     evidence: no authorship recorded
+  json-schema/adobe-submit-result-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/adobe-success-asset-ids-query-param-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/adobe-success-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/adobe-success-video-asset-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/adobe-sync-companies-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/adobe-sync-custom-objects-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/adobe-sync-persons-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/adobe-sync-program-members-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/adobe-tagged-document-details-response-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/adobe-token-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
   json-schema/adobe-token-response-schema.json:
     method: unknown
     evidence: no authorship recorded
   json-schema/adobe-token-schema.json:
     method: unknown
     evidence: no authorship recorded
+  json-schema/adobe-transfer-results-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/adobe-update-acquisition-content-source-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
   json-schema/adobe-usssearch-payload-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/adobe-utc-date-time-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/adobe-webhook-info-schema.json:
     method: unknown
     evidence: no authorship recorded
   json-structure/adobe-pdf-services-asset-download-response-structure.json:
@@ -758,7 +1133,7 @@ artifacts:
   kin/checks-2026-10-23T222754.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
-  kin/checks-2026-11-02T082323.yml:
+  kin/checks-2026-11-06T143934.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
   kin/score-2026-09-23T000603.yml:
@@ -827,6 +1202,9 @@ artifacts:
   kin/score-2026-11-02T082323.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-11-06T143934.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
   lifecycle/adobe-lifecycle.yml:
     method: searched
     evidence: declared in the artifact
@@ -836,7 +1214,239 @@ artifacts:
   mcp/adobe-tool-crosswalk.yml:
     method: derived
     evidence: declared in the artifact
+  openapi/_original/adobe-acrobat-sign-api-v6-swagger.json:
+    method: harvested
+    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
+      to the provider's source is unverified
+  openapi/_original/adobe-aem-assets-author-openapi.yaml:
+    method: harvested
+    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
+      to the provider's source is unverified
+  openapi/_original/adobe-aem-assets-delivery-openapi.yaml:
+    method: harvested
+    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
+      to the provider's source is unverified
+  openapi/_original/adobe-aem-content-ai-openapi.yaml:
+    method: harvested
+    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
+      to the provider's source is unverified
+  openapi/_original/adobe-aem-content-fragments-delivery-openapi.yaml:
+    method: harvested
+    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
+      to the provider's source is unverified
+  openapi/_original/adobe-aem-content-fragments-visualization-templates-openapi.yaml:
+    method: harvested
+    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
+      to the provider's source is unverified
+  openapi/_original/adobe-aem-folders-openapi.yaml:
+    method: harvested
+    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
+      to the provider's source is unverified
+  openapi/_original/adobe-aem-forms-openapi.yaml:
+    method: harvested
+    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
+      to the provider's source is unverified
+  openapi/_original/adobe-aem-launches-openapi.yaml:
+    method: harvested
+    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
+      to the provider's source is unverified
+  openapi/_original/adobe-aem-sites-openapi.yaml:
+    method: harvested
+    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
+      to the provider's source is unverified
+  openapi/_original/adobe-aem-translation-openapi.yaml:
+    method: harvested
+    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
+      to the provider's source is unverified
+  openapi/_original/adobe-aep-access-control.yaml:
+    method: harvested
+    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
+      to the provider's source is unverified
+  openapi/_original/adobe-aep-ad-hoc-activation.yaml:
+    method: harvested
+    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
+      to the provider's source is unverified
+  openapi/_original/adobe-aep-audit-query.yaml:
+    method: harvested
+    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
+      to the provider's source is unverified
+  openapi/_original/adobe-aep-batch-ingestion.yaml:
+    method: harvested
+    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
+      to the provider's source is unverified
+  openapi/_original/adobe-aep-catalog.yaml:
+    method: harvested
+    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
+      to the provider's source is unverified
+  openapi/_original/adobe-aep-data-access.yaml:
+    method: harvested
+    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
+      to the provider's source is unverified
+  openapi/_original/adobe-aep-data-distiller-auth.yaml:
+    method: harvested
+    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
+      to the provider's source is unverified
+  openapi/_original/adobe-aep-data-hygiene.yaml:
+    method: harvested
+    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
+      to the provider's source is unverified
+  openapi/_original/adobe-aep-data-prep.yaml:
+    method: harvested
+    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
+      to the provider's source is unverified
+  openapi/_original/adobe-aep-dataset-service.yaml:
+    method: harvested
+    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
+      to the provider's source is unverified
+  openapi/_original/adobe-aep-destination-authoring.yaml:
+    method: harvested
+    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
+      to the provider's source is unverified
+  openapi/_original/adobe-aep-destinations.yaml:
+    method: harvested
+    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
+      to the provider's source is unverified
+  openapi/_original/adobe-aep-flow-service.yaml:
+    method: harvested
+    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
+      to the provider's source is unverified
+  openapi/_original/adobe-aep-identity-service.yaml:
+    method: harvested
+    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
+      to the provider's source is unverified
+  openapi/_original/adobe-aep-mtls-service.yaml:
+    method: harvested
+    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
+      to the provider's source is unverified
+  openapi/_original/adobe-aep-observability-insights.yaml:
+    method: harvested
+    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
+      to the provider's source is unverified
+  openapi/_original/adobe-aep-policy-service.yaml:
+    method: harvested
+    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
+      to the provider's source is unverified
+  openapi/_original/adobe-aep-privacy-service.yaml:
+    method: harvested
+    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
+      to the provider's source is unverified
+  openapi/_original/adobe-aep-profile.yaml:
+    method: harvested
+    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
+      to the provider's source is unverified
+  openapi/_original/adobe-aep-query-service.yaml:
+    method: harvested
+    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
+      to the provider's source is unverified
+  openapi/_original/adobe-aep-reactor.yaml:
+    method: harvested
+    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
+      to the provider's source is unverified
+  openapi/_original/adobe-aep-rtcdp-collaboration.yaml:
+    method: harvested
+    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
+      to the provider's source is unverified
+  openapi/_original/adobe-aep-sandbox.yaml:
+    method: harvested
+    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
+      to the provider's source is unverified
+  openapi/_original/adobe-aep-schema-registry.yaml:
+    method: harvested
+    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
+      to the provider's source is unverified
+  openapi/_original/adobe-aep-segmentation.yaml:
+    method: harvested
+    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
+      to the provider's source is unverified
+  openapi/_original/adobe-aep-sensei-machine-learning.yaml:
+    method: harvested
+    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
+      to the provider's source is unverified
+  openapi/_original/adobe-aep-streaming-ingestion.yaml:
+    method: harvested
+    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
+      to the provider's source is unverified
+  openapi/_original/adobe-aep-unified-tags.yaml:
+    method: harvested
+    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
+      to the provider's source is unverified
+  openapi/_original/adobe-analytics-1.4-api-swagger.json:
+    method: harvested
+    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
+      to the provider's source is unverified
+  openapi/_original/adobe-analytics-2.0-api-swagger.json:
+    method: harvested
+    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
+      to the provider's source is unverified
   openapi/_original/adobe-cc-libraries-api-openapi.json:
+    method: harvested
+    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
+      to the provider's source is unverified
+  openapi/_original/adobe-cloud-manager-api-openapi.yaml:
+    method: harvested
+    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
+      to the provider's source is unverified
+  openapi/_original/adobe-commerce-accs-schema.yaml:
+    method: harvested
+    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
+      to the provider's source is unverified
+  openapi/_original/adobe-commerce-admin-schema-2.4.9.yaml:
+    method: harvested
+    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
+      to the provider's source is unverified
+  openapi/_original/adobe-commerce-customer-schema-2.4.9.yaml:
+    method: harvested
+    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
+      to the provider's source is unverified
+  openapi/_original/adobe-commerce-guest-schema-2.4.9.yaml:
+    method: harvested
+    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
+      to the provider's source is unverified
+  openapi/_original/adobe-customer-journey-analytics-api-swagger.json:
+    method: harvested
+    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
+      to the provider's source is unverified
+  openapi/_original/adobe-express-api-openapi.json:
+    method: harvested
+    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
+      to the provider's source is unverified
+  openapi/_original/adobe-firefly-api-openapi.json:
+    method: harvested
+    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
+      to the provider's source is unverified
+  openapi/_original/adobe-firefly-lightroom-api-openapi.json:
+    method: harvested
+    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
+      to the provider's source is unverified
+  openapi/_original/adobe-indesign-api-openapi.json:
+    method: harvested
+    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
+      to the provider's source is unverified
+  openapi/_original/adobe-io-events-api-openapi.yaml:
+    method: harvested
+    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
+      to the provider's source is unverified
+  openapi/_original/adobe-lightroom-api-swagger.json:
+    method: harvested
+    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
+      to the provider's source is unverified
+  openapi/_original/adobe-marketo-asset-api-swagger.json:
+    method: harvested
+    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
+      to the provider's source is unverified
+  openapi/_original/adobe-marketo-data-ingestion-api-swagger.json:
+    method: harvested
+    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
+      to the provider's source is unverified
+  openapi/_original/adobe-marketo-identity-api-swagger.json:
+    method: harvested
+    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
+      to the provider's source is unverified
+  openapi/_original/adobe-marketo-lead-database-api-swagger.json:
+    method: harvested
+    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
+      to the provider's source is unverified
+  openapi/_original/adobe-marketo-user-api-swagger.json:
     method: harvested
     evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
       to the provider's source is unverified
@@ -848,17 +1458,179 @@ artifacts:
     method: harvested
     evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
       to the provider's source is unverified
+  openapi/_original/adobe-photoshop-api-openapi.json:
+    method: harvested
+    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
+      to the provider's source is unverified
+  openapi/_original/adobe-photoshop-v2-api-openapi.json:
+    method: harvested
+    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
+      to the provider's source is unverified
   openapi/_original/adobe-substance-3d-api-openapi.yml:
+    method: harvested
+    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
+      to the provider's source is unverified
+  openapi/_original/adobe-target-admin-api.json:
+    method: harvested
+    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
+      to the provider's source is unverified
+  openapi/_original/adobe-target-delivery-api.json:
+    method: harvested
+    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
+      to the provider's source is unverified
+  openapi/_original/adobe-target-models-api.json:
+    method: harvested
+    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
+      to the provider's source is unverified
+  openapi/_original/adobe-target-recommendations-api.json:
     method: harvested
     evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
       to the provider's source is unverified
   openapi/adobe-accessibility-auto-tag-api-openapi.yml:
     method: derived
     evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/adobe-acrobat-sign-v6-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/adobe-aem-assets-author-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/adobe-aem-assets-delivery-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/adobe-aem-content-ai-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/adobe-aem-content-fragments-delivery-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/adobe-aem-content-fragments-visualization-templates-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/adobe-aem-folders-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/adobe-aem-forms-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/adobe-aem-launches-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/adobe-aem-sites-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/adobe-aem-translation-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/adobe-aep-access-control-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/adobe-aep-ad-hoc-activation-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/adobe-aep-audit-query-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/adobe-aep-batch-ingestion-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/adobe-aep-catalog-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/adobe-aep-data-access-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/adobe-aep-data-distiller-auth-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/adobe-aep-data-hygiene-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/adobe-aep-data-prep-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/adobe-aep-dataset-service-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/adobe-aep-destination-authoring-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/adobe-aep-destinations-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/adobe-aep-flow-service-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/adobe-aep-identity-service-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/adobe-aep-mtls-service-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/adobe-aep-observability-insights-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/adobe-aep-policy-service-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/adobe-aep-privacy-service-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/adobe-aep-profile-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/adobe-aep-query-service-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/adobe-aep-reactor-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/adobe-aep-rtcdp-collaboration-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/adobe-aep-sandbox-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/adobe-aep-schema-registry-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/adobe-aep-segmentation-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/adobe-aep-sensei-machine-learning-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/adobe-aep-streaming-ingestion-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/adobe-aep-unified-tags-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/adobe-analytics-1-4-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/adobe-analytics-2-0-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
   openapi/adobe-assets-api-openapi.yml:
     method: derived
     evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/adobe-cloud-manager-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
   openapi/adobe-combine-pdf-api-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/adobe-commerce-admin-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/adobe-commerce-cloud-service-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/adobe-commerce-customer-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/adobe-commerce-guest-openapi.yml:
     method: derived
     evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
   openapi/adobe-composites-api-openapi.yml:
@@ -868,6 +1640,9 @@ artifacts:
     method: derived
     evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
   openapi/adobe-create-pdf-api-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/adobe-customer-journey-analytics-openapi.yml:
     method: derived
     evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
   openapi/adobe-delete-pages-api-openapi.yml:
@@ -882,7 +1657,16 @@ artifacts:
   openapi/adobe-export-pdf-form-data-api-openapi.yml:
     method: derived
     evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/adobe-express-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
   openapi/adobe-extract-pdf-api-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/adobe-firefly-lightroom-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/adobe-firefly-openapi.yml:
     method: derived
     evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
   openapi/adobe-generate-token-api-openapi.yml:
@@ -894,7 +1678,13 @@ artifacts:
   openapi/adobe-import-pdf-form-data-api-openapi.yml:
     method: derived
     evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/adobe-indesign-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
   openapi/adobe-insert-pages-api-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/adobe-io-events-openapi.yml:
     method: derived
     evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
   openapi/adobe-jobs-api-openapi.yml:
@@ -909,7 +1699,25 @@ artifacts:
   openapi/adobe-library-service-public-api-openapi.yml:
     method: derived
     evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/adobe-lightroom-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
   openapi/adobe-linearize-pdf-api-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/adobe-marketo-asset-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/adobe-marketo-data-ingestion-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/adobe-marketo-identity-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/adobe-marketo-lead-database-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/adobe-marketo-user-management-openapi.yml:
     method: derived
     evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
   openapi/adobe-ocr-api-openapi.yml:
@@ -937,6 +1745,12 @@ artifacts:
     method: derived
     evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
   openapi/adobe-pdf-watermark-api-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/adobe-photoshop-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/adobe-photoshop-v2-openapi.yml:
     method: derived
     evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
   openapi/adobe-protect-pdf-api-openapi.yml:
@@ -972,11 +1786,104 @@ artifacts:
   openapi/adobe-split-pdf-api-openapi.yml:
     method: derived
     evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/adobe-target-admin-openapi.yml:
+    method: unknown
+    evidence: no authorship recorded
+  openapi/adobe-target-delivery-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/adobe-target-models-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/adobe-target-recommendations-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
   overlays/adobe-accessibility-auto-tag-api-phrasing-overlay.yaml:
     method: generated
     evidence: declared in the artifact
+  overlays/adobe-aep-access-control-overlay.yaml:
+    method: derived
+    evidence: declared in the artifact
+  overlays/adobe-aep-ad-hoc-activation-overlay.yaml:
+    method: derived
+    evidence: declared in the artifact
+  overlays/adobe-aep-audit-query-overlay.yaml:
+    method: derived
+    evidence: declared in the artifact
+  overlays/adobe-aep-batch-ingestion-overlay.yaml:
+    method: derived
+    evidence: declared in the artifact
+  overlays/adobe-aep-catalog-overlay.yaml:
+    method: derived
+    evidence: declared in the artifact
+  overlays/adobe-aep-data-access-overlay.yaml:
+    method: derived
+    evidence: declared in the artifact
+  overlays/adobe-aep-data-distiller-auth-overlay.yaml:
+    method: derived
+    evidence: declared in the artifact
+  overlays/adobe-aep-data-hygiene-overlay.yaml:
+    method: derived
+    evidence: declared in the artifact
+  overlays/adobe-aep-data-prep-overlay.yaml:
+    method: derived
+    evidence: declared in the artifact
+  overlays/adobe-aep-dataset-service-overlay.yaml:
+    method: derived
+    evidence: declared in the artifact
+  overlays/adobe-aep-destinations-overlay.yaml:
+    method: derived
+    evidence: declared in the artifact
+  overlays/adobe-aep-flow-service-overlay.yaml:
+    method: derived
+    evidence: declared in the artifact
+  overlays/adobe-aep-identity-service-overlay.yaml:
+    method: derived
+    evidence: declared in the artifact
+  overlays/adobe-aep-mtls-service-overlay.yaml:
+    method: derived
+    evidence: declared in the artifact
+  overlays/adobe-aep-observability-insights-overlay.yaml:
+    method: derived
+    evidence: declared in the artifact
+  overlays/adobe-aep-policy-service-overlay.yaml:
+    method: derived
+    evidence: declared in the artifact
+  overlays/adobe-aep-privacy-service-overlay.yaml:
+    method: derived
+    evidence: declared in the artifact
+  overlays/adobe-aep-profile-overlay.yaml:
+    method: derived
+    evidence: declared in the artifact
+  overlays/adobe-aep-query-service-overlay.yaml:
+    method: derived
+    evidence: declared in the artifact
+  overlays/adobe-aep-reactor-overlay.yaml:
+    method: derived
+    evidence: declared in the artifact
+  overlays/adobe-aep-sandbox-overlay.yaml:
+    method: derived
+    evidence: declared in the artifact
+  overlays/adobe-aep-schema-registry-overlay.yaml:
+    method: derived
+    evidence: declared in the artifact
+  overlays/adobe-aep-segmentation-overlay.yaml:
+    method: derived
+    evidence: declared in the artifact
+  overlays/adobe-aep-sensei-machine-learning-overlay.yaml:
+    method: derived
+    evidence: declared in the artifact
+  overlays/adobe-aep-unified-tags-overlay.yaml:
+    method: derived
+    evidence: declared in the artifact
+  overlays/adobe-analytics-2-0-overlay.yaml:
+    method: derived
+    evidence: declared in the artifact
   overlays/adobe-assets-api-phrasing-overlay.yaml:
     method: generated
+    evidence: declared in the artifact
+  overlays/adobe-cloud-manager-overlay.yaml:
+    method: derived
     evidence: declared in the artifact
   overlays/adobe-combine-pdf-api-phrasing-overlay.yaml:
     method: generated
@@ -989,6 +1896,9 @@ artifacts:
     evidence: declared in the artifact
   overlays/adobe-create-pdf-api-phrasing-overlay.yaml:
     method: generated
+    evidence: declared in the artifact
+  overlays/adobe-customer-journey-analytics-overlay.yaml:
+    method: derived
     evidence: declared in the artifact
   overlays/adobe-delete-pages-api-phrasing-overlay.yaml:
     method: generated
@@ -1017,17 +1927,29 @@ artifacts:
   overlays/adobe-insert-pages-api-phrasing-overlay.yaml:
     method: generated
     evidence: declared in the artifact
+  overlays/adobe-io-events-overlay.yaml:
+    method: derived
+    evidence: declared in the artifact
   overlays/adobe-jobs-api-phrasing-overlay.yaml:
     method: generated
     evidence: declared in the artifact
+  overlays/adobe-library-service-api-certification-overlay.yaml:
+    method: derived
+    evidence: declared in the artifact
   overlays/adobe-library-service-api-phrasing-overlay.yaml:
     method: generated
+    evidence: declared in the artifact
+  overlays/adobe-library-service-bookmarks-api-certification-overlay.yaml:
+    method: derived
     evidence: declared in the artifact
   overlays/adobe-library-service-bookmarks-api-phrasing-overlay.yaml:
     method: generated
     evidence: declared in the artifact
   overlays/adobe-library-service-public-api-phrasing-overlay.yaml:
     method: generated
+    evidence: declared in the artifact
+  overlays/adobe-lightroom-overlay.yaml:
+    method: derived
     evidence: declared in the artifact
   overlays/adobe-linearize-pdf-api-phrasing-overlay.yaml:
     method: generated
@@ -1098,6 +2020,9 @@ artifacts:
   packages/adobe-packages.yml:
     method: searched
     evidence: declared in the artifact
+  patterns/adobe-patterns.yml:
+    method: derived
+    evidence: declared in the artifact
   plans/adobe-plans-pricing.yml:
     method: searched
     evidence: declared in the artifact
@@ -1122,6 +2047,9 @@ artifacts:
   rate-limits/adobe-rate-limits.yml:
     method: searched
     evidence: declared in the artifact
+  regulatory/adobe-regulatory-posture.yml:
+    method: searched
+    evidence: declared in the artifact
   rules/adobe-jsonschema-spectral-rules.yml:
     method: generated
     evidence: declared in the artifact
@@ -1132,6 +2060,9 @@ artifacts:
     method: generated
     evidence: declared in the artifact
   sandbox/adobe-sandbox.yml:
+    method: searched
+    evidence: declared in the artifact
+  scopes/adobe-scopes.yml:
     method: searched
     evidence: declared in the artifact
   search/2026-05-25-01-adobe-ai.md:
@@ -1160,6 +2091,9 @@ artifacts:
     evidence: declared in the artifact
   skills/_index.yml:
     method: searched
+    evidence: declared in the artifact
+  skills/adobe-aem-content-fragment-safe-update.md:
+    method: generated
     evidence: declared in the artifact
   skills/adobe-pdf-services-async-job-lifecycle.md:
     method: generated
