@@ -72,7 +72,7 @@ Adobe provides APIs and developer resources for its creative, document, and expe
 
 Everything profiled for Adobe is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/adobe/](https://apis.io/providers/adobe/)** — or go straight to one of the APIs or properties below.
 
-### APIs (52)
+### APIs (108)
 
 - [Adobe PDF Extract API](https://apis.io/apis/adobe/adobe-pdf-extract-api/) — Extract text, images, tables, and more from native and scanned PDFs into structured JSON using AI technology.
 - [Adobe Acrobat Sign API](https://apis.io/apis/adobe/adobe-acrobat-sign-api/) — Embed e-signature workflows and manage signing agreements programmatically.
@@ -126,6 +126,62 @@ Everything profiled for Adobe is published on APIs.io rather than in this reposi
 - [Adobe Spaces Frame IO API](https://apis.io/apis/adobe/adobe-spacesframeio-api/) — The SpacesFrameIO API from Adobe — 1 operation(s) for spacesframeio.
 - [Adobe Spaces Next Frame IO API](https://apis.io/apis/adobe/adobe-spacesnextframeio-api/) — The SpacesNextFrameIO API from Adobe — 1 operation(s) for spacesnextframeio.
 - [Adobe Spaces URL API](https://apis.io/apis/adobe/adobe-spacesurl-api/) — The SpacesURL API from Adobe — 1 operation(s) for spacesurl.
+- [Adobe Analytics 1.4 API](https://apis.io/apis/adobe/adobe-analytics-1-4-api/) — API Spec for the Adobe Analytics - Reports & Analytics API Note: Adobe may add optional request and response members (name/value pairs) to existing API…
+- [Adobe Cloud Manager API](https://apis.io/apis/adobe/adobe-cloud-manager-api/) — This API allows access to Cloud Manager programs, pipelines, and environments by an authorized technical account created through the Adobe I/O Console. The…
+- [Adobe Customer Journey Analytics API](https://apis.io/apis/adobe/adobe-customer-journey-analytics-api/) — Open API specification for Customer Journey Analytics APIs. Download the [CJA API Postman…
+- [Adobe Lightroom API](https://apis.io/apis/adobe/adobe-lightroom-api/) — Lightroom API Documentation, made available through [adobe.io](https://developer.adobe.com). API Change Logs are available…
+- [Adobe Commerce Customer REST API](https://apis.io/apis/adobe/adobe-commerce-customer-api/) — {'$ref': 'intro/redocly-intro.md'}
+- [Adobe Commerce Guest REST API](https://apis.io/apis/adobe/adobe-commerce-guest-api/) — {'$ref': 'intro/redocly-intro.md'}
+- [Adobe Commerce as a Cloud Service REST API](https://apis.io/apis/adobe/adobe-commerce-cloud-service-api/) — {'$ref': 'intro/accs-intro.md'}
+- [Adobe Target Admin and Reporting API](https://apis.io/apis/adobe/adobe-target-admin-api/) — Adobe Target Admin and Reporting APIs
+- [Adobe Target Delivery API](https://apis.io/apis/adobe/adobe-target-delivery-api/) — Adobe Target Delivery API
+- [Adobe Target Models API](https://apis.io/apis/adobe/adobe-target-models-api/) — Models API
+- [Adobe Target Recommendations API](https://apis.io/apis/adobe/adobe-target-recommendations-api/) — Recommendations API are based on [REST](https://en.wikipedia.org/wiki/Representational_state_transfer). This describes the resources that make up the…
+- [Adobe Photoshop API](https://apis.io/apis/adobe/adobe-photoshop-api/) — This is the comprehensive API reference for Adobe Firefly's Photoshop API suite of services, including all available Photoshop endpoints, request formats,…
+- [Adobe Photoshop v2 API](https://apis.io/apis/adobe/adobe-photoshop-v2-api/) — Photoshop v2 API Server for Adobe Firefly Services.
+- [Adobe Firefly Services Lightroom API](https://apis.io/apis/adobe/adobe-firefly-lightroom-api/) — This is the API reference documentation for Firefly's Lightroom API.
+- [Adobe Express API](https://apis.io/apis/adobe/adobe-express-api/) — Express API to automate bulk creation, export renditions and various other use cases.
+- [Adobe InDesign API](https://apis.io/apis/adobe/adobe-indesign-api/) — Firefly Service's RESTful InDesign API offers resources to automate tedious, time-consuming design tasks through scalable cloud services, encouraging more…
+- [Adobe Marketo Engage Asset API](https://apis.io/apis/adobe/adobe-marketo-asset-api/) — Marketo Engage Rest API
+- [Adobe Marketo Engage User Management API](https://apis.io/apis/adobe/adobe-marketo-user-management-api/) — Marketo Engage Rest API
+- [Adobe Marketo Engage Identity API](https://apis.io/apis/adobe/adobe-marketo-identity-api/) — Marketo Engage Rest API
+- [Adobe Marketo Engage Data Ingestion API](https://apis.io/apis/adobe/adobe-marketo-data-ingestion-api/) — High volume, low latency, highly available service designed to handle ingestion of large amounts of person and person-related data efficiently and with…
+- [Adobe Experience Manager Assets Author API](https://apis.io/apis/adobe/adobe-aem-assets-author-api/) — API definitions for asset management capabilities in AEM Assets. To configure a client to access to these APIs, visit the Adobe Developer Console and add…
+- [Adobe Experience Manager Dynamic Media with OpenAPI](https://apis.io/apis/adobe/adobe-aem-assets-delivery-api/) — Dynamic Media with OpenAPI
+- [Adobe Experience Manager Content AI APIs](https://apis.io/apis/adobe/adobe-aem-content-ai-api/) — API definitions for Content AI services. To configure a client to access these APIs, visit the Adobe Developer Console and add the "AEM Content AI" card to…
+- [Adobe Experience Manager AEM Content Fragment Delivery with OpenAPI](https://apis.io/apis/adobe/adobe-aem-content-fragments-delivery-api/) — The AEM Content Fragments Delivery API provides callers with efficient endpoints to retrieve Content Fragments and their associated Models for building rich…
+- [Adobe Experience Manager Folders API](https://apis.io/apis/adobe/adobe-aem-folders-api/) — API definitions for folder management capabilities in Adobe Experience Manager. To configure a client to access to these APIs, visit the Adobe Developer…
+- [Adobe Experience Manager Forms API](https://apis.io/apis/adobe/adobe-aem-forms-api/) — Forms API
+- [Adobe Experience Manager Content Fragment Visualization Templates APIs](https://apis.io/apis/adobe/adobe-aem-content-fragments-visualization-templates-api/) — Content Fragment Visualization Templates APIs
+- [Adobe Experience Manager Launches for Content Fragments API](https://apis.io/apis/adobe/adobe-aem-launches-api/) — This API supports AEM as a Cloud Service version 2026.01 or newer and AEM 6.5 LTS SP2 or newer
+- [Adobe Experience Manager Translation Management API](https://apis.io/apis/adobe/adobe-aem-translation-api/) — Translation Management API
+- [Adobe Experience Platform Access Control API](https://apis.io/apis/adobe/adobe-aep-access-control-api/) — Access Control in Adobe Experience Platform allows organization administrators to assign roles and permissions for various Platform capabilities. The Access…
+- [Adobe Experience Platform Ad Hoc Activation API](https://apis.io/apis/adobe/adobe-aep-ad-hoc-activation-api/) — Use the Ad Hoc Activation API to activate audiences on-demand to batch file-based destinations in Adobe Experience Platform, without waiting for the next…
+- [Adobe Experience Platform Audit Query API](https://apis.io/apis/adobe/adobe-aep-audit-query-api/) — Adobe Experience Platform allows you to audit user activity for various services and capabilities in the form of audit logs. Each action recorded in a log…
+- [Adobe Experience Platform Batch Ingestion API](https://apis.io/apis/adobe/adobe-aep-batch-ingestion-api/) — Batch ingestion allows you to ingest data into Adobe Experience Platform as batch files. Batches are units of data that consist of one or more files to be…
+- [Adobe Experience Platform Data Access API](https://apis.io/apis/adobe/adobe-aep-data-access-api/) — Data Access supports limited data egress from Adobe Experience Platform for very particular synchronous use cases. This API has a 60-second response time…
+- [Adobe Experience Platform Data Distiller Authorization API](https://apis.io/apis/adobe/adobe-aep-data-distiller-auth-api/) — Use the Adobe Experience Platform Data Distiller Authorization API to manage IP-based access restrictions for Query Service by controlling which IP…
+- [Adobe Experience Platform Data Hygiene API](https://apis.io/apis/adobe/adobe-aep-data-hygiene-api/) — Use the Data Hygiene REST API to schedule expiration dates for datasets or delete stored customer personal data in Experience Platform. - **Related…
+- [Adobe Experience Platform Data Prep API](https://apis.io/apis/adobe/adobe-aep-data-prep-api/) — Data Prep allows data engineers to map, transform, and validate data to and from Experience Data Model (XDM). Use the Data Prep API to programmatically…
+- [Adobe Experience Platform Dataset Service API](https://apis.io/apis/adobe/adobe-aep-dataset-service-api/) — Use the several endpoints provided by The Dataset Service API to manage data usage labels for existing datasets within the Data Lake. Data usage labels are…
+- [Adobe Experience Platform Destination Authoring API](https://apis.io/apis/adobe/adobe-aep-destination-authoring-api/) — Adobe Experience Platform Destination SDK (also referred to as the *Destination Authoring API*) is a suite of configuration APIs that allow you to configure…
+- [Adobe Experience Platform Flow Service API - Destinations](https://apis.io/apis/adobe/adobe-aep-destinations-api/) — Use the Adobe Experience Platform Flow Service API to connect and activate data to various destinations within and outside of Adobe Experience Platform.…
+- [Adobe Experience Platform Flow Service API - Sources](https://apis.io/apis/adobe/adobe-aep-flow-service-api/) — Adobe Experience Platform allows data to be ingested from external sources while providing you with the ability to structure, label, and enhance incoming…
+- [Adobe Experience Platform Identity Service API](https://apis.io/apis/adobe/adobe-aep-identity-service-api/) — Delivering relevant digital experiences requires having a complete understanding of your customer. This is made more difficult when your customer data is…
+- [Adobe Experience Platform MTLS Service API](https://apis.io/apis/adobe/adobe-aep-mtls-service-api/) — Use the MTLS Service API to securely retrieve public certificates for your Adobe applications. - **Related documentation**: - [MTLS Service API…
+- [Adobe Experience Platform Observability Insights API](https://apis.io/apis/adobe/adobe-aep-observability-insights-api/) — Use the Observability Insights API to programmatically retrieve and monitor metric data for various Adobe Experience Platform features. * **Related…
+- [Adobe Experience Platform Policy Service API](https://apis.io/apis/adobe/adobe-aep-policy-service-api/) — Adobe Experience Platform Data Governance simplifies and streamlines the process of categorizing data and creating data usage policies. Once data labels…
+- [Adobe Experience Platform Privacy Service API](https://apis.io/apis/adobe/adobe-aep-privacy-service-api/) — Adobe Experience Platform Privacy Service provides a common, centralized facilitation of access/delete requests and opt-out-of-sale requests for private…
+- [Adobe Experience Platform Real-time Customer Profile API](https://apis.io/apis/adobe/adobe-aep-profile-api/) — Use Real-time Customer Profile to drive coordinated, consistent and relevant experiences for your customers no matter where or when they interact with your…
+- [Adobe Experience Platform Query Service API](https://apis.io/apis/adobe/adobe-aep-query-service-api/) — Use the Adobe Experience Platform Query Service API to query Platform data with standard SQL. With this serverless tool, you can join any datasets in the…
+- [Adobe Experience Platform Reactor API](https://apis.io/apis/adobe/adobe-aep-reactor-api/) — Use the Reactor API to programmatically manage resources and develop tag extensions in Adobe Experience Platform. **Related documentation**: * [Tags…
+- [Adobe Experience Platform Real-Time CDP Collaboration API](https://apis.io/apis/adobe/adobe-aep-rtcdp-collaboration-api/) — Use the Real-Time CDP Collaboration API to integrate external applications with Real-Time CDP Collaboration. - **Related documentation**: - [Real-Time CDP…
+- [Adobe Experience Platform Sandbox API](https://apis.io/apis/adobe/adobe-aep-sandbox-api/) — Adobe Experience Platform provides virtual sandbox environments which provide isolation and access control for Platform integrations. Use sandboxes for…
+- [Adobe Experience Platform Schema Registry API](https://apis.io/apis/adobe/adobe-aep-schema-registry-api/) — Use the Schema Registry API to access the Schema Library within Adobe Experience Platform. The registry provides a user interface and RESTful API from which…
+- [Adobe Experience Platform Segmentation Service API](https://apis.io/apis/adobe/adobe-aep-segmentation-api/) — Adobe Experience Platform Segmentation Service provides a user interface and RESTful API that allows you to create audiences through segment definitions or…
+- [Adobe Experience Platform Sensei Machine Learning API](https://apis.io/apis/adobe/adobe-aep-sensei-machine-learning-api/) — Sensei Machine Learning API provides a mechanism for data scientists to organize and manage ML services from algorithm onboarding through experimentation…
+- [Adobe Experience Platform Streaming Ingestion API](https://apis.io/apis/adobe/adobe-aep-streaming-ingestion-api/) — Streaming ingestion allows you to send data from client and server-side devices to Experience Platform in real time. Platform supports the use of data…
+- [Adobe Experience Platform Unified Tags API](https://apis.io/apis/adobe/adobe-aep-unified-tags-api/) — Use the Unified Tags API to create folders, tags, and tag categories, which let you better organize your business objects. - **Related documentation**: -…
 
 ### Published properties
 
@@ -176,36 +232,36 @@ Which operations an agent can call, which act, and which need a human in the loo
 
 - [Adobe Agentic Access](https://apis.io/agentic-access/adobe/adobe-agentic-access/)
 
-#### JSON Schema (104)
+#### JSON Schema (223)
 
 The data models the API reads and writes.
 
+- [ABActivity](https://apis.io/schemas/adobe/adobe-abactivity/)
+- [ABTActivity](https://apis.io/schemas/adobe/adobe-abtactivity/)
 - [External](https://apis.io/schemas/adobe/adobe-accessibility-checker-external/)
 - [Internal](https://apis.io/schemas/adobe/adobe-accessibility-checker-internal/)
 - [AccessibilityCheckerJobStatus](https://apis.io/schemas/adobe/adobe-accessibility-checker-job-status/)
+- [AcquisitionRun](https://apis.io/schemas/adobe/adobe-acquisition-run/)
+- [ActionsRequest](https://apis.io/schemas/adobe/adobe-actions-request/)
 - [External](https://apis.io/schemas/adobe/adobe-add-watermark-external/)
 - [Internal](https://apis.io/schemas/adobe/adobe-add-watermark-internal/)
 - [AddWatermarkJobStatus](https://apis.io/schemas/adobe/adobe-add-watermark-job-status/)
+- [AgreementCreationInfo](https://apis.io/schemas/adobe/adobe-agreement-creation-info/)
+- [AgreementInfo](https://apis.io/schemas/adobe/adobe-agreement-info/)
+- [albumPayload](https://apis.io/schemas/adobe/adobe-album-payload/)
+- [AnalyticsDateRange](https://apis.io/schemas/adobe/adobe-analytics-date-range/)
+- [AnalyticsProject](https://apis.io/schemas/adobe/adobe-analytics-project/)
+- [ApplyAutoToneRequest](https://apis.io/schemas/adobe/adobe-apply-auto-tone-request/)
+- [ApplyEditsRequest](https://apis.io/schemas/adobe/adobe-apply-edits-request/)
+- [ApplyPresetFromXmpContentRequest](https://apis.io/schemas/adobe/adobe-apply-preset-from-xmp-content-request/)
+- [ApplyPresetRequest](https://apis.io/schemas/adobe/adobe-apply-preset-request/)
+- [ArchiveStatus](https://apis.io/schemas/adobe/adobe-archive-status/)
 - [AssetDownloadResponse](https://apis.io/schemas/adobe/adobe-assetdownloadresponse/)
 - [AssetReference](https://apis.io/schemas/adobe/adobe-assetreference/)
 - [AssetUploadRequest](https://apis.io/schemas/adobe/adobe-assetuploadrequest/)
 - [AssetUploadResponse](https://apis.io/schemas/adobe/adobe-assetuploadresponse/)
-- [External](https://apis.io/schemas/adobe/adobe-auto-tag-pdfexternal/)
-- [Internal](https://apis.io/schemas/adobe/adobe-auto-tag-pdfinternal/)
-- [AutoTagPDFJobStatus](https://apis.io/schemas/adobe/adobe-auto-tag-pdfjob-status/)
-- [AutoTagRequest](https://apis.io/schemas/adobe/adobe-autotagrequest/)
-- [BookmarksPayload](https://apis.io/schemas/adobe/adobe-bookmarks-payload/)
-- [CombinePDFRequest](https://apis.io/schemas/adobe/adobe-combinepdfrequest/)
-- [CompressPDFRequest](https://apis.io/schemas/adobe/adobe-compresspdfrequest/)
-- [CreatePDFRequest](https://apis.io/schemas/adobe/adobe-createpdfrequest/)
-- [DbLibraryBookmarks](https://apis.io/schemas/adobe/adobe-db-library-bookmarks/)
-- [DbLibraryElementData](https://apis.io/schemas/adobe/adobe-db-library-element-data/)
-- [DbLibraryInfo](https://apis.io/schemas/adobe/adobe-db-library-info/)
-- [DeletePagesRequest](https://apis.io/schemas/adobe/adobe-deletepagesrequest/)
-- [DocumentGenerationRequest](https://apis.io/schemas/adobe/adobe-documentgenerationrequest/)
-- [External](https://apis.io/schemas/adobe/adobe-electronic-seal-external/)
-- [Internal](https://apis.io/schemas/adobe/adobe-electronic-seal-internal/)
-- …and 79 more published on APIs.io
+- [Audience](https://apis.io/schemas/adobe/adobe-audience/)
+- …and 198 more published on APIs.io
 
 #### JSON Structure (26)
 
@@ -309,36 +365,36 @@ Postman and Open Collection request collections.
 - [Adobe PDF Services Split PDF API](https://apis.io/collections/adobe/open-adobe-split-pdf-api/)
 - [Adobe PDF Services API](https://apis.io/collections/adobe/postman-adobe-pdf-services-api/)
 
-#### Overlays (41)
+#### Overlays (73)
 
 OpenAPI overlays, including conversational phrasing for each operation.
 
 - [Adobe Accessibility Auto Tag Api Phrasing Overlay](https://apis.io/overlays/adobe/adobe-accessibility-auto-tag-api-phrasing-overlay/)
-- [Adobe Assets Api Phrasing Overlay](https://apis.io/overlays/adobe/adobe-assets-api-phrasing-overlay/)
-- [Adobe Combine Pdf Api Phrasing Overlay](https://apis.io/overlays/adobe/adobe-combine-pdf-api-phrasing-overlay/)
-- [Adobe Composites Api Phrasing Overlay](https://apis.io/overlays/adobe/adobe-composites-api-phrasing-overlay/)
-- [Adobe Compress Pdf Api Phrasing Overlay](https://apis.io/overlays/adobe/adobe-compress-pdf-api-phrasing-overlay/)
-- [Adobe Create Pdf Api Phrasing Overlay](https://apis.io/overlays/adobe/adobe-create-pdf-api-phrasing-overlay/)
-- [Adobe Delete Pages Api Phrasing Overlay](https://apis.io/overlays/adobe/adobe-delete-pages-api-phrasing-overlay/)
-- [Adobe Document Generation Api Phrasing Overlay](https://apis.io/overlays/adobe/adobe-document-generation-api-phrasing-overlay/)
-- [Adobe Export Pdf Api Phrasing Overlay](https://apis.io/overlays/adobe/adobe-export-pdf-api-phrasing-overlay/)
-- [Adobe Export Pdf Form Data Api Phrasing Overlay](https://apis.io/overlays/adobe/adobe-export-pdf-form-data-api-phrasing-overlay/)
-- [Adobe Extract Pdf Api Phrasing Overlay](https://apis.io/overlays/adobe/adobe-extract-pdf-api-phrasing-overlay/)
-- [Adobe Generate Token Api Phrasing Overlay](https://apis.io/overlays/adobe/adobe-generate-token-api-phrasing-overlay/)
-- [Adobe Html To Pdf Api Phrasing Overlay](https://apis.io/overlays/adobe/adobe-html-to-pdf-api-phrasing-overlay/)
-- [Adobe Import Pdf Form Data Api Phrasing Overlay](https://apis.io/overlays/adobe/adobe-import-pdf-form-data-api-phrasing-overlay/)
-- [Adobe Insert Pages Api Phrasing Overlay](https://apis.io/overlays/adobe/adobe-insert-pages-api-phrasing-overlay/)
-- [Adobe Jobs Api Phrasing Overlay](https://apis.io/overlays/adobe/adobe-jobs-api-phrasing-overlay/)
-- [Adobe Library Service Api Phrasing Overlay](https://apis.io/overlays/adobe/adobe-library-service-api-phrasing-overlay/)
-- [Adobe Library Service Bookmarks Api Phrasing Overlay](https://apis.io/overlays/adobe/adobe-library-service-bookmarks-api-phrasing-overlay/)
-- [Adobe Library Service Public Api Phrasing Overlay](https://apis.io/overlays/adobe/adobe-library-service-public-api-phrasing-overlay/)
-- [Adobe Linearize Pdf Api Phrasing Overlay](https://apis.io/overlays/adobe/adobe-linearize-pdf-api-phrasing-overlay/)
-- [Adobe Ocr Api Phrasing Overlay](https://apis.io/overlays/adobe/adobe-ocr-api-phrasing-overlay/)
-- [Adobe Page Manipulation Api Phrasing Overlay](https://apis.io/overlays/adobe/adobe-page-manipulation-api-phrasing-overlay/)
-- [Adobe Pdf Accessibility Auto Tag Api Phrasing Overlay](https://apis.io/overlays/adobe/adobe-pdf-accessibility-auto-tag-api-phrasing-overlay/)
-- [Adobe Pdf Accessibility Checker Api Phrasing Overlay](https://apis.io/overlays/adobe/adobe-pdf-accessibility-checker-api-phrasing-overlay/)
-- [Adobe Pdf Electronic Seal Api Phrasing Overlay](https://apis.io/overlays/adobe/adobe-pdf-electronic-seal-api-phrasing-overlay/)
-- …and 16 more published on APIs.io
+- [Adobe Aep Access Control Overlay](https://apis.io/overlays/adobe/adobe-aep-access-control-overlay/)
+- [Adobe Aep Ad Hoc Activation Overlay](https://apis.io/overlays/adobe/adobe-aep-ad-hoc-activation-overlay/)
+- [Adobe Aep Audit Query Overlay](https://apis.io/overlays/adobe/adobe-aep-audit-query-overlay/)
+- [Adobe Aep Batch Ingestion Overlay](https://apis.io/overlays/adobe/adobe-aep-batch-ingestion-overlay/)
+- [Adobe Aep Catalog Overlay](https://apis.io/overlays/adobe/adobe-aep-catalog-overlay/)
+- [Adobe Aep Data Access Overlay](https://apis.io/overlays/adobe/adobe-aep-data-access-overlay/)
+- [Adobe Aep Data Distiller Auth Overlay](https://apis.io/overlays/adobe/adobe-aep-data-distiller-auth-overlay/)
+- [Adobe Aep Data Hygiene Overlay](https://apis.io/overlays/adobe/adobe-aep-data-hygiene-overlay/)
+- [Adobe Aep Data Prep Overlay](https://apis.io/overlays/adobe/adobe-aep-data-prep-overlay/)
+- [Adobe Aep Dataset Service Overlay](https://apis.io/overlays/adobe/adobe-aep-dataset-service-overlay/)
+- [Adobe Aep Destinations Overlay](https://apis.io/overlays/adobe/adobe-aep-destinations-overlay/)
+- [Adobe Aep Flow Service Overlay](https://apis.io/overlays/adobe/adobe-aep-flow-service-overlay/)
+- [Adobe Aep Identity Service Overlay](https://apis.io/overlays/adobe/adobe-aep-identity-service-overlay/)
+- [Adobe Aep Mtls Service Overlay](https://apis.io/overlays/adobe/adobe-aep-mtls-service-overlay/)
+- [Adobe Aep Observability Insights Overlay](https://apis.io/overlays/adobe/adobe-aep-observability-insights-overlay/)
+- [Adobe Aep Policy Service Overlay](https://apis.io/overlays/adobe/adobe-aep-policy-service-overlay/)
+- [Adobe Aep Privacy Service Overlay](https://apis.io/overlays/adobe/adobe-aep-privacy-service-overlay/)
+- [Adobe Aep Profile Overlay](https://apis.io/overlays/adobe/adobe-aep-profile-overlay/)
+- [Adobe Aep Query Service Overlay](https://apis.io/overlays/adobe/adobe-aep-query-service-overlay/)
+- [Adobe Aep Reactor Overlay](https://apis.io/overlays/adobe/adobe-aep-reactor-overlay/)
+- [Adobe Aep Sandbox Overlay](https://apis.io/overlays/adobe/adobe-aep-sandbox-overlay/)
+- [Adobe Aep Schema Registry Overlay](https://apis.io/overlays/adobe/adobe-aep-schema-registry-overlay/)
+- [Adobe Aep Segmentation Overlay](https://apis.io/overlays/adobe/adobe-aep-segmentation-overlay/)
+- [Adobe Aep Sensei Machine Learning Overlay](https://apis.io/overlays/adobe/adobe-aep-sensei-machine-learning-overlay/)
+- …and 48 more published on APIs.io
 
 #### Governance rules (3)
 
@@ -356,6 +412,12 @@ Authentication, trust centre, and vulnerability disclosure.
 - [Adobe Domain Security](https://apis.io/security/adobe/adobe-domain-security/)
 - [Adobe Trust Center](https://apis.io/security/adobe/adobe-trust-center/)
 - [Adobe Vulnerability Disclosure](https://apis.io/security/adobe/adobe-vulnerability-disclosure/)
+
+#### OAuth scopes (1)
+
+The permissions the API asks for.
+
+- [Adobe Scopes](https://apis.io/scopes/adobe/adobe-scopes/)
 
 #### Plans and pricing (1)
 
@@ -385,7 +447,7 @@ Links to the company's own pages. This repository publishes no copy of their spe
 - [API reference](https://developer.adobe.com/document-services/docs/apis/)
 - [Pricing](https://developer.adobe.com/document-services/pricing/main/)
 - [Support](https://developer.adobe.com/developer-support/)
-- [Changelog](https://developer.adobe.com/firefly-services/docs/firefly-api/)
+- [Changelog](https://developer.adobe.com/firefly-services/docs/firefly-api/getting-started/changelog/)
 - [Blog](https://blog.developer.adobe.com/)
 - [Security](https://helpx.adobe.com/security.html/security/policy.ug.html)
 - [Compliance](https://www.adobe.com/trust/compliance/compliance-list.html)
@@ -396,18 +458,18 @@ Links to the company's own pages. This repository publishes no copy of their spe
 
 ## API Evangelist rating
 
-**Kin Score 76.2** — exemplar · rubric 0.25.0 · scored 2026-10-23
+**Kin Score 76.1** — exemplar · rubric 0.28.1 · scored 2026-11-21
 
 | Facet | Score |
 |---|---|
-| Discoverability | 65.0 |
-| Contract quality | 67.9 |
+| Discoverability | 71.7 |
+| Contract quality | 70.8 |
 | Contract governance | 45.5 |
-| Operational transparency | 78.9 |
-| Developer ergonomics | 95.8 |
-| Access clarity | 81.6 |
+| Operational transparency | 78.6 |
+| Developer ergonomics | 97.6 |
+| Access clarity | 66.0 |
 
-**Agent readiness 65.9** — agent-ready (gated down from agent-native)
+**Agent readiness 62.9** — agent-ready (gated down from agent-native)
 
 | Agent-readiness dimension | Result |
 |---|---|
@@ -425,15 +487,19 @@ Links to the company's own pages. This repository publishes no copy of their spe
 | Well Known Catalog | — |
 | Consent Identity | — |
 | Agent Card | — |
-| Dry Run Mode | — |
+| Dry Run Mode | yes |
 | Delegated Identity | served (partial credit) |
 | Protected Resource Metadata | verified |
 | Dynamic Client Registration | yes |
 | Agentic Commerce | — |
-| Pagination Ratio | paginated |
-| Operation Distinctiveness | mostly (partial credit) |
+| Pagination Ratio | — |
+| Operation Distinctiveness | — |
+| MCP Tool Quality | na |
+| Onboarding Descriptor | — |
+| Dns Aid Index | na |
+| Markdown Negotiation | na |
 
-**Regulatory alignment 32.7** — AI & Biometrics
+**Regulatory alignment 41.8** — AI & Biometrics
 
 The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/adobe/](https://apis.io/providers/adobe/).
 
